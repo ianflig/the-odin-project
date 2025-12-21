@@ -1,4 +1,7 @@
 body {
+    background-image: url('/images/background.jpg');
+    background-size: cover;
+    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -14,6 +17,8 @@ body {
     height: 630px;
     flex-wrap: wrap;
     background-color: black;
+    border-radius: 15px;
+    outline: 1px solid lightgray;
 }
 
 button {
