@@ -7,7 +7,7 @@ sizeSlider.onmousemove = (e) => updateSizeValue(e.target.value)
 sizeSlider.onchange = (e) => createGrid(e.target.value)
 
 function updateSizeValue(value) {
-    sizeValue.innerHTML = `${value} x ${value}`
+    sizeValue.innerHTML = `${value}x${value}`
 }
 
 function changeColor(e) {
