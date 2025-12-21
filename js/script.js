@@ -1,8 +1,14 @@
 const divContainer = document.querySelector("#container");
-const changeGridValueBtn = document.querySelector("#change-grid-value");
 let isMouseDown = false;
+
 document.body.onmousedown = () => (isMouseDown = true);
 document.body.onmouseup = () => (isMouseDown = false);
+sizeSlider.onmousemove = (e) => updateSizeValue(e.target.value)
+sizeSlider.onchange = (e) => createGrid(e.target.value)
+
+function updateSizeValue(value) {
+    sizeValue.innerHTML = `${value} x ${value}`
+}
 
 function changeColor(e) {
     if (e.type === 'mouseover' && !isMouseDown) return; 
@@ -22,13 +28,11 @@ function createGrid(value) {
             const gridDiv = document.createElement("div");
 
             gridDiv.style.width = `${630 / value}px`;
-            gridDiv.style.outline = "1px solid lightgray";
-
-            gridDiv.classList.add("gridDiv");
-            divContainer.appendChild(gridDiv)
-
+        
             gridDiv.addEventListener("mouseover", changeColor);
             gridDiv.addEventListener("mousedown", changeColor);
+
+            divContainer.appendChild(gridDiv)
         }
     } else {
         alert("Debe ingresar un valor menor a 100");
@@ -36,8 +40,3 @@ function createGrid(value) {
 }
 
 createGrid(16);
-
-changeGridValueBtn.addEventListener("click", () => {
-    createGrid(prompt("Valor del a nueva grid", 64));
-});
-

@@ -5,16 +5,15 @@ body {
     min-height: 100vh;
     flex-direction: column;
     margin: 0;
+    background-color: dimgray;
 }
 
 .container {
     display: flex;
-/*     outline: 2px solid green; */
-    padding: 5px;
     width: 630px;
     height: 630px;
-/*     gap: 10px; */
     flex-wrap: wrap;
+    background-color: black;
 }
 
 button {
