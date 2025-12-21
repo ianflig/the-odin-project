@@ -1,4 +1,4 @@
-const divContainer = document.querySelector("#container");
+const divContainer = document.querySelector("#grid-container");
 let isMouseDown = false;
 
 document.body.onmousedown = () => (isMouseDown = true);

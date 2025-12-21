@@ -9,9 +9,10 @@ body {
     flex-direction: column;
     margin: 0;
     background-color: dimgray;
+    color: white;
 }
 
-.container {
+.grid-container {
     display: flex;
     width: 630px;
     height: 630px;
@@ -21,6 +22,3 @@ body {
     outline: 1px solid lightgray;
 }
 
-button {
-    margin-bottom: 15px;
-}
