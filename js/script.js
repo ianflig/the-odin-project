@@ -9,9 +9,6 @@ let currentSize = DEFAULT_SIZE;
 let currentBackgroundColor = DEFAULT_BACKGROUND_COLOR;
 
 let isMouseDown = false;
-let solidColorStatus = true;
-let eraserStatus = false;
-
 
 const divContainer = document.querySelector("#grid-container");
 const colorBtn = document.querySelector("#colorBtn");
