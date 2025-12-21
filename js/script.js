@@ -1,15 +1,35 @@
 const divContainer = document.querySelector("#container");
+const changeGridValueBtn = document.querySelector("#change-grid-value");
 
-function changeColor(e){
+createGrid(16);
+
+function changeColor(e) {
     e.target.style.backgroundColor = 'yellow';
 }
 
-for(let i = 0; i < 16*16; i++){
+function createGrid(value) {
     
-    const gridDiv = document.createElement("div");
+    if (!(value > 100)){
+        
+        divContainer.innerHTML = "";
 
-    gridDiv.classList.add("gridDiv");
-    divContainer.appendChild(gridDiv)
+        for (let i = 0; i < value * value; i++) {
 
-    gridDiv.addEventListener("mouseenter", changeColor);
+            const gridDiv = document.createElement("div");
+
+            gridDiv.style.width = `${630 / value}px`;
+            gridDiv.style.outline = "1px solid black";
+
+            gridDiv.classList.add("gridDiv");
+            divContainer.appendChild(gridDiv)
+
+            gridDiv.addEventListener("mouseenter", changeColor);
+        }
+    } else {
+        alert("Debe ingresar un valor menor a 100");
+    }
 }
+
+changeGridValueBtn.addEventListener("click", () => {
+    createGrid(prompt("Valor del a nueva grid", 64));
+});
