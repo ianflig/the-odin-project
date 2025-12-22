@@ -90,7 +90,7 @@ function createGrid(value) {
 
         const gridDiv = document.createElement("div");
 
-        gridDiv.style.width = `${630 / value}px`;
+        gridDiv.style.width = `${600 / value}px`;
     
         gridDiv.addEventListener("mouseover", changeColor);
         gridDiv.addEventListener("mousedown", changeColor);
