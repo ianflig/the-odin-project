@@ -75,6 +75,7 @@ body {
     height: 600px;
     flex-wrap: wrap;
     background-color: black;
+    overflow: hidden;
     border-radius: 15px;
     outline: 1px solid #292A2F;
     margin: 20px;
