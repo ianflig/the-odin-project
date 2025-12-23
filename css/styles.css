@@ -159,6 +159,10 @@ body {
     padding-right: 10px;
 }
 
+.brush-tools button:hover {
+  transform: scale(1.05);
+}
+
 .brush-tools #clearGrid {
     background-color: #461c1e;
     margin-top: 15px;
