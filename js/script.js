@@ -1,5 +1,3 @@
-// leak: % operator.
-
 DOWNTEXT_DEFAULT = "0";
 const operatorList = ["/", "+", "x", "-", "%"];
 const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."]
@@ -86,6 +84,7 @@ function getResult(){
         case "+": result = a + b; break;
         case "-": result = a - b; break;
         case "x": result = a * b; break;
+        case "%": result = a % b; break;
         case "/": if (currentValue == 0){result = "Not possible"
         } else {
             result = a / b;} break;
