@@ -1,4 +1,4 @@
-// leak: result round to decimal, zero division error, negative numbers operations, DEL and % operators.
+// leak: DEL and % operators.
 
 DOWNTEXT_DEFAULT = "0";
 const operatorList = ["/", "+", "x", "-", "%"];
@@ -85,7 +85,7 @@ function getResult(){
             result = a / b;} break;
     }
 
-    downText.innerHTML = result;
+    downText.innerHTML = Math.round(result * 100000000) / 100000000;
     upText.innerHTML = previousValue + " " + operator + " " + currentValue + " =";
     currentValue = result.toString();
     operator = null;
