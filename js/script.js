@@ -1,4 +1,4 @@
-// leak: DEL and % operators.
+// leak: % operator.
 
 DOWNTEXT_DEFAULT = "0";
 const operatorList = ["/", "+", "x", "-", "%"];
@@ -27,6 +27,8 @@ buttons.forEach((btn) => {
 
     //AC input
     if (btn.textContent == "AC") {return deleteAll()}
+    //DEL input
+    if (btn.textContent == "DEL") {return deleteNumber()}
     //number input
     if (numbers.includes(btn.textContent)){handleNumber(btn.textContent)}
     //operator input
@@ -34,11 +36,16 @@ buttons.forEach((btn) => {
     //getResult
     if (btn.textContent === "=" && currentValue && previousValue && operator){getResult()}
 
+
   });
 });
 
-function handleNumber(value){
+function deleteNumber(){
+    currentValue = currentValue.toString().slice(0, -1);
+    downText.innerHTML = currentValue;
+}
 
+function handleNumber(value){
     if (resetScreen == "downText"){
         currentValue = "";
         resetScreen = null;
@@ -49,7 +56,6 @@ function handleNumber(value){
 }
 
 function handleOperator(value){    
-
     if ((operator !== null) && resetScreen){
         operator = value;
         upText.innerHTML = previousValue + " " + operator;
