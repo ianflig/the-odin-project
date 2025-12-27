@@ -1,5 +1,6 @@
 // leak: result round to decimal, zero division error, negative numbers operations, DEL and % operators.
 
+DOWNTEXT_DEFAULT = "0";
 const operatorList = ["/", "+", "x", "-", "%"];
 const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."]
 
@@ -12,12 +13,24 @@ const buttons = document.querySelectorAll("button");
 
 buttons.forEach((btn) => {
   btn.addEventListener('click', () => {
+
+    const val = btn.textContent;
+    //negative numbers
+    if (val === "-") {
+        if (currentValue === "" || resetScreen === "downText") {
+            handleNumber("-"); 
+        } else {
+            handleOperator("-"); 
+        }
+        return; 
+    }
+
     //AC input
     if (btn.textContent == "AC") {return deleteAll()}
     //number input
     if (numbers.includes(btn.textContent)){handleNumber(btn.textContent)}
     //operator input
-    if (operatorList.includes(btn.textContent) && (btn.textContent !== "=") ){handleOperator(btn.textContent)}
+    if (operatorList.includes(btn.textContent) && (btn.textContent !== "=")){handleOperator(btn.textContent)}
     //getResult
     if (btn.textContent === "=" && currentValue && previousValue && operator){getResult()}
 
@@ -25,6 +38,7 @@ buttons.forEach((btn) => {
 });
 
 function handleNumber(value){
+
     if (resetScreen == "downText"){
         currentValue = "";
         resetScreen = null;
@@ -34,13 +48,21 @@ function handleNumber(value){
     downText.innerHTML = currentValue;
 }
 
-function handleOperator(value){
+function handleOperator(value){    
+
     if ((operator !== null) && resetScreen){
         operator = value;
         upText.innerHTML = previousValue + " " + operator;
-        return;}
+        return;
+    }
 
-    if (operator !== null){getResult()}
+    if (operator !== null && (previousValue)){
+        if (Number.isInteger(+currentValue)){
+        getResult()
+        } else {
+            return;
+            }
+        }
 
     operator = value;
     previousValue = currentValue;
@@ -58,12 +80,14 @@ function getResult(){
         case "+": result = a + b; break;
         case "-": result = a - b; break;
         case "x": result = a * b; break;
-        case "/": if (currentValue == 0){result = "Not possible"} else {result = a / b;} break;
+        case "/": if (currentValue == 0){result = "Not possible"
+        } else {
+            result = a / b;} break;
     }
 
     downText.innerHTML = result;
     upText.innerHTML = previousValue + " " + operator + " " + currentValue + " =";
-    currentValue = result;
+    currentValue = result.toString();
     operator = null;
     resetScreen = "all";
 }
@@ -74,5 +98,6 @@ function deleteAll(){
     operator = null;
     resetScreen = null;
     upText.innerHTML = "";
-    downText.innerHTML = "";
+    downText.innerHTML = DOWNTEXT_DEFAULT;
+    negativeNumber = false;
 }
