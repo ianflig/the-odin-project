@@ -104,5 +104,4 @@ function deleteAll(){
     resetScreen = null;
     upText.innerHTML = "";
     downText.innerHTML = DOWNTEXT_DEFAULT;
-    negativeNumber = false;
 }
