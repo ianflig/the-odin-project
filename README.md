@@ -1,2 +1,2 @@
 # calculator
-Última tarea/proyecto curso odin sección FUNDAMENTOS
+TOP exercise: calculator/foundations
