@@ -1,2 +1,2 @@
 # etch-a-sketch
-tarea/proyecto pizarra mágica de TOP
+TOP exercise: etch a sketch
