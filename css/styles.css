@@ -1,6 +1,7 @@
-/* * {
-    outline: red 2px solid;
-} */
+* {
+    font-family: roboto,serif;
+    color: #0E0E0E;
+}
 
 body {
     display: flex;
@@ -14,6 +15,8 @@ body {
     background-size: cover;
     background-position: center;
 
+    overflow-x: hidden;
+
     display: flex;
     justify-content: flex-start;
 }
@@ -24,7 +27,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 30%;
+    margin-top: 50%;
     background-color: rgb(0, 0, 0, 0.5);
     
     gap: 15px;
@@ -35,16 +38,103 @@ img {
     height: auto;
 }
 
-h3 {
+.logo h3 {
     font-family: Norse-Bold, sans-serif;
     color: white;
     font-size: 7em;
 }
 
-.right-container {
+.right-container-background {
+    width: 100%;
+    height: 100vh;
+    background-color: #0F0F0F;
     display: flex;
-    background-color: #F9FAFB;
+    justify-content: center;
+    align-items: center;
+    padding: 10%;
+}
+
+.right-container {
+    height: 95vh;
+    display: flex;
     flex-direction: column;
+    background-color: #F9F6ED;
+    border-radius: 8px;
+    align-items: center;
+    text-align: center;
+    padding: 2vh;
+}
+
+.form-background {
+    background-color: #F9F6ED;
+}
+
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh;
+    overflow: hidden;
+}
+
+.form-container div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.form-container input{
+    width: 80%;
+    background-color: #F4EDDD;
+    border-color: gray;
+    border-radius: 15px;
+    border-width: thin;
+
+    /* overflowing */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+.form-container label {
+    letter-spacing: 2px;
+    font-family: roboto-slab, serif;
+}
+
+input:user-valid {
+    border-color: green;
+}
+
+input:user-invalid {
+    border-color: red;
+}
+
+input:focus {
+    outline: none;
+    border-color: black; 
+}
+
+button {
+    background-color: #e94f37;
+    color: white;
+    border-radius: 15px;
+    border-color: white;
+    border-width: thin;
+    padding: 5%;
+    width: 100%;
+}
+
+.right-container > span:nth-of-type(2) {
+    margin-top: auto;
+}
+
+a {
+    color: #e94f37;
 }
 
 @media (min-width: 768px) {
@@ -61,10 +151,12 @@ h3 {
     .logo{
         width: 100%;
         height: 20%;
+        margin-top: 30%;
     }
 
     .right-container {
         width: 65%;
         height: 100vh;
+        background-color: #F9FAFB;
     }
 }
