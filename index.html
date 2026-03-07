@@ -23,14 +23,15 @@
     </div>
     <div class="right-container-background">
         <div class="right-container">
-            <h3>This is not a real online service!</h3>
-            <span>You know you need something like this in  your life to help you realize your deepest dreams. Sign up now to get started.</span>
+            <h3 class="mobile">This is not a real online service!</h3>
+            <span class="mobile">You <em>know</em> you need something like this in  your life to help you realize your deepest dreams. Sign up now to get started.</span>
+            <h3 class="pc">This is not a real online service! You know you need something like this in  your life to help you realize your deepest dreams. <br>Sign up now to get started.</h3>
             <h3>
-            You know you want to.
+            You <em>know</em> you want to.
             </h3>
             <div class="form-background">
                 <h3>Let's do this!</h3>
-                <form class="form-container">
+                <form class="form-container" id="create-account-form">
                     <div>
                         <label for="first_name">FIRST NAME</label>
                         <input type="text" id="first_name" placeholder="John F." name="first_name" minlength="2" maxlength="50" required>
@@ -55,10 +56,9 @@
                         <label for="confirm_password">CONFIRM PASSWORD</label>
                         <input type="password" id="confirm_password" name="password" minlength="8" maxlength="128" required>
                     </div>
-        
-                    <button> Create Account </button>
                 </form>
             </div>
+            <button type="submit" form="create-account-form"> Create Account </button>
             <span> Already have an account? <a href="./">Log in</a></span>
         </div>
     </div>
