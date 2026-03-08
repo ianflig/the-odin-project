@@ -1,0 +1,93 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    min-height: 100vh;
+    background-color: #E9EDF0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 400px;
+    height: 600px;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px #b4b2b2;
+}
+
+.section-calculator-screen {
+    background-color: lightgray;
+    width: 350px;
+    height: 200px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #E9EDF0;
+    box-shadow: 0px 0px 8px #b4b2b2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; 
+  
+    overflow-x: auto;
+}
+
+.section-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin: 0px 15px 20px 15px;
+}
+
+button {
+    width: 70px;
+    height: 70px;
+    border-radius: 100px;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    background-color: #E9EDF0;
+    box-shadow: 0px 0px 5px #b4b2b2;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.btn-large{
+    flex: 0.8
+}
+
+.gray{
+    background-color: #d4d6db;
+    font-size: 23px;
+    color: rgb(73, 72, 72);
+}
+
+.blue{
+    background-color: #7f90b3;
+    color: white;
+}
+
+.up-text,
+.down-text{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: auto;
+    overflow: hidden;
+}
+
+.up-text{
+    height: 30px;
+    margin-top: 5px;
+}
+.down-text{
+    height: 60px;
+    font-size: 40px;
+}
