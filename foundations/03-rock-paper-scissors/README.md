@@ -1,5 +1,5 @@
 <h1 align="center">
-  Landing 
+  Rock, Paper, Scissors
 </h1>
 
 <div align="center">
