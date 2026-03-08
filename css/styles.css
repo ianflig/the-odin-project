@@ -1,0 +1,84 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 400px;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transform: scale(1.6); /* paja: aumentar tamaño general */ 
+
+    font-size: 13px;
+    font-family: sans-serif;
+}
+
+.header,
+.rock,
+.paper,
+.scissors,
+.mid,
+.footer {
+    outline: 1px black solid;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    border-radius: 2px;
+}
+
+.header, 
+.rock-paper-scissors, 
+.mid, 
+.footer {
+  width: 100%; /* ocupar todo el contendor para linear los bordes */
+  box-sizing: border-box; /* para que el padding no rompa el ancho */
+  text-align: center;
+}
+
+.header {
+    font-weight: bold;
+}
+
+.rock-paper-scissors {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+}
+
+.rock-paper-scissors button{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center; 
+    justify-content: center;
+}
+
+.rock-paper-scissors button img{
+    width: 30px;
+    height: 30px;
+    margin-bottom: 5px;
+}
+
+/* estilo botones */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  transition: transform 0.1s;
+}
+
+.rock-paper-scissors button:active {
+  transform: scale(0.95); /* animacion al clickear */
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script src="js/script.js" defer></script>   
+    <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock paper scissors</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+             <div class="text-one">
+                Ronda <span id="round-number">1</span></p>
+            </div>
+            <div class="text-two">
+                Puntaje jugador: <span id="player-score">0</span>
+            </div>
+            <div class="text-three"></div>
+                Puntaje computadora: <span id="computer-score">0</span>
+        </div>
+        <div class="rock-paper-scissors">
+            <button class="rock" id="rockBtn">
+                <img src="images/rock-hand.svg" alt="rock-hand">
+                <span>Piedra</span>
+            </button>
+            <button class="paper" id="paperBtn">
+                <img src="images/paper-hand.svg" alt="paper-hand">
+                <span>Papel</span>
+            </button>
+            <button class="scissors" id="scissorsBtn">
+                <img src="images/scissors-hand.svg" alt="scissors-hand">
+                <span>Tijera</span>
+            </button>
+        </div>
+        <div class="mid">
+            <span id="message">Elije una para empezar el juego</span>
+        </div>
+        <div class="footer">
+            <span>El primero en llegar a 5 gana</span>
+        </div>
+    </div>
+</body>
+
+</html>
