@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+
+    <script src="./js/script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css" integrity="sha512-q6WgHqiHlKyOqslT/lgBgodhd03Wp4BEqKeW6nNtlOY4quzyG3VoQKFrieaCeSnuVseNKRGpGeDU3qPmabCANg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://db.onlinewebfonts.com" crossorigin>
+    <link href="https://db.onlinewebfonts.com/c/3159dc6aa205f50c6997c5100c3873e5?family=Norse-Bold" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <div class="left-container">
+        <div class="logo">
+            <img src="./images/odin-logo.png" width="380" height="508" alt="odin-logo">
+            <h3>ODIN</h3>
+        </div>
+    </div>
+    <div class="right-container-background">
+        <div class="right-container">
+            <h3 class="mobile">This is not a real online service!</h3>
+            <span class="mobile">You <em>know</em> you need something like this in  your life to help you realize your deepest dreams. Sign up now to get started.</span>
+            <h3 class="pc">This is not a real online service! You know you need something like this in  your life to help you realize your deepest dreams. <br>Sign up now to get started.</h3>
+            <h3>
+            You <em>know</em> you want to.
+            </h3>
+            <div class="form-background">
+                <h3>Let's do this!</h3>
+                <form class="form-container" id="create-account-form">
+                    <div>
+                        <label for="first_name">FIRST NAME</label>
+                        <input type="text" id="first_name" placeholder="John F." name="first_name" minlength="2" maxlength="50" required>
+                    </div>
+                    <div>
+                        <label for="last_name">LAST NAME</label>
+                        <input type="text" id="last_name" placeholder="Kennedy" name="last_name" minlength="2" maxlength="50" required>
+                    </div>
+                    <div>
+                        <label for="email">EMAIL</label>
+                        <input type="email" id="email" placeholder="johndot22@gmail.com" name="email" minlength="5" maxlength="250" required>
+                    </div>
+                    <div>
+                        <label for="phone_number">PHONE NUMBER</label>
+                        <input type="number" id="phone_number" placeholder="5498873235543" name="phone_number" minlength="10" maxlength="13" required>
+                    </div>
+                    <div>
+                        <label for="password">PASSWORD</label>
+                        <input type="password" id="password" name="password" minlength="8" maxlength="128" required>
+                    </div>
+                    <div>
+                        <label for="confirm_password">CONFIRM PASSWORD</label>
+                        <input type="password" id="confirm_password" name="password" minlength="8" maxlength="128" required>
+                    </div>
+                </form>
+            </div>
+            <button type="submit" form="create-account-form"> Create Account </button>
+            <span> Already have an account? <a href="./">Log in</a></span>
+        </div>
+    </div>
+</body>
+
+</html>
