@@ -23,5 +23,5 @@ This app doesn't use any packages. To run this setup locally, easiest way I foun
 npx serve .
 ```
 
-After that, just head to [localhost:3000](http://localhost:3000) to see the app running.
+After that, just head to [localhost:3000](http://localhost:3000) to see the app running
 
