@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script src="js/script.js" defer></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etch a Sketch</title>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="main-container-two">
+            <div class="settings" id="settings">
+                <h1 class="text">Etch-a-Sketch</h1>
+                <div class="grid-settings" id="grid-settings">
+                    <h2>Configurar pizarra</h2>
+                    <div class="size-slider">
+                        <div class="size-slider-inside">
+                            <h3>Tamaño:  </h3>
+                            <h4 id="sizeValue">16x16</h4>
+                        </div>
+                        <input type="range" min="1" max="100" value="16" id="sizeSlider">
+                        <div class="size-slider-inside-two">
+                            <h4>Min</h4>
+                            <h4>Max</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="brush-tools" id="brush-tools">
+                    <h2>Herramientas</h2>
+                    <button id="colorBtn">
+                        <h3>Color solido</h3>
+                        <input class="color-input" id="colorInput" type="color" value="#3b82f6">
+                    </button>
+                    <button id="rainbowBtn">
+                        <h3>Arcoiris</h3>
+                        <div class="rainbow-color-div"></div>
+                    </button>
+                    <button id="eraserBtn">
+                        <h3>Borrador</h3>
+                        <img src="images/eraser.svg" alt="eraser-img" id="eraser-img">
+                    </button>
+                    <button id="clearGrid">
+                        <h3>Limpiar pizarra</h3>
+                        <img src="images/trash.svg" alt="eraser-img" id="trash-img">
+                    </button>
+                </div>
+            </div>
+        
+            <div class="grid-container-background">
+                <div class="grid-container" id="grid-container"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,234 @@
+h1 {
+    font-size: 30px;
+    margin-top: 0px;
+    text-shadow: 0px 0px 5px #c9a6a6;
+    color: white;
+}
+
+h2 {
+    font-size: 20px;
+    text-shadow: 0px 0px 3px #c9a6a6;
+    margin-top: 0;
+    color: white;
+}
+
+h3 {
+    font-size: 17px;
+    font-weight: bold;
+    margin: 0;
+}
+
+h4 {
+    font-size: 16px;
+    font-weight: lighter;
+    margin: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #828385;
+}
+
+body {
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    color: lightgray;
+    font-family:Arial, Helvetica, sans-serif ;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1010px;
+    height: 660px;
+    border-radius: 15px;
+    background-color: #292A2F;
+    box-shadow: 0px 0px 10px #ffffff;
+}
+
+.main-container-two {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    height: 650px;
+    border-radius: 15px;
+    background-color: black;
+}
+
+.grid-container-background {
+    display: flex;
+    width: 640px;
+    height: 640px;
+    background-color: #292A2F;
+    border-radius: 10px;
+}
+
+.grid-container {
+    display: flex;
+    width: 600px;
+    height: 600px;
+    flex-wrap: wrap;
+    background-color: black;
+    overflow: hidden;
+    border-radius: 15px;
+    outline: 1px solid #292A2F;
+    margin: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+.settings {
+    display: flex;
+    box-sizing: border-box;
+    width: 350px;
+    height: 630px;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grid-settings {
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    margin-top: 15px;
+    margin-right: 20px;
+}
+
+.size-slider {
+    display: flex;
+    flex-direction: column;
+    background-color: #151618;
+    border-radius: 5px;
+    width: 280px;
+    height: 90px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.size-slider-inside {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    margin-top: 13px;
+    margin-bottom: 5px;
+}
+
+.size-slider-inside-two {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+#sizeSlider {
+    width: 250px;
+    margin-left: 15px;
+}
+
+.brush-tools{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    height: 300px;
+    margin-right: 20px;
+    gap: 10px;
+}
+
+.brush-tools button {
+    background-color: #292A2F;
+    border: none;
+    color: lightgray;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    transition: transform 0.1s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+    padding-right: 10px;
+}
+
+.brush-tools button:hover {
+  transform: scale(1.05);
+}
+
+.brush-tools #clearGrid {
+    background-color: #461c1e;
+    margin-top: 15px;
+}
+
+.brush-tools #clearGrid h3{
+    color: #b43236;
+}
+
+.brush-tools h3 {
+    flex: 1; /* ocupar todo el ancho */
+    padding-left: 35px;
+}
+
+#colorBtn.active {
+    transform: scale(1.02);
+    background-color: gray;
+}
+#rainbowBtn.active {
+    transform: scale(1.02);
+    background-color: gray;
+}
+#eraserBtn.active {
+    transform: scale(1.02);
+    background-color: gray;
+}
+
+
+/* input solid color */
+.color-input {
+    /* eliminar apariencia default */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    
+    width: 29px;
+    height: 29px;
+    background-color: transparent; 
+    border: none; 
+    cursor: pointer;
+    padding: 0; 
+}
+
+/* Chrome/Edge/Safari */
+.color-input::-webkit-color-swatch {
+    border-radius: 4px; 
+    border: none; 
+    
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); 
+}
+
+
+.rainbow-color-div {
+    width: 25px;
+    height: 25px;
+    border-radius: 4px;
+    background: linear-gradient(
+        90deg, /* izquierda a derecha */
+        red, orange, yellow, green, blue, indigo, violet); 
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+#eraser-img,
+#trash-img {
+    width: 30px;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+}
+
