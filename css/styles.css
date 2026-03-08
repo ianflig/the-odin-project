@@ -1,0 +1,249 @@
+/* * {
+    outline: 2px solid red;
+} */
+
+body {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+    background-color: #212a39;
+    font-family:Arial, Helvetica, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo {
+    color: lightgray;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.header-buttons ul {
+    display: flex;
+    gap: 20px;
+}
+
+.header-buttons a {
+    text-decoration: none;
+    color: lightgray;
+    font-size: 18px;
+}
+
+.header-buttons li {
+    list-style-type: none;
+}
+
+.section-one {
+    background-color: #181236;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+}
+
+.section-one .container {
+    display: flex;
+    justify-content: space-around;
+    width: 1200px;
+    margin: 4% 0;
+    gap: 50px;
+}
+
+.section-one img{
+    width: 550px;
+    height: auto;
+}
+
+#p-info-one {
+    margin: 0;
+    padding-bottom: 10px;
+    font-size: 55px;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#p-info-two {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: lightgray;
+}
+
+button {
+    margin-top: 15px;
+    font-family: Roboto, sans-serif;
+    border: none;
+    border-radius: 8px;
+    background: #337AEC;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+}
+
+.section-two {
+    background-color: #050713;
+    color: white;
+    padding: 0 70px 70px 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.section-two .text-header {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    font-weight: bold;
+    font-family:Arial, Helvetica, sans-serif;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.section-two .container-info {
+    justify-content: center;
+    align-items: flex-start;
+    display: flex;
+    width: 1000px;
+    gap: 55px;
+}
+
+.section-two .background {
+    background-color: #233154;
+    display: flex;
+    width: 160px;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+}
+
+.section-two img {
+    width: 80px;
+    height: 80px;
+}
+
+.section-two .text {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+}
+
+.section-two .text-two {
+    margin-top: 10px;
+    font-size: 15px;
+    color: lightgray;
+}
+
+
+.section-two .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    max-height: 300px;
+}
+
+.section-three {
+    background-color: #38393E;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 5em;
+}
+
+.section-three .container-info {
+    display: flex;
+    width: 50em;
+}
+
+.section-three .text {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin-top: 10px;
+    font-size: 35px;
+    font-weight: 10;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+}
+
+.section-three .text-two {
+    text-align: right;
+    font-size: 25px;
+}
+
+.section-four {
+    background-color: #050713;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 6rem;
+}
+
+.section-four .info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #233154;
+    width: 900px;
+    padding: 3rem;
+    border-radius: 1rem;
+    text-align: left;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.section-four .text-one {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.section-four .text-two {
+    color: lightgray;
+}
+
+.section-four button {
+    padding: 12px;
+    width: 9rem;
+    font-size: 16px;
+}
+
+.footer {
+    background-color: #212a39;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.footer .text {
+    font-size: 16px;
+    color: lightgray;
+}

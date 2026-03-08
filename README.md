@@ -1,2 +1,1 @@
 #Odin
-Foundations/recipes
