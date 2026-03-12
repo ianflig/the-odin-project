@@ -14,3 +14,4 @@
 ## Javascript Path
 
 6. [Sign-up Form](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-01-intermediate-html-and-css/06-sign-up-form)
+7. [Admin Dashboard](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-01-intermediate-html-and-css/07-admin-dashboard)
