@@ -2,7 +2,7 @@
  --- GENERAL --- 
 */
 * {
-    font-family: "Atkinson Hyperlegible Next", sans-serif;
+  font-family: "Atkinson Hyperlegible Next", sans-serif;
 }
 
 html {
@@ -95,6 +95,77 @@ h4 {
   color: var(--color-fg);
 }
 
+/*
+  -- CSS Reset (from Josh Comeau)
+  -- https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  font-family: "Atkinson Hyperlegible Next", sans-serif;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
 /* 
 --- TEMPORAL ---
 */
@@ -116,6 +187,11 @@ body {
     "sidebar header"
     "sidebar main-content"
     "sidebar footer";
+}
+
+.image-placeholder {
+    background-color: var(--color-gray-150);
+    border-radius: var(--radius-full);
 }
 
 .sidebar {
@@ -158,9 +234,13 @@ body {
     border-right: 1px solid var(--color-gray-200);
 }
 
+.cards-section h3 {
+    margin-bottom: var(--space-sm);
+}
+
 .all-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--space-md);
 }
 
@@ -170,6 +250,25 @@ body {
     border-radius: var(--radius-md);
     background-color: var(--color-gray-100);
     color: var(--color-gray-700);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.card p {
+    margin-top: var(--space-xs);
+}
+
+.card .icon-container {
+    display: grid;
+    grid-template-columns: repeat(3, 24px);
+    justify-content: end;
+    align-items: end;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+
+.card .icon-container svg {
+    cursor: pointer;
 }
 
 .announcements-section {
@@ -191,6 +290,18 @@ body {
 
 .trending-section {
     grid-area: trending-section;
+
+}
+
+.trending-section .image-placeholder {
+    width: 40px;
+    height: 40px;
+}
+
+.trending {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    align-items: center;
 }
 
 .footer {
