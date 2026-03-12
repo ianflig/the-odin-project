@@ -397,25 +397,59 @@ body {
 
 .announcements-section {
     grid-area: announcements-section;
+    display: grid;
     padding: var(--space-md);
     border-bottom: 1px solid var(--color-gray-200);
+    grid-template-rows: auto 1fr auto;
+    gap: var(--space-2xs);
+    min-height: 0;
 }
 
-.announcements-section div:not(:last-child) {
+.announcements-section h3 {
+    padding-bottom: var(--space-sm);
     border-bottom: 1px solid var(--color-gray-200);
+    text-align: center;
+}
+
+.announcements-section .link {
+    border-top: 1px solid var(--color-gray-200);
+    padding-top: var(--space-md);
+    text-align: center;    
+}
+
+.announcements-section a {
+    text-decoration: underline;
+    color: var(--color-fg);
+}
+
+.all-announcements {
+    gap: var(--space-xs);
+    display: flex;
+    flex-direction: column;
+
+    flex-wrap: wrap;
+    align-content: flex-start;
+
+    min-height: 0;
+    overflow: hidden;
+}
+
+.all-announcements div:not(:first-child) {
+    border-top: 1px solid var(--color-gray-200);
+    padding-top: var(--space-2xs);
 }
 
 .announcement > p {
     display: -webkit-box;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    color: var(--color-gray-700);
 }
 
 .trending-section {
     grid-area: trending-section;
-
 }
 
 .trending-section .image-placeholder {
