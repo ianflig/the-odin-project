@@ -1,19 +1,17 @@
 <h1 align="center">
-  Etch a Sketch
+  Recipes 
 </h1>
 
 <div align="center">
 
 ![HTML](https://img.shields.io/badge/HTML5-%23E34F26.svg?style=flat&logo=html5&logoColor=white)
-![CSS](https://img.shields.io/badge/CSS-639?logo=css&logoColor=fff)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000)
-![Vercel](https://img.shields.io/badge/Vercel-%23000000.svg?logo=vercel&logoColor=white)
+[![Vercel](https://img.shields.io/badge/Vercel-%23000000.svg?logo=vercel&logoColor=white)](#)
 
 </div>
 
 ## Live Preview
 
-The live site can be viewed [here](https://odin-04.vercel.app/).
+The live site can be viewed [here](https://odin-01.vercel.app/).
 
 ## Setup
 
