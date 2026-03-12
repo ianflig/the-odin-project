@@ -306,6 +306,41 @@ body {
 .header-bottom {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    padding: 0 var(--space-md) var(--space-md) var(--space-md);
+}
+
+.header-bottom .left {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: start;
+    align-items: center;
+}
+
+.header-bottom .image-placeholder {
+    width: 3.5rem;
+    height: 3.5rem;
+    flex-shrink: 0;
+}
+
+.header-bottom .right {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: end;
+    align-items: center;
+}
+
+.header-bottom .right button {
+    padding: var(--space-xs) var(--space-md);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--color-fg);
+    background-color: var(--color-gray-100);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--space-sm);
+    font-size: var(--font-md);
+    cursor: pointer;
 }
 
 .main-content {
