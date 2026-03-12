@@ -1,5 +1,5 @@
 <h1 align="center">
-  Sign-Up Form
+  Admin Dashboard
 </h1>
 
 <div align="center">
