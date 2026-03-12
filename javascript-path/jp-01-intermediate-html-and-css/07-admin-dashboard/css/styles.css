@@ -6,7 +6,7 @@
 }
 
 html {
-  --color-primary: oklch(69.186% 0.12845 238.484);
+  --color-primary: oklch(0.7918 0.1143 78.46);
   --color-bg: oklch(0.995 0 0);
   --color-fg: oklch(0.175 0 0);
   --color-gray-900: oklch(0.2 0 0);
@@ -96,15 +96,59 @@ h4 {
 }
 
 /* 
---- BODY ---
-*/
-
-
-
-/* 
 --- TEMPORAL ---
 */
 svg {
     width: 1.25rem;
     height: 1.25rem;
+}
+
+/* 
+--- BODY ---
+*/
+
+body {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr auto auto;
+
+    grid-template-areas: 
+    "sidebar header"
+    "sidebar main-content"
+    "sidebar footer";
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+.header {
+    grid-area: header;
+}
+
+.main-content {
+    grid-area: main-content;
+    display: grid;
+    grid-template-columns:4fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    grid-template-areas: 
+    "cards-section announcement-section"
+    "cards-section trending-section";
+}
+
+.cards-section {
+    grid-area: cards-section;
+}
+
+.announcement-section {
+    grid-area: announcement-section;
+}
+
+.trending-section {
+    grid-area: trending-section;
+}
+
+.footer {
+    grid-area: footer;
 }
