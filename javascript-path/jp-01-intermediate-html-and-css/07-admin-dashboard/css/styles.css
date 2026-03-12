@@ -109,7 +109,7 @@ svg {
 
 body {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: minmax(240px, 1fr) 6fr;
     grid-template-rows: 1fr auto auto;
 
     grid-template-areas: 
@@ -120,10 +120,25 @@ body {
 
 .sidebar {
     grid-area: sidebar;
+    border-right: 1px solid var(--color-gray-200);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
 }
 
 .header {
+    display: grid;
     grid-area: header;
+    grid-template-rows: 75px 1fr;
+    border-bottom: 1px solid var(--color-gray-200);
+}
+
+.header-top {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.header-bottom {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .main-content {
