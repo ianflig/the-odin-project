@@ -508,6 +508,10 @@ body {
 
     body {
         grid-template-columns: 1fr;
+        grid-template-areas: 
+        "header"
+        "main-content"
+        "footer";
     }
 }
 
