@@ -524,8 +524,8 @@ body {
 
     .main-content {
         grid-template-columns: 1fr;
+        grid-template-rows: 1fr; 
         grid-template-areas: 
-        "cards-section"
         "cards-section";
     }
 
