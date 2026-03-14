@@ -1,6 +1,6 @@
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
+function Book({title, author, pages, read}) {
     this.id = crypto.randomUUID();
     this.title = title;
     this.author = author;
@@ -16,7 +16,11 @@ function addBookToLibrary(newBook) {
   myLibrary.push(newBook);
 }
 
-const theHobbit = new Book("The Hobbit", "J.R.R Tolkien", 295, false);
+const theHobbit = new Book({
+    title: "The Hobbit", 
+    author: "J.R.R Tolkien",
+    pages: 295,
+    read: false});
 
 addBookToLibrary(theHobbit);
 
@@ -28,20 +32,42 @@ function display (){
     for (let i = 0; i < myLibrary.length; i++){
         const book = myLibrary[i];
 
-        const div = document.createElement("div");
+        const divCard = document.createElement("div");
         const h4 = document.createElement("h4");
         const para = document.createElement("p");
 
-        div.classList.add("card");
+        divCard.classList.add("card");
         h4.textContent = book.title;
         para.textContent = book.info();
 
-        allCards.appendChild(div);
-        div.appendChild(h4);
-        div.appendChild(para);
+        allCards.appendChild(divCard);
+        divCard.appendChild(h4);
+        divCard.appendChild(para);
     }
 }
 
-display();
+const dialog = document.querySelector("dialog");
+const showButton = document.querySelector("#new-book");
+const closeButton = document.querySelector("dialog #close-btn");
+const submitButton = document.querySelector("#submit-btn")
 
-console.log(myLibrary);
+
+showButton.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+closeButton.addEventListener("click", () => {
+  dialog.close();
+});
+
+const createBook = document.getElementById("create-book");
+createBook.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formData = Object.fromEntries (new FormData(createBook));
+    console.log(formData);
+    let book = new Book(formData);
+    console.log(book);
+    dialog.close();
+    addBookToLibrary(book);
+    display();
+});
