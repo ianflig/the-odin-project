@@ -194,7 +194,7 @@ html {
 }
 
 body {
-    width: minmax(75%, 100%);
+    width: 75%;
     height: 100dvh;
     display: grid;
     grid-template-columns: 1fr;
@@ -392,6 +392,8 @@ body {
     border-radius: var(--radius-md);
     background-color: var(--color-gray-100);
     color: var(--color-gray-700);
+    overflow-wrap: break-word;
+    word-break: break-word;
     display: grid;
     grid-template-rows: auto 1fr auto;
 }

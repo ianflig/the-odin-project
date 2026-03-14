@@ -16,14 +16,6 @@ function addBookToLibrary(newBook) {
   myLibrary.push(newBook);
 }
 
-const theHobbit = new Book({
-    title: "The Hobbit", 
-    author: "J.R.R Tolkien",
-    pages: 295,
-    read: false});
-
-addBookToLibrary(theHobbit);
-
 function display (){
     const allCards = document.querySelector(".all-cards");
 
@@ -35,14 +27,26 @@ function display (){
         const divCard = document.createElement("div");
         const h4 = document.createElement("h4");
         const para = document.createElement("p");
+        const iconContainer = document.createElement("div");
 
         divCard.classList.add("card");
+        iconContainer.classList.add("icon-container");
         h4.textContent = book.title;
         para.textContent = book.info();
+        iconContainer.innerHTML = `
+        <svg class="icon-btn delete-btn" data-id="${book.id}">
+        <use href="#icon-trash"></use>
+        </svg>
+
+        <svg class="icon-btn delete-btn" data-id="${book.id}">
+        <use href="#icon-check"></use>
+        </svg>`;
+
 
         allCards.appendChild(divCard);
         divCard.appendChild(h4);
         divCard.appendChild(para);
+        divCard.append(iconContainer);
     }
 }
 
@@ -64,10 +68,17 @@ const createBook = document.getElementById("create-book");
 createBook.addEventListener("submit", (e) => {
     e.preventDefault();
     const formData = Object.fromEntries (new FormData(createBook));
+    if (formData.read == "on") {
+        formData.read = "already read";
+    } else {
+        formData.read = "not read";
+    }
     console.log(formData);
     let book = new Book(formData);
     console.log(book);
+    createBook.reset();
     dialog.close();
     addBookToLibrary(book);
     display();
 });
+
