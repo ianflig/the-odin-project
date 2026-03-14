@@ -32,6 +32,6 @@ function display (){
     }
 }
 
-display();
+/* display(); */
 
 console.log(myLibrary);
