@@ -363,7 +363,6 @@ body {
 }
 
 .cards-section {
-    grid-area: cards-section;
     padding: var(--space-md);
     overflow-y: auto;
 }
