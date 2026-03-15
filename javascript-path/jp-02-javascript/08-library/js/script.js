@@ -1,3 +1,26 @@
+/* DARK MODE */
+let darkmode = localStorage.getItem("darkmode");
+const themeSwitch = document.getElementById("theme-switch");
+
+const enableDarkMode = () => {
+    document.documentElement.classList.add("darkmode");
+    localStorage.setItem("darkmode", "active");
+};
+const disableDarkMode = () => {
+    document.documentElement.classList.remove("darkmode");
+    localStorage.setItem("darkmode", null);
+};
+
+if (darkmode === "active"){
+    enableDarkMode();
+}
+
+themeSwitch.addEventListener("click", () => {
+    darkmode = localStorage.getItem("darkmode");
+    darkmode !== "active" ? enableDarkMode() : disableDarkMode();
+});
+
+/* LIBRARY */
 const myLibrary = [];
 let bookIdToTrash = null;
 let readIdToChange = null;
@@ -11,7 +34,7 @@ function Book({title, author, pages, read}) {
 }
 
 Book.prototype.info = function() {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
+    return `${this.title} by ${this.author}, ${this.pages} pages`;
     }
 
 function addBookToLibrary(newBook) {
@@ -77,6 +100,10 @@ newBookCloseButton.addEventListener("click", () => {
   createBookDialog.close();
 });
 
+createBookDialog.addEventListener("close", () => {
+    createBook.reset();
+});
+
 const createBook = document.getElementById("create-book");
 createBook.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -89,7 +116,6 @@ createBook.addEventListener("submit", (e) => {
     }
 
     let book = new Book(formData);
-    createBook.reset();
     createBookDialog.close();
     addBookToLibrary(book);
     displayLibrary();
@@ -102,6 +128,7 @@ const allCardsContainer = document.querySelector(".all-cards");
 const deleteButtonDialog = document.querySelector("#delete-book-btn-dialog");
 
 allCardsContainer.addEventListener("click", (e) => {
+    e.preventDefault();
     const clickedDeleteBtn = e.target.closest(".delete-btn");
     const readButton = e.target.closest(".check-btn");
 
