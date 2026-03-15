@@ -111,6 +111,11 @@ html {
     color-scheme: dark;
 }
 
+#theme-switch button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
 #theme-switch {
     width: 35px;
     height: 35px;
