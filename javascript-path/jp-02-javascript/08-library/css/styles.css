@@ -526,6 +526,26 @@ dialog {
     border-radius: var(--space-sm);
     font-size: var(--font-md);
     cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.2s ease;
+}
+
+.header-bottom .right button:hover,
+.dialog-buttons-container button:hover {
+    transform: translateY(-2px);
+    background-color: var(--color-gray-150);
+}
+
+.header-bottom .right button:active,
+.dialog-buttons-container button:active {
+    transform: translateY(1px) scale(0.97);
+}
+
+.icon-btn {
+    transition: transform 0.1s ease-in-out;
+}
+
+.icon-btn:active {
+    transform: scale(0.80);
 }
 
 @media (max-width: 900px) {
