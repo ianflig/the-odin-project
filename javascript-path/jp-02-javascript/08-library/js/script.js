@@ -109,37 +109,24 @@ const deleteConfirmButton = document.querySelector("#delete-confirm-button");
 
 deleteBookCloseBtn.addEventListener("click", (e) => {
     deleteButtonDialog.close();
+    console.log(myLibrary);
 })
 
 deleteConfirmButton.addEventListener("click", (e) => {
-    console.log(bookIdToTrash);
-    /* pending: array check & delete from myLibrary */
-})
+    /* console.log(bookIdToTrash); */
+
+    for (let i = 0; i < myLibrary.length; i++) {
+        if (myLibrary[i].id == bookIdToTrash) {
+            /* console.log(`${myLibrary[i].id} & ${bookIdToTrash}`); */
+            myLibrary.splice([i], 1);
+        }
+    }
+
+    deleteButtonDialog.close();
+    display();
+});
 
 
 /* 
     --- READ BOOK DIALOG SECTION --- 
 */
-
-/* 
-    --- ONLY FOR TESTING ---
- */
-
-const theHobbit = new Book({
-    title: "The Hobbit", 
-    author: "J.R.R Tolkien",
-    pages: 295,
-    read: false});
-
-const theOdyssey = new Book({
-    title: "The Odyssey", 
-    author: "Homero",
-    pages: 450,
-    read: false});
-addBookToLibrary(theHobbit);
-addBookToLibrary(theOdyssey);
-addBookToLibrary(theHobbit);
-addBookToLibrary(theOdyssey);
-addBookToLibrary(theHobbit);
-addBookToLibrary(theOdyssey);
-display();
