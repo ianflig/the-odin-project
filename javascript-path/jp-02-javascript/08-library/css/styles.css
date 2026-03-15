@@ -124,6 +124,7 @@ html {
 
 #theme-switch svg{
     fill: var(--color-gray-700);
+    flex-shrink: 0;
 }
 
 #theme-switch svg:last-child{
