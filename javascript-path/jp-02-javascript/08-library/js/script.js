@@ -1,5 +1,6 @@
 const myLibrary = [];
 let bookIdToTrash = null;
+let readIdToChange = null;
 
 function Book({title, author, pages, read}) {
     this.id = crypto.randomUUID();
@@ -17,7 +18,7 @@ function addBookToLibrary(newBook) {
   myLibrary.push(newBook);
 }
 
-function display (){
+function displayLibrary (){
     const allCards = document.querySelector(".all-cards");
 
     allCards.innerHTML = "";
@@ -29,23 +30,31 @@ function display (){
         const h4 = document.createElement("h4");
         const para = document.createElement("p");
         const iconContainer = document.createElement("div");
+        const cardTitleContainer = document.createElement("div")
+        const cardReadStatus = document.createElement("div")
 
         divCard.classList.add("card");
         iconContainer.classList.add("icon-container");
+        cardTitleContainer.classList.add("card-title-container");
         h4.textContent = book.title;
         para.textContent = book.info();
         iconContainer.innerHTML = `
-        <svg class="icon-btn delete-btn">
-        <use href="#icon-trash"></use>
-        </svg>
-        <svg class="icon-btn check-btn">
-        <use href="#icon-check"></use>
-        </svg>`;
+        <svg class="icon-btn delete-btn"><use href="#icon-trash"></use></svg>
+        <svg class="icon-btn check-btn"><use href="#icon-check"></use></svg>`;
+        if (!book.read) {
+            cardReadStatus.textContent = "Unread";
+            cardReadStatus.classList.add("unread");
+        } else {
+            cardReadStatus.textContent = "Read";
+            cardReadStatus.classList.add("read");
+        }
 
         divCard.dataset.id = book.id;
 
         allCards.appendChild(divCard);
-        divCard.appendChild(h4);
+        divCard.appendChild(cardTitleContainer);
+        cardTitleContainer.appendChild(h4);
+        cardTitleContainer.appendChild(cardReadStatus);
         divCard.appendChild(para);
         divCard.append(iconContainer);
     }
@@ -74,32 +83,39 @@ createBook.addEventListener("submit", (e) => {
 
     const formData = Object.fromEntries (new FormData(createBook));
     if (formData.read == "on") {
-        formData.read = "already read";
+        formData.read = true;
     } else {
-        formData.read = "not read";
+        formData.read = false;
     }
 
     let book = new Book(formData);
     createBook.reset();
     createBookDialog.close();
     addBookToLibrary(book);
-    display();
+    displayLibrary();
 });
 
 /* 
-    --- DELETE BOOK DIALOG SECTION --- 
+    --- DELETE BOOK & READ STATUS DIALOG SECTION --- 
 */
 const allCardsContainer = document.querySelector(".all-cards");
 const deleteButtonDialog = document.querySelector("#delete-book-btn-dialog");
 
 allCardsContainer.addEventListener("click", (e) => {
     const clickedDeleteBtn = e.target.closest(".delete-btn");
+    const readButton = e.target.closest(".check-btn");
 
     if (clickedDeleteBtn) {
         const cardContainerToDelete = e.target.closest('.card');
         bookIdToTrash = cardContainerToDelete.dataset.id;
 
         deleteButtonDialog.showModal();
+    } else {
+        if (readButton) {
+            const cardContainerToCheck = e.target.closest('.card');
+            readIdToChange = cardContainerToCheck.dataset.id;
+            readStatusUpdate();
+        }
     }
 });
 
@@ -109,7 +125,6 @@ const deleteConfirmButton = document.querySelector("#delete-confirm-button");
 
 deleteBookCloseBtn.addEventListener("click", (e) => {
     deleteButtonDialog.close();
-    console.log(myLibrary);
 })
 
 deleteConfirmButton.addEventListener("click", (e) => {
@@ -121,12 +136,37 @@ deleteConfirmButton.addEventListener("click", (e) => {
             myLibrary.splice([i], 1);
         }
     }
-
+    bookIdToTrash = null;
     deleteButtonDialog.close();
-    display();
+    displayLibrary();
 });
 
 
 /* 
-    --- READ BOOK DIALOG SECTION --- 
+    --- READ BOOK STATUS UPDATER --- 
 */
+
+function readStatusUpdate () {
+    for (let i = 0; i < myLibrary.length; i++) {
+        if (myLibrary[i].id == readIdToChange) {
+            myLibrary[i].read = !myLibrary[i].read;
+        }
+    }
+    displayLibrary();
+}
+
+/* 
+    --- DUMMY BOOKS --- 
+*/
+
+addBookToLibrary(new Book({ title: "1984", author: "George Orwell", pages: 328, read: true }));
+addBookToLibrary(new Book({ title: "Cien años de soledad", author: "Gabriel García Márquez", pages: 417, read: false }));
+addBookToLibrary(new Book({ title: "Dune", author: "Frank Herbert", pages: 412, read: true }));
+addBookToLibrary(new Book({ title: "Pride and Prejudice", author: "Jane Austen", pages: 279, read: false }));
+addBookToLibrary(new Book({ title: "Fahrenheit 451", author: "Ray Bradbury", pages: 158, read: true }));
+addBookToLibrary(new Book({ title: "The Lord of the Rings", author: "J.R.R. Tolkien", pages: 1178, read: false }));
+addBookToLibrary(new Book({ title: "Frankenstein", author: "Mary Shelley", pages: 280, read: true }));
+addBookToLibrary(new Book({ title: "Don Quijote de la Mancha", author: "Miguel de Cervantes", pages: 863, read: false }));
+addBookToLibrary(new Book({ title: "El Principito", author: "Antoine de Saint-Exupéry", pages: 96, read: true }));
+
+displayLibrary();
