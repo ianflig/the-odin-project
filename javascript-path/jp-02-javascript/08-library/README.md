@@ -13,8 +13,7 @@
 
 ## Live Preview
 
-link will be here when finished
-<!-- The live site can be viewed [here](https://odin-08.vercel.app). -->
+The live site can be viewed [here](https://odin-08.vercel.app).
 
 ## Setup
 
