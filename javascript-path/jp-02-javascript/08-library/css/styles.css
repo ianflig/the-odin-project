@@ -459,6 +459,7 @@ form .buttons-container{
     }
 
     body {
+        width: 100%;
         grid-template-columns: 1fr;
         grid-template-areas: 
         "header"
@@ -468,6 +469,10 @@ form .buttons-container{
 }
 
 @media (max-width: 600px) {
+    body {
+        width: 100%;
+    }
+
     .announcements-section, 
     .trending-section,
     .header-bottom .left {

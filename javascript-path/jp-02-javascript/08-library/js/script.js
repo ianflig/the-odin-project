@@ -1,4 +1,5 @@
 const myLibrary = [];
+let bookIdToTrash = null;
 
 function Book({title, author, pages, read}) {
     this.id = crypto.randomUUID();
@@ -34,14 +35,14 @@ function display (){
         h4.textContent = book.title;
         para.textContent = book.info();
         iconContainer.innerHTML = `
-        <svg class="icon-btn delete-btn" data-id="${book.id}">
+        <svg class="icon-btn delete-btn">
         <use href="#icon-trash"></use>
         </svg>
-
-        <svg class="icon-btn delete-btn" data-id="${book.id}">
+        <svg class="icon-btn check-btn">
         <use href="#icon-check"></use>
         </svg>`;
 
+        divCard.dataset.id = book.id;
 
         allCards.appendChild(divCard);
         divCard.appendChild(h4);
@@ -50,35 +51,95 @@ function display (){
     }
 }
 
-const dialog = document.querySelector("dialog");
-const showButton = document.querySelector("#new-book");
-const closeButton = document.querySelector("dialog #close-btn");
-const submitButton = document.querySelector("#submit-btn")
+/* 
+    --- NEW BOOK DIALOG SECTION --- 
+*/
 
+const createBookDialog = document.querySelector("#create-book-dialog");
 
-showButton.addEventListener("click", () => {
-  dialog.showModal();
+const newBookButton = document.querySelector("#new-book");
+const newBookCloseButton = document.querySelector("#new-book-close-btn");
+
+newBookButton.addEventListener("click", () => {
+  createBookDialog.showModal();
 });
 
-closeButton.addEventListener("click", () => {
-  dialog.close();
+newBookCloseButton.addEventListener("click", () => {
+  createBookDialog.close();
 });
 
 const createBook = document.getElementById("create-book");
 createBook.addEventListener("submit", (e) => {
     e.preventDefault();
+
     const formData = Object.fromEntries (new FormData(createBook));
     if (formData.read == "on") {
         formData.read = "already read";
     } else {
         formData.read = "not read";
     }
-    console.log(formData);
+
     let book = new Book(formData);
-    console.log(book);
     createBook.reset();
-    dialog.close();
+    createBookDialog.close();
     addBookToLibrary(book);
     display();
 });
 
+/* 
+    --- DELETE BOOK DIALOG SECTION --- 
+*/
+const allCardsContainer = document.querySelector(".all-cards");
+const deleteButtonDialog = document.querySelector("#delete-book-btn-dialog");
+
+allCardsContainer.addEventListener("click", (e) => {
+    const clickedDeleteBtn = e.target.closest(".delete-btn");
+
+    if (clickedDeleteBtn) {
+        const cardContainerToDelete = e.target.closest('.card');
+        bookIdToTrash = cardContainerToDelete.dataset.id;
+
+        deleteButtonDialog.showModal();
+    }
+});
+
+const deleteBookCloseBtn = document.querySelector("#delete-book-close-btn");
+const deleteConfirmButton = document.querySelector("#delete-confirm-button");
+
+
+deleteBookCloseBtn.addEventListener("click", (e) => {
+    deleteButtonDialog.close();
+})
+
+deleteConfirmButton.addEventListener("click", (e) => {
+    console.log(bookIdToTrash);
+    /* pending: array check & delete from myLibrary */
+})
+
+
+/* 
+    --- READ BOOK DIALOG SECTION --- 
+*/
+
+/* 
+    --- ONLY FOR TESTING ---
+ */
+
+const theHobbit = new Book({
+    title: "The Hobbit", 
+    author: "J.R.R Tolkien",
+    pages: 295,
+    read: false});
+
+const theOdyssey = new Book({
+    title: "The Odyssey", 
+    author: "Homero",
+    pages: 450,
+    read: false});
+addBookToLibrary(theHobbit);
+addBookToLibrary(theOdyssey);
+addBookToLibrary(theHobbit);
+addBookToLibrary(theOdyssey);
+addBookToLibrary(theHobbit);
+addBookToLibrary(theOdyssey);
+display();

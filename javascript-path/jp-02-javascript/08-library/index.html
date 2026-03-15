@@ -68,8 +68,7 @@
                 </div>
             </div>
             <div class="right">
-                <div class="dialog">
-                    <dialog>
+                    <dialog id="create-book-dialog">
                         <form id="create-book">
                             <div class="title-container">
                                 <label for="book-title">Title</label>
@@ -83,15 +82,14 @@
                             </div>
                             <div class="read-container">
                                 <label for="book-read-checkbox">Already read?</label>
-                                <input type="checkbox" id="book-read-checkbox" name="read" required>
+                                <input type="checkbox" id="book-read-checkbox" name="read">
                             </div>
                             <div class="buttons-container">
-                                <button id="close-btn" autofocus>Close</button>
+                                <button id="new-book-close-btn" type="button" autofocus>Close</button>
                                 <button type="submit" id="submit-btn">Submit</button>
                             </div>
                         </form>
                     </dialog>
-                </div>
                 <button id="new-book">New Book</button>
             </div>
         </div>
@@ -101,25 +99,19 @@
             <h3>Your Books</h3>
             <p>You can create, delete and read/unread the books</p>
             <div class="all-cards">
-                <div class="card">
-                    <h4>Project Management Tool</h4>
-                    <p>A Kanban-style board application for tracking team tasks, managing agile sprints, and improving productivity. Features drag-and-drop functionality.</p>
-                    <div class="icon-container">
-                        <svg class="icon-btn delete-btn" data-id="${book.id}">
-                        <use href="#icon-trash"></use>
-                        </svg>
-
-                        <svg class="icon-btn delete-btn" data-id="${book.id}">
-                        <use href="#icon-check"></use>
-                        </svg>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
     <div class="footer">
         <p>Made by <a href="https://github.com/ianflig" target="_blank" rel="noopener noreferrer">@ianflig</a></p>
     </div>
+    <dialog id="delete-book-btn-dialog">
+        <p>Are you sure?</p>
+        <div class="buttons-container">
+            <button id="delete-book-close-btn" autofocus>No</button>
+            <button id="delete-confirm-button">Yes</button>
+        </div>
+    </dialog>
 </body>
 
 </html>
