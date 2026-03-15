@@ -68,28 +68,6 @@
                 </div>
             </div>
             <div class="right">
-                    <dialog id="create-book-dialog">
-                        <form id="create-book">
-                            <div class="title-container">
-                                <label for="book-title">Title</label>
-                                <input type="text" id="book-title" name="title" required>
-                            </div>
-                            <div class="author-and-pages-container">
-                                <label for="book-author">Author</label>
-                                <input type="text" id="book-author" name="author" required>
-                                <label for="book-number-of-pages">Number of pages</label>
-                                <input type="number" id="book-number-of-pages" name="pages" required>
-                            </div>
-                            <div class="read-container">
-                                <label for="book-read-checkbox">Already read?</label>
-                                <input type="checkbox" id="book-read-checkbox" name="read">
-                            </div>
-                            <div class="buttons-container">
-                                <button id="new-book-close-btn" type="button" autofocus>Close</button>
-                                <button type="submit" id="submit-btn">Submit</button>
-                            </div>
-                        </form>
-                    </dialog>
                 <button id="new-book">New Book</button>
             </div>
         </div>
@@ -99,30 +77,47 @@
             <h3>Your Books</h3>
             <p>You can create, delete and read/unread the books</p>
             <div class="all-cards">
-<!--                 <div class="card" data-id="fe85bf65-a298-4cf7-83c6-93baa00130ff">
-                    <div class="card-title-container">
-                        <h4>Cien años de soledad</h4>
-                        <div class="read">Read</div>
-                    </div>
-                    <p>Cien años de soledad by Gabriel García Márquez, 417 pages, false</p>
-                    <div class="icon-container">
-                    <svg class="icon-btn delete-btn"><use href="#icon-trash"></use></svg>
-                    <svg class="icon-btn check-btn"><use href="#icon-check"></use></svg>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
     <div class="footer">
         <p>Made by <a href="https://github.com/ianflig" target="_blank" rel="noopener noreferrer">@ianflig</a></p>
     </div>
-    <dialog id="delete-book-btn-dialog">
-        <p>Are you sure?</p>
-        <div class="buttons-container">
-            <button id="delete-book-close-btn" autofocus>No</button>
-            <button id="delete-confirm-button">Yes</button>
-        </div>
-    </dialog>
+        <dialog id="delete-book-btn-dialog" class="delete-book-btn-dialog">
+                <div class="dialog-container">
+                    <p>Are you sure you want to delete?</p>
+                    <div class="dialog-buttons-container">
+                        <button id="delete-book-close-btn" autofocus>No</button>
+                        <button id="delete-confirm-button">Yes</button>
+                    </div>
+                </div>
+        </dialog>
+        <dialog id="create-book-dialog" class="create-book-dialog">
+            <form id="create-book" class="create-book-form">
+                <div class="title-container">
+                    <label for="book-title">Title</label>
+                    <input type="text" id="book-title" name="title" required>
+                </div>
+                <div class="author-and-pages-container">
+                    <div class="author-container">
+                        <label for="book-author">Author</label>
+                        <input type="text" id="book-author" name="author" required>
+                    </div>
+                    <div class="pages-container">
+                        <label for="book-number-of-pages">Number of pages</label>
+                        <input type="number" id="book-number-of-pages" name="pages" required>
+                    </div>
+                </div>
+                <div class="read-container">
+                    <label for="book-read-checkbox">Already read?</label>
+                    <input type="checkbox" id="book-read-checkbox" name="read">
+                </div>
+                <div class="dialog-buttons-container">
+                    <button id="new-book-close-btn" type="button" autofocus>Close</button>
+                    <button type="submit" id="submit-btn">Submit</button>
+                </div>
+            </form>
+        </dialog>
 </body>
 
 </html>
