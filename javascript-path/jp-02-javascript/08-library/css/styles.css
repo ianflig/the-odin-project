@@ -346,7 +346,7 @@ body {
 stroke: var(--color-gray-900);
 }
 
-.header-top .search svg,
+.header-top .search label,
 .header-top .search input {
     flex-shrink: 0;
 }
