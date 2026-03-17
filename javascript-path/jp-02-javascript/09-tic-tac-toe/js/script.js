@@ -10,15 +10,17 @@ function gameBoard() {
     }
   }
 
+  const getBoard = () => board;
+
   const dropToken = (row, column, player) => {
     let cellIsAvailable = board[row][column];
 
     if ((cellIsAvailable.getValue()) !== 0){
-      console.log("invalid");
-      return;
+      return false;
     };
 
     board[row][column].addToken(player);
+    return true;
   };
 
   const printBoard = () => {
@@ -26,7 +28,7 @@ function gameBoard() {
     console.log(boardWithCellValues);
   };
 
-  return {printBoard, dropToken};
+  return {getBoard, printBoard, dropToken};
 }
 
 function Cell(){
@@ -44,15 +46,17 @@ function GameController(player1 = "ian", player2 = "debris") {
   const players = [
     {
       name : player1,
-      token : 1
+      token : "x"
     },
     {
       name : player2,
-      token : 2
+      token : "o"
     }
   ]
 
   let activePlayer = players[0];
+
+  const getActivePlayer = () => activePlayer;
   
   const switchPlayerTurn = () => {
     activePlayer = activePlayer === players[0] ? players[1] : players[0];
@@ -61,12 +65,48 @@ function GameController(player1 = "ian", player2 = "debris") {
   const board = gameBoard();
 
   const playRound = (row, column) => {
-    board.dropToken(row, column, getActivePlayer().token);
+    const validMove = board.dropToken(row, column, getActivePlayer().token);
+
+    if (!validMove) {
+      return console.log("Invalid movement");
+    }
+
+    if (checkWinner()) return console.log(`${getActivePlayer().name} won`);
     switchPlayerTurn();
     printNewRound();
   };
 
-  const getActivePlayer = () => activePlayer;
+  const getActualToken = () => getActivePlayer().token;
+
+  const checkWinner = () => {
+    const actualBoard = board.getBoard();
+    const actualToken = getActualToken();
+    for (let i = 0; i < 3; i++) {
+      if ( // winner column
+      (actualBoard[0][i].getValue() == actualToken) && 
+      (actualBoard[1][i].getValue() == actualToken) && 
+      (actualBoard[2][i].getValue() == actualToken)
+      ) { return true; }
+
+      if ( // winner row
+      (actualBoard[i][0].getValue() == actualToken) && 
+      (actualBoard[i][1].getValue() == actualToken) && 
+      (actualBoard[i][2].getValue() == actualToken)
+      ) { return true; }
+    } 
+
+    // last 2 posibilities
+    if (
+      (actualBoard[0][0].getValue() == actualToken) && 
+      (actualBoard[1][1].getValue() == actualToken) && 
+      (actualBoard[2][2].getValue() == actualToken)
+    ) {return true;}
+    if (
+      (actualBoard[0][2].getValue() == actualToken) && 
+      (actualBoard[1][1].getValue() == actualToken) && 
+      (actualBoard[2][0].getValue() == actualToken)
+    ) {return true;}
+  };
 
   const printNewRound= () => {
     board.printBoard();
