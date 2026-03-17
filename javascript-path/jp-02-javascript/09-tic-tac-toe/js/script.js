@@ -11,6 +11,13 @@ function gameBoard() {
   }
 
   const dropToken = (row, column, player) => {
+    let cellIsAvailable = board[row][column];
+
+    if ((cellIsAvailable.getValue()) !== 0){
+      console.log("invalid");
+      return;
+    };
+
     board[row][column].addToken(player);
   };
 
