@@ -1,4 +1,28 @@
-function gameBoard() {
+/* DARK MODE */
+let darkmode = localStorage.getItem("darkmode");
+const themeSwitch = document.getElementById("theme-switch");
+
+const enableDarkMode = () => {
+    document.documentElement.classList.add("darkmode");
+    localStorage.setItem("darkmode", "active");
+};
+const disableDarkMode = () => {
+    document.documentElement.classList.remove("darkmode");
+    localStorage.setItem("darkmode", null);
+};
+
+if (darkmode === "active"){
+    enableDarkMode();
+}
+
+themeSwitch.addEventListener("click", () => {
+    darkmode = localStorage.getItem("darkmode");
+    darkmode !== "active" ? enableDarkMode() : disableDarkMode();
+});
+
+/* TIC TAC TOE */
+
+const gameBoard = () => {
   const rows = 3;
   const columns = 3;
   let board = [];
@@ -37,9 +61,9 @@ function gameBoard() {
   };
 
   return {getBoard, printBoard, dropToken, resetBoard};
-}
+};
 
-function Cell(){
+const Cell = () => {
   let value = 0;
 
   const addToken = (player) => 
@@ -50,9 +74,9 @@ function Cell(){
   const reset = () => value = 0;
 
   return {addToken, getValue, reset};
-}
+};
 
-function GameController(player1 = "ian", player2 = "debris") {
+const GameController = (player1 = "ian", player2 = "debris") => {
   const board = gameBoard();
   const players = [
     {
@@ -154,7 +178,9 @@ function GameController(player1 = "ian", player2 = "debris") {
     console.log(`Now playing: ${getActivePlayer().name}`);
   }
 
-  return {playRound};
+  printNewRound();
+
+  return {playRound,printNewRound};
 }
 
 const game = GameController();
