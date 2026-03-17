@@ -1,7 +1,7 @@
 function gameBoard() {
   const rows = 3;
   const columns = 3;
-  const board = [];
+  let board = [];
 
   for (let i = 0; i < rows; i++){
     board[i] = [];
@@ -9,6 +9,14 @@ function gameBoard() {
       board[i].push(Cell());
     }
   }
+
+  const resetBoard = () => {
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        board[i][j].reset();
+      };
+    };
+  };
 
   const getBoard = () => board;
 
@@ -28,7 +36,7 @@ function gameBoard() {
     console.log(boardWithCellValues);
   };
 
-  return {getBoard, printBoard, dropToken};
+  return {getBoard, printBoard, dropToken, resetBoard};
 }
 
 function Cell(){
@@ -39,10 +47,13 @@ function Cell(){
 
   const getValue = () => value;
 
-  return {addToken, getValue};
+  const reset = () => value = 0;
+
+  return {addToken, getValue, reset};
 }
 
 function GameController(player1 = "ian", player2 = "debris") {
+  const board = gameBoard();
   const players = [
     {
       name : player1,
@@ -53,7 +64,6 @@ function GameController(player1 = "ian", player2 = "debris") {
       token : "o"
     }
   ]
-
   let activePlayer = players[0];
 
   const getActivePlayer = () => activePlayer;
@@ -62,8 +72,6 @@ function GameController(player1 = "ian", player2 = "debris") {
     activePlayer = activePlayer === players[0] ? players[1] : players[0];
   };
 
-  const board = gameBoard();
-
   const playRound = (row, column) => {
     const validMove = board.dropToken(row, column, getActivePlayer().token);
 
@@ -71,49 +79,80 @@ function GameController(player1 = "ian", player2 = "debris") {
       return console.log("Invalid movement");
     }
 
-    if (checkWinner()) return console.log(`${getActivePlayer().name} won`);
+    if (checkWinner()) {
+      console.log(`${getActivePlayer().name} won`);
+      resetGame();
+      return;
+    }
+
+    if(checkTie()) {
+      console.log("tie");
+      resetGame();
+      return;
+    }
+    
     switchPlayerTurn();
     printNewRound();
   };
 
   const getActualToken = () => getActivePlayer().token;
+  const actualBoard = board.getBoard();
+
+  const checkTie = () => {
+    let counter = 0;
+
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        if (actualBoard[i][j].getValue() !== 0){
+          counter ++;
+        };
+      };
+    };
+
+    if (counter === 9){
+      return true;
+    }
+  };
 
   const checkWinner = () => {
-    const actualBoard = board.getBoard();
     const actualToken = getActualToken();
     for (let i = 0; i < 3; i++) {
       if ( // winner column
-      (actualBoard[0][i].getValue() == actualToken) && 
-      (actualBoard[1][i].getValue() == actualToken) && 
-      (actualBoard[2][i].getValue() == actualToken)
+      (actualBoard[0][i].getValue() === actualToken) && 
+      (actualBoard[1][i].getValue() === actualToken) && 
+      (actualBoard[2][i].getValue() === actualToken)
       ) { return true; }
 
       if ( // winner row
-      (actualBoard[i][0].getValue() == actualToken) && 
-      (actualBoard[i][1].getValue() == actualToken) && 
-      (actualBoard[i][2].getValue() == actualToken)
+      (actualBoard[i][0].getValue() === actualToken) && 
+      (actualBoard[i][1].getValue() === actualToken) && 
+      (actualBoard[i][2].getValue() === actualToken)
       ) { return true; }
     } 
 
     // last 2 posibilities
     if (
-      (actualBoard[0][0].getValue() == actualToken) && 
-      (actualBoard[1][1].getValue() == actualToken) && 
-      (actualBoard[2][2].getValue() == actualToken)
+      (actualBoard[0][0].getValue() === actualToken) && 
+      (actualBoard[1][1].getValue() === actualToken) && 
+      (actualBoard[2][2].getValue() === actualToken)
     ) {return true;}
     if (
-      (actualBoard[0][2].getValue() == actualToken) && 
-      (actualBoard[1][1].getValue() == actualToken) && 
-      (actualBoard[2][0].getValue() == actualToken)
+      (actualBoard[0][2].getValue() === actualToken) && 
+      (actualBoard[1][1].getValue() === actualToken) && 
+      (actualBoard[2][0].getValue() === actualToken)
     ) {return true;}
+  };
+
+  const resetGame = () => {
+    board.resetBoard();
+    console.log("Tablero reiniciado");
+    printNewRound();
   };
 
   const printNewRound= () => {
     board.printBoard();
     console.log(`Now playing: ${getActivePlayer().name}`);
   }
-
-  printNewRound();
 
   return {playRound};
 }
