@@ -318,8 +318,30 @@ body {
 }
 
 .main-content {
+    width: 100%;
     grid-area: main-content;
+    display: grid;
+    grid-template-rows: auto 3fr;
+    justify-content: center;
+    align-items: center;
 }
+
+.players-section {
+    width: 100%;
+    display: flex;
+    gap: var(--space-2xl);
+    justify-content: space-around;
+}
+
+.player1,
+.player2 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+
+
 
 .footer {
     grid-area: footer;
@@ -336,7 +358,7 @@ body {
 
 /* TEXT INPUTS */
 
-/* input {
+input {
     flex-shrink: 0;
 }
 
@@ -353,7 +375,7 @@ input {
 
 input::placeholder {
     color: var(--color-gray-350);
-} */
+}
 
 @media (max-width: 900px) {
     body {

@@ -53,7 +53,39 @@
         </div>
     </div>
     <div class="main-content">
-
+        <div class="players-section">
+            <div class="player1">
+                <label for="player1-input">Player 1 (X)</label>
+                <input type="text" id="player1-input">
+            </div>
+            <div class="player2">
+                <label for="player2-input">Player 2 (O)</label>
+                <input type="text" id="player2-input">
+            </div>
+        </div>
+        <div class="gameboard-section">
+            <h3 class="current-player-turn"><span id="current-player">Player</span>'s turn</h3>
+            <div class="gameboard">
+                <div class="first-row">
+                    <button data-id="0, 0"></button>
+                    <button data-id="0, 1"></button>
+                    <button data-id="0, 2"></button>
+                </div>
+                <div class="second-row">
+                    <button data-id="1, 0"></button>
+                    <button data-id="1, 1"></button>
+                    <button data-id="1, 2"></button>
+                </div>
+                <div class="third-row">
+                    <button data-id="2, 0"></button>
+                    <button data-id="2, 1"></button>
+                    <button data-id="2, 2"></button>
+                </div>
+            </div>
+            <button class="reset-game-btn">
+                <h2>Reset game</h2>
+            </button>
+        </div>
     </div>
     <div class="footer">
         <p>Made by <a href="https://github.com/ianflig" target="_blank" rel="noopener noreferrer">@ianflig</a></p>
