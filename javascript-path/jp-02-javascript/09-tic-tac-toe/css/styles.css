@@ -255,7 +255,14 @@ a {
     text-decoration: none;
 }
 
+html {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 body {
+    width: 75%;
     height: 100dvh;
     display: grid;
     grid-template-columns: 1fr;
@@ -276,7 +283,58 @@ body {
     align-items: center;
 }
 
-/* INPUTS */
+.header .right h3 {
+    font-size: var(--font-md);
+}
+
+.header .right,
+.header .left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+}
+
+.header .left {
+    justify-content: start;
+}
+
+.header .right {
+    justify-content: end;
+}
+
+.header .right svg,
+.header .right img {
+    flex-shrink: 0;
+}
+
+.header img {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+    background-color: var(--color-gray-150);
+}
+
+.main-content {
+    grid-area: main-content;
+}
+
+.footer {
+    grid-area: footer;
+    text-align: center;
+    color: var(--color-gray-700);
+    border-top: 1px solid var(--color-gray-200);
+    padding: var(--space-md);
+}
+
+.footer a {
+    color: var(--color-primary);
+}
+
+
+/* TEXT INPUTS */
 
 /* input {
     flex-shrink: 0;
@@ -297,54 +355,10 @@ input::placeholder {
     color: var(--color-gray-350);
 } */
 
-.header .right h3 {
-    font-size: var(--font-md);
-}
-
-.header .right {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    gap: var(--space-md);
-    padding: var(--space-md);
-}
-
-.header .right svg,
-.header .right img {
-    flex-shrink: 0;
-}
-
-.header img {
-    width: 35px;
-    height: 35px;
-    flex-shrink: 0;
-    border-radius: var(--radius-full);
-    object-fit: cover;
-    background-color: var(--color-gray-150);
-}
-
-.main-content {
-    grid-area: main-content;
-    display: grid;
-    grid-template-columns: 1fr;
-    min-height: 0;
-    align-content: start;
-}
-
-.footer {
-    grid-area: footer;
-    text-align: center;
-    color: var(--color-gray-700);
-    border-top: 1px solid var(--color-gray-200);
-    padding: var(--space-md);
-}
-
-.footer a {
-    color: var(--color-primary);
-}
-
 @media (max-width: 900px) {
-
+    body {
+        width: 100%;
+    }
 }
 
 @media (max-width: 600px) {
