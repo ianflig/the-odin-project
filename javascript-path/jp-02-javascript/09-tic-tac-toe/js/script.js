@@ -76,18 +76,24 @@ const Cell = () => {
   return {addToken, getValue, reset};
 };
 
-const GameController = (player1 = "ian", player2 = "debris") => {
+const GameController = () => {
   const board = gameBoard();
   const players = [
     {
-      name : player1,
+      name : "Player 1",
       token : "x"
     },
     {
-      name : player2,
+      name : "Player 2",
       token : "o"
     }
   ]
+
+  const setPlayers = (player1, player2) => {
+    players[0].name = player1 === "" ? "Player 1" : player1;
+    players[1].name = player2 === "" ? "Player 2" : player2;
+  };
+
   let activePlayer = players[0];
 
   const getActivePlayer = () => activePlayer;
@@ -180,7 +186,29 @@ const GameController = (player1 = "ian", player2 = "debris") => {
 
   printNewRound();
 
-  return {playRound,printNewRound};
+  return {playRound, printNewRound, setPlayers};
 }
 
-const game = GameController();
+const ScreenController = () => {
+  const game = GameController();
+  const boardDiv = document.querySelector(".gameboard");
+  const player1NicknameInput = document.querySelector("#player1-input");
+  const player2NicknameInput = document.querySelector("#player2-input");
+
+  const getNicknames = () => {
+    return {player1: player1NicknameInput.value, player2: player2NicknameInput.value}
+  };
+
+  const clickHandlerBoard = (e) => {
+    const row = e.target.dataset.row
+    const column = e.target.dataset.column
+    const nicknames =  getNicknames();
+    
+    game.setPlayers(nicknames.player1, nicknames.player2);
+    game.playRound(row, column);
+  };
+
+  boardDiv.addEventListener("click", clickHandlerBoard)
+};
+
+const screen = ScreenController();

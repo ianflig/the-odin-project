@@ -421,11 +421,6 @@ body {
   padding-top: var(--space-md);
 }
 
-.reset-game-btn svg {
-  stroke: black;
-  fill: black;
-}
-
 .reset-game-btn {
     padding: var(--space-xs) var(--space-md);
     display: flex;
@@ -441,8 +436,10 @@ body {
     transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.2s ease;
 }
 
-.reset-game-btn h4 {
+.reset-game-btn h4,
+.reset-game-btn svg {
   color: var(--color-gray-700);
+  fill: var(--color-gray-700);
 }
 
 .footer {
