@@ -1,5 +1,5 @@
 <h1 align="center">
-  Library
+  Tic Tac Toe
 </h1>
 
 <div align="center">
