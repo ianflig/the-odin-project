@@ -106,7 +106,8 @@ const GameController = () => {
     const validMove = board.dropToken(row, column, getActivePlayer().token);
 
     if (!validMove) {
-      return console.log("Invalid movement");
+      console.log("Invalid movement");
+      return false;
     }
 
     if (checkWinner()) {
@@ -123,6 +124,8 @@ const GameController = () => {
     
     switchPlayerTurn();
     printNewRound();
+
+    return true;
   };
 
   const getActualToken = () => getActivePlayer().token;
@@ -186,7 +189,7 @@ const GameController = () => {
 
   printNewRound();
 
-  return {playRound, printNewRound, setPlayers};
+  return {playRound, printNewRound, setPlayers, getActivePlayer};
 }
 
 const ScreenController = () => {
@@ -194,21 +197,55 @@ const ScreenController = () => {
   const boardDiv = document.querySelector(".gameboard");
   const player1NicknameInput = document.querySelector("#player1-input");
   const player2NicknameInput = document.querySelector("#player2-input");
+  const playerNextTurn = document.querySelector("#current-player");
 
   const getNicknames = () => {
     return {player1: player1NicknameInput.value, player2: player2NicknameInput.value}
   };
 
   const clickHandlerBoard = (e) => {
-    const row = e.target.dataset.row
-    const column = e.target.dataset.column
+    const row = e.target.dataset.row;
+    const column = e.target.dataset.column;
+    const cell = e.target;
+    const playerToken = game.getActivePlayer().token;
     const nicknames =  getNicknames();
     
+    if (!row || !column) return;
     game.setPlayers(nicknames.player1, nicknames.player2);
-    game.playRound(row, column);
+    if (!(game.playRound(row, column))) return;
+    boardUpdater(cell, playerToken);
+  };
+
+  const boardUpdater = (cell, token) => {
+    cell.textContent = token;
+
+    updateTurnDisplay();
+  };
+
+  const updateTurnDisplay = () => {
+    let currentPlayer = "";
+
+    if (game.getActivePlayer().token === "x") {
+      currentPlayer = getNicknames().player1;
+    } else {
+      if (game.getActivePlayer().token === "o"){
+        currentPlayer = getNicknames().player2;
+      }
+    }
+
+    if (currentPlayer === "") {
+      currentPlayer = game.getActivePlayer().name;
+    }
+
+    playerNextTurn.textContent = currentPlayer;
   };
 
   boardDiv.addEventListener("click", clickHandlerBoard)
+
+  player1NicknameInput.addEventListener("input", updateTurnDisplay)
+  player2NicknameInput.addEventListener("input", updateTurnDisplay)
+
+  updateTurnDisplay();
 };
 
 const screen = ScreenController();
