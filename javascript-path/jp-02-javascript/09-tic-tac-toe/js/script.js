@@ -114,7 +114,6 @@ const GameController = () => {
 
     if (winnerObj) {
       return {status: "win", cell : winnerObj};
-      /* return winner cells */
     }
 
     if(checkTie()) {
@@ -149,15 +148,16 @@ const GameController = () => {
   const checkWinner = () => {
     const actualToken = getActualToken();
     for (let i = 0; i < 3; i++) {
-      if ( // winner column
+      // winner column
+      if ( 
       (actualBoard[0][i].getValue() === actualToken) && 
       (actualBoard[1][i].getValue() === actualToken) && 
       (actualBoard[2][i].getValue() === actualToken)
       ) { 
         return {c1: [0, i], c2: [1, i], c3: [2, i]}; 
       }
-
-      if ( // winner row
+      // winner row
+      if ( 
       (actualBoard[i][0].getValue() === actualToken) && 
       (actualBoard[i][1].getValue() === actualToken) && 
       (actualBoard[i][2].getValue() === actualToken)
@@ -183,9 +183,9 @@ const GameController = () => {
     }
   };
 
-  const cleanArrays = () => {
+  const clearArrays = () => {
     board.resetBoard();
-    console.log("array cleaned");
+    console.log("array cleared");
     printNewRound();
   };
 
@@ -196,7 +196,7 @@ const GameController = () => {
 
   printNewRound();
 
-  return {playRound, printNewRound, setPlayers, getActivePlayer, cleanArrays};
+  return {playRound, printNewRound, setPlayers, getActivePlayer, clearArrays};
 }
 
 const ScreenController = () => {
@@ -220,7 +220,6 @@ const ScreenController = () => {
     
     if (!row || !column) return;
     game.setPlayers(nicknames.player1, nicknames.player2);
-
     const returnedValue = game.playRound(row, column);
 
     if (returnedValue.status === "invalid") {return;} 
@@ -230,14 +229,13 @@ const ScreenController = () => {
     if (returnedValue.status === "win"){
       endGame(returnedValue);
     } 
-
     if (returnedValue.status === "tie") {
       endGame(returnedValue);
     }
   };
 
   const resetGame = () => {
-    game.cleanArrays();
+    game.clearArrays();
 
     game.setPlayers("", ""); // clean players obj
     cleanScreenBoard();
@@ -255,8 +253,6 @@ const ScreenController = () => {
     if (condition.status === "win"){
       playerNextTurn.textContent = `${game.getActivePlayer().name} won!`;
 
-      console.log(condition.cell.c1);
-
       for (let i = 0; i < 9; i++){
         let cellToCheck = document.querySelector(`#button${i}`);
         
@@ -264,10 +260,7 @@ const ScreenController = () => {
           let coord = condition.cell['c' + j];
 
           if (Number(cellToCheck.dataset.row) === coord[0] && Number(cellToCheck.dataset.column) === coord[1]){
-
-            let cell = document.querySelector(`#button${i}`)
-            cell.classList.add("green")
-            console.log(`winner button${[i]}`);
+            cellToCheck.classList.add("green");
           }
         }
       }
