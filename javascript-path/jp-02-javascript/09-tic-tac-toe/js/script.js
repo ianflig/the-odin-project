@@ -107,19 +107,15 @@ const GameController = () => {
 
     if (!validMove) {
       console.log("Invalid movement");
-      return false;
+      return "invalid movement";
     }
 
     if (checkWinner()) {
-      console.log(`${getActivePlayer().name} won`);
-      resetGame();
-      return;
+      return "win";
     }
 
     if(checkTie()) {
-      console.log("tie");
-      resetGame();
-      return;
+      return "tie";
     }
     
     switchPlayerTurn();
@@ -178,7 +174,7 @@ const GameController = () => {
 
   const resetGame = () => {
     board.resetBoard();
-    console.log("Tablero reiniciado");
+    console.log("array cleaned");
     printNewRound();
   };
 
@@ -198,6 +194,7 @@ const ScreenController = () => {
   const player1NicknameInput = document.querySelector("#player1-input");
   const player2NicknameInput = document.querySelector("#player2-input");
   const playerNextTurn = document.querySelector("#current-player");
+  const resetGameBtn = document.querySelector("#reset-game-btn");
 
   const getNicknames = () => {
     return {player1: player1NicknameInput.value, player2: player2NicknameInput.value}
@@ -212,8 +209,44 @@ const ScreenController = () => {
     
     if (!row || !column) return;
     game.setPlayers(nicknames.player1, nicknames.player2);
-    if (!(game.playRound(row, column))) return;
+
+    const returnedValue = game.playRound(row, column);
+
+    if (returnedValue === "invalid movement") {return;} 
+
     boardUpdater(cell, playerToken);
+
+    if (returnedValue === "win"){
+      endGame("win");
+    } 
+
+    if (returnedValue === "tie") {
+      endGame("tie");
+    }
+  };
+
+  const resetGame = () => {
+
+
+    boardDiv.addEventListener("click", clickHandlerBoard)
+    player1NicknameInput.addEventListener("input", updateTurnDisplay)
+    player2NicknameInput.addEventListener("input", updateTurnDisplay)
+  };
+
+  const endGame = (condition) => {
+      boardDiv.removeEventListener("click", clickHandlerBoard);
+      player1NicknameInput.removeEventListener("input", updateTurnDisplay);
+      player2NicknameInput.removeEventListener("input", updateTurnDisplay);
+
+    if (condition === "win"){
+      playerNextTurn.textContent = `${game.getActivePlayer().name} won!`;
+      return console.log("somebody won")
+    }
+
+    if (condition === "tie") {
+      playerNextTurn.textContent = "It's a tie!";
+      return console.log("tie")
+    };
   };
 
   const boardUpdater = (cell, token) => {
@@ -237,10 +270,11 @@ const ScreenController = () => {
       currentPlayer = game.getActivePlayer().name;
     }
 
-    playerNextTurn.textContent = currentPlayer;
+    playerNextTurn.textContent = `${currentPlayer}'s turn`;
   };
 
   boardDiv.addEventListener("click", clickHandlerBoard)
+  resetGameBtn.addEventListener("click", resetGame)
 
   player1NicknameInput.addEventListener("input", updateTurnDisplay)
   player2NicknameInput.addEventListener("input", updateTurnDisplay)
