@@ -417,6 +417,10 @@ body {
   cursor: pointer;
 }
 
+.gameboard .green {
+  background-color: rgb(104, 161, 113);
+}
+
 .reset-game-button-container {
   padding-top: var(--space-md);
 }

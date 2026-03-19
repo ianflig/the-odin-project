@@ -107,15 +107,18 @@ const GameController = () => {
 
     if (!validMove) {
       console.log("Invalid movement");
-      return "invalid movement";
+      return {status: "invalid"};
     }
 
-    if (checkWinner()) {
-      return "win";
+    const winnerObj = checkWinner();
+
+    if (winnerObj) {
+      return {status: "win", cell : winnerObj};
+      /* return winner cells */
     }
 
     if(checkTie()) {
-      return "tie";
+      return {status: "tie"};
     }
     
     switchPlayerTurn();
@@ -150,13 +153,17 @@ const GameController = () => {
       (actualBoard[0][i].getValue() === actualToken) && 
       (actualBoard[1][i].getValue() === actualToken) && 
       (actualBoard[2][i].getValue() === actualToken)
-      ) { return true; }
+      ) { 
+        return {c1: [0, i], c2: [1, i], c3: [2, i]}; 
+      }
 
       if ( // winner row
       (actualBoard[i][0].getValue() === actualToken) && 
       (actualBoard[i][1].getValue() === actualToken) && 
       (actualBoard[i][2].getValue() === actualToken)
-      ) { return true; }
+      ) { 
+        return {c1: [i, 0], c2: [i, 1], c3: [i, 2]}; 
+      }
     } 
 
     // last 2 posibilities
@@ -164,15 +171,19 @@ const GameController = () => {
       (actualBoard[0][0].getValue() === actualToken) && 
       (actualBoard[1][1].getValue() === actualToken) && 
       (actualBoard[2][2].getValue() === actualToken)
-    ) {return true;}
+    ) {
+      return {c1: [0, 0], c2: [1, 1], c3: [2, 2]};
+    }
     if (
       (actualBoard[0][2].getValue() === actualToken) && 
       (actualBoard[1][1].getValue() === actualToken) && 
       (actualBoard[2][0].getValue() === actualToken)
-    ) {return true;}
+    ) {
+      return {c1: [0, 2], c2: [1, 1], c3: [2, 0]};
+    }
   };
 
-  const resetGame = () => {
+  const cleanArrays = () => {
     board.resetBoard();
     console.log("array cleaned");
     printNewRound();
@@ -185,7 +196,7 @@ const GameController = () => {
 
   printNewRound();
 
-  return {playRound, printNewRound, setPlayers, getActivePlayer};
+  return {playRound, printNewRound, setPlayers, getActivePlayer, cleanArrays};
 }
 
 const ScreenController = () => {
@@ -212,22 +223,25 @@ const ScreenController = () => {
 
     const returnedValue = game.playRound(row, column);
 
-    if (returnedValue === "invalid movement") {return;} 
+    if (returnedValue.status === "invalid") {return;} 
 
     boardUpdater(cell, playerToken);
 
-    if (returnedValue === "win"){
-      endGame("win");
+    if (returnedValue.status === "win"){
+      endGame(returnedValue);
     } 
 
-    if (returnedValue === "tie") {
-      endGame("tie");
+    if (returnedValue.status === "tie") {
+      endGame(returnedValue);
     }
   };
 
   const resetGame = () => {
+    game.cleanArrays();
 
-
+    game.setPlayers("", ""); // clean players obj
+    cleanScreenBoard();
+    updateTurnDisplay();
     boardDiv.addEventListener("click", clickHandlerBoard)
     player1NicknameInput.addEventListener("input", updateTurnDisplay)
     player2NicknameInput.addEventListener("input", updateTurnDisplay)
@@ -238,15 +252,41 @@ const ScreenController = () => {
       player1NicknameInput.removeEventListener("input", updateTurnDisplay);
       player2NicknameInput.removeEventListener("input", updateTurnDisplay);
 
-    if (condition === "win"){
+    if (condition.status === "win"){
       playerNextTurn.textContent = `${game.getActivePlayer().name} won!`;
-      return console.log("somebody won")
+
+      console.log(condition.cell.c1);
+
+      for (let i = 0; i < 9; i++){
+        let cellToCheck = document.querySelector(`#button${i}`);
+        
+        for (let j = 1; j <= 3; j++){
+          let coord = condition.cell['c' + j];
+
+          if (Number(cellToCheck.dataset.row) === coord[0] && Number(cellToCheck.dataset.column) === coord[1]){
+
+            let cell = document.querySelector(`#button${i}`)
+            cell.classList.add("green")
+            console.log(`winner button${[i]}`);
+          }
+        }
+      }
+
+      return console.log(`${game.getActivePlayer().name} won!`)
     }
 
-    if (condition === "tie") {
+    if (condition.status === "tie") {
       playerNextTurn.textContent = "It's a tie!";
       return console.log("tie")
     };
+  };
+
+  const cleanScreenBoard = () => {
+    for (let i = 0; i < 9; i++){
+      let cell = document.querySelector(`#button${i}`);
+      cell.textContent = "";
+      cell.classList.remove("green")
+    }
   };
 
   const boardUpdater = (cell, token) => {
@@ -273,11 +313,11 @@ const ScreenController = () => {
     playerNextTurn.textContent = `${currentPlayer}'s turn`;
   };
 
-  boardDiv.addEventListener("click", clickHandlerBoard)
-  resetGameBtn.addEventListener("click", resetGame)
+  boardDiv.addEventListener("click", clickHandlerBoard);
+  resetGameBtn.addEventListener("click", resetGame);
 
-  player1NicknameInput.addEventListener("input", updateTurnDisplay)
-  player2NicknameInput.addEventListener("input", updateTurnDisplay)
+  player1NicknameInput.addEventListener("input", updateTurnDisplay);
+  player2NicknameInput.addEventListener("input", updateTurnDisplay);
 
   updateTurnDisplay();
 };
