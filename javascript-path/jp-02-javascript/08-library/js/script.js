@@ -57,16 +57,13 @@ class LibraryController {
         displayLibrary();
     }
 
-    bookDelete(){
-        for (let i = 0; i < myLibrary.length; i++) {
-            if (myLibrary[i].id == bookIdToTrash) {
-
-                myLibrary.splice([i], 1);
+    bookDelete(bookIdToTrash){
+        for (let i = 0; i < this.library.length; i++) {
+            if (this.library[i].id === bookIdToTrash) {
+                this.library.splice([i], 1);
             }
         }
-        bookIdToTrash = null;
-        deleteButtonDialog.close();
-        displayLibrary();
+        return true;
     }
 }
 
@@ -82,7 +79,13 @@ class ScreenController {
 
         this.createBook = document.getElementById("create-book");
         this.allCards = document.querySelector(".all-cards");
+
+        this.deleteButtonDialog = document.querySelector("#delete-book-btn-dialog");
         
+        this.deleteBookCloseBtn = document.querySelector("#delete-book-close-btn");
+        this.deleteConfirmButton = document.querySelector("#delete-confirm-button");
+
+
         this.bindEvents();
     }
 
@@ -90,7 +93,10 @@ class ScreenController {
         this.createBookDialog.addEventListener("close", () => {this.createBookDialogReset()});
         this.newBookButton.addEventListener("click", () => {this.createBookDialogShowModal()});
         this.newBookCloseButton.addEventListener("click", () => {this.createBookDialogClose()});
-        this.createBook.addEventListener("submit", (e) => {this.clickHandlerCreateBook(e)})
+        this.createBook.addEventListener("submit", (e) => {this.clickHandlerCreateBook(e)});
+        this.allCards.addEventListener("click", (e) => {this.clickHandlerStatusBook(e)});
+        this.deleteBookCloseBtn.addEventListener("click", (e) =>{this.deleteButtonDialogClose()});
+        this.deleteConfirmButton.addEventListener("click", (e) =>{this.deleteButtonDialogConfirm()});
     }
 
     createBookDialogReset(){this.createBook.reset();}
@@ -112,40 +118,39 @@ class ScreenController {
             this.displayLibrary();
     }
 
-    clickHandlerStatusBook(){
-        const allCardsContainer = document.querySelector(".all-cards");
-        const deleteButtonDialog = document.querySelector("#delete-book-btn-dialog");
-
-        allCardsContainer.addEventListener("click", (e) => {
+    clickHandlerStatusBook(e){
             e.preventDefault();
             const clickedDeleteBtn = e.target.closest(".delete-btn");
             const readButton = e.target.closest(".check-btn");
 
             if (clickedDeleteBtn) {
                 const cardContainerToDelete = e.target.closest('.card');
-                bookIdToTrash = cardContainerToDelete.dataset.id;
-
-                deleteButtonDialog.showModal();
+                let bookID = cardContainerToDelete.dataset.id;
+                this.deleteButtonDialogConfirm();
             } else {
                 if (readButton) {
                     const cardContainerToCheck = e.target.closest('.card');
-                    readIdToChange = cardContainerToCheck.dataset.id;
+                    let bookID = cardContainerToCheck.dataset.id;
                     readStatusUpdate();
                 }
             }
-        });
+    }
 
-        const deleteBookCloseBtn = document.querySelector("#delete-book-close-btn");
-        const deleteConfirmButton = document.querySelector("#delete-confirm-button");
+    deleteButtonDialogShowModal(){
+        this.deleteButtonDialog.showModal()
+    }
 
+    deleteButtonDialogClose(){
+        this.deleteButtonDialog.close()
+    }
 
-        deleteBookCloseBtn.addEventListener("click", (e) => {
-            deleteButtonDialog.close();
-        })
-
-        deleteConfirmButton.addEventListener("click", (e) => {
-            /* get response from LC to delete */
-        });
+    deleteButtonDialogConfirm(bookID){
+        console.log(bookID);
+        if (!this.appLibrary.bookDelete(bookID)) return;
+        /* get response from LC deleted book and execute -> */
+        /* bookIdToTrash = null; <-- TDZ*/    
+        this.deleteButtonDialogClose();
+        this.displayLibrary();
     }
 
     displayLibrary(){
