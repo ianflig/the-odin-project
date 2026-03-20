@@ -194,4 +194,17 @@ class ScreenController {
 
 }
 
+/* 
+    --- DUMMY BOOKS --- 
+*/
 const library = new ScreenController();
+library.appLibrary.createBook({ title: "1984", author: "George Orwell", pages: 328, read: true });
+library.appLibrary.createBook({ title: "Cien años de soledad", author: "Gabriel García Márquez", pages: 417, read: false });
+library.appLibrary.createBook({ title: "Dune", author: "Frank Herbert", pages: 412, read: true });
+library.appLibrary.createBook({ title: "Pride and Prejudice", author: "Jane Austen", pages: 279, read: false });
+library.appLibrary.createBook({ title: "Fahrenheit 451", author: "Ray Bradbury", pages: 158, read: true });
+library.appLibrary.createBook({ title: "The Lord of the Rings", author: "J.R.R. Tolkien", pages: 1178, read: false });
+library.appLibrary.createBook({ title: "Frankenstein", author: "Mary Shelley", pages: 280, read: true });
+library.appLibrary.createBook({ title: "Don Quijote de la Mancha", author: "Miguel de Cervantes", pages: 863, read: false });
+library.appLibrary.createBook({ title: "El Principito", author: "Antoine de Saint-Exupéry", pages: 96, read: true });
+library.displayLibrary();
