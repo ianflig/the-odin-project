@@ -38,8 +38,14 @@ class LibraryController {
         this.library = [];
     }
 
+    createBook(book){
+        let createdBook = new Book(book);
+        return this.addBookToLibrary(createdBook);
+    }
+
     addBookToLibrary(newBook) {
         this.library.push(newBook);
+        return true;
     }
 
     bookReadStatus(){
@@ -68,14 +74,78 @@ class ScreenController {
     appLibrary;
     constructor () {
         this.appLibrary = new LibraryController();
+
+        this.createBookDialog = document.querySelector("#create-book-dialog");
+
+        this.newBookButton = document.querySelector("#new-book");
+        this.newBookCloseButton = document.querySelector("#new-book-close-btn"); 
+
+        this.createBook = document.getElementById("create-book");
+        
+        this.bindEvents();
     }
 
-    clickHandlerCreateBook(){
+    bindEvents(){
+        this.createBookDialog.addEventListener("close", () => {this.createBookDialogReset()});
+        this.newBookButton.addEventListener("click", () => {this.createBookDialogShowModal()});
+        this.newBookCloseButton.addEventListener("click", () => {this.createBookDialogClose()});
+        this.createBook.addEventListener("submit", (e) => {this.clickHandlerCreateBook(e)})
+    }
 
+    createBookDialogReset(){this.createBook.reset();}
+
+    createBookDialogShowModal(){this.createBookDialog.showModal();}
+
+    createBookDialogClose(){this.createBookDialog.close();}
+
+    clickHandlerCreateBook(e){
+            e.preventDefault();
+
+            const formData = Object.fromEntries (new FormData(this.createBook));
+            if (formData.read == "on") {
+                formData.read = true;
+            } else { formData.read = false; }
+
+            this.createBookDialogClose();
+            if (!this.appLibrary.createBook(formData)){return console.log("error while submiting book")};
+
+            displayLibrary();
     }
 
     clickHandlerStatusBook(){
+        const allCardsContainer = document.querySelector(".all-cards");
+        const deleteButtonDialog = document.querySelector("#delete-book-btn-dialog");
 
+        allCardsContainer.addEventListener("click", (e) => {
+            e.preventDefault();
+            const clickedDeleteBtn = e.target.closest(".delete-btn");
+            const readButton = e.target.closest(".check-btn");
+
+            if (clickedDeleteBtn) {
+                const cardContainerToDelete = e.target.closest('.card');
+                bookIdToTrash = cardContainerToDelete.dataset.id;
+
+                deleteButtonDialog.showModal();
+            } else {
+                if (readButton) {
+                    const cardContainerToCheck = e.target.closest('.card');
+                    readIdToChange = cardContainerToCheck.dataset.id;
+                    readStatusUpdate();
+                }
+            }
+        });
+
+        const deleteBookCloseBtn = document.querySelector("#delete-book-close-btn");
+        const deleteConfirmButton = document.querySelector("#delete-confirm-button");
+
+
+        deleteBookCloseBtn.addEventListener("click", (e) => {
+            deleteButtonDialog.close();
+        })
+
+        deleteConfirmButton.addEventListener("click", (e) => {
+            /* get response from LC to delete */
+        });
     }
 
     displayLibrary(){
