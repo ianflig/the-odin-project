@@ -137,7 +137,7 @@ deleteConfirmButton.addEventListener("click", (e) => {
 
     for (let i = 0; i < myLibrary.length; i++) {
         if (myLibrary[i].id == bookIdToTrash) {
-            /* console.log(`${myLibrary[i].id} & ${bookIdToTrash}`); */
+
             myLibrary.splice([i], 1);
         }
     }
