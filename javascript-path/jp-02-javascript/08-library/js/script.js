@@ -81,6 +81,7 @@ class ScreenController {
         this.newBookCloseButton = document.querySelector("#new-book-close-btn"); 
 
         this.createBook = document.getElementById("create-book");
+        this.allCards = document.querySelector(".all-cards");
         
         this.bindEvents();
     }
@@ -107,9 +108,8 @@ class ScreenController {
             } else { formData.read = false; }
 
             this.createBookDialogClose();
-            if (!this.appLibrary.createBook(formData)){return console.log("error while submiting book")};
-
-            displayLibrary();
+            if (!this.appLibrary.createBook(formData)) return;
+            this.displayLibrary();
     }
 
     clickHandlerStatusBook(){
@@ -149,9 +149,7 @@ class ScreenController {
     }
 
     displayLibrary(){
-        const allCards = document.querySelector(".all-cards");
-
-        allCards.innerHTML = "";
+        this.allCards.innerHTML = "";
 
         for (let i = 0; i < this.appLibrary.library.length; i++){
             const book = this.appLibrary.library[i];
@@ -167,7 +165,7 @@ class ScreenController {
             iconContainer.classList.add("icon-container");
             cardTitleContainer.classList.add("card-title-container");
             h4.textContent = book.title;
-            para.textContent = book.info(); 
+            para.textContent = book.info; 
             iconContainer.innerHTML = `
             <svg class="icon-btn delete-btn"><use href="#icon-trash"></use></svg>
             <svg class="icon-btn check-btn"><use href="#icon-check"></use></svg>`;
@@ -181,7 +179,7 @@ class ScreenController {
 
             divCard.dataset.id = book.id;
 
-            allCards.appendChild(divCard);
+            this.allCards.appendChild(divCard);
             divCard.appendChild(cardTitleContainer);
             cardTitleContainer.appendChild(h4);
             cardTitleContainer.appendChild(cardReadStatus);
