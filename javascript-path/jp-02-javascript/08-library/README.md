@@ -15,6 +15,9 @@
 
 The live site can be viewed [here](https://odin-08.vercel.app).
 
+**_NOTE_**:
+This is a refactored version to transition from plain functions and prototypes to an Object-Oriented Programming (OOP) approach using ES6 Classes.
+
 ## Setup
 
 This app doesn't use any packages. To run this setup locally, easiest way I found is to do:
