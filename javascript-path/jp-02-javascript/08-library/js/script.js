@@ -57,9 +57,9 @@ class LibraryController {
         displayLibrary();
     }
 
-    bookDelete(bookIdToTrash){
+    bookDelete(bookIdToDelete){
         for (let i = 0; i < this.library.length; i++) {
-            if (this.library[i].id === bookIdToTrash) {
+            if (this.library[i].id === bookIdToDelete) {
                 this.library.splice([i], 1);
             }
         }
@@ -69,6 +69,8 @@ class LibraryController {
 
 class ScreenController {
     appLibrary;
+    bookIdToDelete = null;
+
     constructor () {
         this.appLibrary = new LibraryController();
 
@@ -125,12 +127,12 @@ class ScreenController {
 
             if (clickedDeleteBtn) {
                 const cardContainerToDelete = e.target.closest('.card');
-                let bookID = cardContainerToDelete.dataset.id;
-                this.deleteButtonDialogConfirm();
+                this.bookIdToDelete = cardContainerToDelete.dataset.id;
+                this.deleteButtonDialogShowModal();
             } else {
                 if (readButton) {
                     const cardContainerToCheck = e.target.closest('.card');
-                    let bookID = cardContainerToCheck.dataset.id;
+                    this.bookIdToDelete = cardContainerToCheck.dataset.id;
                     readStatusUpdate();
                 }
             }
@@ -144,11 +146,9 @@ class ScreenController {
         this.deleteButtonDialog.close()
     }
 
-    deleteButtonDialogConfirm(bookID){
-        console.log(bookID);
-        if (!this.appLibrary.bookDelete(bookID)) return;
-        /* get response from LC deleted book and execute -> */
-        /* bookIdToTrash = null; <-- TDZ*/    
+    deleteButtonDialogConfirm(){
+        if (!this.appLibrary.bookDelete(this.bookIdToDelete)) return;
+        this.bookIdToDelete = null;
         this.deleteButtonDialogClose();
         this.displayLibrary();
     }
