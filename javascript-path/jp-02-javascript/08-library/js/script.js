@@ -48,18 +48,18 @@ class LibraryController {
         return true;
     }
 
-    bookReadStatus(){
-        for (let i = 0; i < myLibrary.length; i++) {
-            if (myLibrary[i].id == readIdToChange) {
-                myLibrary[i].read = !myLibrary[i].read;
+    bookReadStatus(bookID){
+        for (let i = 0; i < this.library.length; i++) {
+            if (this.library[i].id == bookID) {
+                this.library[i].read = !this.library[i].read;
             }
         }
-        displayLibrary();
+        return true;
     }
 
-    bookDelete(bookIdToDelete){
+    bookDelete(bookID){
         for (let i = 0; i < this.library.length; i++) {
-            if (this.library[i].id === bookIdToDelete) {
+            if (this.library[i].id === bookID) {
                 this.library.splice([i], 1);
             }
         }
@@ -73,21 +73,14 @@ class ScreenController {
 
     constructor () {
         this.appLibrary = new LibraryController();
-
         this.createBookDialog = document.querySelector("#create-book-dialog");
-
         this.newBookButton = document.querySelector("#new-book");
         this.newBookCloseButton = document.querySelector("#new-book-close-btn"); 
-
         this.createBook = document.getElementById("create-book");
         this.allCards = document.querySelector(".all-cards");
-
         this.deleteButtonDialog = document.querySelector("#delete-book-btn-dialog");
-        
         this.deleteBookCloseBtn = document.querySelector("#delete-book-close-btn");
         this.deleteConfirmButton = document.querySelector("#delete-confirm-button");
-
-
         this.bindEvents();
     }
 
@@ -133,7 +126,7 @@ class ScreenController {
                 if (readButton) {
                     const cardContainerToCheck = e.target.closest('.card');
                     this.bookIdToDelete = cardContainerToCheck.dataset.id;
-                    readStatusUpdate();
+                    this.readStatusUpdate();
                 }
             }
     }
@@ -150,6 +143,12 @@ class ScreenController {
         if (!this.appLibrary.bookDelete(this.bookIdToDelete)) return;
         this.bookIdToDelete = null;
         this.deleteButtonDialogClose();
+        this.displayLibrary();
+    }
+
+    readStatusUpdate(){
+        if (!this.appLibrary.bookReadStatus(this.bookIdToDelete)) return;
+        this.bookIdToDelete = null;
         this.displayLibrary();
     }
 
