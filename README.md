@@ -17,3 +17,4 @@
 7. [Admin Dashboard](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-01-intermediate-html-and-css/07-admin-dashboard)
 8. [Library](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-02-javascript/08-library)
 9. [Tic-tac-toe](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-02-javascript/09-tic-tac-toe)
+10. [Restaurant Page](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-02-javascript/10-restaurant-page)
