@@ -2,14 +2,25 @@
  --- GENERAL --- 
 */
 * {
-  font-family: "Atkinson Hyperlegible Next", sans-serif;
+  font-family: "Atkinson Hyperlegible", sans-serif;
   padding: 0;
   margin: 0;
 }
+:root {
+    --font-atkinson: 'Atkinson Hyperlegible', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+
+    --font-cinzel: 'Cinzel', Georgia, 'Times New Roman', Times, serif;
+
+    --font-fira: 'Fira Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+    --font-noto-jp: 'Noto Sans JP', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Meiryo', Osaka, sans-serif;
+}
 
 html {
-  --color-primary: oklch(0.7918 0.1143 78.46);
-  --color-bg: oklch(0.995 0 0);
+  --color-primary: oklch(60.729% 0.22333 30.401);
+  --color-secondary: lab(94.1817 1.68508 3.32828);
+  --color-tertiary: lab(65.159 3.45761 6.717);
+  --color-bg: oklch(0.12 0.01 30);
   --color-fg: oklch(0.175 0 0);
   --color-gray-900: oklch(0.2 0 0);
   --color-gray-850: oklch(0.25 0 0);
@@ -189,3 +200,70 @@ svg {
 /* 
 --- BODY ---
 */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    z-index: 1000;
+    outline: solid red 2px;
+    display: flex;
+}
+
+.logo {
+    display: flex;
+    text-align: center;
+    gap: var(--space-xs);
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-text h1 {
+    font-family: var(--font-cinzel);
+    color: var(--color-secondary);
+    font-size: var(--font-lg);
+    font-weight: var(--weight-bold);
+}
+
+.logo-text h4 {
+    color: var(--color-tertiary);
+    font-size: var(--font-2xs);
+    letter-spacing: 0.2em;
+}
+
+.logo svg {
+    width: 32px;
+    height: 32px;
+    transition: all 0.2s ease-in-out;
+    cursor: default;
+}
+
+.logo svg:hover {
+    transform: scale(1.1); 
+    filter: drop-shadow(0px 0px 10px rgba(255, 60, 50, 0.7));
+}
+
+body {
+    background: linear-gradient(180deg, #000000, #0a0404);
+    margin: 0;
+    min-height: 100vh;
+}
+
+#background-flames {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.flame-icon {
+    position: absolute;
+    color: rgba(204, 66, 20, 0.30);
+    width: 24px;
+    height: 24px;
+}
