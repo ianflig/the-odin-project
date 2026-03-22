@@ -21,5 +21,15 @@ function generateBackgroundFlames() {
     }
 }
 
+const header = document.querySelector('header');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 28) {
+        header.classList.add('border-bottom');
+    } else {
+        header.classList.remove('border-bottom');
+    }
+});
+
 generateBackgroundFlames();
 
