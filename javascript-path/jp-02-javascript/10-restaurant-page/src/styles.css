@@ -24,6 +24,7 @@ html {
   --color-box:oklab(0.600009 0.190501 0.110009 / 0.1);
   --color-bg: oklch(0.995 0 0);
   --color-fg: oklch(0.175 0 0);
+  --color-background-gradient: linear-gradient(180deg, #080404, #0a0404);
   --color-gray-900: oklch(0.2 0 0);
   --color-gray-850: oklch(0.25 0 0);
   --color-gray-800: oklch(0.3 0 0);
@@ -415,4 +416,60 @@ header button:active {
   font-size: 1.1rem;
   padding-top: var(--space-md);
   color: var(--color-gray-500);
+}
+
+.home .button-container {
+  display: flex;
+  gap: var(--space-md);
+  padding-top: var(--space-xl);
+}
+
+.home .button-container button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-md);
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  padding: var(--space-xs) var(--space-md);
+  font-size: var(--font-lg);
+  font-weight: var(--weight-light);
+  color: var(--color-secondary);
+  border-radius: var(--radius-xs);
+  flex-shrink: 0;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home .button-container button:nth-of-type(2){
+  background: var(--color-background-gradient);
+  border: 1px solid rgba(230, 46, 29, 0.3);
+  padding-left: var(--space-lg);
+  padding-right: var(--space-lg);
+}
+
+.home .button-container button svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--color-secondary);
+}
+
+.home .button-container button:hover {
+    transform: scale(1.05); 
+    box-shadow: 0px 0px 15px 2px rgba(230, 57, 70, 0.6);
+}
+
+.home .button-container button:active {
+    transform: scale(0.95); 
+    box-shadow: 0px 2px 5px rgba(230, 57, 70, 0.4); 
+}
+
+@media (max-width: 900px) {
+  /* header toggle menu */
+}
+
+@media (max-width: 400px) {
+  .home .button-container {
+    flex-direction: column;
+  }
 }
