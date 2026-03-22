@@ -104,6 +104,9 @@ body {
   min-height: 100dvh;
   background-color: var(--color-bg);
 }
+span {
+  color: var(--color-tertiary);
+}
 ul {
   list-style-type: none;
 }
@@ -217,8 +220,6 @@ svg {
 .flame-icon {
     position: absolute;
     color: rgba(204, 66, 20, 0.30);
-    width: 24px;
-    height: 24px;
 }
 
 .color-primary {
@@ -235,6 +236,10 @@ svg {
 
 .color-quaternary {
   color: var(--color-quaternary);
+}
+
+.cursor-default {
+  cursor: default;
 }
 
 body {
@@ -392,6 +397,7 @@ a {
   font-family: var(--font-noto-jp);
   font-weight: var(--weight-medium);
   font-size: var(--font-sm);
+  color: var(--color-quaternary);
 }
 
 .home .council-approbation svg {
@@ -528,6 +534,127 @@ a {
   text-transform: uppercase;
   letter-spacing: 1px;
   white-space: nowrap;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-lg) var(--space-md) var(--space-md);
+}
+
+.menu .our-creations {
+    display: inline-flex;
+    gap: var(--space-sm);
+    color: var(--color-primary);
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-box);
+    padding: var(--space-2xs) var(--space-sm);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(230, 46, 29, 0.3);
+}
+
+.menu .our-creations span {
+  font-family: var(--font-noto-jp);
+  font-weight: var(--weight-medium);
+  font-size: var(--font-sm);
+  color: var(--color-primary);
+}
+
+.menu .our-creations svg {
+  width: 17px;
+  height: 17px;
+  stroke: var(--color-primary);
+}
+
+.menu .our-creations,
+.menu .our-creations svg,
+.menu .our-creations span {
+    flex-shrink: 0;
+}
+
+.menu .main-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.menu .main-info span {
+  display: block;
+  padding-top: var(--space-md);
+  font-family: var(--font-cinzel);
+  font-size: clamp(3rem, 8vw, 3rem);
+  font-weight: var(--weight-bold);
+}
+
+.menu .main-info p {
+  max-width: 60ch;
+  font-size: 1.1rem;
+  padding-top: var(--space-xs);
+  color: var(--color-tertiary);
+}
+
+.menu .button-container {
+  display: flex;
+  gap: var(--space-md);
+  padding-top: var(--space-4xl);
+}
+
+.menu .button-container button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-md);
+  background: var(--color-background-gradient);
+  border: 1px solid rgba(170, 156, 146, 0.6);
+  padding: var(--space-2xs) var(--space-lg);
+  font-size: var(--font-md);
+  font-weight: var(--weight-light);
+  color: var(--color-tertiary);
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.menu .button-container button:hover {
+    background: oklch(56.423% 0.17684 38.155);
+    color: var(--color-secondary);
+}
+
+.menu .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu .card .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu .card .title .left{
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.menu .cards-button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu .cards-button-container .flames {
+  display: flex;
+}
+
+.flame-filled {
+  fill: var(--color-primary);
 }
 
 @media (max-width: 673px) {

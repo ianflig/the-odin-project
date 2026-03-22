@@ -21,6 +21,8 @@ function generateBackgroundFlames() {
     }
 }
 
+generateBackgroundFlames();
+
 const header = document.querySelector('header');
 
 window.addEventListener('scroll', () => {
@@ -31,18 +33,17 @@ window.addEventListener('scroll', () => {
     }
 });
 
-const btnHamburguesa = document.querySelector('.toggle-menu-btn');
+const toggleMenuButton = document.querySelector('.toggle-menu-btn');
 const navLinks = document.querySelector('.nav-links');
 
-btnHamburguesa.addEventListener('click', () => {
+toggleMenuButton.addEventListener('click', () => {
     navLinks.classList.toggle('open');
 
     if (navLinks.classList.contains('open')) {
-        btnHamburguesa.textContent = '✕';
+        toggleMenuButton.textContent = '✕';
     } else {
-        btnHamburguesa.textContent = '☰';
+        toggleMenuButton.textContent = '☰';
     }
 });
 
-generateBackgroundFlames();
 
