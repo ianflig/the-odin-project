@@ -107,21 +107,21 @@ ul {
   list-style-type: none;
 }
 p {
-    color: var(--color-gray-700);
+    color: var(--color-tertiary);
 }
 h1 {
-    color: var(--color-fg);
+    color: var(--color-bg);
 }
 h2 {
-    color: var(--color-fg);
+    color: var(--color-bg);
 }
 h3 {
   font-weight: var(--weight-semibold);
-  color: var(--color-fg);
+  color: var(--color-bg);
 }
 h4 {
   font-weight: var(--weight-medium);
-  color: var(--color-fg);
+  color: var(--color-bg);
 }
 
 /*
@@ -202,6 +202,45 @@ svg {
 /* 
 --- BODY ---
 */
+
+#background-flames {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.flame-icon {
+    position: absolute;
+    color: rgba(204, 66, 20, 0.30);
+    width: 24px;
+    height: 24px;
+}
+
+.color-primary {
+  color: var(--color-primary);
+}
+
+.color-secondary {
+  color: var(--color-secondary);
+}
+
+.color-tertiary {
+  color: var(--color-tertiary);
+}
+
+.color-quaternary {
+  color: var(--color-quaternary);
+}
+
+body {
+    background: linear-gradient(180deg, #080404, #0a0404);
+    margin: 0;
+    min-height: 100vh;
+}
 
 header {
     position: fixed;
@@ -294,12 +333,6 @@ header button:active {
     box-shadow: 0px 2px 5px rgba(230, 57, 70, 0.4); 
 }
 
-body {
-    background: linear-gradient(180deg, #000000, #0a0404);
-    margin: 0;
-    min-height: 100vh;
-}
-
 #content {
     padding-top: 85px;
     display: flex;
@@ -309,13 +342,14 @@ body {
 
 .home {
     display: flex;
+    flex-direction: column;
     width: 50%;/* min max */
     justify-content: center;
     align-items: center;
-    padding-top: var(--space-md);
+    padding-top: var(--space-lg);
 }
 
-.council-approbation {
+.home .council-approbation {
     display: inline-flex;
     gap: var(--space-sm);
     color: var(--color-quaternary);
@@ -327,30 +361,38 @@ body {
     border: 1px solid rgba(230, 46, 29, 0.3);
 }
 
-.council-approbation svg {
+.home .council-approbation span {
+  font-family: var(--font-noto-jp);
+  font-weight: var(--weight-medium);
+  font-size: var(--font-sm);
+}
+
+.home .council-approbation svg {
   width: 17px;
   height: 17px;
 }
 
-.council-approbation,
-.council-approbation svg,
-.council-approbation span {
+.home .council-approbation,
+.home .council-approbation svg,
+.home .council-approbation span {
     flex-shrink: 0;
 }
 
-#background-flames {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-    overflow: hidden;
+.home .main-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.flame-icon {
-    position: absolute;
-    color: rgba(204, 66, 20, 0.30);
-    width: 24px;
-    height: 24px;
+.home .main-info h1 {
+  padding-top: var(--space-xl);
+  line-height: 1;
+}
+
+.home .main-info h1 span {
+  display: block;
+  font-family: var(--font-cinzel);
+  font-size: clamp(3rem, 8vw, 6rem);
 }
