@@ -20,7 +20,7 @@ html {
   --color-primary: oklch(60.729% 0.22333 30.401);
   --color-secondary: lab(94.1817 1.68508 3.32828);
   --color-tertiary: lab(65.159 3.45761 6.717);
-  --color-bg: oklch(0.12 0.01 30);
+  --color-bg: oklch(0.995 0 0);
   --color-fg: oklch(0.175 0 0);
   --color-gray-900: oklch(0.2 0 0);
   --color-gray-850: oklch(0.25 0 0);
@@ -208,8 +208,11 @@ header {
     width: 100%;
     height: 80px;
     z-index: 1000;
-    outline: solid red 2px;
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+    outline: 1px solid rgba(230, 46, 29, 0.3);
+    backdrop-filter: blur(12px);
 }
 
 .logo {
@@ -243,6 +246,49 @@ header {
 .logo svg:hover {
     transform: scale(1.1); 
     filter: drop-shadow(0px 0px 10px rgba(255, 60, 50, 0.7));
+}
+
+nav {
+    display: flex;
+    color: var(--color-tertiary);
+    gap: var(--space-2xl);
+    font-weight: var(--weight-medium);
+}
+
+nav span {
+    transition: all 0.2s ease-in-out;
+    cursor: default;
+}
+
+nav div:hover {
+    color: var(--color-secondary);
+    text-shadow: 0px 0px 12px var(--color-secondary);
+}
+
+header button {
+    padding: var(--space-2xs) var(--space-md);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    color: var(--color-secondary);
+    border-radius: var(--space-2xs);
+    font-size: var(--font-md);
+    cursor: default;
+    flex-shrink: 0;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+header button:hover {
+    transform: scale(1.05); 
+    box-shadow: 0px 0px 15px 2px rgba(230, 57, 70, 0.6);
+}
+
+header button:active {
+    transform: scale(0.95); 
+    box-shadow: 0px 2px 5px rgba(230, 57, 70, 0.4); 
 }
 
 body {
