@@ -343,10 +343,9 @@ header button:active {
 .home {
     display: flex;
     flex-direction: column;
-    width: 50%;/* min max */
     justify-content: center;
     align-items: center;
-    padding-top: var(--space-lg);
+    padding: var(--space-lg) var(--space-md) var(--space-md);
 }
 
 .home .council-approbation {
@@ -386,13 +385,34 @@ header button:active {
   text-align: center;
 }
 
-.home .main-info h1 {
+.home .main-info h1:first-of-type {
   padding-top: var(--space-xl);
   line-height: 1;
 }
 
-.home .main-info h1 span {
+.home .main-info h1:first-of-type span {
   display: block;
   font-family: var(--font-cinzel);
   font-size: clamp(3rem, 8vw, 6rem);
+}
+
+.home .main-info h4:first-of-type {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--color-gray-500);
+  letter-spacing: var(--space-sm);
+  padding-top: var(--space-md);
+}
+
+.home .main-info h3:first-of-type {
+  padding-top: var(--space-lg);
+  font-size: clamp(1.2rem, 7vw, 1.6rem);
+  font-weight: var(--weight-medium);
+  color: var(--color-gray-400);
+}
+
+.home .main-info p {
+  max-width: 50ch;
+  font-size: 1.1rem;
+  padding-top: var(--space-md);
+  color: var(--color-gray-500);
 }
