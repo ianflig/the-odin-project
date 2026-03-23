@@ -25,6 +25,10 @@
         </symbol>
         <symbol id="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles w-4 h-4 text-secondary animate-pulse" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle>
         </symbol>
+        <symbol id="award-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award w-4 h-4 text-primary" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle>
+        </symbol>
+        <symbol id="users-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users w-5 h-5 text-primary" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle>
+        </symbol>
     </svg>
     <header>
         <div class="logo">
@@ -45,30 +49,75 @@
         </nav>
         <button class="reserve-now">Reserve Now</button>
     </header>
+
     <div id="content">
-         <div class="menu">
-            <div class="our-creations">
+        <div class="about">
+            <div class="our-story">
                 <svg>
-                    <use href="#utensils-icon"></use>
+                    <use href="#award-icon"></use>
                 </svg>
-                <span>Our Creations</span>
+                <span>Our Story</span>
+            </div>
+            <div class="pre-info">
+                <span class="color-secondary">About Yukihira</span>
+                <p>From a humble family diner to culinary legend - this is the story of how passion, perseverance, and a pinch of madness created something extraordinary.</p>
             </div>
             <div class="main-info">
-                <span class="color-secondary">The Menu</span>
-                <p>Each dish is crafted with the passion and creativity that Totsuki Academy demands. Prepare for flavor explosions that will make your clothes fly off.</p>
-            </div>
-            <div class="button-container">
-                <button class="category-active" id="all">All</button>
-                <button id="signatures">Signatures</button>
-                <button id="appetizers">Appetizers</button>
-                <button id="maincourse">Main Course</button>
-                <button id="desserts">Desserts</button>
-            </div>
-            <div class="cards-container">
-            </div>     
-            <div class="extra-info">
-                <p>"The secret to good cooking is putting your soul into every dish." - Joichiro Yukihira</p>
-            </div>
+                <div class="left">
+                    <span>A Legacy of <span>Flavor</span></span>
+                    <p>Yukihira Diner began as a modest restaurant run by Joichiro Yukihira, a former Totsuki Academy student who left at the peak of his career to pursue what truly mattered - making everyday people happy with delicious food.</p>
+                    <p>His son, Soma Yukihira, grew up in this kitchen, developing an unconventional style that would later shake the foundations of Totsuki Academy itself. His philosophy is simple yet profound: never stop experimenting, never give up, and always cook to put a smile on someone's face.</p>
+                    <p>Today, we continue that legacy. Every dish that leaves our kitchen carries the spirit of countless Shokugeki battles, the wisdom of culinary masters, and the heart of a family that believes food is the ultimate expression of love.</p>
+                    <div class="icon-container">
+                        <div class="icon-wrapper">
+                            <div class="icon-background">
+                                <svg><use href="#users-icon"></use></svg>
+                            </div>
+                            <div class="icon-background">
+                                <svg><use href="#chef-hat-icon"></use></svg>
+                            </div>
+                            <div class="icon-background">
+                                <svg><use href="#flame-icon"></use></svg>
+                            </div>
+                        </div>
+                        <div class="complementary-text">
+                            <span>10,000+ Happy Diners</span>
+                            <span>And counting...</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                            <span class="year">YEAR 1</span>
+                            <h3>Yukihira Dinner Founded</h3>
+                            <p>A small family restaurant with big dreams</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                            <span class="year">YEAR 10</span>
+                            <h3>SOMA JOINS TOTSUKI</h3>
+                            <p>The next generation begins their journey</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                            <span class="year">YEAR 12</span>
+                            <h3>Elite 10 Achievement</h3>
+                            <p>Reaching the pinnacle of culinary excellence</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                            <span class="year">TODAY</span>
+                            <h3>Legend Continues</h3>
+                            <p>Serving flavor explosions to the world</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -122,5 +171,31 @@
                         <span>Mission</span>
                     </div>
                 </div>
+            </div>
+        </div> -->
+
+<!-- MENU SECTION -->
+<!--           <div class="menu">
+            <div class="our-creations">
+                <svg>
+                    <use href="#utensils-icon"></use>
+                </svg>
+                <span>Our Creations</span>
+            </div>
+            <div class="main-info">
+                <span class="color-secondary">The Menu</span>
+                <p>Each dish is crafted with the passion and creativity that Totsuki Academy demands. Prepare for flavor explosions that will make your clothes fly off.</p>
+            </div>
+            <div class="button-container">
+                <button class="category-active" id="all">All</button>
+                <button id="signatures">Signatures</button>
+                <button id="appetizers">Appetizers</button>
+                <button id="maincourse">Main Course</button>
+                <button id="desserts">Desserts</button>
+            </div>
+            <div class="cards-container">
+            </div>     
+            <div class="extra-info">
+                <p>"The secret to good cooking is putting your soul into every dish." - Joichiro Yukihira</p>
             </div>
         </div> -->
