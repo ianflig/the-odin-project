@@ -655,6 +655,18 @@ a {
   padding: var(--space-2xl) var(--space-lg);
   border: 1px solid rgba(60, 40, 37, 0.8);
   border-radius: var(--radius-sm);
+
+  transition: all 0.1s ease;
+}
+
+.menu .card:hover {
+  border-color: rgba(234, 47, 27, 0.2);
+  box-shadow: 0px 0px 8px rgba(234, 47, 27, 0.6);
+}
+
+.menu .card:hover .title span {
+  color: var(--color-primary); 
+  font-weight: var(--weight-bold);
 }
 
 .menu .card .title {
@@ -675,6 +687,7 @@ a {
   font-family: var(--font-cinzel);
   color: var(--color-secondary);
   font-weight: var(--weight-semibold);
+  transition: color 0.3s ease;
 }
 
 .menu .card .title .left svg {
