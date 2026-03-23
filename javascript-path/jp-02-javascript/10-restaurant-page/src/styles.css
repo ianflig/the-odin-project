@@ -1070,6 +1070,77 @@ a {
   text-align: center;
 }
 
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-lg) var(--space-md) var(--space-md);
+}
+
+.contact .get-in-touch {
+  display: inline-flex;
+  gap: var(--space-sm);
+  color: var(--color-primary);
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-box);
+  padding: var(--space-2xs) var(--space-sm);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(230, 46, 29, 0.3);
+}
+
+.contact .get-in-touch span {
+  font-family: var(--font-noto-jp);
+  font-weight: var(--weight-medium);
+  font-size: var(--font-sm);
+  color: var(--color-primary);
+}
+
+.contact .get-in-touch svg {
+  width: 17px;
+  height: 17px;
+  stroke: var(--color-primary);
+}
+
+.contact .get-in-touch,
+.contact .get-in-touch svg,
+.contact .get-in-touch span {
+  flex-shrink: 0;
+}
+
+.contact .pre-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.contact .pre-info span {
+  display: block;
+  padding-top: var(--space-md);
+  font-family: var(--font-cinzel);
+  font-size: clamp(3rem, 8vw, 3rem);
+  font-weight: var(--weight-bold);
+}
+
+.contact .pre-info p {
+  max-width: 60ch;
+  font-size: 1.1rem;
+  padding-top: var(--space-xs);
+  color: var(--color-tertiary);
+}
+
+.contact .main-info {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: var(--space-xl);
+  gap: var(--space-lg);
+}
+
 @media (max-width: 673px) {
 
   header {
