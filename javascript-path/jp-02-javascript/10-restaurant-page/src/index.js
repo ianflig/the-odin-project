@@ -46,4 +46,54 @@ toggleMenuButton.addEventListener('click', () => {
     }
 });
 
+class Card {
+    constructor({name, highlighted, price, jpName, description, flame1, flame2, flame3, category}) {
+        this.name = name;
+        this.highlighted = highlighted;
+        this.price = price;
+        this.jpName = jpName;
+        this.description = description;
+        this.flame1 = flame1;
+        this.flame2 = flame2;
+        this.flame3 = flame3;
+        this.category = category;
+    }
+}
 
+class CardController {
+    cardsContainer = [];
+    constructor() {}
+
+    createCard(card) {
+        let newCard = new Card(card);
+        this.addToContaier(newCard);
+    }
+        
+    addToContaier(newCard){
+        this.cardsContainer.push(newCard)
+    }
+
+    displayCards(){
+        for (let i = 0; i < this.cardsContainer.length; i++){
+            const cardsContainer = document.querySelector(".cards-container");
+            const card = document.createElement("div");
+            const cardTitle = document.createElement("div");
+            const cardTitleLeft = document.createElement("div");
+            const leftSpan = document.createElement("span");
+            const leftSvg = document.createAttribute("svg");
+
+            card.classList.add("card");
+            cardTitle.classList.add("title");
+            
+            cardsContainer.appendChild(card);
+            card.appendChild(cardTitle);
+            cardTitle.appendChild(cardTitleLeft);
+            cardTitleLeft.appendChild(leftSpan);
+            cardTitleLeft.appendChild(leftSvg);
+        }
+    }
+}
+
+const card = new CardController();
+card.displayCards();
+card.createCard({name : "Gotcha Pork Roast", highlighted : true, price : 28, jpName : "ゴッチャ肉丼", description : "Soma's legendary dish - crispy bacon wrapped around a juicy pork loin, served with our secret apple-onion sauce that triggers explosive foodgasms.", flame1 : true, flame2 : true, flame3 : false, category : "signatures"})
