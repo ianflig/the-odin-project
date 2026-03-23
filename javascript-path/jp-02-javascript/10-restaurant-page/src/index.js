@@ -87,7 +87,6 @@ class CardController {
             const cardsButtonContainerFlames = document.createElement("div");
             const secondSpan = document.createElement("span");
 
-
             leftSpan.textContent = this.cardsContainer[i].name;
             if (this.cardsContainer[i].highlighted){
                 leftSvg.innerHTML = '<use href="#card-icon"></use>';
@@ -126,11 +125,108 @@ class CardController {
                 cardsButtonContainerFlames.appendChild(flame);
             }
             cardsButtonContainer.appendChild(secondSpan);
-
         }
     }
 }
 
 const card = new CardController();
-card.createCard({name : "Gotcha Pork Roast", highlighted : true, price : 28, jpName : "ゴッチャ肉丼", description : "Soma's legendary dish - crispy bacon wrapped around a juicy pork loin, served with our secret apple-onion sauce that triggers explosive foodgasms.", spicinessLevel : 2, category : "SIGNATURES"})
+card.createCard({
+    name: "Gotcha Pork Roast", 
+    highlighted: true, 
+    price: 28, 
+    jpName: "ゴッチャ肉丼", 
+    description: "Soma's legendary dish - crispy bacon wrapped around a juicy pork loin, served with our secret apple-onion sauce that triggers explosive foodgasms.", 
+    spicinessLevel: 2, 
+    category: "SIGNATURES"
+});
+
+card.createCard({
+    name: "Transforming Furikake Gohan", 
+    highlighted: true, 
+    price: 18, 
+    jpName: "化けるふりかけご飯", 
+    description: "A magical rice dish that transforms before your eyes. Warm dashi broth is poured over the rice, releasing aromatic furikake that dances and swirls.", 
+    spicinessLevel: 0, 
+    category: "SIGNATURES"
+});
+
+card.createCard({
+    name: "Chaliapin Steak Don", 
+    highlighted: false, 
+    price: 32, 
+    jpName: "シャリアピンステーキ丼", 
+    description: "Tender beef steak marinated in onion for supreme tenderness, served on a bed of perfectly cooked rice with caramelized onion sauce.", 
+    spicinessLevel: 1, 
+    category: "MAIN COURSE"
+});
+
+card.createCard({
+    name: "Ravioli of the Dragon", 
+    highlighted: false, 
+    price: 26, 
+    jpName: "龍のラビオリ", 
+    description: "Handmade ravioli filled with a fusion of Italian and Chinese flavors, topped with a fiery dragon breath sauce.", 
+    spicinessLevel: 3, 
+    category: "MAIN COURSE"
+});
+
+card.createCard({
+    name: "Egg Tempura Don", 
+    highlighted: false, 
+    price: 16, 
+    jpName: "卵の天ぷら丼", 
+    description: "A perfectly soft-boiled egg encased in a light, crispy tempura shell, served over seasoned rice with our signature dashi.", 
+    spicinessLevel: 0, 
+    category: "APPETIZERS"
+});
+
+card.createCard({
+    name: "Peanut Butter Squid Tentacles", 
+    highlighted: false, 
+    price: 22, 
+    jpName: "ピーナッツバターイカ", 
+    description: "A surprising combination that works - tender squid tentacles glazed with a savory peanut butter sauce, proving creativity has no limits.", 
+    spicinessLevel: 1, 
+    category: "APPETIZERS"
+});
+
+card.createCard({
+    name: "Apple Risotto", 
+    highlighted: false, 
+    price: 24, 
+    jpName: "リンゴのリゾット", 
+    description: "Creamy arborio rice cooked with apple cider, topped with caramelized apple slices and aged parmesan for a sweet-savory symphony.", 
+    spicinessLevel: 0, 
+    category: "MAIN COURSE"
+});
+
+card.createCard({
+    name: "Soufflé Omelette", 
+    highlighted: true, 
+    price: 19, 
+    jpName: "スフレオムレツ", 
+    description: "Light as a cloud, this fluffy omelette rises like the morning sun, filled with a secret blend of cheeses that melt on your tongue.", 
+    spicinessLevel: 0, 
+    category: "SIGNATURES"
+});
+
+card.createCard({
+    name: "Autumn Election Parfait", 
+    highlighted: false, 
+    price: 14, 
+    jpName: "秋の選抜パフェ", 
+    description: "A towering dessert celebrating autumn flavors - layers of chestnut cream, persimmon compote, and maple-glazed walnuts.", 
+    spicinessLevel: 0, 
+    category: "DESSERTS"
+});
+
+card.createCard({
+    name: "Dorayaki Surprise", 
+    highlighted: false, 
+    price: 12, 
+    jpName: "サプライズどら焼き", 
+    description: "Traditional Japanese pancakes with a twist - filled with our special red bean and vanilla custard fusion that defies expectations.", 
+    spicinessLevel: 0, 
+    category: "DESSERTS"
+});
 card.displayCards();

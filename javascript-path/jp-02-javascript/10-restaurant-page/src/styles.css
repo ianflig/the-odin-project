@@ -634,7 +634,7 @@ a {
 
 .menu .cards-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr));
   gap: var(--space-md);
   align-content: center;
   justify-content: center;
@@ -642,6 +642,8 @@ a {
 }
 
 .menu .card {
+  display: flex;
+  flex-direction: column;
   background-color: rgb(24, 15, 14);
   padding: var(--space-2xl) var(--space-lg);
   border: 1px solid rgba(60, 40, 37, 0.8);
@@ -672,6 +674,7 @@ a {
   width: 15px;
   height: 15px;
   stroke: rgb(251, 145, 70);
+  flex-shrink: 0;
 }
 
 .menu .card .title .right span{
@@ -687,6 +690,7 @@ a {
 .menu .card > p {
   font-size: var(--font-md);
   padding-top: var(--space-md);
+  flex: 1;
 }
 
 .menu .cards-button-container {
