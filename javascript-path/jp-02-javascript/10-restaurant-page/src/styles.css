@@ -535,7 +535,6 @@ a {
   font-family: var(--font-noto-jp);
   font-size: var(--font-xs);
   color: var(--color-tertiary);
-  text-transform: uppercase;
   letter-spacing: 1px;
   white-space: nowrap;
 }

@@ -47,15 +47,13 @@ toggleMenuButton.addEventListener('click', () => {
 });
 
 class Card {
-    constructor({name, highlighted, price, jpName, description, flame1, flame2, flame3, category}) {
+    constructor({name, highlighted, price, jpName, description, spicinessLevel, category}) {
         this.name = name;
         this.highlighted = highlighted;
         this.price = price;
         this.jpName = jpName;
         this.description = description;
-        this.flame1 = flame1;
-        this.flame2 = flame2;
-        this.flame3 = flame3;
+        this.spicinessLevel = spicinessLevel;
         this.category = category;
     }
 }
@@ -80,20 +78,59 @@ class CardController {
             const cardTitle = document.createElement("div");
             const cardTitleLeft = document.createElement("div");
             const leftSpan = document.createElement("span");
-            const leftSvg = document.createAttribute("svg");
+            const leftSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            const cardTitleRight = document.createElement("div");
+            const rightSpan = document.createElement("span");
+            const cardFirstSpan = document.createElement("span");
+            const cardFirstParra = document.createElement("p");
+            const cardsButtonContainer = document.createElement("div");
+            const cardsButtonContainerFlames = document.createElement("div");
+            const secondSpan = document.createElement("span");
+
+
+            leftSpan.textContent = this.cardsContainer[i].name;
+            if (this.cardsContainer[i].highlighted){
+                leftSvg.innerHTML = '<use href="#card-icon"></use>';
+            }
+            rightSpan.textContent = `$${this.cardsContainer[i].price}`;
+            cardFirstSpan.textContent = this.cardsContainer[i].jpName;
+            cardFirstParra.textContent = this.cardsContainer[i].description;
+            secondSpan.textContent = this.cardsContainer[i].category;
 
             card.classList.add("card");
             cardTitle.classList.add("title");
+            cardTitleLeft.classList.add("left");
+            leftSvg.classList.add("cursor-default");
+            cardTitleRight.classList.add("right");
             
             cardsContainer.appendChild(card);
             card.appendChild(cardTitle);
             cardTitle.appendChild(cardTitleLeft);
             cardTitleLeft.appendChild(leftSpan);
             cardTitleLeft.appendChild(leftSvg);
+            cardTitle.appendChild(cardTitleRight);
+            cardTitleRight.appendChild(rightSpan);
+            card.appendChild(cardFirstSpan);
+            card.appendChild(cardFirstParra);
+            card.appendChild(cardsButtonContainer);
+            cardsButtonContainer.classList.add("cards-button-container");
+            cardsButtonContainer.appendChild(cardsButtonContainerFlames);
+            cardsButtonContainerFlames.classList.add("flames")
+            for (let j = 1; j <= 3; j++){
+                const flame = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                flame.innerHTML = '<use href="#flame-icon">';
+                flame.classList.add("cursor-default");
+                if (j <= this.cardsContainer[i].spicinessLevel){
+                    flame.classList.add("flame-filled");
+                }
+                cardsButtonContainerFlames.appendChild(flame);
+            }
+            cardsButtonContainer.appendChild(secondSpan);
+
         }
     }
 }
 
 const card = new CardController();
+card.createCard({name : "Gotcha Pork Roast", highlighted : true, price : 28, jpName : "ゴッチャ肉丼", description : "Soma's legendary dish - crispy bacon wrapped around a juicy pork loin, served with our secret apple-onion sauce that triggers explosive foodgasms.", spicinessLevel : 2, category : "SIGNATURES"})
 card.displayCards();
-card.createCard({name : "Gotcha Pork Roast", highlighted : true, price : 28, jpName : "ゴッチャ肉丼", description : "Soma's legendary dish - crispy bacon wrapped around a juicy pork loin, served with our secret apple-onion sauce that triggers explosive foodgasms.", flame1 : true, flame2 : true, flame3 : false, category : "signatures"})
