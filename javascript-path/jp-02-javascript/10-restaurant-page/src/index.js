@@ -59,8 +59,54 @@ class Card {
 }
 
 class CardController {
+    categoryState = null;
     cardsContainer = [];
-    constructor() {}
+    categories = ["all", "signatures", "appetizers", "maincourse", "desserts"];
+
+    constructor() {
+        this.cardsContainerDiv = document.querySelector(".cards-container");
+        this.allButton = document.querySelector("#all");
+        this.signaturesButton = document.querySelector("#signatures");
+        this.appetizersButton = document.querySelector("#appetizers");
+        this.mainCourseButton = document.querySelector("#maincourse");
+        this.dessertsButton = document.querySelector("#desserts");
+
+        this.bindEvents();
+    }
+
+    bindEvents(){
+        this.allButton.addEventListener("click", () => this.menuFilter("all"));
+        this.signaturesButton.addEventListener("click", () => this.menuFilter("SIGNATURES"));
+        this.appetizersButton.addEventListener("click", () => this.menuFilter("APPETIZERS"));
+        this.mainCourseButton.addEventListener("click", () => this.menuFilter("MAINCOURSE"));
+        this.dessertsButton.addEventListener("click", () => this.menuFilter("DESSERTS"));
+    }
+
+    menuFilter(category){
+        if (this.categoryState !== category){
+            this.categoryState = category;
+            this.clearCategoryClass();
+            const categoryButton = document.querySelector(`#${category.toLowerCase()}`)
+            categoryButton.classList.add("category-active")
+            this.filterCardsContainerArray(category);
+            return;
+        }
+    }
+
+    clearCategoryClass(){
+        for (let i = 0; i < this.categories.length; i++){
+            const buttonToRemove = document.querySelector(`#${this.categories[i]}`);
+            buttonToRemove.classList.remove("category-active");
+        }
+    }
+
+    filterCardsContainerArray(category){
+        if(category === "all"){return this.displayCards(this.cardsContainer)};
+
+        let filteredArr = this.cardsContainer.filter(card => card.category === category);
+        this.displayCards(filteredArr);
+        console.log(filteredArr);
+    }
 
     createCard(card) {
         let newCard = new Card(card);
@@ -71,8 +117,9 @@ class CardController {
         this.cardsContainer.push(newCard)
     }
 
-    displayCards(){
-        for (let i = 0; i < this.cardsContainer.length; i++){
+    displayCards(newArr){
+        this.cardsContainerDiv.innerHTML = '';
+        for (let i = 0; i < newArr.length; i++){
             const cardsContainer = document.querySelector(".cards-container");
             const card = document.createElement("div");
             const cardTitle = document.createElement("div");
@@ -87,14 +134,14 @@ class CardController {
             const cardsButtonContainerFlames = document.createElement("div");
             const secondSpan = document.createElement("span");
 
-            leftSpan.textContent = this.cardsContainer[i].name;
-            if (this.cardsContainer[i].highlighted){
+            leftSpan.textContent = newArr[i].name;
+            if (newArr[i].highlighted){
                 leftSvg.innerHTML = '<use href="#card-icon"></use>';
             }
-            rightSpan.textContent = `$${this.cardsContainer[i].price}`;
-            cardFirstSpan.textContent = this.cardsContainer[i].jpName;
-            cardFirstParra.textContent = this.cardsContainer[i].description;
-            secondSpan.textContent = this.cardsContainer[i].category;
+            rightSpan.textContent = `$${newArr[i].price}`;
+            cardFirstSpan.textContent = newArr[i].jpName;
+            cardFirstParra.textContent = newArr[i].description;
+            secondSpan.textContent = newArr[i].category;
 
             card.classList.add("card");
             cardTitle.classList.add("title");
@@ -119,7 +166,7 @@ class CardController {
                 const flame = document.createElementNS("http://www.w3.org/2000/svg", "svg");
                 flame.innerHTML = '<use href="#flame-icon">';
                 flame.classList.add("cursor-default");
-                if (j <= this.cardsContainer[i].spicinessLevel){
+                if (j <= newArr[i].spicinessLevel){
                     flame.classList.add("flame-filled");
                 }
                 cardsButtonContainerFlames.appendChild(flame);
@@ -157,7 +204,7 @@ card.createCard({
     jpName: "シャリアピンステーキ丼", 
     description: "Tender beef steak marinated in onion for supreme tenderness, served on a bed of perfectly cooked rice with caramelized onion sauce.", 
     spicinessLevel: 1, 
-    category: "MAIN COURSE"
+    category: "MAINCOURSE"
 });
 
 card.createCard({
@@ -167,7 +214,7 @@ card.createCard({
     jpName: "龍のラビオリ", 
     description: "Handmade ravioli filled with a fusion of Italian and Chinese flavors, topped with a fiery dragon breath sauce.", 
     spicinessLevel: 3, 
-    category: "MAIN COURSE"
+    category: "MAINCOURSE"
 });
 
 card.createCard({
@@ -197,7 +244,7 @@ card.createCard({
     jpName: "リンゴのリゾット", 
     description: "Creamy arborio rice cooked with apple cider, topped with caramelized apple slices and aged parmesan for a sweet-savory symphony.", 
     spicinessLevel: 0, 
-    category: "MAIN COURSE"
+    category: "MAINCOURSE"
 });
 
 card.createCard({
@@ -229,4 +276,5 @@ card.createCard({
     spicinessLevel: 0, 
     category: "DESSERTS"
 });
-card.displayCards();
+
+card.menuFilter("all");

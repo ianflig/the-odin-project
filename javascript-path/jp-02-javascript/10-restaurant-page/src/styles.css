@@ -88,7 +88,7 @@ html {
   --radius-xs: 0.5rem;
   --radius-2xs: 0.25rem;
 
-  scrollbar-color: var(--color-gray-300) var(--color-bg);
+  color-scheme: dark;
 }
 
 ::selection {
@@ -630,6 +630,13 @@ a {
 .menu .button-container button:hover {
     background: oklch(56.423% 0.17684 38.155);
     color: var(--color-secondary);
+}
+
+.menu .button-container button.category-active {
+  background: var(--color-primary);
+  color: var(--color-secondary);
+  border: 1px solid rgba(230, 46, 29, 0.3);
+  box-shadow: 0 0 8px 1px rgba(230, 46, 29, 0.6);
 }
 
 .menu .cards-container {
