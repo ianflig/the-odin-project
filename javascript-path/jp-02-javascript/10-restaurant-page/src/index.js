@@ -20,12 +20,17 @@ class ScreenController{
     constructor(){
         this.sectionsContainer = document.querySelector(".nav-links");
         this.contentContainer = document.querySelector("#content");
+        this.header = document.querySelector('header');
+        this.toggleMenuButton = document.querySelector('.toggle-menu-btn');
+        this.navLinks = document.querySelector('.nav-links');
 
         this.bindEvents();
     }
 
     bindEvents(){
         this.sectionsContainer.addEventListener("click", (e) => {this.sectionController(e)})
+        this.toggleMenuButton.addEventListener('click', () => {this.headerMenuToggle()});
+        window.addEventListener('scroll', () => {this.headerScroll()});
     }
 
     sectionController(e){  
@@ -41,7 +46,25 @@ class ScreenController{
         this.contentContainer.innerHTML = '';
         if (this.routes[section]) {
             this.routes[section]();
-        } 
+            this.headerMenuToggle();
+        }
+    }
+
+    headerScroll(){
+        if (window.scrollY > 28) {
+            this.header.classList.add('border-bottom');
+        } else {
+            this.header.classList.remove('border-bottom');
+        }
+    }
+
+    headerMenuToggle(){
+        this.navLinks.classList.toggle('open');
+        if (this.navLinks.classList.contains('open')) {
+            this.toggleMenuButton.textContent = '✕';
+        } else {
+            this.toggleMenuButton.textContent = '☰';
+        }
     }
 }
 
