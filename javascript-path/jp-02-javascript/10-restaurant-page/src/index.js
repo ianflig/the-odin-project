@@ -23,6 +23,7 @@ class ScreenController{
         this.header = document.querySelector('header');
         this.toggleMenuButton = document.querySelector('.toggle-menu-btn');
         this.navLinks = document.querySelector('.nav-links');
+        this.reserveNowBtn = document.querySelector("#reserve-now");
 
         this.bindEvents();
         this.init();
@@ -38,18 +39,23 @@ class ScreenController{
     }
 
     bindEvents(){
-        this.sectionsContainer.addEventListener("click", (e) => {this.sectionController(e)})
-        this.toggleMenuButton.addEventListener('click', () => {this.headerMenuToggle()});
+        this.sectionsContainer.addEventListener("click", (e) => {this.sectionController(e)});
+        this.contentContainer.addEventListener("click", (e) => {this.sectionController(e)});
+        this.reserveNowBtn.addEventListener("click", (e) => {this.sectionController(e)});
+        this.toggleMenuButton.addEventListener("click", () => {this.headerMenuToggle()});
         window.addEventListener('scroll', () => {this.headerScroll()});
     }
 
     sectionController(e){  
+        const targetBtn = e.target.closest('[data-section]');
+        if (!targetBtn) return;
+
         let categorySelected = e.target.dataset.section;
         if (!categorySelected) return;
         if (this.sectionState !== categorySelected){
             this.sectionState = categorySelected;
             this.displaySection(categorySelected);
-            this.swapNavState(e);
+            this.swapNavState(categorySelected);
         }
     }
 
@@ -78,12 +84,16 @@ class ScreenController{
         }
     }
 
-    swapNavState(e){
+    swapNavState(category){
         const previousBtn = this.navLinks.querySelector('.active');
         if (previousBtn) {
             previousBtn.classList.remove('active');
         }
-        e.target.classList.add('active');
+
+        const newNavBtn = this.navLinks.querySelector(`[data-section="${category}"]`);
+        if (newNavBtn) {
+            newNavBtn.classList.add('active');
+        }
     }
 }
 

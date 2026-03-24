@@ -20,13 +20,13 @@ class Home{
                 <h3>Where Every Dish is a <span class="color-primary">Shokugeki</span></h3>
                 <p>Experience the legendary cuisine that sparked culinary revolutions. Every plate tells a story of passion, creativity, and the relentless pursuit of the perfect flavor.</p>
                 <div class="button-container">
-                    <button>
+                    <button data-section="Menu" id="explore-our-menu">
                         <svg>
                             <use href="#chef-hat-icon"></use>
                         </svg>
                         Explore Our Menu
                     </button>
-                    <button>
+                    <button data-section="About" id="our-story">
                         Our Story
                     </button>
                 </div>
