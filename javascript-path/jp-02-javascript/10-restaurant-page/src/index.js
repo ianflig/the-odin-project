@@ -25,6 +25,16 @@ class ScreenController{
         this.navLinks = document.querySelector('.nav-links');
 
         this.bindEvents();
+        this.init();
+    }
+
+    init(){
+        /* home section active */
+        const navSectionSpan = document.querySelector("#Home")
+        navSectionSpan.classList.add('active');
+
+        flameGenerator.flameGenerator();
+        this.displaySection("Home");
     }
 
     bindEvents(){
@@ -39,6 +49,7 @@ class ScreenController{
         if (this.sectionState !== categorySelected){
             this.sectionState = categorySelected;
             this.displaySection(categorySelected);
+            this.swapNavState(e);
         }
     }
 
@@ -66,9 +77,14 @@ class ScreenController{
             this.toggleMenuButton.textContent = '☰';
         }
     }
+
+    swapNavState(e){
+        const previousBtn = this.navLinks.querySelector('.active');
+        if (previousBtn) {
+            previousBtn.classList.remove('active');
+        }
+        e.target.classList.add('active');
+    }
 }
 
-const screen = new ScreenController();
-flameGenerator.flameGenerator();
-screen.displaySection("Home");
-
+new ScreenController();
