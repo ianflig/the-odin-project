@@ -89,11 +89,11 @@ class Contact{
         </div>
     `;
     constructor(){}
-    appContainer () {
+    displayContact () {
         const divContent = document.querySelector("#content");
 
         divContent.insertAdjacentHTML('beforeend', this.homeComponent);
     }
 }
 
-export const renderMenu = new Contact();
+export const renderContact = new Contact();

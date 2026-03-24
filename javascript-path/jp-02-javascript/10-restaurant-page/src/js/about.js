@@ -98,11 +98,11 @@ class About{
         </div>
     `;
     constructor(){}
-    appContainer () {
+    displayAbout () {
         const divContent = document.querySelector("#content");
 
         divContent.insertAdjacentHTML('beforeend', this.homeComponent);
     }
 }
 
-export const renderMenu = new About();
+export const renderAbout = new About();
