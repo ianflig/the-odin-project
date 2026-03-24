@@ -14,16 +14,22 @@
 
 ## Live Preview
 
-link will be here
-<!-- The live site can be viewed [here](https://odin-09.vercel.app). -->
+The live site can be viewed [here](https://odin-10.vercel.app).
 
-<!-- ## Setup
+**_DESCRIPTION_**:
+A fictional restaurant website inspired by *Shokugeki no Soma*. This was built to understand how SPAs work under the hood without relying on modern frameworks like React.
 
-This app doesn't use any packages. To run this setup locally, easiest way I found is to do:
+Instead of hardcoding the HTML, the entire UI and navigation are dynamically rendered and managed using Vanilla JavaScript, trying to keep the code modular and organized.
+
+## Setup
+
+This app uses webpack packages. To run this setup locally:
 
 ```bash
-npx serve .
+npm install
+npm run build
+npx serve dist
 ```
 
 After that, just head to [localhost:3000](http://localhost:3000) to see the app running
- -->
+
