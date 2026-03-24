@@ -55,8 +55,6 @@ class Home{
     }
 }
 
-export const renderHome = new Home();
-
 class GenerateBackgroundFlames{
     constructor(){
         this.bgContainer = document.getElementById('background-flames');
@@ -84,4 +82,5 @@ class GenerateBackgroundFlames{
     }
 }
 
+export const renderHome = new Home();
 export const flameGenerator = new GenerateBackgroundFlames();

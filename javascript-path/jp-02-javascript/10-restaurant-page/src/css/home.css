@@ -278,6 +278,7 @@ header {
   gap: var(--space-xs);
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .logo-text h1 {
@@ -297,7 +298,6 @@ header {
   width: 32px;
   height: 32px;
   transition: all 0.2s ease-in-out;
-  cursor: default;
 }
 
 .logo svg:hover {

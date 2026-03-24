@@ -24,6 +24,7 @@ class ScreenController{
         this.toggleMenuButton = document.querySelector('.toggle-menu-btn');
         this.navLinks = document.querySelector('.nav-links');
         this.reserveNowBtn = document.querySelector("#reserve-now");
+        this.logoSelector = document.querySelector("#logo");
 
         this.bindEvents();
         this.init();
@@ -42,6 +43,7 @@ class ScreenController{
         this.sectionsContainer.addEventListener("click", (e) => {this.sectionController(e)});
         this.contentContainer.addEventListener("click", (e) => {this.sectionController(e)});
         this.reserveNowBtn.addEventListener("click", (e) => {this.sectionController(e)});
+        this.logoSelector.addEventListener("click", (e) => {this.sectionController(e)})
         this.toggleMenuButton.addEventListener("click", () => {this.headerMenuToggle()});
         window.addEventListener('scroll', () => {this.headerScroll()});
     }
@@ -50,7 +52,7 @@ class ScreenController{
         const targetBtn = e.target.closest('[data-section]');
         if (!targetBtn) return;
 
-        let categorySelected = e.target.dataset.section;
+        let categorySelected = targetBtn.dataset.section;
         if (!categorySelected) return;
         if (this.sectionState !== categorySelected){
             this.sectionState = categorySelected;
@@ -63,7 +65,7 @@ class ScreenController{
         this.contentContainer.innerHTML = '';
         if (this.routes[section]) {
             this.routes[section]();
-            this.headerMenuToggle();
+            this.closeMobileMenu(); 
         }
     }
 
@@ -82,6 +84,11 @@ class ScreenController{
         } else {
             this.toggleMenuButton.textContent = '☰';
         }
+    }
+
+    closeMobileMenu(){
+        this.navLinks.classList.remove('open');
+        this.toggleMenuButton.textContent = '☰';
     }
 
     swapNavState(category){
