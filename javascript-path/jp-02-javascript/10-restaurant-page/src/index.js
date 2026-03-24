@@ -65,6 +65,10 @@ class ScreenController{
         this.contentContainer.innerHTML = '';
         if (this.routes[section]) {
             this.routes[section]();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
             this.closeMobileMenu(); 
         }
     }
