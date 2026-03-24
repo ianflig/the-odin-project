@@ -1,6 +1,12 @@
 import "./css/home.css";
+import "./css/menu.css";
+import "./css/about.css";
+import "./css/contact.css";
 import { flameGenerator } from "./js/home.js";
 import { renderHome } from "./js/home.js";
+import { renderMenu } from "./js/menu.js";
+import { renderAbout } from "./js/about.js";
+import { renderContact } from "./js/contact.js";
 
 class ScreenController{
     sectionState = "Home";
