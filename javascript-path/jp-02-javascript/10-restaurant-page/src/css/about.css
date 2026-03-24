@@ -312,7 +312,17 @@
   font-size: var(--font-xl);
   font-style: italic;
 }
+@media (max-width: 673px) {
+    .about>p {
+    text-align: center;
+    }
 
-.about>p {
-  text-align: center;
+    .about .main-info {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .about .cards-container {
+        width: 100%;
+    }
 }

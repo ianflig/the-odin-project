@@ -220,3 +220,26 @@
     border-radius: var(--radius-sm);
     padding: var(--space-md);
 }
+
+@media (max-width: 1120px){
+  .contact .main-info {
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "reservation"
+    "others";
+    padding: var(--space-md);
+  }
+}
+
+@media (max-width: 673px) {
+    .contact .others {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "location"
+        "phone"
+        "hours"
+        "email"
+        "feeling-bold";
+  }
+}

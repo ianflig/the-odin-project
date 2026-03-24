@@ -27,14 +27,14 @@ class Menu {
         </div>
     `;
     constructor() {
-        this.cardGenerator = new CardGenerator();
+        this.cardGeneratorInit = new CardGenerator();
     }
 
     displayMenu() {
         const divContent = document.querySelector("#content");
 
         divContent.insertAdjacentHTML('beforeend', this.homeComponent);
-        this.cardGenerator.generateCards();
+        this.cardGeneratorInit.generateCards();
     }
 }
 
@@ -58,6 +58,9 @@ class CardController {
     constructor() { }
 
     init() {
+        this.categoryState = null;
+        this.cardsContainer = [];
+
         this.cardsContainerDiv = document.querySelector(".cards-container");
         this.allButton = document.querySelector("#all");
         this.signaturesButton = document.querySelector("#signatures");
