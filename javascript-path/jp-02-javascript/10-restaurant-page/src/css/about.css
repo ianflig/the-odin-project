@@ -1,0 +1,318 @@
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-lg) var(--space-md) var(--space-md);
+}
+
+.about .our-story {
+  display: inline-flex;
+  gap: var(--space-sm);
+  color: var(--color-primary);
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-box);
+  padding: var(--space-2xs) var(--space-sm);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(230, 46, 29, 0.3);
+}
+
+.about .our-story span {
+  font-family: var(--font-noto-jp);
+  font-weight: var(--weight-medium);
+  font-size: var(--font-sm);
+  color: var(--color-primary);
+}
+
+.about .our-story svg {
+  width: 17px;
+  height: 17px;
+  stroke: var(--color-primary);
+}
+
+.about .our-story,
+.about .our-story svg,
+.about .our-story span {
+  flex-shrink: 0;
+}
+
+.about .pre-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.about .pre-info span {
+  display: block;
+  padding-top: var(--space-md);
+  font-family: var(--font-cinzel);
+  font-size: clamp(3rem, 8vw, 3rem);
+  font-weight: var(--weight-bold);
+}
+
+.about .pre-info p {
+  max-width: 60ch;
+  font-size: 1.1rem;
+  padding-top: var(--space-xs);
+  color: var(--color-tertiary);
+}
+
+.about .main-info {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: var(--space-xl);
+  gap: var(--space-lg);
+}
+
+.about .main-info .left {
+  flex: 1;
+  padding: var(--space-xs);
+}
+
+.about .main-info .left>span,
+.about .main-info .left>span span {
+  font-size: clamp(1rem, 8vw, 2rem);
+  color: var(--color-secondary);
+  font-family: var(--font-cinzel);
+  font-weight: var(--weight-semibold);
+}
+
+.about .main-info .left>span span {
+  color: var(--color-primary);
+}
+
+.about .main-info .left p {
+  font-size: 1.1rem;
+  color: var(--color-tertiary);
+  padding: var(--space-md) 0;
+}
+
+.about .icon-container {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding-top: var(--space-md);
+}
+
+.about .icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about .icon-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  border: 2px solid black;
+
+  position: relative;
+}
+
+.about .icon-background:nth-child(1),
+.about .icon-background:nth-child(3) {
+  background-color: rgba(234, 47, 27, 0.2);
+}
+
+.about .icon-background:nth-child(2) {
+  background-color: rgba(251, 145, 70, 0.2);
+  ;
+}
+
+.about .icon-background:nth-child(1) svg {
+  stroke: var(--color-primary);
+}
+
+.about .icon-background:nth-child(2) svg {
+  stroke: var(--color-quaternary);
+}
+
+.about .icon-background:nth-child(3) svg {
+  fill: none;
+}
+
+.about .icon-background:not(:first-child) {
+  margin-left: -13px;
+}
+
+.about .icon-container .complementary-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about .icon-container .complementary-text span:nth-child(1) {
+  color: var(--color-secondary);
+  font-size: var(--font-md);
+}
+
+.about .icon-container .complementary-text span:nth-child(2) {
+  font-size: var(--font-sm);
+}
+
+.about .main-info .right {
+  flex: 1;
+}
+
+/* timeline by https://codepen.io/Divyesh-K/pen/YzxLQNz */
+
+.about .main-info .right .timeline {
+  position: relative;
+  margin: var(--space-lg) auto;
+  padding-left: 40px;
+}
+
+.about .main-info .right .timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 9px;
+  width: 2px;
+  background-color: var(--color-primary);
+}
+
+.about .main-info .right .timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -45px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--color-primary);
+  background-color: #0a0a0a;
+  z-index: 1;
+}
+
+.about .main-info .right .timeline-item::after {
+  content: '';
+  position: absolute;
+  left: -34px;
+  top: 11px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  z-index: 2;
+}
+
+.about .main-info .right .timeline-item {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.about .main-info .timeline-content {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(24, 15, 14);
+  padding: var(--space-md);
+  border: 1px solid rgba(60, 40, 37, 0.8);
+  border-radius: var(--radius-sm);
+  gap: var(--space-2xs);
+
+  transition: all 0.1s ease;
+}
+
+.about .main-info .timeline-content:hover {
+  border-color: rgba(234, 47, 27, 0.4);
+}
+
+.about .main-info .timeline-content span {
+  color: var(--color-primary);
+  font-size: var(--font-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.about .main-info .timeline-content h3 {
+  font-family: var(--font-cinzel);
+  font-weight: var(--weight-semibold);
+  font-size: var(--font-md);
+}
+
+.about .main-info .timeline-content p {
+  font-size: var(--font-md);
+}
+
+.about .cards-container {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-xl);
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+
+  align-items: stretch;
+}
+
+.about .cards-container .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-lg);
+  gap: var(--space-md);
+  background-color: rgb(24, 15, 14);
+  border: 1px solid rgba(60, 40, 37, 0.8);
+  border-radius: var(--radius-sm);
+
+  transition: all 0.1s ease;
+  text-align: center;
+  flex: 1;
+}
+
+.about .cards-container .card:hover {
+  border-color: rgba(234, 47, 27, 0.4);
+  background-color: rgba(234, 47, 27, 0.1);
+}
+
+.about .cards-container .card .icon-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 55px;
+  height: 55px;
+  border-radius: var(--radius-full);
+  border: none;
+  background-color: rgba(234, 47, 27, 0.1);
+
+  transition: all 0.1s ease-in-out;
+}
+
+.about .cards-container .card .icon-background svg {
+  stroke: var(--color-primary);
+  width: 25px;
+  height: 25px;
+}
+
+.about .cards-container .card h3 {
+  font-family: var(--font-cinzel);
+  font-weight: var(--weight-bold);
+}
+
+.about>span {
+  padding-top: var(--space-4xl);
+  font-size: var(--font-4xl);
+  font-family: var(--font-cinzel);
+  color: oklch(30.748% 0.09818 29.759);
+  line-height: 0;
+}
+
+.about>h2 {
+  text-align: center;
+  font-family: var(--font-cinzel);
+  font-weight: var(--weight-regular);
+  font-size: var(--font-xl);
+  font-style: italic;
+}
+
+.about>p {
+  text-align: center;
+}
