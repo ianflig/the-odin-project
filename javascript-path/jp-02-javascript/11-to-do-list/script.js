@@ -20,10 +20,11 @@ class Category {
 
     addTask(task){
         this.tasks.push(task);
+        console.log(`Task created, ID: ${task.id}`) 
     }
 
-    deleteTask(){
-
+    deleteTask(id){
+        this.tasks = this.tasks.filter(ele => ele.id !== id);
     }
 
     getTaskByID(id){
@@ -31,8 +32,6 @@ class Category {
         return task;
     }
 }
-
-
 
 class Storage{
     vault = [];
@@ -43,8 +42,8 @@ class Storage{
         console.log(`Category created, ID: ${category.id}`) 
     }
 
-    deleteCategory(){
-
+    deleteCategory(id){
+        this.vault = this.vault.filter(ele => ele.id !== id);
     }
 
     getCategoryByID(id){
@@ -58,34 +57,44 @@ class Controller{
         this.storage = storage;
     }
 
-    createCategory(title = "New Category", description = "..."){
+    createCategory({title = "New Category", description = "..."}){
         let category = new Category(title, description);
         this.storage.addCategory(category);
     }
 
-    createTask(categoryID, title = "New Task", dueDate, description = "...", priority = "Medium", status = false){
-        let task = new Task(title, dueDate, description, priority, status);
+    createTask(categoryID, {title = "New Task", dueDate, description = "...", priority = "Medium", status = false}){
         let category = this.storage.getCategoryByID(categoryID)
+        let task = new Task(title, dueDate, description, priority, status);
         category.addTask(task);
     }
 
-    editCategory(){
-
+    editCategory(categoryID, {title, description} = {}){
+        let category = this.storage.getCategoryByID(categoryID);
+        if (title !== undefined) category.title = title;
+        if (description !== undefined) category.description = description;
     }
 
-    editTask(){
+    editTask(categoryID, taskID, {title, dueDate, description, priority, status} = {}){
+        let category = this.storage.getCategoryByID(categoryID);
+        if (!category) return;
+        let task = category.getTaskByID(taskID);
+        if (!task) return;
+        if (title !== undefined) task.title = title;
+        if (dueDate !== undefined) task.dueDate = dueDate;
+        if (description !== undefined) task.description = description;
+        if (priority !== undefined) task.priority = priority;
+        if (status !== undefined) task.status = status;
     }
 
-    deleteCategory(){
-
+    deleteCategory(id){
+        this.storage.deleteCategory(id);
     }
 
-    deleteTask(){
-
+    deleteTask(categoryID, taskID){
+        let category = this.storage.getCategoryByID(categoryID);
+        category.deleteTask(taskID);
     }
 }
-
-
 
 /* index.js */
 
