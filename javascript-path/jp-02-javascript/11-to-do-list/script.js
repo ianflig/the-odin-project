@@ -1,5 +1,11 @@
 class Task {
-    constructor(title, dueDate, description, priority, status) {
+    constructor({
+        title = "New Task", 
+        dueDate = new Date().toISOString().split('T')[0], 
+        description = "No description", 
+        priority = "Medium", 
+        status = false
+    }) {
         this.id = crypto.randomUUID();
         this.title = title;
         this.dueDate = dueDate;
@@ -11,7 +17,10 @@ class Task {
 
 class Category {
     tasks = []
-    constructor(title, description) {
+    constructor({
+        title = "New Category", 
+        description = "No description"
+    }) {
         this.id = crypto.randomUUID();
         this.title = title;
         this.description = description;
@@ -57,12 +66,12 @@ class Controller{
         this.storage = storage;
     }
 
-    createCategory({title = "New Category", description = "..."}){
+    createCategory({title, description}){
         let category = new Category(title, description);
         this.storage.addCategory(category);
     }
 
-    createTask(categoryID, {title = "New Task", dueDate, description = "...", priority = "Medium", status = false}){
+    createTask(categoryID, {title, dueDate, description, priority, status}){
         let category = this.storage.getCategoryByID(categoryID)
         let task = new Task(title, dueDate, description, priority, status);
         category.addTask(task);
@@ -74,13 +83,12 @@ class Controller{
         if (description !== undefined) category.description = description;
     }
 
-    editTask(categoryID, taskID, {title, dueDate, description, priority, status} = {}){
+    editTask(categoryID, taskID, {title, description, priority, status} = {}){
         let category = this.storage.getCategoryByID(categoryID);
         if (!category) return;
         let task = category.getTaskByID(taskID);
         if (!task) return;
         if (title !== undefined) task.title = title;
-        if (dueDate !== undefined) task.dueDate = dueDate;
         if (description !== undefined) task.description = description;
         if (priority !== undefined) task.priority = priority;
         if (status !== undefined) task.status = status;
