@@ -1,4 +1,4 @@
-class CreateCategory {
+class Category {
     constructor(title, description) {
         this.id = crypto.randomUUID();
         this.title = title;
@@ -7,7 +7,7 @@ class CreateCategory {
     }
 }
 
-class CreateTask {
+class Task {
     constructor(title, dueDate, description, priority, status) {
         this.id = crypto.randomUUID();
         this.title = title;
@@ -18,38 +18,41 @@ class CreateTask {
     }
 }
 
-class newCategory{
-    categoryList = [];
+class Storage{
+    vault = [];
     constructor(){}
 
-    addCategory(title, description){
-        let category = new CreateCategory(title, description);
-        this.categoryList.push(category);
-        console.log(`Category created, ID: ${category.id}`)
-    }
-
-    getCategory(){
-        console.log(this.categoryList);
+    setCategory(category){
+        this.vault.push(category);
+        console.log(`Category created, ID: ${category.id}`) 
     }
 
     setTask(task, category){
-        for (let i = 0; i < this.categoryList.length; i++){
-            if (this.categoryList[i].id === category){
-                this.categoryList[i].tasks.push(task);
+        for (let i = 0; i < this.vault.length; i++){
+            if (this.vault[i].id === category){
+                this.vault[i].tasks.push(task);
             }
         }
     }
 }
 
 class Controller{
-    categoryInstance = new newCategory;
-    constructor(){}
+    constructor(vault){
+        this.vault = vault;
+    }
+
+    addCategory(title, description){
+        let category = new Category(title, description);
+        this.vault.setCategory(category);
+    }
 
     addTask(title, dueDate, description, priority, status, category){
-        let task = new CreateTask(title, dueDate, description, priority, status);
-        this.categoryInstance.setTask(task, category);
+        let task = new Task(title, dueDate, description, priority, status);
+        this.vault.setTask(task, category);
     }
 }
 
+/* index.js */
 
-const app = new Controller;
+const storage = new Storage();
+const app = new Controller(storage);
