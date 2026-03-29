@@ -6,8 +6,8 @@ export class Controller{
         this.storage = storage;
     }
 
-    createCategory({title, description}){
-        let category = new Category(title, description);
+    createCategory({title}){
+        let category = new Category(title);
         this.storage.addCategory(category);
     }
 
@@ -17,10 +17,9 @@ export class Controller{
         category.addTask(task);
     }
 
-    editCategory(categoryID, {title, description} = {}){
+    editCategory(categoryID, {title} = {}){
         let category = this.storage.getCategoryByID(categoryID);
         if (title !== undefined) category.title = title;
-        if (description !== undefined) category.description = description;
     }
 
     editTask(categoryID, taskID, {title, description, priority, status} = {}){
