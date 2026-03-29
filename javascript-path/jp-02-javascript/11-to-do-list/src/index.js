@@ -1,10 +1,13 @@
 import "./css/styles.css";
 import { Storage } from "./js/Storage.js";
 import { Controller } from "./js/Controller.js";
+import { ScreenController } from "./js/ScreenController.js";
 import { darkMode } from "./js/darkMode.js";
 
 const storage = new Storage();
-const app = new Controller(storage);
+const controller = new Controller(storage);
+const app = new ScreenController(controller);
 
 new darkMode();
-window.app = app;
+
+window.logic = controller;
