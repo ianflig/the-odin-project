@@ -1,12 +1,10 @@
 export class Category {
     tasks = []
     constructor({
-        title = "New Category", 
-        description = "No description"
+        title = "New Category"
     }) {
         this.id = crypto.randomUUID();
         this.title = title;
-        this.description = description;
         this.tasks = this.tasks;
     }
 

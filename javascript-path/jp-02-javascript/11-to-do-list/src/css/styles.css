@@ -11,6 +11,7 @@ html {
   --color-primary: oklch(0.7918 0.1143 78.46);
   --color-bg: oklch(0.995 0 0);
   --color-fg: oklch(0.175 0 0);
+  --color-yellow-button: rgb(238, 170, 60);
   --color-gray-900: oklch(0.2 0 0);
   --color-gray-850: oklch(0.25 0 0);
   --color-gray-800: oklch(0.3 0 0);
@@ -283,6 +284,54 @@ body {
     gap: var(--space-md);
 }
 
+.category-container {
+    display: flex;
+    padding-top: var(--space-xs);
+    flex-direction: column;
+    gap: var(--space-md);
+    overflow-y: auto;
+}
+
+.category-btn {
+    width: 100%;
+    padding: var(--space-xs);
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    background-color: var(--color-yellow-button);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-xs);
+    font-size: var(--font-md);
+    box-shadow: 0 1px 6px -1px var(--color-gray-200);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.category-btn .icons {
+    display: flex;
+    gap: var(--space-2xs);
+    align-items: center;
+    justify-content: center;
+}
+
+.category-btn svg {
+    width:18px;
+    height:18px;
+    flex-shrink: 0;
+}
+
+.category-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px -3px var(--color-gray-200);
+}
+
+.category-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 0px 0px 0px var(--color-gray-200);
+}
+
 .header {
     display: grid;
     grid-area: header;
@@ -467,6 +516,27 @@ body {
 
 .footer a {
     color: var(--color-primary);
+}
+
+/* DIALOGS */
+dialog::backdrop {
+    background-color: #101010;
+    opacity: 0.75;
+}
+
+dialog {
+    margin: auto;
+    padding: 1em;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-md);
+    background-color: var(--color-bg);
+    
+    width: 90vw; 
+    max-width: 400px;
+}
+
+dialog label{
+    color: var(--color-fg);
 }
 
 @media (max-width: 900px) {

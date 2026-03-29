@@ -13,6 +13,10 @@
 
 <body>
     <svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+        <symbol id="edit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/>>
+        </symbol>
+        <symbol id="delete-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/>>
+        </symbol>
         <symbol id="moon-icon" viewBox="0 0 24 24">
         <g clip-path="url(#clip0_4418_7940)">
         <path d="M21.53 15.9304C21.37 15.6604 20.92 15.2404 19.8 15.4404C19.18 15.5504 18.55 15.6004 17.92 15.5704C15.59 15.4704 13.48 14.4004 12.01 12.7504C10.71 11.3004 9.90995 9.41036 9.89995 7.37036C9.89995 6.23036 10.12 5.13036 10.57 4.09036C11.01 3.08036 10.7 2.55036 10.48 2.33036C10.25 2.10036 9.70995 1.78036 8.64995 2.22036C4.55995 3.94036 2.02995 8.04036 2.32995 12.4304C2.62995 16.5604 5.52995 20.0904 9.36995 21.4204C10.29 21.7404 11.26 21.9304 12.26 21.9704C12.42 21.9804 12.58 21.9904 12.74 21.9904C16.09 21.9904 19.23 20.4104 21.21 17.7204C21.88 16.7904 21.7 16.2004 21.53 15.9304Z" fill="white" style="fill: var(--fillg);"/>
@@ -43,8 +47,14 @@
         <button class="new-category-btn" id="new-category-btn">
             <svg><use href="#add-category-icon"></use></svg> New Category
         </button>
-        <div class="category-container">
-
+        <div class="category-container" id="category-container">
+            <button class="category-btn">
+                RANDOM TASKS
+                <div class="icons">
+                    <svg><use href="#edit-icon"></use></svg>
+                    <svg><use href="#delete-icon"></use></svg>
+                </div>
+            </button>
         </div>
     </div>
     <div class="header">
@@ -90,27 +100,23 @@
                 </div>
             </div>
     </dialog>
-    <dialog id="save-category-dialog" class="save-category-dialog">
-        <form id="save-category" class="save-category">
+    <dialog id="category-dialog" class="category-dialog">
+        <form id="category-form" class="category-form">
             <div class="title-container">
                 <label for="category-title">Title</label>
                 <input type="text" id="category-title" name="title">
             </div>
-            <div class="description-container">
-                <label for="category-description">Author</label>
-                <input type="text" id="category-description" name="description">
-            </div>
             <div class="dialog-buttons-container">
-                <button id="save-category-close-btn" type="button">Close</button>
-                <button type="submit" id="save-btn">Save</button>
+                <button id="category-close-btn" type="button">Close</button>
+                <button type="submit" id="category-save-btn">Save</button>
             </div>
         </form>
     </dialog>
-    <dialog id="save-task-dialog" class="save-task-dialog">
-        <form id="save-task" class="save-task">
+    <dialog id="task-dialog" class="task-dialog">
+        <form id="task-form" class="task-form">
             <div class="title-container">
                 <label for="task-title">Title</label>
-                <input type="text" id="task-title" name="title">
+                <input type="text" id="task-title" name="title" minlength="3" maxlength="15">
             </div>
             <div class="due-date-container">
                 <label for="task-due-date">Due Date</label>
@@ -138,8 +144,8 @@
                 <input type="text" id="task-description" name="description">
             </div>
             <div class="dialog-buttons-container">
-                <button id="save-task-close-btn" type="button">Close</button>
-                <button type="save" id="save-btn">Save</button>
+                <button id="task-close-btn" type="button">Close</button>
+                <button type="save" id="task-save-btn">Save</button>
             </div>
         </form>
     </dialog>
