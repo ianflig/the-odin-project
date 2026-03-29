@@ -6,8 +6,8 @@ export class Controller{
         this.storage = storage;
     }
 
-    createCategory({title}){
-        let category = new Category(title);
+    createCategory(data){
+        let category = new Category(data);
         this.storage.addCategory(category);
     }
 
