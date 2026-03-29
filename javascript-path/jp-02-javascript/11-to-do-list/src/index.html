@@ -40,7 +40,7 @@
     </svg>
     <div class="sidebar">
         <h1>Categories</h1>
-        <button class="new-category-btn">
+        <button class="new-category-btn" id="new-category-btn">
             <svg><use href="#add-category-icon"></use></svg> New Category
         </button>
         <div class="category-container">
@@ -49,7 +49,7 @@
     </div>
     <div class="header">
         <div class="left">
-            <button>New Task</button>
+            <button id="new-task-btn">New Task</button>
         </div>
         <div class="icons">
             <button id="theme-switch">
@@ -81,6 +81,68 @@
     <div class="footer">
         <p>Made by <a href="https://github.com/ianflig" target="_blank" rel="noopener noreferrer">@ianflig</a></p>
     </div>
+    <dialog id="delete-dialog" class="delete-dialog">
+            <div class="dialog-container">
+                <p>Are you sure you want to delete?</p>
+                <div class="dialog-buttons-container">
+                    <button id="delete-close-btn">No</button>
+                    <button id="delete-confirm-button">Yes</button>
+                </div>
+            </div>
+    </dialog>
+    <dialog id="save-category-dialog" class="save-category-dialog">
+        <form id="save-category" class="save-category">
+            <div class="title-container">
+                <label for="category-title">Title</label>
+                <input type="text" id="category-title" name="title">
+            </div>
+            <div class="description-container">
+                <label for="category-description">Author</label>
+                <input type="text" id="category-description" name="description">
+            </div>
+            <div class="dialog-buttons-container">
+                <button id="save-category-close-btn" type="button">Close</button>
+                <button type="submit" id="save-btn">Save</button>
+            </div>
+        </form>
+    </dialog>
+    <dialog id="save-task-dialog" class="save-task-dialog">
+        <form id="save-task" class="save-task">
+            <div class="title-container">
+                <label for="task-title">Title</label>
+                <input type="text" id="task-title" name="title">
+            </div>
+            <div class="due-date-container">
+                <label for="task-due-date">Due Date</label>
+                <input type="date" id="task-due-date" name="dueDate">
+            </div>
+            <div class="priority-and-status-container">
+                <div class="priority-container">
+                    <label for="task-priority">Priority</label>
+                    <select id="task-priority" name="priority">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="status-container">
+                    <label for="task-status">Status</label>
+                    <select id="task-status" name="status">
+                        <option value= "true">Done</option>
+                        <option value= "false">Not done yet</option>
+                    </select>
+                </div>
+            </div>
+            <div class="description-container">
+                <label for="task-description">Description</label>
+                <input type="text" id="task-description" name="description">
+            </div>
+            <div class="dialog-buttons-container">
+                <button id="save-task-close-btn" type="button">Close</button>
+                <button type="save" id="save-btn">Save</button>
+            </div>
+        </form>
+    </dialog>
 </body>
 
 </html>
