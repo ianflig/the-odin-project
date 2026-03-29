@@ -309,17 +309,24 @@ body {
     cursor: pointer;
 }
 
+.category-btn span {
+    color: black;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .category-btn .icons {
     display: flex;
     gap: var(--space-2xs);
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .category-btn svg {
     width:18px;
     height:18px;
-    flex-shrink: 0;
 }
 
 .category-btn:hover {
