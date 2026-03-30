@@ -34,6 +34,11 @@ export class Controller{
         if (data.status !== undefined) task.status = data.status;
     }
 
+    toggleTaskStatus(task){
+        task.status = !task.status;
+        return task;
+    }
+
     deleteCategory(id){
         this.storage.deleteCategory(id);
     }

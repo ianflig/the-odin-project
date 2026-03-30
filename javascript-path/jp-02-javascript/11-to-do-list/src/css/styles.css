@@ -544,6 +544,34 @@ body {
     color: var(--color-rose-700);
 }
 
+.task.completed {
+    background-color: var(--color-gray-100, #f9fafb); 
+    border-style: dashed;
+}
+
+.task.completed .task-title-container, 
+.task.completed p {
+    text-decoration: line-through;
+    color: var(--color-gray-500);
+    opacity: 0.65;
+}
+
+.task.completed .Low,
+.task.completed .Medium,
+.task.completed .High {
+    filter: grayscale(100%);
+    text-decoration: none; 
+    opacity: 0.8;
+}
+
+.task.completed .icon-container {
+    text-decoration: none;
+}
+
+.task.completed .icon-container .check-btn {
+    fill: var(--color-emerald-700); 
+}
+
 .task-description-section {
     grid-area: task-description-section;
     display: grid;

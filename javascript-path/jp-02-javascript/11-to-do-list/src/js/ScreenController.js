@@ -89,8 +89,8 @@ class DOMRenderer{
             buttonSpan.textContent = ele.title;
             button.classList.add("category-btn");
             button.dataset.category = ele.id;
-            editSVG.id = "edit-category-btn";
-            deleteSVG.id = "delete-category-btn";
+            editSVG.classList.add("edit-category-btn");
+            deleteSVG.classList.add ( "delete-category-btn");
             editSVG.innerHTML = '<use href="#edit-icon"></use>';
             deleteSVG.innerHTML = '<use href="#delete-icon"></use>';
             divIcons.classList.add("icons");
@@ -136,6 +136,7 @@ class DOMRenderer{
             editSVG.innerHTML = '<use href="#edit-icon"></use>';
             deleteSVG.classList.add("delete-btn");
             deleteSVG.innerHTML = '<use href="#delete-icon"></use>';
+            if (ele.status) divTask.classList.add("completed");
 
             divTaskTitle.appendChild(h4);
             divTaskTitle.appendChild(divPriority);
@@ -179,6 +180,14 @@ class DOMRenderer{
         descriptionContainer.appendChild(h4Priority);
         h4Description.appendChild(spanDescription);
         descriptionContainer.appendChild(h4Description);
+    }
+
+    updateTaskStatusView(taskId, status){
+        const taskElement = document.querySelector(`[data-task="${taskId}"]`);
+
+        if (taskElement){
+            taskElement.classList.toggle("completed", status);
+        }
     }
 }
 
@@ -251,8 +260,8 @@ export class ScreenController{
 
     categoryContainerHandler(e){
         e.preventDefault();
-        const editBtn = e.target.closest("#edit-category-btn");
-        const deleteBtn = e.target.closest("#delete-category-btn");
+        const editBtn = e.target.closest(".edit-category-btn");
+        const deleteBtn = e.target.closest(".delete-category-btn");
         const categoryBtn = e.target.closest(".category-btn")
         const category = this.controller.storage.getCategoryByID(categoryBtn.dataset.category);
 
@@ -264,11 +273,22 @@ export class ScreenController{
             this.dialogs.openDeleteModal(category);
             return;
         }
-        if (categoryBtn){
+        if (categoryBtn && (this.currentCaterogyId !== category.id)){
             this.renderer.renderTasks(category);
             this.currentCaterogyId = category.id;
             return; 
         }
+    }
+
+    deleteCategoryHandler(e){
+        e.preventDefault();
+        const categoryId = document.querySelector("#delete-confirm-btn").dataset.category
+        this.controller.deleteCategory(categoryId);
+        this.renderer.renderCategories(this.controller.storage.vault);
+        if (this.currentCaterogyId === categoryId) {
+            this.currentCaterogyId = null;
+            this.renderer.renderTasks(null)};
+        this.dialogs.closeDeleteModal();
     }
 
     taskSubmitHandler(e){
@@ -288,14 +308,21 @@ export class ScreenController{
 
     taskContainerHandler(e){
         e.preventDefault();
-/*         const editBtn = e.target.closest("#edit-category-btn");
-        const deleteBtn = e.target.closest("#delete-category-btn"); */
         const taskContainer = e.target.closest(".task")
         if (!taskContainer) return;
+
+        const checkBtn = e.target.closest(".check-btn")
+        const editBtn = e.target.closest(".edit-btn");
+        const deleteBtn = e.target.closest(".delete-btn");
+
         const category = this.controller.storage.getCategoryByID(taskContainer.dataset.category);
-        console.log(category);
         const task = category.getTaskByID(taskContainer.dataset.task);
-/* 
+
+        if (checkBtn){
+            const updatedTask = this.controller.toggleTaskStatus(task);
+            this.renderer.updateTaskStatusView(updatedTask.id, updatedTask.status);
+            return;
+        }
         if (editBtn){
             this.dialogs.openCategoryModalForEdit(category);
             return;
@@ -303,25 +330,14 @@ export class ScreenController{
         if (deleteBtn) {
             this.dialogs.openDeleteModal(category);
             return;
-        } */
+        }
         if (taskContainer){
             this.renderer.renderTaskDescription(task);
             return; 
         }
     }
 
-    deleteCategoryHandler(e){
-        e.preventDefault();
-        const categoryId = document.querySelector("#delete-confirm-btn").dataset.category
-        this.controller.deleteCategory(categoryId);
-        this.renderer.renderCategories(this.controller.storage.vault);
-        if (this.currentCaterogyId === categoryId) {
-            this.currentCaterogyId = null;
-            this.renderer.renderTasks(null)};
-        this.dialogs.closeDeleteModal();
-    }
+    deleteTaskHandler(){
 
-    saveTaskHandler(e){
-        e.preventDefault();
     }
 }
