@@ -11,3 +11,4 @@ const app = new ScreenController(controller);
 new darkMode();
 
 window.logic = controller;
+window.app = app;

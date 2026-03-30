@@ -9,28 +9,29 @@ export class Controller{
     createCategory(data){
         let category = new Category(data);
         this.storage.addCategory(category);
+        return category;
     }
 
-    createTask(categoryID, {title, dueDate, description, priority, status}){
+    createTask(categoryID, data){
         let category = this.storage.getCategoryByID(categoryID)
-        let task = new Task(title, dueDate, description, priority, status);
+        let task = new Task(data);
         category.addTask(task);
     }
 
-    editCategory(categoryID, {title} = {}){
+    editCategory(categoryID, data){
         let category = this.storage.getCategoryByID(categoryID);
-        if (title !== undefined) category.title = title;
+        if (data.title !== undefined) category.title = data.title;
     }
 
-    editTask(categoryID, taskID, {title, description, priority, status} = {}){
+    editTask(categoryID, taskID, data){
         let category = this.storage.getCategoryByID(categoryID);
         if (!category) return;
         let task = category.getTaskByID(taskID);
         if (!task) return;
-        if (title !== undefined) task.title = title;
-        if (description !== undefined) task.description = description;
-        if (priority !== undefined) task.priority = priority;
-        if (status !== undefined) task.status = status;
+        if (data.title !== undefined) task.title = data.title;
+        if (data.description !== undefined) task.description = data.description;
+        if (data.priority !== undefined) task.priority = data.priority;
+        if (data.status !== undefined) task.status = data.status;
     }
 
     deleteCategory(id){
