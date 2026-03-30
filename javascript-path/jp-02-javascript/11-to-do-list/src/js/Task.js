@@ -1,15 +1,15 @@
 export class Task {
     constructor({
-        title = "New Task", 
-        dueDate = new Date().toISOString().split('T')[0], 
-        description = "No description", 
-        priority = "Medium", 
-        status = false
+        title, 
+        dueDate = new Date().toISOString().split('T')[0], /* to change */
+        description, 
+        priority = "Low",    /* to change */
+        status = false   /* to change */
     }) {
         this.id = crypto.randomUUID();
-        this.title = title;
+        this.title = (title && title.trim() !== "") ? title.trim() : "New Task";
         this.dueDate = dueDate;
-        this.description = description;
+        this.description = (description && description.trim() !== "") ? description.trim() : "No Description";
         this.priority = priority;
         this.status = status;
     }
