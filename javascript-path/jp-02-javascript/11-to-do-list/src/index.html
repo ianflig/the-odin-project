@@ -71,17 +71,6 @@
             </svg> New Category
         </button>
         <div class="category-container" id="category-container">
-            <button class="category-btn">
-                <span>RANDOM TASKS</span>
-                <div class="icons">
-                    <svg id="edit-category-btn">
-                        <use href="#edit-icon"></use>
-                    </svg>
-                    <svg id="delete-category-btn">
-                        <use href="#delete-icon"></use>
-                    </svg>
-                </div>
-            </button>
         </div>
     </div>
     <div class="header">
@@ -105,35 +94,16 @@
         <div class="task-container" id="task-container">
             <h3>Your Tasks</h3>
             <p>Current Category: <span id="current-category">category</span></p>
-            <div class="all-tasks">
-                <div class="task" data-id="c06d7fe3-d935-4684-b942-b47afb471347">
-                    <div class="task-title-container">
-                        <h4>Title</h4>
-                        <div class="Medium">Medium</div>
-                    </div>
-                    <p>Description</p>
-                    <div class="icon-container">
-                        <svg class="check-btn">
-                            <use href="#check-icon"></use>
-                        </svg>
-                        <svg class="edit-btn">
-                            <use href="#edit-icon"></use>
-                        </svg>
-                        <svg class="delete-btn">
-                            <use href="#delete-icon"></use>
-                        </svg>
-                    </div>
-                </div>
+            <div class="all-tasks" id="all-tasks">
             </div>
         </div>
         <div class="task-description-section">
             <h3>Task Description</h3>
-            <div class="description">
-                <h4>Title: <span>title</span></h4>
-                <h4>Due Date: <span>date</span></h4>
-                <h4>Priority: <span>low</span></h4>
-                <h4>Status: <span>not done</span></h4>
-                <h4>Description: <span>desc</span></h4>
+            <div class="description" id="description-section-task-description">
+                <h4>Title: <span></span></h4>
+                <h4>Due Date: <span></span></h4>
+                <h4>Priority: <span></span></h4>
+                <h4>Description: <span></span></h4>
             </div>
         </div>
     </div>
@@ -167,7 +137,7 @@
             <input type="hidden" name="taskId" id="hidden-task-id">
             <div class="title-container">
                 <label for="task-title">Title</label>
-                <input type="text" id="task-title" name="title" minlength="3" maxlength="15">
+                <input type="text" id="task-title" name="title" minlength="1" maxlength="35">
             </div>
             <div class="due-date-container">
                 <label for="task-due-date">Due Date</label>

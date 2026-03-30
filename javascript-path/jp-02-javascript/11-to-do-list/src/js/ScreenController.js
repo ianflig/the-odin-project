@@ -104,12 +104,9 @@ class DOMRenderer{
 
     renderTasks(category){
         if (!category) {
-            document.querySelector("#new-task-btn").dataset.category = "";
             document.querySelector("#current-category").textContent = "Select or create a new category";
             this.allTasks.innerHTML = ""
             return};
-
-        document.querySelector("#new-task-btn").dataset.category = category.id;
         document.querySelector("#current-category").textContent = category.title;
         this.allTasks.innerHTML = "";
         if (!category.tasks) return;
@@ -125,6 +122,7 @@ class DOMRenderer{
             const deleteSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 
             divTask.dataset.task = ele.id;
+            divTask.dataset.category = category.id;
             divTask.classList.add("task");
             divTaskTitle.classList.add("task-title-container")
             h4.textContent = ele.title;
@@ -151,6 +149,37 @@ class DOMRenderer{
         })
         
     }
+
+    renderTaskDescription(task){
+        const descriptionContainer = document.querySelector("#description-section-task-description");
+        descriptionContainer.innerHTML = "";
+        const h4Title = document.createElement("h4");
+        const h4DueDate = document.createElement("h4");
+        const h4Priority = document.createElement("h4");
+        const h4Description = document.createElement("h4");
+        const spanTitle = document.createElement("span");
+        const spanDueDate = document.createElement("span");
+        const spanPriority = document.createElement("span");
+        const spanDescription = document.createElement("span");
+
+        h4Title.textContent = "Title: ";
+        spanTitle.textContent = task.title;
+        h4DueDate.textContent = "Due Date: "
+        spanDueDate.textContent = task.dueDate;
+        h4Priority.textContent = "Priority: ";
+        spanPriority.textContent = task.priority;
+        h4Description.textContent = "Description: "
+        spanDescription.textContent = task.description;
+
+        h4Title.appendChild(spanTitle);
+        descriptionContainer.appendChild(h4Title);
+        h4DueDate.appendChild(spanDueDate);
+        descriptionContainer.appendChild(h4DueDate);
+        h4Priority.appendChild(spanPriority);
+        descriptionContainer.appendChild(h4Priority);
+        h4Description.appendChild(spanDescription);
+        descriptionContainer.appendChild(h4Description);
+    }
 }
 
 export class ScreenController{
@@ -173,7 +202,7 @@ export class ScreenController{
         this.closeTaskBtn = document.querySelector("#task-close-btn");
         this.saveTaskBtn = document.querySelector("#task-save-btn");
         this.taskForm = document.querySelector("#task-form");
-        this.taskContainer = document.querySelector("#task-container");
+        this.taskContainer = document.querySelector("#all-tasks");
         this.closeWarningTaskDialog = document.querySelector("#task-warning-close-btn");
 
         this.bindEvents();
@@ -185,7 +214,7 @@ export class ScreenController{
         this.categoryContainer.addEventListener("click", (e) => {this.categoryContainerHandler(e)});
         this.categoryForm.addEventListener("submit", (e) => {this.categorySubmitHandler(e)});
 
-        this.confirmDeleteBtn.addEventListener("click", (e) => {this.deleteHandler(e)});
+        this.confirmDeleteBtn.addEventListener("click", (e) => {this.deleteCategoryHandler(e)});
         this.closeDeleteBtn.addEventListener("click", () => {this.dialogs.closeDeleteModal()});
 
         this.newTaskBtn.addEventListener("click", () => {
@@ -245,7 +274,7 @@ export class ScreenController{
     taskSubmitHandler(e){
         e.preventDefault();
         const formData = Object.fromEntries(new FormData(this.taskForm));
-        const categoryId = this.newTaskBtn.dataset.category;
+        const categoryId = this.currentCaterogyId;
 
         if (formData.taskId){
             this.controller.editTask(formData.taskId, formData);
@@ -253,18 +282,20 @@ export class ScreenController{
             this.controller.createTask(categoryId, formData);
         }
 
-        console.log(formData);
         this.dialogs.closeTaskModal();
         this.renderer.renderTasks(this.controller.storage.getCategoryByID(categoryId));
     }
 
     taskContainerHandler(e){
-/*         e.preventDefault();
-        const editBtn = e.target.closest("#edit-category-btn");
-        const deleteBtn = e.target.closest("#delete-category-btn");
-        const categoryBtn = e.target.closest(".category-btn")
-        const category = this.controller.storage.getCategoryByID(categoryBtn.dataset.category);
-
+        e.preventDefault();
+/*         const editBtn = e.target.closest("#edit-category-btn");
+        const deleteBtn = e.target.closest("#delete-category-btn"); */
+        const taskContainer = e.target.closest(".task")
+        if (!taskContainer) return;
+        const category = this.controller.storage.getCategoryByID(taskContainer.dataset.category);
+        console.log(category);
+        const task = category.getTaskByID(taskContainer.dataset.task);
+/* 
         if (editBtn){
             this.dialogs.openCategoryModalForEdit(category);
             return;
@@ -272,14 +303,14 @@ export class ScreenController{
         if (deleteBtn) {
             this.dialogs.openDeleteModal(category);
             return;
-        }
-        if (categoryBtn){
-            this.renderer.renderTasks(category);
-            return; 
         } */
+        if (taskContainer){
+            this.renderer.renderTaskDescription(task);
+            return; 
+        }
     }
 
-    deleteHandler(e){
+    deleteCategoryHandler(e){
         e.preventDefault();
         const categoryId = document.querySelector("#delete-confirm-btn").dataset.category
         this.controller.deleteCategory(categoryId);
