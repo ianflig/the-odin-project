@@ -27,7 +27,7 @@ class DialogManager{
             document.querySelector("#hidden-task-id").value = "";
         })
         this.taskDialog.addEventListener("close", () => {this.taskForm.reset()});
-        this.deleteDialog.addEventListener("close", () => {document.querySelector("#delete-confirm-btn").dataset.task = "";})
+        this.deleteDialog.addEventListener("close", () => {document.querySelector("#delete-confirm-btn").dataset.taskId = "";})
     }
 
     openCategoryModal(){
@@ -41,6 +41,14 @@ class DialogManager{
     }
 
     openTaskModal(){
+        this.taskDialog.showModal();
+    }
+
+    openTaskModalForEdit(taskToEdit){
+        document.querySelector("#task-title").value = taskToEdit.title;
+        document.querySelector("#task-priority").value = taskToEdit.priority;
+        document.querySelector("#task-description").value = taskToEdit.description;
+        document.querySelector("#hidden-task-id").value = taskToEdit.id;
         this.taskDialog.showModal();
     }
 
@@ -71,6 +79,7 @@ class DialogManager{
 }
 
 class DOMRenderer{
+    currentTaskDescriptionId;
     constructor(){
         this.categoryContainer = document.querySelector("#category-container");
         this.allTasks = document.querySelector(".all-tasks");
@@ -103,25 +112,25 @@ class DOMRenderer{
         });
     }
 
-    removeCategoryView(categoryId) {
-        const categoryElement = document.querySelector(`[data-category-id="${categoryId}"]`);
-        
-        if (categoryElement) {
-            categoryElement.remove(); 
-        }
-    }
-
-    updateCategoryView(categoryId, data){
-        const categoryElement = document.querySelector(`[data-category-id="${categoryId}"]`);
+    updateCategoryView(data){
+        const categoryElement = document.querySelector(`[data-category-id="${data.id}"]`);
 
         if (categoryElement){
             const titleSpan = categoryElement.querySelector(".category-name");
             const currentCategory = document.querySelector("#current-category");
-            console.log(currentCategory)
             titleSpan.textContent = data.title;
             currentCategory.textContent = data.title;
-
         }
+    }
+
+    removeCategoryView(category) {
+        const categoryElement = document.querySelector(`[data-category-id="${category.id}"]`);
+        
+        if (categoryElement) {
+            categoryElement.remove(); 
+        }
+
+        if (category.tasks.find(ele => ele.id === this.currentTaskDescriptionId)) return this.renderTaskDescription(null);
     }
 
     renderTasks(category){
@@ -143,14 +152,17 @@ class DOMRenderer{
             const editSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
             const deleteSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 
-            divTask.dataset.task = ele.id;
+            divTask.dataset.taskId = ele.id;
             divTask.dataset.category = category.id;
             divTask.classList.add("task");
             divTaskTitle.classList.add("task-title-container")
             h4.textContent = ele.title;
+            h4.classList.add("task-title")
             divPriority.classList.add(ele.priority);
+            divPriority.classList.add("task-priority")
             divPriority.textContent = ele.priority;
             description.textContent = ele.description;
+            description.classList.add("task-description");
             divIconContainer.classList.add("icon-container");
             checkSVG.classList.add("check-btn")
             checkSVG.innerHTML = '<use href="#check-icon"></use>';
@@ -173,8 +185,47 @@ class DOMRenderer{
         
     }
 
+    updateTaskStatusView(taskId, status){
+        const taskElement = document.querySelector(`[data-task-id="${taskId}"]`);
+
+        if (taskElement){
+            taskElement.classList.toggle("completed", status);
+        }
+    }
+
+    updateTaskView(task){
+        const taskElement = document.querySelector(`[data-task-id="${task.id}"]`);
+
+        if (taskElement){
+            const titleH4 = taskElement.querySelector(".task-title");
+            const priorityDiv = taskElement.querySelector(".task-priority")
+            const descriptionPara = taskElement.querySelector(".task-description")
+            titleH4.textContent = task.title;
+            priorityDiv.textContent = task.priority;
+            descriptionPara.textContent = task.description;
+
+            console.log(this.currentTaskDescriptionId, task.id)
+            if (this.currentTaskDescriptionId === task.id){
+                console.log(task)
+                this.renderTaskDescription(task);}
+        }
+    }
+
+/*     removeTaskView(categoryId) {
+        const categoryElement = document.querySelector(`[data-category-id="${categoryId}"]`);
+        
+        if (categoryElement) {
+            categoryElement.remove(); 
+        }
+    } */
+
     renderTaskDescription(task){
         const descriptionContainer = document.querySelector("#description-section-task-description");
+        if (!task) {
+            return descriptionContainer.innerHTML = "";
+        };
+
+        this.currentTaskDescriptionId = task.id;
         descriptionContainer.innerHTML = "";
         const h4Title = document.createElement("h4");
         const h4DueDate = document.createElement("h4");
@@ -202,14 +253,6 @@ class DOMRenderer{
         descriptionContainer.appendChild(h4Priority);
         h4Description.appendChild(spanDescription);
         descriptionContainer.appendChild(h4Description);
-    }
-
-    updateTaskStatusView(taskId, status){
-        const taskElement = document.querySelector(`[data-task="${taskId}"]`);
-
-        if (taskElement){
-            taskElement.classList.toggle("completed", status);
-        }
     }
 }
 
@@ -273,7 +316,10 @@ export class ScreenController{
         /* editing */
         if (formData.categoryId){
             if (!this.controller.editCategory(formData.categoryId, formData)) return;
-            this.renderer.updateCategoryView(formData.categoryId, formData)
+
+            const category = this.controller.storage.getCategoryByID(formData.categoryId);
+            
+            this.renderer.updateCategoryView(category);
             this.dialogs.closeCategoryModal();
             return;
         } else {
@@ -316,11 +362,18 @@ export class ScreenController{
     deleteCategoryHandler(e){
         e.preventDefault();
         const categoryId = document.querySelector("#delete-confirm-btn").dataset.categoryId
-        if (!this.controller.deleteCategory(categoryId)) return;
-        this.renderer.removeCategoryView(categoryId);
-        if (this.currentCaterogyId === categoryId) {
+        /* to clear taskDescription section */
+        const category = this.controller.storage.getCategoryByID(categoryId);
+        
+        if (!this.controller.deleteCategory(category.id)) return;
+
+        this.renderer.removeCategoryView(category);
+
+        if (this.currentCaterogyId === category.id) {
             this.currentCaterogyId = null;
-            this.renderer.renderTasks(null)};
+            this.renderer.renderTasks(null);
+            this.renderer.renderTaskDescription(null);
+        };
         this.dialogs.closeDeleteModal();
     }
 
@@ -331,7 +384,14 @@ export class ScreenController{
 
         /* editing */
         if (formData.taskId){
-            this.controller.editTask(formData.taskId, formData);
+            if (!this.controller.editTask(categoryId, formData.taskId, formData)) return;
+            /* for renderTaskDescription */
+            const category = this.controller.storage.getCategoryByID(categoryId);
+            const task = category.getTaskByID(formData.taskId);
+
+            this.renderer.updateTaskView(task)
+            this.dialogs.closeTaskModal();
+            return;
         } else {
         /* creating */
             this.controller.createTask(categoryId, formData);
@@ -351,7 +411,7 @@ export class ScreenController{
         const deleteBtn = e.target.closest(".delete-btn");
 
         const category = this.controller.storage.getCategoryByID(taskContainer.dataset.category);
-        const task = category.getTaskByID(taskContainer.dataset.task);
+        const task = category.getTaskByID(taskContainer.dataset.taskId);
 
         if (checkBtn){
             const updatedTask = this.controller.toggleTaskStatus(task);
@@ -359,7 +419,7 @@ export class ScreenController{
             return;
         }
         if (editBtn){
-            this.dialogs.openCategoryModalForEdit(category);
+            this.dialogs.openTaskModalForEdit(task);
             return;
         }
         if (deleteBtn) {

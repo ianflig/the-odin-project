@@ -33,6 +33,7 @@ export class Controller{
         if (data.description !== undefined) task.description = data.description;
         if (data.priority !== undefined) task.priority = data.priority;
         if (data.status !== undefined) task.status = data.status;
+        return true;
     }
 
     toggleTaskStatus(task){
