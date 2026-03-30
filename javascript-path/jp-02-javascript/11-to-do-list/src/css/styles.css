@@ -475,6 +475,7 @@ body {
     word-break: break-word;
     display: grid;
     grid-template-rows: auto 1fr auto;
+    cursor: pointer;
 }
 
 .task p {

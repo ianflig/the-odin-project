@@ -189,8 +189,8 @@ export class ScreenController{
         this.closeDeleteBtn.addEventListener("click", () => {this.dialogs.closeDeleteModal()});
 
         this.newTaskBtn.addEventListener("click", () => {
-            if (!this.newTaskBtn.dataset.category) return this.dialogs.openTaskWarningModal();
-            this.dialogs.openTaskModal()
+            if (!this.currentCaterogyId) return this.dialogs.openTaskWarningModal();
+            this.dialogs.openTaskModal();
         });
         this.closeTaskBtn.addEventListener("click", () => {this.dialogs.closeTaskModal()});
         this.taskContainer.addEventListener("click", (e) => {this.taskContainerHandler(e)});
@@ -245,6 +245,7 @@ export class ScreenController{
     taskSubmitHandler(e){
         e.preventDefault();
         const formData = Object.fromEntries(new FormData(this.taskForm));
+        const categoryId = this.newTaskBtn.dataset.category;
 
         if (formData.taskId){
             this.controller.editTask(formData.taskId, formData);
@@ -252,8 +253,9 @@ export class ScreenController{
             this.controller.createTask(categoryId, formData);
         }
 
+        console.log(formData);
         this.dialogs.closeTaskModal();
-        /* this.renderer.renderTasks(this.controller.storage.vault); */
+        this.renderer.renderTasks(this.controller.storage.getCategoryByID(categoryId));
     }
 
     taskContainerHandler(e){
