@@ -77,7 +77,6 @@ class DialogManager{
 }
 
 class DOMRenderer{
-    /* currentTaskDescriptionId; */
     constructor(){
         this.categoryContainer = document.querySelector("#category-container");
         this.allTasks = document.querySelector(".all-tasks");
@@ -201,6 +200,7 @@ class DOMRenderer{
         const descriptionPara = taskElement.querySelector(".task-description")
         titleH4.textContent = task.title;
         priorityDiv.textContent = task.priority;
+        priorityDiv.className = `task-priority ${task.priority}`;
         descriptionPara.textContent = task.description;
 
         return true;
