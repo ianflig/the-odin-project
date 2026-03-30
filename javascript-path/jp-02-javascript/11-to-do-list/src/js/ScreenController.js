@@ -18,7 +18,6 @@ class DialogManager{
             this.categoryForm.reset();
             document.querySelector("#hidden-category-id").value = "";
         })
-        this.taskDialog.addEventListener("close", () => {this.taskForm.reset()});
         this.deleteDialog.addEventListener("close", () => {document.querySelector("#delete-confirm-btn").dataset.categoryId = "";})
 
         /* ---- TASK ---- */
@@ -26,7 +25,6 @@ class DialogManager{
             this.taskForm.reset();
             document.querySelector("#hidden-task-id").value = "";
         })
-        this.taskDialog.addEventListener("close", () => {this.taskForm.reset()});
         this.deleteDialog.addEventListener("close", () => {document.querySelector("#delete-confirm-btn").dataset.taskId = "";})
     }
 
@@ -257,7 +255,7 @@ class DOMRenderer{
 }
 
 export class ScreenController{
-    currentCaterogyId = null;
+    currentCategoryId = null;
     constructor(appLogic){
         this.dialogs = new DialogManager();
         this.renderer = new DOMRenderer();
@@ -298,7 +296,7 @@ export class ScreenController{
 
         /* tasks */
         this.newTaskBtn.addEventListener("click", () => {
-            if (!this.currentCaterogyId) return this.dialogs.openTaskWarningModal();
+            if (!this.currentCategoryId) return this.dialogs.openTaskWarningModal();
             this.dialogs.openTaskModal();
         });
         this.closeTaskBtn.addEventListener("click", () => {this.dialogs.closeTaskModal()});
@@ -311,29 +309,21 @@ export class ScreenController{
         e.preventDefault();
         const formData = Object.fromEntries(new FormData(this.categoryForm));
 
-        let categoryIdToRender;
-
-        /* editing */
         if (formData.categoryId){
+            /* editing */
             if (!this.controller.editCategory(formData.categoryId, formData)) return;
-
             const category = this.controller.storage.getCategoryByID(formData.categoryId);
-            
             this.renderer.updateCategoryView(category);
-            this.dialogs.closeCategoryModal();
-            return;
         } else {
-        /* creating */
+            /* creating */
             const newCategory = this.controller.createCategory(formData);
-            categoryIdToRender = newCategory.id;
+            
+            this.currentCategoryId = newCategory.id;
+            this.renderer.renderCategories(this.controller.storage.vault);
+            this.renderer.renderTasks(newCategory);
         }
 
-        const categoryToRender = this.controller.storage.getCategoryByID(categoryIdToRender);
-
-        this.currentCaterogyId = categoryToRender.id;
         this.dialogs.closeCategoryModal();
-        this.renderer.renderCategories(this.controller.storage.vault);
-        this.renderer.renderTasks(categoryToRender);
     }
 
     categoryContainerHandler(e){
@@ -352,9 +342,9 @@ export class ScreenController{
             this.dialogs.openDeleteModal(category);
             return;
         }
-        if (categoryBtn && (this.currentCaterogyId !== category.id)){
+        if (categoryBtn && (this.currentCategoryId !== category.id)){
             this.renderer.renderTasks(category);
-            this.currentCaterogyId = category.id;
+            this.currentCategoryId = category.id;
             return; 
         }
     }
@@ -369,8 +359,8 @@ export class ScreenController{
 
         this.renderer.removeCategoryView(category);
 
-        if (this.currentCaterogyId === category.id) {
-            this.currentCaterogyId = null;
+        if (this.currentCategoryId === category.id) {
+            this.currentCategoryId = null;
             this.renderer.renderTasks(null);
             this.renderer.renderTaskDescription(null);
         };
@@ -380,7 +370,7 @@ export class ScreenController{
     taskSubmitHandler(e){
         e.preventDefault();
         const formData = Object.fromEntries(new FormData(this.taskForm));
-        const categoryId = this.currentCaterogyId;
+        const categoryId = this.currentCategoryId;
 
         /* editing */
         if (formData.taskId){
