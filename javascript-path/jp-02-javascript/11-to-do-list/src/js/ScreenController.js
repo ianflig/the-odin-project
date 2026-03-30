@@ -77,7 +77,7 @@ class DialogManager{
 }
 
 class DOMRenderer{
-    currentTaskDescriptionId;
+    /* currentTaskDescriptionId; */
     constructor(){
         this.categoryContainer = document.querySelector("#category-container");
         this.allTasks = document.querySelector(".all-tasks");
@@ -124,11 +124,11 @@ class DOMRenderer{
     removeCategoryView(category) {
         const categoryElement = document.querySelector(`[data-category-id="${category.id}"]`);
         
-        if (categoryElement) {
-            categoryElement.remove(); 
-        }
+        if (!categoryElement) return;
+        
+        categoryElement.remove(); 
 
-        if (category.tasks.find(ele => ele.id === this.currentTaskDescriptionId)) return this.renderTaskDescription(null);
+        return true;
     }
 
     renderTasks(category){
@@ -194,19 +194,16 @@ class DOMRenderer{
     updateTaskView(task){
         const taskElement = document.querySelector(`[data-task-id="${task.id}"]`);
 
-        if (taskElement){
-            const titleH4 = taskElement.querySelector(".task-title");
-            const priorityDiv = taskElement.querySelector(".task-priority")
-            const descriptionPara = taskElement.querySelector(".task-description")
-            titleH4.textContent = task.title;
-            priorityDiv.textContent = task.priority;
-            descriptionPara.textContent = task.description;
+        if (!taskElement) return;
 
-            console.log(this.currentTaskDescriptionId, task.id)
-            if (this.currentTaskDescriptionId === task.id){
-                console.log(task)
-                this.renderTaskDescription(task);}
-        }
+        const titleH4 = taskElement.querySelector(".task-title");
+        const priorityDiv = taskElement.querySelector(".task-priority")
+        const descriptionPara = taskElement.querySelector(".task-description")
+        titleH4.textContent = task.title;
+        priorityDiv.textContent = task.priority;
+        descriptionPara.textContent = task.description;
+
+        return true;
     }
 
 /*     removeTaskView(categoryId) {
@@ -223,7 +220,6 @@ class DOMRenderer{
             return descriptionContainer.innerHTML = "";
         };
 
-        this.currentTaskDescriptionId = task.id;
         descriptionContainer.innerHTML = "";
         const h4Title = document.createElement("h4");
         const h4DueDate = document.createElement("h4");
@@ -251,11 +247,14 @@ class DOMRenderer{
         descriptionContainer.appendChild(h4Priority);
         h4Description.appendChild(spanDescription);
         descriptionContainer.appendChild(h4Description);
+
+        return true;
     }
 }
 
 export class ScreenController{
     currentCategoryId = null;
+    currentTaskDescriptionId = null;
     constructor(appLogic){
         this.dialogs = new DialogManager();
         this.renderer = new DOMRenderer();
@@ -352,12 +351,13 @@ export class ScreenController{
     deleteCategoryHandler(e){
         e.preventDefault();
         const categoryId = document.querySelector("#delete-confirm-btn").dataset.categoryId
-        /* to clear taskDescription section */
         const category = this.controller.storage.getCategoryByID(categoryId);
         
         if (!this.controller.deleteCategory(category.id)) return;
 
-        this.renderer.removeCategoryView(category);
+        if (!this.renderer.removeCategoryView(category)) return;
+
+        if (category.tasks.find(ele => ele.id === this.currentTaskDescriptionId)) this.renderer.renderTaskDescription(null);
 
         if (this.currentCategoryId === category.id) {
             this.currentCategoryId = null;
@@ -379,7 +379,9 @@ export class ScreenController{
             const category = this.controller.storage.getCategoryByID(categoryId);
             const task = category.getTaskByID(formData.taskId);
 
-            this.renderer.updateTaskView(task)
+            if (!this.renderer.updateTaskView(task)) return;
+            if (this.currentTaskDescriptionId === task.id) this.renderer.renderTaskDescription(task);
+
             this.dialogs.closeTaskModal();
             return;
         } else {
@@ -417,8 +419,10 @@ export class ScreenController{
             return;
         }
         if (taskContainer){
-            this.renderer.renderTaskDescription(task);
-            return; 
+            if(this.renderer.renderTaskDescription(task)){
+                this.currentTaskDescriptionId = task.id/*  */
+                return; 
+            }
         }
     }
 
