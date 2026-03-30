@@ -21,6 +21,7 @@ export class Controller{
     editCategory(categoryID, data){
         let category = this.storage.getCategoryByID(categoryID);
         if (data.title !== undefined) category.title = data.title;
+        return true;
     }
 
     editTask(categoryID, taskID, data){
@@ -40,7 +41,7 @@ export class Controller{
     }
 
     deleteCategory(id){
-        this.storage.deleteCategory(id);
+        return (this.storage.deleteCategory(id));
     }
 
     deleteTask(categoryID, taskID){

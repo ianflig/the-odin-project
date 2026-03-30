@@ -9,6 +9,7 @@ export class Storage{
 
     deleteCategory(id){
         this.vault = this.vault.filter(ele => ele.id !== id);
+        return true;
     }
 
     getCategoryByID(id){

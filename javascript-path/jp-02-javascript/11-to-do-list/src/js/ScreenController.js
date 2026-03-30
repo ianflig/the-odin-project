@@ -19,7 +19,7 @@ class DialogManager{
             document.querySelector("#hidden-category-id").value = "";
         })
         this.taskDialog.addEventListener("close", () => {this.taskForm.reset()});
-        this.deleteDialog.addEventListener("close", () => {document.querySelector("#delete-confirm-btn").dataset.category = "";})
+        this.deleteDialog.addEventListener("close", () => {document.querySelector("#delete-confirm-btn").dataset.categoryId = "";})
 
         /* ---- TASK ---- */
         this.taskDialog.addEventListener("close", () => {
@@ -61,7 +61,7 @@ class DialogManager{
     }
 
     openDeleteModal(categoryToDelete){
-        document.querySelector("#delete-confirm-btn").dataset.category = categoryToDelete.id;
+        document.querySelector("#delete-confirm-btn").dataset.categoryId = categoryToDelete.id;
         this.deleteDialog.showModal();
     }
 
@@ -88,18 +88,40 @@ class DOMRenderer{
 
             buttonSpan.textContent = ele.title;
             button.classList.add("category-btn");
-            button.dataset.category = ele.id;
+            button.dataset.categoryId = ele.id;
             editSVG.classList.add("edit-category-btn");
             deleteSVG.classList.add ( "delete-category-btn");
             editSVG.innerHTML = '<use href="#edit-icon"></use>';
             deleteSVG.innerHTML = '<use href="#delete-icon"></use>';
             divIcons.classList.add("icons");
+            buttonSpan.classList.add("category-name");
             divIcons.appendChild(editSVG);
             divIcons.appendChild(deleteSVG);
             button.appendChild(buttonSpan);
             button.appendChild(divIcons);
             this.categoryContainer.appendChild(button);
         });
+    }
+
+    removeCategoryView(categoryId) {
+        const categoryElement = document.querySelector(`[data-category-id="${categoryId}"]`);
+        
+        if (categoryElement) {
+            categoryElement.remove(); 
+        }
+    }
+
+    updateCategoryView(categoryId, data){
+        const categoryElement = document.querySelector(`[data-category-id="${categoryId}"]`);
+
+        if (categoryElement){
+            const titleSpan = categoryElement.querySelector(".category-name");
+            const currentCategory = document.querySelector("#current-category");
+            console.log(currentCategory)
+            titleSpan.textContent = data.title;
+            currentCategory.textContent = data.title;
+
+        }
     }
 
     renderTasks(category){
@@ -198,15 +220,18 @@ export class ScreenController{
         this.renderer = new DOMRenderer();
         this.controller = appLogic;
 
+        /* category */
         this.newCategoryBtn = document.querySelector("#new-category-btn");
         this.closeCategoryBtn = document.querySelector("#category-close-btn");
         this.saveCategoryBtn = document.querySelector("#category-save-btn");
         this.categoryForm = document.querySelector("#category-form");
         this.categoryContainer = document.querySelector("#category-container");
 
+        /* delete */
         this.confirmDeleteBtn = document.querySelector("#delete-confirm-btn");
         this.closeDeleteBtn = document.querySelector("#delete-close-btn");
 
+        /* tasks */
         this.newTaskBtn = document.querySelector("#new-task-btn");
         this.closeTaskBtn = document.querySelector("#task-close-btn");
         this.saveTaskBtn = document.querySelector("#task-save-btn");
@@ -218,14 +243,17 @@ export class ScreenController{
     }
 
     bindEvents(){
+        /* category */
         this.newCategoryBtn.addEventListener("click", () => {this.dialogs.openCategoryModal()});
         this.closeCategoryBtn.addEventListener("click", () => {this.dialogs.closeCategoryModal()});
         this.categoryContainer.addEventListener("click", (e) => {this.categoryContainerHandler(e)});
         this.categoryForm.addEventListener("submit", (e) => {this.categorySubmitHandler(e)});
 
+        /* delete */
         this.confirmDeleteBtn.addEventListener("click", (e) => {this.deleteCategoryHandler(e)});
         this.closeDeleteBtn.addEventListener("click", () => {this.dialogs.closeDeleteModal()});
 
+        /* tasks */
         this.newTaskBtn.addEventListener("click", () => {
             if (!this.currentCaterogyId) return this.dialogs.openTaskWarningModal();
             this.dialogs.openTaskModal();
@@ -242,10 +270,14 @@ export class ScreenController{
 
         let categoryIdToRender;
 
+        /* editing */
         if (formData.categoryId){
-            this.controller.editCategory(formData.categoryId, formData);
-            categoryIdToRender = formData.categoryId;
+            if (!this.controller.editCategory(formData.categoryId, formData)) return;
+            this.renderer.updateCategoryView(formData.categoryId, formData)
+            this.dialogs.closeCategoryModal();
+            return;
         } else {
+        /* creating */
             const newCategory = this.controller.createCategory(formData);
             categoryIdToRender = newCategory.id;
         }
@@ -260,10 +292,11 @@ export class ScreenController{
 
     categoryContainerHandler(e){
         e.preventDefault();
+        const categoryBtn = e.target.closest(".category-btn")
+        if (!categoryBtn) return;
         const editBtn = e.target.closest(".edit-category-btn");
         const deleteBtn = e.target.closest(".delete-category-btn");
-        const categoryBtn = e.target.closest(".category-btn")
-        const category = this.controller.storage.getCategoryByID(categoryBtn.dataset.category);
+        const category = this.controller.storage.getCategoryByID(categoryBtn.dataset.categoryId);
 
         if (editBtn){
             this.dialogs.openCategoryModalForEdit(category);
@@ -282,9 +315,9 @@ export class ScreenController{
 
     deleteCategoryHandler(e){
         e.preventDefault();
-        const categoryId = document.querySelector("#delete-confirm-btn").dataset.category
-        this.controller.deleteCategory(categoryId);
-        this.renderer.renderCategories(this.controller.storage.vault);
+        const categoryId = document.querySelector("#delete-confirm-btn").dataset.categoryId
+        if (!this.controller.deleteCategory(categoryId)) return;
+        this.renderer.removeCategoryView(categoryId);
         if (this.currentCaterogyId === categoryId) {
             this.currentCaterogyId = null;
             this.renderer.renderTasks(null)};
@@ -296,9 +329,11 @@ export class ScreenController{
         const formData = Object.fromEntries(new FormData(this.taskForm));
         const categoryId = this.currentCaterogyId;
 
+        /* editing */
         if (formData.taskId){
             this.controller.editTask(formData.taskId, formData);
         } else {
+        /* creating */
             this.controller.createTask(categoryId, formData);
         }
 
