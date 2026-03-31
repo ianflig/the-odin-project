@@ -15,6 +15,9 @@
 
 The live site can be viewed [here](https://odin-07.vercel.app).
 
+**_DESCRIPTION_**:
+This project does not have any type of interactivity because this was assigned to practice CSS Grid and some styling features (specificity, advanced selectors)
+
 ## Setup
 
 This app doesn't use any packages. To run this setup locally, easiest way I found is to do:
