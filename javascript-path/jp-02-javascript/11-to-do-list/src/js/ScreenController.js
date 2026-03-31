@@ -384,7 +384,6 @@ export class ScreenController{
         if (this.currentCategoryId === category.id) {
             this.currentCategoryId = null;
             this.renderer.renderTasks(null);
-            this.renderer.renderTaskDescription(null);
         };
         this.dialogs.closeDeleteModal();
     }
