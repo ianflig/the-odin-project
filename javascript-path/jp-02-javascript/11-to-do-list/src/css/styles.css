@@ -272,6 +272,13 @@ a {
     text-decoration: none;
 }
 
+#test {
+    position: fixed;
+    top: 10px;
+    right: 50%;
+    padding: var(--space-md);
+}
+
 body {
     height: 100dvh;
     display: grid;

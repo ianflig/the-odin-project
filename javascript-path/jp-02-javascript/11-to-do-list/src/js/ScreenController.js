@@ -295,6 +295,7 @@ export class ScreenController{
         this.closeWarningTaskDialog = document.querySelector("#task-warning-close-btn");
 
         this.bindEvents();
+        this.init();
     }
 
     bindEvents(){
@@ -320,6 +321,11 @@ export class ScreenController{
         this.taskContainer.addEventListener("click", (e) => {this.taskContainerHandler(e)});
         this.taskForm.addEventListener("submit", (e) => {this.taskSubmitHandler(e)});
         this.closeWarningTaskDialog.addEventListener("click", () => {this.dialogs.closeTaskWarningModal()})
+    }
+
+    init(){
+        if (!this.controller.storage.vault) return;
+        this.renderer.renderCategories(this.controller.storage.vault);
     }
 
     categorySubmitHandler(e){

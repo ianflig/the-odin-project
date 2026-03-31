@@ -12,3 +12,6 @@ new darkMode();
 
 window.logic = controller;
 window.app = app;
+
+const clearBtn = document.querySelector("#test");
+clearBtn.addEventListener("click", () => {localStorage.clear()})

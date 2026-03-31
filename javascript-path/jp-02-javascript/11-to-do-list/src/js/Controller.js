@@ -9,6 +9,7 @@ export class Controller{
     createCategory(data){
         let category = new Category(data);
         this.storage.addCategory(category);
+        this.storage.updateLocalStorage();
         return category;
     }
 
@@ -16,11 +17,13 @@ export class Controller{
         let category = this.storage.getCategoryByID(categoryID)
         let task = new Task(data);
         category.addTask(task);
+        this.storage.updateLocalStorage();
     }
 
     editCategory(categoryID, data){
         let category = this.storage.getCategoryByID(categoryID);
         if (data.title !== undefined) category.title = data.title;
+        this.storage.updateLocalStorage();
         return true;
     }
 
@@ -33,21 +36,26 @@ export class Controller{
         if (data.description !== undefined) task.description = data.description;
         if (data.priority !== undefined) task.priority = data.priority;
         if (data.status !== undefined) task.status = data.status;
+        this.storage.updateLocalStorage();
         return true;
     }
 
     toggleTaskStatus(task){
         task.status = !task.status;
+        this.storage.updateLocalStorage();
         return task;
     }
 
     deleteCategory(id){
-        return (this.storage.deleteCategory(id));
+        if (!this.storage.deleteCategory(id)) return;
+        this.storage.updateLocalStorage();
+        return true;
     }
 
     deleteTask(categoryID, taskID){
         let category = this.storage.getCategoryByID(categoryID);
         if (!category.deleteTask(taskID)) return;
+        this.storage.updateLocalStorage();
         return true;
     }
 }

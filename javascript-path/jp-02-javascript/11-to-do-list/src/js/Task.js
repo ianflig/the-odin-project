@@ -3,9 +3,10 @@ export class Task {
         title, 
         description, 
         priority = "Low",
-        status = false
+        status = false,
+        id
     }) {
-        this.id = crypto.randomUUID();
+        this.id = (id) ? id : crypto.randomUUID();
         this.title = (title && title.trim() !== "") ? title.trim() : "New Task";
         this.dueDate = new Date().toISOString().split('T')[0];
         this.description = (description && description.trim() !== "") ? description.trim() : "No Description";
