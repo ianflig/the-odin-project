@@ -477,6 +477,11 @@ body {
     cursor: pointer;
 }
 
+.task.active {
+    border: 1px solid rgba(227, 178, 97, 0.9);
+    box-shadow: 0 0 4px 1px rgba(238, 154, 20, 0.9);
+}
+
 .task p {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -545,11 +550,11 @@ body {
 }
 
 .task.completed {
-    background-color: var(--color-gray-100, #f9fafb); 
+    background-color: var(--color-gray-100, #f9fafb);
     border-style: dashed;
 }
 
-.task.completed .task-title-container, 
+.task.completed .task-title-container,
 .task.completed p {
     text-decoration: line-through;
     color: var(--color-gray-500);
@@ -560,7 +565,7 @@ body {
 .task.completed .Medium,
 .task.completed .High {
     filter: grayscale(100%);
-    text-decoration: none; 
+    text-decoration: none;
     opacity: 0.8;
 }
 
@@ -569,7 +574,7 @@ body {
 }
 
 .task.completed .icon-container .check-btn {
-    fill: var(--color-emerald-700); 
+    fill: var(--color-emerald-700);
 }
 
 .task-description-section {
@@ -640,7 +645,7 @@ dialog label {
 .category-form .title-container,
 .task-form .title-container,
 .task-form .priority-container,
-.task-form .description-container{
+.task-form .description-container {
     display: flex;
     flex-direction: column;
     gap: var(--space-2xs);
@@ -656,7 +661,7 @@ dialog label {
 }
 
 .radio-pill {
-    flex: 1; 
+    flex: 1;
     text-align: center;
     padding: var(--space-xs) var(--space-sm);
     border: 1px solid var(--color-gray-200);
@@ -672,11 +677,11 @@ dialog label {
     background-color: var(--color-gray-150);
 }
 
-.radio-group input[type="radio"]:checked + .radio-pill {
+.radio-group input[type="radio"]:checked+.radio-pill {
     border-color: var(--color-primary);
     background-color: var(--color-bg);
     color: var(--color-fg);
-    box-shadow: 0 0 0 1px #dfa759; 
+    box-shadow: 0 0 0 1px #dfa759;
 }
 
 .category-form input,

@@ -139,7 +139,7 @@ class DOMRenderer{
         return true;
     }
 
-    renderTasks(category){
+    renderTasks(category, currentTaskDescriptionId){
         if (!category) {
             document.querySelector("#current-category").textContent = "Select or create a new category";
             this.allTasks.innerHTML = ""
@@ -161,6 +161,7 @@ class DOMRenderer{
             divTask.dataset.taskId = ele.id;
             divTask.dataset.category = category.id;
             divTask.classList.add("task");
+            if (ele.id === currentTaskDescriptionId) {divTask.classList.add("active")};
             divTaskTitle.classList.add("task-title-container")
             h4.textContent = ele.title;
             h4.classList.add("task-title")
@@ -334,7 +335,7 @@ export class ScreenController{
             
             this.currentCategoryId = newCategory.id;
             this.renderer.renderCategories(this.controller.storage.vault);
-            this.renderer.renderTasks(newCategory);
+            this.renderer.renderTasks(newCategory, this.currentTaskDescriptionId);
         }
 
         this.dialogs.closeCategoryModal();
@@ -357,7 +358,7 @@ export class ScreenController{
             return;
         }
         if (categoryBtn && (this.currentCategoryId !== category.id)){
-            this.renderer.renderTasks(category);
+            this.renderer.renderTasks(category, this.currentTaskDescriptionId);
             this.currentCategoryId = category.id;
             return; 
         }
@@ -407,7 +408,7 @@ export class ScreenController{
         }
 
         this.dialogs.closeTaskModal();
-        this.renderer.renderTasks(this.controller.storage.getCategoryByID(categoryId));
+        this.renderer.renderTasks(this.controller.storage.getCategoryByID(categoryId), this.currentTaskDescriptionId);
     }
 
     taskContainerHandler(e){
@@ -438,8 +439,9 @@ export class ScreenController{
         if (taskContainer){
             if(this.renderer.renderTaskDescription(task)){
                 this.currentTaskDescriptionId = task.id;
-                return; 
             }
+            this.swapTaskState(task.id)
+            return;
         }
     }
 
@@ -457,5 +459,17 @@ export class ScreenController{
         if (taskId === this.currentTaskDescriptionId) {this.renderer.renderTaskDescription(null);}
 
         this.dialogs.closeDeleteModal();
+    }
+
+    swapTaskState(taskId){
+        const previousTask = this.taskContainer.querySelector(".active");
+        if (previousTask) {
+            previousTask.classList.remove("active");
+        }
+
+        const newTask = this.taskContainer.querySelector(`[data-task-id="${taskId}"]`);
+        if (newTask) {
+            newTask.classList.add("active");
+        }
     }
 }
