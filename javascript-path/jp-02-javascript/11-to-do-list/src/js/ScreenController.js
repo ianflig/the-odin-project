@@ -486,12 +486,20 @@ export class ScreenController{
             return;
         }
         if (taskContainer){
+            if (this.currentTaskDescriptionId === taskContainer.dataset.taskId){
+                this.currentTaskDescriptionId = null;
+                this.toggleTaskState()
+                return;
+            }
+
             if(this.renderer.renderTaskDescription(task)){
                 this.currentTaskDescriptionId = task.id;
+                this.swapTaskState(task.id)
+                return;
             }
-            this.swapTaskState(task.id)
-            return;
         }
+
+
     }
 
     deleteTaskHandler(e){
@@ -519,6 +527,14 @@ export class ScreenController{
         const newTask = this.taskContainer.querySelector(`[data-task-id="${taskId}"]`);
         if (newTask) {
             newTask.classList.add("active");
+        }
+    }
+
+    toggleTaskState(){
+        this.renderer.renderTaskDescription(null);
+        const task = this.taskContainer.querySelector(".active");
+        if (task) {
+            task.classList.toggle("active");
         }
     }
 }
