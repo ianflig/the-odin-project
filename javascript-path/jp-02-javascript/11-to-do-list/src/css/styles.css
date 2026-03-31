@@ -311,13 +311,17 @@ body {
     justify-content: space-between;
     align-items: center;
     color: black;
-    background-color: var(--color-yellow-button);
+    background-color: oklch(89.621% 0.09589 79.327);
     border: 1px solid var(--color-gray-200);
     border-radius: var(--radius-xs);
     font-size: var(--font-md);
     box-shadow: 0 1px 6px -1px var(--color-gray-200);
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
+}
+
+.category-btn.active {
+    background-color: var(--color-yellow-button);
 }
 
 .category-btn span {

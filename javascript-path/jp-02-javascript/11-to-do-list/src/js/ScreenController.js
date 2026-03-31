@@ -91,7 +91,7 @@ class DOMRenderer{
         this.allTasks = document.querySelector(".all-tasks");
     }
 
-    renderCategories(categoryArray){
+    renderCategories(categoryArray, currentCategoryId){
         this.categoryContainer.innerHTML = "";
         
         categoryArray.forEach(ele => {
@@ -103,6 +103,7 @@ class DOMRenderer{
 
             buttonSpan.textContent = ele.title;
             button.classList.add("category-btn");
+            if (currentCategoryId === ele.id) {button.classList.add("active")};
             button.dataset.categoryId = ele.id;
             editSVG.classList.add("edit-category-btn");
             deleteSVG.classList.add ( "delete-category-btn");
@@ -279,6 +280,7 @@ export class ScreenController{
         this.saveCategoryBtn = document.querySelector("#category-save-btn");
         this.categoryForm = document.querySelector("#category-form");
         this.categoryContainer = document.querySelector("#category-container");
+        this.categoryBtn = document.querySelector(".category-btn");
 
         /* delete */
         this.confirmDeleteBtn = document.querySelector("#delete-confirm-btn");
@@ -334,8 +336,9 @@ export class ScreenController{
             const newCategory = this.controller.createCategory(formData);
             
             this.currentCategoryId = newCategory.id;
-            this.renderer.renderCategories(this.controller.storage.vault);
+            this.renderer.renderCategories(this.controller.storage.vault, this.currentCategoryId);
             this.renderer.renderTasks(newCategory, this.currentTaskDescriptionId);
+            this.swapCategoryState(newCategory.id)
         }
 
         this.dialogs.closeCategoryModal();
@@ -358,8 +361,9 @@ export class ScreenController{
             return;
         }
         if (categoryBtn && (this.currentCategoryId !== category.id)){
-            this.renderer.renderTasks(category, this.currentTaskDescriptionId);
             this.currentCategoryId = category.id;
+            this.renderer.renderTasks(category, this.currentTaskDescriptionId);
+            this.swapCategoryState(category.id);
             return; 
         }
     }
@@ -383,6 +387,18 @@ export class ScreenController{
             this.renderer.renderTaskDescription(null);
         };
         this.dialogs.closeDeleteModal();
+    }
+
+    swapCategoryState(categoryId){
+        const previousCategory = this.categoryContainer.querySelector(".active");
+        if (previousCategory) {
+            previousCategory.classList.remove("active");
+        }
+
+        const newCategory = this.categoryContainer.querySelector(`[data-category-id="${categoryId}"]`);
+        if (newCategory) {
+            newCategory.classList.add("active");
+        }
     }
 
     taskSubmitHandler(e){
