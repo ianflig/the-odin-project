@@ -25,7 +25,10 @@ class DialogManager{
             this.taskForm.reset();
             document.querySelector("#hidden-task-id").value = "";
         })
-        this.deleteDialog.addEventListener("close", () => {document.querySelector("#delete-confirm-btn").dataset.taskId = "";})
+        this.deleteDialog.addEventListener("close", () => {
+            document.querySelector("#delete-confirm-btn").dataset.taskId = "";
+            document.querySelector("#delete-confirm-btn").dataset.categoryIdForTask = "";
+        })
     }
 
     openCategoryModal(){
@@ -66,8 +69,14 @@ class DialogManager{
         this.taskWarningDialog.close();
     }
 
-    openDeleteModal(categoryToDelete){
+    openDeleteCategoryModal(categoryToDelete){
         document.querySelector("#delete-confirm-btn").dataset.categoryId = categoryToDelete.id;
+        this.deleteDialog.showModal();
+    }
+
+    openDeleteTaskModal(taskIdToDelete, categoryIdToCheck){
+        document.querySelector("#delete-confirm-btn").dataset.taskId = taskIdToDelete;
+        document.querySelector("#delete-confirm-btn").dataset.categoryIdForTask = categoryIdToCheck;
         this.deleteDialog.showModal();
     }
 
@@ -206,13 +215,16 @@ class DOMRenderer{
         return true;
     }
 
-/*     removeTaskView(categoryId) {
-        const categoryElement = document.querySelector(`[data-category-id="${categoryId}"]`);
+    removeTaskView(taskId) {
+        const taskElement = document.querySelector(`[data-task-id="${taskId}"]`);
         
-        if (categoryElement) {
-            categoryElement.remove(); 
-        }
-    } */
+        if (!taskElement) return;
+
+        taskElement.remove(); 
+    
+        return true;
+    }
+    
 
     renderTaskDescription(task){
         const descriptionContainer = document.querySelector("#description-section-task-description");
@@ -290,7 +302,10 @@ export class ScreenController{
         this.categoryForm.addEventListener("submit", (e) => {this.categorySubmitHandler(e)});
 
         /* delete */
-        this.confirmDeleteBtn.addEventListener("click", (e) => {this.deleteCategoryHandler(e)});
+        this.confirmDeleteBtn.addEventListener("click", (e) => {
+            this.deleteCategoryHandler(e);
+            this.deleteTaskHandler(e);
+        });
         this.closeDeleteBtn.addEventListener("click", () => {this.dialogs.closeDeleteModal()});
 
         /* tasks */
@@ -338,7 +353,7 @@ export class ScreenController{
             return;
         }
         if (deleteBtn) {
-            this.dialogs.openDeleteModal(category);
+            this.dialogs.openDeleteCategoryModal(category);
             return;
         }
         if (categoryBtn && (this.currentCategoryId !== category.id)){
@@ -350,7 +365,9 @@ export class ScreenController{
 
     deleteCategoryHandler(e){
         e.preventDefault();
-        const categoryId = document.querySelector("#delete-confirm-btn").dataset.categoryId
+        if (!e.target.dataset.categoryId) return;
+
+        const categoryId = e.target.dataset.categoryId;
         const category = this.controller.storage.getCategoryByID(categoryId);
         
         if (!this.controller.deleteCategory(category.id)) return;
@@ -415,18 +432,30 @@ export class ScreenController{
             return;
         }
         if (deleteBtn) {
-            this.dialogs.openDeleteModal(category);
+            this.dialogs.openDeleteTaskModal(task.id, category.id);
             return;
         }
         if (taskContainer){
             if(this.renderer.renderTaskDescription(task)){
-                this.currentTaskDescriptionId = task.id/*  */
+                this.currentTaskDescriptionId = task.id;
                 return; 
             }
         }
     }
 
-    deleteTaskHandler(){
+    deleteTaskHandler(e){
+        e.preventDefault();
+        if (!e.target.dataset.taskId) return;
 
+        const categoryId = e.target.dataset.categoryIdForTask;
+        const taskId = e.target.dataset.taskId;
+
+        if (!this.controller.deleteTask(categoryId, taskId)) return;
+
+        if (!this.renderer.removeTaskView(taskId)) return;
+
+        if (taskId === this.currentTaskDescriptionId) {this.renderer.renderTaskDescription(null);}
+
+        this.dialogs.closeDeleteModal();
     }
 }

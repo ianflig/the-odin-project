@@ -47,6 +47,7 @@ export class Controller{
 
     deleteTask(categoryID, taskID){
         let category = this.storage.getCategoryByID(categoryID);
-        category.deleteTask(taskID);
+        if (!category.deleteTask(taskID)) return;
+        return true;
     }
 }

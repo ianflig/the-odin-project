@@ -13,6 +13,7 @@ export class Category {
 
     deleteTask(id){
         this.tasks = this.tasks.filter(ele => ele.id !== id);
+        return true;
     }
 
     getTaskByID(id){
