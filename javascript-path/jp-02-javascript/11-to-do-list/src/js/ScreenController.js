@@ -294,6 +294,10 @@ export class ScreenController{
         this.taskContainer = document.querySelector("#all-tasks");
         this.closeWarningTaskDialog = document.querySelector("#task-warning-close-btn");
 
+        /* mobile menu */
+        this.mobileMenuBtn = document.querySelector(".mobile-categories-btn");
+        this.sidebar = document.querySelector(".sidebar");
+
         this.bindEvents();
         this.init();
     }
@@ -321,11 +325,28 @@ export class ScreenController{
         this.taskContainer.addEventListener("click", (e) => {this.taskContainerHandler(e)});
         this.taskForm.addEventListener("submit", (e) => {this.taskSubmitHandler(e)});
         this.closeWarningTaskDialog.addEventListener("click", () => {this.dialogs.closeTaskWarningModal()})
+
+        /* mobile menu */
+        this.mobileMenuBtn.addEventListener("click", () => {this.toggleMobileMenu();})
     }
 
     init(){
         if (!this.controller.storage.vault) return;
         this.renderer.renderCategories(this.controller.storage.vault);
+    }
+
+    toggleMobileMenu(){
+        this.sidebar.classList.toggle('open');
+        if (this.sidebar.classList.contains('open')) {
+            this.mobileMenuBtn.textContent = '✕';
+        } else {
+            this.mobileMenuBtn.textContent = '☰';
+        }
+    }
+
+    closeMobileMenu(){
+        this.sidebar.classList.remove('open');
+        this.mobileMenuBtn.textContent = '☰';
     }
 
     categorySubmitHandler(e){
@@ -337,6 +358,7 @@ export class ScreenController{
             if (!this.controller.editCategory(formData.categoryId, formData)) return;
             const category = this.controller.storage.getCategoryByID(formData.categoryId);
             this.renderer.updateCategoryView(category);
+            if (this.currentCategoryId === category.id) {this.closeMobileMenu();}
         } else {
             /* creating */
             const newCategory = this.controller.createCategory(formData);
@@ -345,6 +367,7 @@ export class ScreenController{
             this.renderer.renderCategories(this.controller.storage.vault, this.currentCategoryId);
             this.renderer.renderTasks(newCategory, this.currentTaskDescriptionId);
             this.swapCategoryState(newCategory.id)
+            this.closeMobileMenu();
         }
 
         this.dialogs.closeCategoryModal();
@@ -370,8 +393,9 @@ export class ScreenController{
             this.currentCategoryId = category.id;
             this.renderer.renderTasks(category, this.currentTaskDescriptionId);
             this.swapCategoryState(category.id);
+            this.closeMobileMenu();
             return; 
-        }
+        } else if (categoryBtn) {this.closeMobileMenu();}
     }
 
     deleteCategoryHandler(e){
@@ -390,8 +414,11 @@ export class ScreenController{
         if (this.currentCategoryId === category.id) {
             this.currentCategoryId = null;
             this.renderer.renderTasks(null);
+            this.closeMobileMenu();
         };
+
         this.dialogs.closeDeleteModal();
+        
     }
 
     swapCategoryState(categoryId){
@@ -430,6 +457,7 @@ export class ScreenController{
 
         this.dialogs.closeTaskModal();
         this.renderer.renderTasks(this.controller.storage.getCategoryByID(categoryId), this.currentTaskDescriptionId);
+        this.closeMobileMenu();
     }
 
     taskContainerHandler(e){

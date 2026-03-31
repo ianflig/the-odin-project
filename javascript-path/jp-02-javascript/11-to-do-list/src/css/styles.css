@@ -590,7 +590,7 @@ body {
     fill: var(--color-emerald-700);
 }
 
-#task-description{
+#task-description {
     height: 20dvh;
     display: flex;
     resize: none;
@@ -775,11 +775,11 @@ dialog label {
     transform: translateY(1px) scale(0.97);
 }
 
-@media (max-width: 900px) {
-    .sidebar {
-        display: none;
-    }
+.header .left .mobile-categories-btn {
+    display: none;
+}
 
+@media (max-width: 900px) {
     body {
         grid-template-columns: 1fr;
         grid-template-areas:
@@ -787,13 +787,60 @@ dialog label {
             "main-content"
             "footer";
     }
+
+    .header {
+        position: relative;
+        z-index: 1000;
+        background-color: var(--color-bg);
+    }
+
+    .header .left .mobile-categories-btn {
+        display: flex;
+    }
+
+    .header .left button,
+    .new-category-btn {
+        flex-shrink: 0;
+    }
+
+    .sidebar {
+        position: absolute;
+        width: 75%;
+        top: 75px;
+        height: fit-content;
+        max-height: calc(93dvh - 75px);
+        transform: translateY(-20px);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease-in-out;
+        overflow-y: auto;
+        background-color: var(--color-bg);
+        z-index: 999;
+        box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .sidebar.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+    }
+
 }
 
 @media (max-width: 600px) {
+    .header .left {
+        gap: var(--space-xs);
+    }
 
-    .task-description-section,
-    .trending-section,
-    .header-bottom .left {
+    .header .left button {
+        font-size: clamp(0.9rem, 2vw, 1.25rem);
+    }
+
+    .header .icons h3 {
+        font-size: clamp(0.8rem, 2vw, 1.25rem);
+    }
+
+    .task-description-section {
         display: none;
     }
 
@@ -804,15 +851,4 @@ dialog label {
             "task-container";
     }
 
-    .header-bottom {
-        grid-template-columns: 1fr;
-    }
-
-    .header-bottom .right {
-        justify-content: center;
-    }
-
-    .header-bottom .right button {
-        flex: 1;
-    }
 }
