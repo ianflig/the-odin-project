@@ -596,6 +596,7 @@ body {
     overflow-wrap: break-word;
 }
 
+
 .footer {
     grid-area: footer;
     text-align: center;
@@ -608,7 +609,7 @@ body {
     color: var(--color-primary);
 }
 
-/* DIALOGS */
+/* DIALOGS & FORMS */
 dialog::backdrop {
     background-color: #101010;
     opacity: 0.75;
@@ -627,6 +628,111 @@ dialog {
 
 dialog label {
     color: var(--color-fg);
+}
+
+.category-form,
+.task-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.category-form .title-container,
+.task-form .title-container,
+.task-form .priority-container,
+.task-form .description-container{
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+}
+
+.radio-group {
+    display: flex;
+    gap: 10px;
+}
+
+.radio-group input[type="radio"] {
+    display: none;
+}
+
+.radio-pill {
+    flex: 1; 
+    text-align: center;
+    padding: var(--space-xs) var(--space-sm);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-xs);
+    background-color: var(--color-gray-100);
+    color: var(--color-gray-700);
+    font-size: var(--font-sm);
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+.radio-pill:hover {
+    background-color: var(--color-gray-150);
+}
+
+.radio-group input[type="radio"]:checked + .radio-pill {
+    border-color: var(--color-primary);
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    box-shadow: 0 0 0 1px #dfa759; 
+}
+
+.category-form input,
+.task-form input {
+    width: 100%;
+    min-width: 0;
+    height: 2rem;
+    padding: var(--space-xs) var(--space-sm);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-md);
+    border: 1px solid var(--color-gray-200);
+    color: var(--color-fg);
+    background-color: var(--color-gray-100);
+    outline: none;
+    border: 1px solid var(--color-primary);
+}
+
+.dialog-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.dialog-buttons-container {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.dialog-buttons-container button,
+#task-warning-close-btn {
+    padding: var(--space-xs) var(--space-md);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--color-fg);
+    background-color: var(--color-gray-100);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--space-sm);
+    font-size: var(--font-md);
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.2s ease;
+    flex: 1;
+}
+
+.dialog-buttons-container button:hover,
+#task-warning-close-btn:hover {
+    transform: translateY(-2px);
+    background-color: var(--color-gray-150);
+}
+
+.dialog-buttons-container button:active,
+#task-warning-close-btn:active {
+    transform: translateY(1px) scale(0.97);
 }
 
 @media (max-width: 900px) {
