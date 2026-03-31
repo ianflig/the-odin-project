@@ -47,7 +47,7 @@ class DialogManager{
 
     openTaskModalForEdit(taskToEdit){
         document.querySelector("#task-title").value = taskToEdit.title;
-        document.querySelector("#task-priority").value = taskToEdit.priority;
+        document.querySelector(`input[name="priority"][value="${taskToEdit.priority}"]`).checked = true;
         document.querySelector("#task-description").value = taskToEdit.description;
         document.querySelector("#hidden-task-id").value = taskToEdit.id;
         this.taskDialog.showModal();
