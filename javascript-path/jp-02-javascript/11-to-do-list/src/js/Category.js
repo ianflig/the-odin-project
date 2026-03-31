@@ -8,7 +8,6 @@ export class Category {
 
     addTask(task){
         this.tasks.push(task);
-        console.log(`Task created, ID: ${task.id}`) 
     }
 
     deleteTask(id){

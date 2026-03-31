@@ -12,7 +12,15 @@ export class Storage {
     }
 
     setLocalStorageData(){
-        if (!localStorage.getItem("vault")) localStorage.setItem("vault", "[]");
+        if (!localStorage.getItem("vault")) {
+            let defaultCategory = new Category({})
+            defaultCategory.addTask(new Task({}))
+
+            this.vault.push(defaultCategory);
+            this.updateLocalStorage();
+            return;
+        };
+
         let data = JSON.parse(localStorage.getItem("vault"));
         data.forEach(category => {
             let newCategory = new Category(category);
@@ -26,7 +34,6 @@ export class Storage {
 
     addCategory(category) {
         this.vault.push(category);
-        console.log(`Category created, ID: ${category.id}`);
     }
 
     deleteCategory(id) {
