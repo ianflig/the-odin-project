@@ -481,11 +481,13 @@ body {
     border: 1px solid var(--color-gray-200);
     border-radius: var(--radius-md);
     background-color: var(--color-gray-100);
-    overflow-wrap: break-word;
-    word-break: break-word;
     display: grid;
     grid-template-rows: auto 1fr auto;
     cursor: pointer;
+
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: pre-line;
 }
 
 .task.active {
@@ -588,6 +590,23 @@ body {
     fill: var(--color-emerald-700);
 }
 
+#task-description{
+    height: 20dvh;
+    display: flex;
+    resize: none;
+    padding: var(--space-xs);
+    border: none;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-gray-200);
+    color: var(--color-fg);
+    background-color: var(--color-gray-100);
+    outline: none;
+}
+
+#task-description:focus {
+    border: 1px solid var(--color-primary);
+}
+
 .task-description-section {
     grid-area: task-description-section;
     display: grid;
@@ -610,6 +629,7 @@ body {
 
     overflow-y: auto;
     overflow-wrap: break-word;
+    white-space: pre-line;
 }
 
 
@@ -708,6 +728,10 @@ dialog label {
     color: var(--color-fg);
     background-color: var(--color-gray-100);
     outline: none;
+}
+
+.category-form input:focus,
+.task-form input:focus {
     border: 1px solid var(--color-primary);
 }
 

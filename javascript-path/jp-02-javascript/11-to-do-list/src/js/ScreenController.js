@@ -250,7 +250,7 @@ class DOMRenderer{
         spanDueDate.textContent = task.dueDate;
         h4Priority.textContent = "Priority: ";
         spanPriority.textContent = task.priority;
-        h4Description.textContent = "Description: "
+        h4Description.textContent = "Description"
         spanDescription.textContent = task.description;
 
         h4Title.appendChild(spanTitle);
@@ -259,8 +259,8 @@ class DOMRenderer{
         descriptionContainer.appendChild(h4DueDate);
         h4Priority.appendChild(spanPriority);
         descriptionContainer.appendChild(h4Priority);
-        h4Description.appendChild(spanDescription);
         descriptionContainer.appendChild(h4Description);
+        descriptionContainer.appendChild(spanDescription);
 
         return true;
     }
