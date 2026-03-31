@@ -783,6 +783,23 @@ dialog label {
     display: none;
 }
 
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.all-tasks .task,
+.description h4,
+.description span {
+  animation: fadeSlideUp 0.2s ease-out forwards; 
+}
+
 @media (max-width: 900px) {
     body {
         grid-template-columns: 1fr;
