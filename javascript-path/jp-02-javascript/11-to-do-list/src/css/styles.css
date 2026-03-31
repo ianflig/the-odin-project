@@ -302,6 +302,10 @@ body {
     gap: var(--space-md);
 }
 
+.sidebar h1 {
+    text-align: center;
+}
+
 .category-container {
     display: flex;
     padding-top: var(--space-xs);
@@ -495,6 +499,11 @@ body {
     box-shadow: 0 0 4px 1px rgba(238, 154, 20, 0.9);
 }
 
+.task.completed {
+    background-color: var(--color-gray-100, #f9fafb);
+    border-style: dashed;
+}
+
 .task p {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -560,11 +569,6 @@ body {
 .task-title-container .High {
     background-color: var(--color-rose-100);
     color: var(--color-rose-700);
-}
-
-.task.completed {
-    background-color: var(--color-gray-100, #f9fafb);
-    border-style: dashed;
 }
 
 .task.completed .task-title-container,
@@ -849,6 +853,10 @@ dialog label {
         grid-template-rows: 1fr;
         grid-template-areas:
             "task-container";
+    }
+
+    .task.active p {
+        display: flex;
     }
 
 }

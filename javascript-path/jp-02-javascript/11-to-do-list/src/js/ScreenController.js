@@ -354,12 +354,14 @@ export class ScreenController{
         const formData = Object.fromEntries(new FormData(this.categoryForm));
 
         if (formData.categoryId){
+
             /* editing */
             if (!this.controller.editCategory(formData.categoryId, formData)) return;
             const category = this.controller.storage.getCategoryByID(formData.categoryId);
             this.renderer.updateCategoryView(category);
             if (this.currentCategoryId === category.id) {this.closeMobileMenu();}
         } else {
+            
             /* creating */
             const newCategory = this.controller.createCategory(formData);
             
@@ -441,6 +443,7 @@ export class ScreenController{
         /* editing */
         if (formData.taskId){
             if (!this.controller.editTask(categoryId, formData.taskId, formData)) return;
+
             /* for renderTaskDescription */
             const category = this.controller.storage.getCategoryByID(categoryId);
             const task = category.getTaskByID(formData.taskId);
@@ -451,6 +454,7 @@ export class ScreenController{
             this.dialogs.closeTaskModal();
             return;
         } else {
+
         /* creating */
             this.controller.createTask(categoryId, formData);
         }
@@ -498,8 +502,6 @@ export class ScreenController{
                 return;
             }
         }
-
-
     }
 
     deleteTaskHandler(e){
