@@ -105,6 +105,7 @@ class ScreenController {
     this.bookAuthor = document.querySelector("#book-author");
     this.bookPages = document.querySelector("#book-number-of-pages");
     this.bindEvents();
+    this.initValidations();
   }
 
   bindEvents() {
@@ -129,52 +130,25 @@ class ScreenController {
     this.deleteConfirmButton.addEventListener("click", (e) => {
       this.deleteButtonDialogConfirm();
     });
-
-    /* validations */
-    this.bookTitle.addEventListener("input", () => {
-      this.formTitleValidation();
-    });
-    this.bookTitle.addEventListener("invalid", () => {
-      this.formTitleValidation();
-    });
-
-    this.bookAuthor.addEventListener("input", () => {
-      this.formAuthorValidation();
-    });
-    this.bookAuthor.addEventListener("invalid", () => {
-      this.formAuthorValidation();
-    });
-
-    this.bookPages.addEventListener("input", () => {
-      this.formPagesValidation();
-    });
-    this.bookPages.addEventListener("invalid", () => {
-      this.formPagesValidation();
-    });
   }
 
-  formPagesValidation() {
-    if (this.bookPages.validity.valueMissing) {
-      this.bookPages.setCustomValidity("A number is required");
-    } else {
-      this.bookPages.setCustomValidity("");
-    }
+  initValidations() {
+    this.setupFieldValidation(this.bookTitle, "Title is needed");
+    this.setupFieldValidation(this.bookAuthor, "Author is needed");
+    this.setupFieldValidation(this.bookPages, "Number of pages is needed");
   }
 
-  formAuthorValidation() {
-    if (this.bookAuthor.validity.valueMissing) {
-      this.bookAuthor.setCustomValidity("Author is needed");
-    } else {
-      this.bookAuthor.setCustomValidity("");
-    }
-  }
+  setupFieldValidation(inputElement, errorMessage) {
+    const checkValidation = () => {
+      if (inputElement.validity.valueMissing) {
+        inputElement.setCustomValidity(errorMessage);
+      } else {
+        inputElement.setCustomValidity("");
+      }
+    };
 
-  formTitleValidation() {
-    if (this.bookTitle.validity.valueMissing) {
-      this.bookTitle.setCustomValidity("Title is needed");
-    } else {
-      this.bookTitle.setCustomValidity("");
-    }
+    inputElement.addEventListener("input", checkValidation);
+    inputElement.addEventListener("invalid", checkValidation);
   }
 
   createBookDialogReset() {
@@ -190,6 +164,7 @@ class ScreenController {
   }
 
   clickHandlerCreateBook(e) {
+    e.preventDefault();
     const formData = Object.fromEntries(new FormData(this.createBook));
     if (formData.read == "on") {
       formData.read = true;
