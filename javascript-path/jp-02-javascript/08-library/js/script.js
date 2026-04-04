@@ -102,6 +102,7 @@ class ScreenController {
     this.deleteBookCloseBtn = document.querySelector("#delete-book-close-btn");
     this.deleteConfirmButton = document.querySelector("#delete-confirm-button");
     this.bookTitle = document.querySelector("#book-title");
+    this.bookAuthor = document.querySelector("#book-author");
     this.bindEvents();
   }
 
@@ -127,12 +128,29 @@ class ScreenController {
     this.deleteConfirmButton.addEventListener("click", (e) => {
       this.deleteButtonDialogConfirm();
     });
+
+    /* validations */
     this.bookTitle.addEventListener("input", () => {
       this.formTitleValidation();
     });
     this.bookTitle.addEventListener("invalid", () => {
       this.formTitleValidation();
     });
+
+    this.bookAuthor.addEventListener("input", () => {
+      this.formAuthorValidation();
+    });
+    this.bookAuthor.addEventListener("invalid", () => {
+      this.formAuthorValidation();
+    });
+  }
+
+  formAuthorValidation() {
+    if (this.bookAuthor.validity.valueMissing) {
+      this.bookAuthor.setCustomValidity("Author is needed");
+    } else {
+      this.bookAuthor.setCustomValidity("");
+    }
   }
 
   formTitleValidation() {
