@@ -103,6 +103,7 @@ class ScreenController {
     this.deleteConfirmButton = document.querySelector("#delete-confirm-button");
     this.bookTitle = document.querySelector("#book-title");
     this.bookAuthor = document.querySelector("#book-author");
+    this.bookPages = document.querySelector("#book-number-of-pages");
     this.bindEvents();
   }
 
@@ -143,6 +144,21 @@ class ScreenController {
     this.bookAuthor.addEventListener("invalid", () => {
       this.formAuthorValidation();
     });
+
+    this.bookPages.addEventListener("input", () => {
+      this.formPagesValidation();
+    });
+    this.bookPages.addEventListener("invalid", () => {
+      this.formPagesValidation();
+    });
+  }
+
+  formPagesValidation() {
+    if (this.bookPages.validity.valueMissing) {
+      this.bookPages.setCustomValidity("A number is required");
+    } else {
+      this.bookPages.setCustomValidity("");
+    }
   }
 
   formAuthorValidation() {
