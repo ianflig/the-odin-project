@@ -1,5 +1,5 @@
 <h1 align="center">
-  Template
+  Weather App
 </h1>
 
 <div align="center">
@@ -14,14 +14,15 @@
 
 ## Live Preview
 
-The live site can be viewed [**here**](https://odin-11.vercel.app).
+link will be here
 
-**_DESCRIPTION_**:
+<!-- The live site can be viewed [**here**](https://odin-11.vercel.app). -->
 
+<!-- **_DESCRIPTION_**: -->
 
 ## Setup
 
-This app uses webpack packages. To run this setup locally:
+<!-- This app uses webpack packages. To run this setup locally:
 
 ```bash
 npm install
@@ -29,4 +30,4 @@ npm run build
 npx serve dist
 ```
 
-After that, just head to [localhost:3000](http://localhost:3000) to see the app running.
+After that, just head to [localhost:3000](http://localhost:3000) to see the app running. -->
