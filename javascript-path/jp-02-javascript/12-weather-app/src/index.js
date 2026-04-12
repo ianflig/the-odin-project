@@ -1,6 +1,7 @@
 import "./css/styles.css";
-/* import { darkMode } from "./js/darkMode.js";
+// import { darkMode } from "./js/darkMode.js";
+import { Controller } from "./js/Controller.js";
 
-new darkMode(); */
-
-window.app;
+// new darkMode();
+const controller = new Controller();
+window.app = controller;
