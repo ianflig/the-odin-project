@@ -13,4 +13,21 @@ export class Controller {
       console.error(error);
     }
   }
+
+  getHourlyClimate(hour, day) {}
+
+  getCurrentTime() {
+    const timeZone = this.currentCity.timezone;
+    const currentTime = new Date()
+      .toLocaleTimeString("es-AR", {
+        timeZone: timeZone,
+        hour: "2-digit",
+        minute: "2-digit",
+      })
+      .split("")
+      .splice(0, 5)
+      .join("");
+
+    return currentTime;
+  }
 }
