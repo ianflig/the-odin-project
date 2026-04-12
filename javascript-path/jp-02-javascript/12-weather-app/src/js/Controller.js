@@ -1,8 +1,6 @@
 export class Controller {
   currentCity;
-  constructor() {
-    // this.getUserCurrentPosition();
-  }
+  constructor() {}
 
   async getDataFromAPI(location) {
     try {
@@ -17,16 +15,16 @@ export class Controller {
   }
 
   async getUserCurrentPosition() {
-    // try {
-    const response = await new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       if (!navigator.geolocation) {
         reject(new Error("Geolocation is not supported by your browser"));
       }
+
       navigator.geolocation.getCurrentPosition(
         (position) => {
           resolve({
-            lat: position.coords.latitude,
-            long: position.coords.longitude,
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
           });
         },
         (error) => {
@@ -34,11 +32,6 @@ export class Controller {
         },
       );
     });
-
-    return response;
-    // } catch (error) {
-    //   console.log(error);
-    // }
   }
 
   getDailyConditions({ day = 0 } = {}) {
