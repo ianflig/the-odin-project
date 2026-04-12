@@ -14,6 +14,14 @@ export class Controller {
     }
   }
 
+  getDailyConditions({ day = 0 } = {}) {
+    return this.currentCity.days[day];
+  }
+
+  getCurrentConditions() {
+    return this.currentCity.currentConditions;
+  }
+
   getHourlyClimate({ hour = 0, day = 0 } = {}) {
     const newArray = structuredClone(this.currentCity);
     const dayToCheck = newArray.days[day];
