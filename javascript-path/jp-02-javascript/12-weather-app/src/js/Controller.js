@@ -14,7 +14,16 @@ export class Controller {
     }
   }
 
-  getHourlyClimate(hour, day) {}
+  getHourlyClimate({ hour = 0, day = 0 } = {}) {
+    const newArray = structuredClone(this.currentCity);
+    const dayToCheck = newArray.days[day];
+    const hourToCheck =
+      typeof hour === "number"
+        ? hour
+        : Number(hour.split("").splice(0, 2).join(""));
+    const result = dayToCheck.hours.splice(hourToCheck, 24);
+    return result;
+  }
 
   getCurrentTime() {
     const timeZone = this.currentCity.timezone;
