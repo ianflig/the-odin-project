@@ -226,46 +226,67 @@ body {
 
 .header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+}
+
+.header .top {
+    display: flex;
+    gap: var(--space-xs);
+    padding: 0 var(--space-md);
+    justify-content: start;
     align-items: center;
+}
+
+.header .top h3 {
+    font-size: var(--font-xl);
+}
+
+.header .top svg {
+    fill: white;
+}
+
+.header .bottom {
+    display: flex;
+    align-items: center;
+    padding: var(--space-xs) var(--space-md);
 }
 
 .header .left,
 .header .right {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     gap: var(--space-xs);
 }
 
-.header .left h3 {
-    font-size: var(--font-xl);
+.header .left {
+    width: 50%;
 }
 
-.header .left svg {
-    width: 22px;
-    height: 22px;
-    fill: white;
+.header .right {
+    margin-left: auto;
 }
 
 .header .search {
     display: flex;
-    padding: var(--space-md);
     align-items: center;
     justify-content: left;
     gap: var(--space-xs);
+    flex: 1;
 }
+
 .header .search svg {
 stroke: var(--color-fg);
 }
 
-.header .search label,
-.header .search input {
+.header .search label {
     flex-shrink: 0;
 }
 
 .header .search input {
     height: 2.2rem;
+    min-width: 0;
+    width: 100%;
     padding: var(--space-xs) var(--space-sm);
     border: none;
     border-radius: var(--radius-sm);

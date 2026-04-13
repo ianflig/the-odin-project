@@ -80,11 +80,11 @@ export class ScreenController {
 
     const icon = data.icon;
     const conditions = data.conditions;
-    const feelsLike = this.getTemperatureInCelsius(data.feelsLike);
+    const feelsLike = this.getTemperatureInCelsius(data.feelslike);
     const sunrise = data.sunrise.split("").splice(0, 5).join("");
     const sunset = data.sunset.split("").splice(0, 5).join("");
     const UVIndex = data.uvindex;
-    // const resolvedAddress = data.
+    const resolvedAddress = this.controller.currentCity.resolvedAddress;
 
     this.renderer.displayCurrentConditions(
       temperature,
@@ -95,6 +95,7 @@ export class ScreenController {
       sunrise,
       sunset,
       UVIndex,
+      resolvedAddress,
     );
   }
 

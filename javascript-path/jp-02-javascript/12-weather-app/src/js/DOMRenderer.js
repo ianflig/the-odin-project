@@ -69,7 +69,7 @@ export class DOMRenderer {
       </div>
     `;
 
-    this.currentLocationH3 = resolvedAddress;
+    this.currentLocationH3.innerHTML = resolvedAddress;
     container.innerHTML = htmlString;
   }
 
