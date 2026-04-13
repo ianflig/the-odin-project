@@ -6,6 +6,8 @@ export class DOMRenderer {
     this.currentConditionsGeneralContainer = document.querySelector(
       ".current-conditions-general",
     );
+    this.hourlyForecastCardsContainer =
+      document.querySelector("#cards-container");
   }
 
   bindEvents(actions) {
@@ -71,6 +73,27 @@ export class DOMRenderer {
 
     this.currentLocationH3.innerHTML = resolvedAddress;
     container.innerHTML = htmlString;
+  }
+
+  displayHourlyForecast(array) {
+    const container = this.hourlyForecastCardsContainer;
+    container.innerHTML = "";
+    let card = "";
+
+    for (let i = 0; i < array.length; i++) {
+      card += `    
+        <div class="card blur-container">    
+          <span>${array[i].hour}</span>
+          <img
+            src="./images/${array[i].icon}.svg"
+            alt="hourly-forecast-icon"
+            class="hourly-forecast-icon"
+          />
+          <h3>${array[i].temp}°</h3>
+        </div>`;
+    }
+
+    container.innerHTML = card;
   }
 
   getUVColor(uvIndex) {

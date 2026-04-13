@@ -79,7 +79,7 @@ html {
     --radius-xs: 0.5rem;
     --radius-2xs: 0.25rem;
 
-    scrollbar-color: var(--color-gray-300) var(--color-bg);
+    scrollbar-color: var(--color-gray-300) rgba(255, 255, 255, 0.103);
 }
 
 ::selection {
@@ -213,6 +213,7 @@ body {
     max-width: 73rem;
     margin: 0 auto;
     padding: var(--space-lg);
+    gap: var(--space-xl);
     /* test */
     background: linear-gradient(-135deg, lab(65.8981% -33.0161 -35.083) 0%, lab(48.31% 10.13 -56.62) 100%);
 }
@@ -331,7 +332,6 @@ stroke: var(--color-fg);
 }
 
 .current-conditions-general {
-    padding-top: var(--space-lg);
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: var(--space-lg);
@@ -439,7 +439,57 @@ stroke: var(--color-fg);
     font-size: var(--font-sm);
 }
 
+.hourly-forecast-container {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-md);
+    gap: var(--space-md);
+    overflow-x: auto;
+}
 
+.hourly-forecast-container .top {
+    display: flex;
+    gap: var(--space-xs);
+    align-items: center;
+}
+
+.hourly-forecast-container .top svg {
+    fill: var(--color-fg);
+}
+
+.hourly-forecast-container .top span {
+    color: var(--color-gray-150);
+}
+
+.hourly-forecast-container .bottom {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding-top: var(--space-xs);
+}
+
+.hourly-forecast-container .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-xs) var(--space-sm);
+    gap: var(--space-2xs);
+}
+
+.hourly-forecast-container .card span {
+    color: var(--color-gray-200);
+}
+
+.hourly-forecast-container .card h3 {
+    color: var(--color-gray-150);
+    font-size: var(--font-md);
+}
+
+.hourly-forecast-icon {
+    width: 35px;
+    height: 35px;
+}
 
 /* UV INDEX BAR STYLING */
 

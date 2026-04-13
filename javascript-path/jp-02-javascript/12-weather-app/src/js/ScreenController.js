@@ -55,6 +55,7 @@ export class ScreenController {
 
       // DOMRenderer;
       this.updateCurrentConditions();
+      this.updateHourlyForecast();
 
       console.log("data fetched correctly", this.controller.currentCity);
     } catch (error) {
@@ -99,7 +100,22 @@ export class ScreenController {
     );
   }
 
-  updateHourlyClimate() {}
+  updateHourlyForecast() {
+    const currenTime = this.controller.getCurrentTime();
+    const data = this.controller.getHourlyForecast({
+      hour: currenTime,
+    });
+    console.log(data);
+    const arrayCleaned = data.map((ele, index) => {
+      return {
+        hour:
+          index === 0 ? "Now" : ele.datetime.split("").splice(0, 5).join(""),
+        icon: ele.icon,
+        temp: this.getTemperatureInCelsius(ele.temp),
+      };
+    });
+    this.renderer.displayHourlyForecast(arrayCleaned);
+  }
 
   updateDailyConditions() {}
 

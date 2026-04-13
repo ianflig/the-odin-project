@@ -61,7 +61,7 @@ export class Controller {
     return this.currentCity.currentConditions;
   }
 
-  getHourlyClimate({ hour = 0, day = 0 } = {}) {
+  getHourlyForecast({ hour = 0, day = 0 } = {}) {
     const newArray = structuredClone(this.currentCity);
     const dayToCheck = newArray.days[day];
     const hourToCheck =
@@ -79,6 +79,7 @@ export class Controller {
         timeZone: timeZone,
         hour: "2-digit",
         minute: "2-digit",
+        hour12: false,
       })
       .split("")
       .splice(0, 5)
