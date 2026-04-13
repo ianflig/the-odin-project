@@ -2,6 +2,7 @@
 import path from "node:path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import CopyPlugin from "copy-webpack-plugin";
 
 export default {
   entry: "./src/index.js",
@@ -18,14 +19,22 @@ export default {
       template: "./src/index.html",
     }),
     new MiniCssExtractPlugin({
-      filename: "main.css", 
+      filename: "main.css",
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "./src/images",
+          to: "images",
+        },
+      ],
     }),
   ],
   module: {
     rules: [
       {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader"], 
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
         test: /\.html$/i,
