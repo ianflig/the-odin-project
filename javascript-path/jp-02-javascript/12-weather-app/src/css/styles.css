@@ -203,7 +203,6 @@ html {
 svg {
     width: 1.25rem;
     height: 1.25rem;
-    cursor: pointer;
     flex-shrink: 0;
 }
 
@@ -293,6 +292,7 @@ stroke: var(--color-fg);
     color: var(--color-fg);
     font-size: var(--font-md);
     flex-shrink: 0;
+    cursor: pointer;
 }
 
 #check-location svg {
@@ -310,12 +310,22 @@ stroke: var(--color-fg);
 }
 
 .current-conditions-general {
-    display: flex;
-    justify-content: space-between;
+    padding-top: var(--space-lg);
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-lg);
 }
 
 .current-conditions-general .left {
     display: flex;
+    padding: var(--space-md);
+    align-items: center;
+}
+
+.weather-icon {
+    width: 128px;
+    height: 128px;
+    flex-shrink: 0;
 }
 
 .current-conditions-general .left div {
@@ -326,6 +336,8 @@ stroke: var(--color-fg);
 .current-conditions-general .right {
     display: flex;
     flex-direction: column;
+    padding: var(--space-md);
+    align-items: center;
 }
 
 .current-conditions-general .right .top {

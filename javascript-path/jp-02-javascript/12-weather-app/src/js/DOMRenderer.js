@@ -1,10 +1,10 @@
 export class DOMRenderer {
   constructor() {
-    // this.searchInput = document.querySelector("#search-input");
-    // this.btnGPS = document.querySelector("#check-location");
-    // this.currentConditionsGeneralContainer = document.querySelector(
-    //   ".current-conditions-general",
-    // );
+    this.searchInput = document.querySelector("#search-input");
+    this.btnGPS = document.querySelector("#check-location");
+    this.currentConditionsGeneralContainer = document.querySelector(
+      ".current-conditions-general",
+    );
   }
 
   bindEvents(actions) {

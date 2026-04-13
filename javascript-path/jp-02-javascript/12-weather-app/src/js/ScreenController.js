@@ -3,17 +3,17 @@ export class ScreenController {
     this.controller = logic;
     this.renderer = DOMRenderer;
 
-    // const actions = {
-    //   toSearch: (coords, searchInput) => {
-    //     this.updateScreenData(coords, searchInput);
-    //   },
-    //   toUseGPS: () => {
-    //     this.handleLocationRequest();
-    //   },
-    // };
+    const actions = {
+      toSearch: (coords, searchInput) => {
+        this.updateScreenData(coords, searchInput);
+      },
+      toUseGPS: () => {
+        this.handleLocationRequest();
+      },
+    };
 
-    // this.renderer.bindEvents(actions);
-    // this.initiateApp();
+    this.renderer.bindEvents(actions);
+    this.initiateApp();
   }
 
   async initiateApp() {
