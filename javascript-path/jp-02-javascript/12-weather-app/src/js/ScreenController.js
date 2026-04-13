@@ -5,11 +5,17 @@ export class ScreenController {
     this.controller = logic;
     this.renderer = new DOMRenderer();
 
+    this.btnGPS = document.querySelector("#check-location");
+
     this.bindEvents();
-    // this.initiateApp();
+    this.initiateApp();
   }
 
-  bindEvents() {}
+  bindEvents() {
+    this.btnGPS.addEventListener("click", () => {
+      this.handleLocationRequest();
+    });
+  }
 
   async initiateApp() {
     try {
@@ -49,6 +55,18 @@ export class ScreenController {
       // DOMRenderer -> renderAll();
 
       console.log("data fetched correctly", this.controller.currentCity);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async handleLocationRequest() {
+    try {
+      const userLocation = await this.controller.getUserCurrentPosition();
+
+      if (userLocation) {
+        this.updateScreenData(userLocation);
+      }
     } catch (error) {
       console.log(error);
     }
