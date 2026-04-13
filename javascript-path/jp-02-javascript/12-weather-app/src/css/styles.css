@@ -534,6 +534,58 @@ stroke: var(--color-fg);
     margin-left: 5px;
 }
 
+.daily-forecast {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--space-md);
+}
+
+.daily-forecast .title {
+    display: flex;
+    gap: var(--space-xs);
+    align-items: center;
+}
+
+.daily-forecast .title span {
+    color: var(--color-gray-150);
+    font-weight: var(--weight-regular);
+}
+
+.daily-forecast .title svg {
+    fill: var(--color-fg);
+}
+
+.daily-forecast .week-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--space-md);
+    gap: var(--space-md);
+}
+
+.daily-forecast .week-container .day {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-2xs) var(--space-md);
+}
+
+.daily-forecast-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.daily-forecast .week-container .temp-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    font-size: var(--font-sm);
+}
+
+.daily-forecast .week-container .temp-container span {
+    color: var(--color-gray-600);
+}
 
 /* UV INDEX BAR STYLING */
 
