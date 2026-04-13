@@ -1,9 +1,15 @@
+import { DOMRenderer } from "./DOMRenderer.js";
+
 export class ScreenController {
   constructor(logic) {
     this.controller = logic;
+    this.renderer = new DOMRenderer();
 
-    this.initiateApp();
+    this.bindEvents();
+    // this.initiateApp();
   }
+
+  bindEvents() {}
 
   async initiateApp() {
     try {

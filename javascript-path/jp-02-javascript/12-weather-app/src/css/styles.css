@@ -259,10 +259,65 @@ h6 {
 --- BODY ---
 */
 
+html {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 svg {
     width: 1.25rem;
     height: 1.25rem;
     cursor: pointer;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center ;
+}
+
+.header .left,
+.header .right {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.current-conditions-general {
+    display: flex;
+    justify-content: space-between;
+}
+
+.current-conditions-general .left {
+    display: flex;
+}
+
+.current-conditions-general .left div {
+    display: flex;
+    flex-direction: column;
+}
+
+.current-conditions-general .right {
+    display: flex;
+    flex-direction: column;
+}
+
+.current-conditions-general .right .top {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.current-conditions-general .right .top .sunrise,
+.current-conditions-general .right .top .sunset {
+    display: flex;
+    gap: var(--space-md);
 }
 
 @keyframes fadeSlideUp {
