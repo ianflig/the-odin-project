@@ -8,6 +8,9 @@ export class DOMRenderer {
     );
     this.hourlyForecastCardsContainer =
       document.querySelector("#cards-container");
+    this.currentConditionsMoreInfoContainer = document.querySelector(
+      ".current-conditions-more-info",
+    );
   }
 
   bindEvents(actions) {
@@ -20,6 +23,15 @@ export class DOMRenderer {
     });
   }
 
+  // displayCurrentConditionsMoreInfo(
+  //   humidity,
+  //   windSpeed,
+  //   visibility,
+  //   cloudCover,
+  // ) {
+  //   const container = this.currentConditionsMoreInfoContainer;
+  // }
+
   displayCurrentConditions(
     temperature,
     icon,
@@ -28,10 +40,10 @@ export class DOMRenderer {
     sunrise,
     sunset,
     UVIndex,
+    UVColor,
     resolvedAddress,
   ) {
     const container = this.currentConditionsGeneralContainer;
-    const UVColor = this.getUVColor(UVIndex);
     const htmlString = `
       <div class="left-side blur-container">
         <img src="./images/${icon}.svg" alt="weather-icon" class="weather-icon"/>
@@ -94,11 +106,5 @@ export class DOMRenderer {
     }
 
     container.innerHTML = card;
-  }
-
-  getUVColor(uvIndex) {
-    if (uvIndex <= 2) return "linear-gradient(90deg, #43e97b 0%, #38f9d7 100%)";
-    if (uvIndex <= 7) return "linear-gradient(90deg, #f6d365 0%, #fda085 100%)";
-    return "linear-gradient(90deg, #ff0844 0%, #ffb199 100%)";
   }
 }

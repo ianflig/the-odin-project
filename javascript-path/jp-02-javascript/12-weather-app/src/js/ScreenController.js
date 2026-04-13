@@ -85,6 +85,7 @@ export class ScreenController {
     const sunrise = data.sunrise.split("").splice(0, 5).join("");
     const sunset = data.sunset.split("").splice(0, 5).join("");
     const UVIndex = data.uvindex;
+    const UVColor = this.getUVColor(data.uvindex);
     const resolvedAddress = this.controller.currentCity.resolvedAddress;
 
     this.renderer.displayCurrentConditions(
@@ -96,6 +97,7 @@ export class ScreenController {
       sunrise,
       sunset,
       UVIndex,
+      UVColor,
       resolvedAddress,
     );
   }
@@ -121,5 +123,11 @@ export class ScreenController {
 
   getTemperatureInCelsius(value) {
     return (((value - 32) * 5) / 9).toFixed();
+  }
+
+  getUVColor(uvIndex) {
+    if (uvIndex <= 2) return "linear-gradient(90deg, #43e97b 0%, #38f9d7 100%)";
+    if (uvIndex <= 7) return "linear-gradient(90deg, #f6d365 0%, #fda085 100%)";
+    return "linear-gradient(90deg, #ff0844 0%, #ffb199 100%)";
   }
 }
