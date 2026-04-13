@@ -7,6 +7,8 @@ export class Controller {
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=LAL2EGUP76W2VR54RY6ZHKY2J`,
     );
     const result = await response.json();
+    const cityName = await this.getCityName(result.latitude, result.longitude);
+    result.resolvedAddress = cityName;
     this.currentCity = result;
   }
 
@@ -28,6 +30,27 @@ export class Controller {
         },
       );
     });
+  }
+
+  async getCityName(latitude, longitude) {
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&accept-language=en`,
+      );
+      const data = await response.json();
+
+      const city =
+        data.address.city ||
+        data.address.town ||
+        data.address.village ||
+        data.address.state;
+      const country = data.address.country;
+
+      return `${city}, ${country}`;
+    } catch (error) {
+      console.log(error);
+      return "Local";
+    }
   }
 
   getDailyConditions({ day = 0 } = {}) {
