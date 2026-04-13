@@ -4,7 +4,7 @@ export class Controller {
 
   async getDataFromAPI(location) {
     const response = await fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=LAL2EGUP76W2VR54RY6ZHKY2J`,
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&key=LAL2EGUP76W2VR54RY6ZHKY2J`,
     );
     const result = await response.json();
     const cityName = await this.getCityName(result.latitude, result.longitude);
