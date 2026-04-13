@@ -316,10 +316,11 @@ stroke: var(--color-fg);
     gap: var(--space-lg);
 }
 
-.current-conditions-general .left {
+.current-conditions-general .left-side {
     display: flex;
-    padding: var(--space-md);
+    padding: var(--space-3xl) var(--space-2xl);
     align-items: center;
+    gap: var(--space-lg);
 }
 
 .weather-icon {
@@ -328,29 +329,127 @@ stroke: var(--color-fg);
     flex-shrink: 0;
 }
 
-.current-conditions-general .left div {
+.current-conditions-general .left-side div {
     display: flex;
     flex-direction: column;
 }
 
-.current-conditions-general .right {
+.current-conditions-general .left-side div h4 {
+    font-size: 6rem;
+    line-height: 1;
+}
+
+.current-conditions-general .left-side div h4 span {
+    font-size: 2rem;
+    color: var(--color-gray-100);
+    margin-left: 10px;
+}
+
+.current-conditions-general .left-side span:nth-child(2) {
+    color: var(--color-gray-150);
+    font-size: var(--space-lg);
+}
+
+.current-conditions-general .left-side span:nth-child(3) {
+    color: var(--color-gray-200);
+}
+
+.current-conditions-general .right-side {
     display: flex;
     flex-direction: column;
     padding: var(--space-md);
     align-items: center;
+    justify-content: space-around;
 }
 
-.current-conditions-general .right .top {
+.current-conditions-general .right-side .top {
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
+    width: 100%;
 }
 
-.current-conditions-general .right .top .sunrise,
-.current-conditions-general .right .top .sunset {
+.current-conditions-general .right-side .top .sunrise,
+.current-conditions-general .right-side .top .sunset {
     display: flex;
     gap: var(--space-md);
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-xs);
 }
+
+.current-conditions-general .right-side .top .sunrise .left,
+.current-conditions-general .right-side .top .sunset .left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.current-conditions-general .right-side .top .sunrise .left span,
+.current-conditions-general .right-side .top .sunset .left span {
+    color: var(--color-gray-100);
+}
+
+.current-conditions-general .right-side .top .sunrise .right,
+.current-conditions-general .right-side .top .sunset .right {
+    color: var(--color-gray-100);
+    font-weight: var(--weight-bold);
+}
+
+.current-conditions-general .right-side .top .sunrise .left svg {
+    stroke: lab(80.1641% 16.6016 99.2089);
+    fill: lab(80.1641% 16.6016 99.2089);
+}
+
+.current-conditions-general .right-side .top .sunset .left svg {
+    stroke: lab(70.0429% 42.5156 75.8207);
+    fill: lab(70.0429% 42.5156 75.8207);
+}
+
+.current-conditions-general .right-side .bottom {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    color: var(--color-gray-200);
+    font-size: var(--font-sm);
+}
+
+
+
+/* UV INDEX BAR STYLING */
+
+progress.uv-bar {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 12px;
+  border: none; 
+}
+
+progress.uv-bar::-webkit-progress-bar {
+  background-color: #e2e8f0;
+  border-radius: 10px;
+}
+progress.uv-bar::-moz-progress-bar {
+  background-color: #e2e8f0;
+  border-radius: 10px;
+}
+
+progress.uv-bar::-webkit-progress-value {
+  background: linear-gradient(90deg, #f6d365 0%, #fda085 100%);
+  border-radius: 10px;
+}
+
+progress.uv-bar::-moz-progress-bar {
+  background: linear-gradient(90deg, #f6d365 0%, #fda085 100%);
+  border-radius: 10px;
+}
+
+/*  */
 
 @keyframes fadeSlideUp {
   from {

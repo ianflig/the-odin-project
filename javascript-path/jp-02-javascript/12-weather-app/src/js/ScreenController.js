@@ -13,7 +13,7 @@ export class ScreenController {
     };
 
     this.renderer.bindEvents(actions);
-    this.initiateApp();
+    // this.initiateApp();
   }
 
   async initiateApp() {
