@@ -3,17 +3,17 @@ export class ScreenController {
     this.controller = logic;
     this.renderer = DOMRenderer;
 
-    const actions = {
-      toSearch: (coords, searchInput) => {
-        this.updateScreenData(coords, searchInput);
-      },
-      toUseGPS: () => {
-        this.handleLocationRequest();
-      },
-    };
+    // const actions = {
+    //   toSearch: (coords, searchInput) => {
+    //     this.updateScreenData(coords, searchInput);
+    //   },
+    //   toUseGPS: () => {
+    //     this.handleLocationRequest();
+    //   },
+    // };
 
-    this.renderer.bindEvents(actions);
-    this.initiateApp();
+    // this.renderer.bindEvents(actions);
+    // this.initiateApp();
   }
 
   async initiateApp() {
@@ -54,6 +54,7 @@ export class ScreenController {
       }
 
       // DOMRenderer;
+      // this.updateCurrentConditions();
 
       console.log("data fetched correctly", this.controller.currentCity);
     } catch (error) {
@@ -73,7 +74,13 @@ export class ScreenController {
     }
   }
 
-  updateCurrentConditions() {}
+  updateCurrentConditions() {
+    const temperatureInCelsius = (
+      ((this.controller.currentCity.currentConditions.temp - 32) * 5) /
+      9
+    ).toFixed();
+    this.renderer.displayCurrentConditions(temperatureInCelsius);
+  }
 
   updateHourlyClimate() {}
 

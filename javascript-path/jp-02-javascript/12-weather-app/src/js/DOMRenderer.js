@@ -1,7 +1,10 @@
 export class DOMRenderer {
   constructor() {
-    this.searchInput = document.querySelector("#search-input");
-    this.btnGPS = document.querySelector("#check-location");
+    // this.searchInput = document.querySelector("#search-input");
+    // this.btnGPS = document.querySelector("#check-location");
+    // this.currentConditionsGeneralContainer = document.querySelector(
+    //   ".current-conditions-general",
+    // );
   }
 
   bindEvents(actions) {
@@ -12,5 +15,12 @@ export class DOMRenderer {
         actions.toSearch(null, inputValue);
       }
     });
+  }
+
+  displayCurrentConditions(temperature) {
+    const container = this.currentConditionsGeneralContainer;
+    const htmlString = ``;
+
+    container.innerHTML = htmlString;
   }
 }
