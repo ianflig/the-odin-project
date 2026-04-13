@@ -119,6 +119,46 @@
         />
         >
       </symbol>
+
+      <symbol
+        id="humidity-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 -960 960 960"
+      >
+        <path
+          d="M478-467Zm222-333q70 62 105 114.5t35 97.5q0 60-40 104t-100 44q-60 0-100-44t-40-104q0-42 37-98t103-114Zm0 111q-27 29-43.5 56.5T640-588q0 27 17 47.5t43 20.5q26 0 43-20.5t17-47.5q0-17-16.5-44.5T700-689ZM480-80q-137 0-228.5-94T160-408q0-100 79.5-217.5T480-880q54 46 99 90t81 86q-7 9-25 34t-23 33q-27-32-59.5-66.5T480-774Q361-665 300.5-573T240-408q0 107 68 177.5T480-160q52 0 96-19t76-52q32-33 50-78.5t18-98.5q0-17-3.5-36T706-483q9-5 35.5-19t35.5-19q11 29 17 57.5t6 55.5q0 140-91.5 234T480-80Zm11-120q12-1 20.5-9.5T520-230q0-14-9-22.5t-23-7.5q-41 3-87-22.5T343-375q-2-11-10.5-18t-19.5-7q-14 0-23 10.5t-6 24.5q17 91 80 130t127 35Zm209-405Z"
+        />
+      </symbol>
+
+      <symbol
+        id="wind-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 -960 960 960"
+      >
+        <path
+          d="M460-160q-50 0-85-35t-35-85h80q0 17 11.5 28.5T460-240q17 0 28.5-11.5T500-280q0-17-11.5-28.5T460-320H80v-80h380q50 0 85 35t35 85q0 50-35 85t-85 35ZM80-560v-80h540q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43h-80q0-59 40.5-99.5T620-840q59 0 99.5 40.5T760-700q0 59-40.5 99.5T620-560H80Zm660 320v-80q26 0 43-17t17-43q0-26-17-43t-43-17H80v-80h660q59 0 99.5 40.5T880-380q0 59-40.5 99.5T740-240Z"
+        />
+      </symbol>
+
+      <symbol
+        id="visibility-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 -960 960 960"
+      >
+        <path
+          d="M607.5-372.5Q660-425 660-500t-52.5-127.5Q555-680 480-680t-127.5 52.5Q300-575 300-500t52.5 127.5Q405-320 480-320t127.5-52.5Zm-204-51Q372-455 372-500t31.5-76.5Q435-608 480-608t76.5 31.5Q588-545 588-500t-31.5 76.5Q525-392 480-392t-76.5-31.5ZM214-281.5Q94-363 40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200q-146 0-266-81.5ZM480-500Zm207.5 160.5Q782-399 832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280q113 0 207.5-59.5Z"
+        />
+      </symbol>
+
+      <symbol
+        id="cloud-cover-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 -960 960 960"
+      >
+        <path
+          d="M260-160q-91 0-155.5-63T40-377q0-78 47-139t123-78q25-92 100-149t170-57q117 0 198.5 81.5T760-520q69 8 114.5 59.5T920-340q0 75-52.5 127.5T740-160H260Zm0-80h480q42 0 71-29t29-71q0-42-29-71t-71-29h-60v-80q0-83-58.5-141.5T480-720q-83 0-141.5 58.5T280-520h-20q-58 0-99 41t-41 99q0 58 41 99t99 41Zm220-240Z"
+        />
+      </symbol>
     </svg>
     <div class="header">
       <div class="top">
@@ -206,6 +246,36 @@
           />
           <h3>24°</h3>
         </div>
+      </div>
+    </div>
+    <div class="current-conditions-more-info">
+      <div class="humidity blur-container">
+        <div class="top">
+          <h4>Humidity</h4>
+          <svg><use href="#humidity-icon"></use></svg>
+        </div>
+        <h1>45<span>%</span></h1>
+      </div>
+      <div class="wind-speed blur-container">
+        <div class="top">
+          <h4>Wind Speed</h4>
+          <svg><use href="#wind-icon"></use></svg>
+        </div>
+        <h1>12<span>km/h</span></h1>
+      </div>
+      <div class="visibility blur-container">
+        <div class="top">
+          <h4>Visibility</h4>
+          <svg><use href="#visibility-icon"></use></svg>
+        </div>
+        <h1>10<span>km</span></h1>
+      </div>
+      <div class="cloud-cover blur-container">
+        <div class="top">
+          <h4>Cloud Cover</h4>
+          <svg><use href="#cloud-cover-icon"></use></svg>
+        </div>
+        <h1>2<span>%</span></h1>
       </div>
     </div>
   </body>
