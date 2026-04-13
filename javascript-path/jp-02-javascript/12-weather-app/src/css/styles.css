@@ -491,6 +491,49 @@ stroke: var(--color-fg);
     height: 35px;
 }
 
+.current-conditions-more-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.current-conditions-more-info .card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    flex-shrink: 0;
+    flex: 1;
+}
+
+.current-conditions-more-info .card .top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+} 
+
+.current-conditions-more-info .card h4 {
+    color: var(--color-gray-150);
+    font-weight: var(--weight-regular);
+}
+
+.current-conditions-more-info .card svg {
+    fill: var(--color-fg);
+    width: 18px;
+    height: 18px;
+}
+
+.current-conditions-more-info .card h1 {
+    font-weight: var(--weight-medium);
+}
+
+.current-conditions-more-info .card h1 span {
+    color: var(--color-gray-250);
+    font-size: var(--font-md);
+    margin-left: 5px;
+}
+
 /* UV INDEX BAR STYLING */
 
 progress.uv-bar {
