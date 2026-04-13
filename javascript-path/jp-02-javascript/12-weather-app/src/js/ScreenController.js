@@ -77,20 +77,24 @@ export class ScreenController {
 
   updateCurrentConditions() {
     const data = this.controller.currentCity.currentConditions;
-    const temperature = this.getTemperatureInCelsius(data.temp);
 
+    const temperature = data.temp;
     const icon = data.icon;
     const conditions = data.conditions;
-    const feelsLike = this.getTemperatureInCelsius(data.feelslike);
+    const feelsLike = data.feelslike;
     const sunrise = data.sunrise.split("").splice(0, 5).join("");
     const sunset = data.sunset.split("").splice(0, 5).join("");
     const UVIndex = data.uvindex;
     const UVColor = this.getUVColor(data.uvindex);
     const resolvedAddress = this.controller.currentCity.resolvedAddress;
 
+    const humidity = data.humidity;
+    const windSpeed = data.windspeed;
+    const visibility = data.visibility;
+    const cloudCover = data.cloudcover;
+
     this.renderer.displayCurrentConditions(
       temperature,
-
       icon,
       conditions,
       feelsLike,
@@ -99,6 +103,13 @@ export class ScreenController {
       UVIndex,
       UVColor,
       resolvedAddress,
+    );
+
+    this.renderer.displayCurrentConditionsMoreInfo(
+      humidity,
+      windSpeed,
+      visibility,
+      cloudCover,
     );
   }
 
@@ -113,17 +124,13 @@ export class ScreenController {
         hour:
           index === 0 ? "Now" : ele.datetime.split("").splice(0, 5).join(""),
         icon: ele.icon,
-        temp: this.getTemperatureInCelsius(ele.temp),
+        temp: ele.temp,
       };
     });
     this.renderer.displayHourlyForecast(arrayCleaned);
   }
 
   updateDailyConditions() {}
-
-  getTemperatureInCelsius(value) {
-    return (((value - 32) * 5) / 9).toFixed();
-  }
 
   getUVColor(uvIndex) {
     if (uvIndex <= 2) return "linear-gradient(90deg, #43e97b 0%, #38f9d7 100%)";
