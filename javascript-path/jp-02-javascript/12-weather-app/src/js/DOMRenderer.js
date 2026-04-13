@@ -23,14 +23,45 @@ export class DOMRenderer {
     });
   }
 
-  // displayCurrentConditionsMoreInfo(
-  //   humidity,
-  //   windSpeed,
-  //   visibility,
-  //   cloudCover,
-  // ) {
-  //   const container = this.currentConditionsMoreInfoContainer;
-  // }
+  displayCurrentConditionsMoreInfo(
+    humidity,
+    windSpeed,
+    visibility,
+    cloudCover,
+  ) {
+    const container = this.currentConditionsMoreInfoContainer;
+    const htmlString = `
+      <div class="card blur-container">
+        <div class="top">
+          <h4>Humidity</h4>
+          <svg><use href="#humidity-icon"></use></svg>
+        </div>
+        <h1>${humidity}<span>%</span></h1>
+      </div>
+      <div class="card blur-container">
+        <div class="top">
+          <h4>Wind Speed</h4>
+          <svg><use href="#wind-icon"></use></svg>
+        </div>
+        <h1>${windSpeed}<span>km/h</span></h1>
+      </div>
+      <div class="card blur-container">
+        <div class="top">
+          <h4>Visibility</h4>
+          <svg><use href="#visibility-icon"></use></svg>
+        </div>
+        <h1>${visibility}<span>km</span></h1>
+      </div>
+      <div class="card blur-container">
+        <div class="top">
+          <h4>Cloud Cover</h4>
+          <svg><use href="#cloud-cover-icon"></use></svg>
+        </div>
+        <h1>${cloudCover}<span>%</span></h1>
+      </div>
+    `;
+    container.innerHTML = htmlString;
+  }
 
   displayCurrentConditions(
     temperature,
