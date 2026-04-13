@@ -1,20 +1,19 @@
-import { DOMRenderer } from "./DOMRenderer.js";
-
 export class ScreenController {
-  constructor(logic) {
+  constructor(logic, DOMRenderer) {
     this.controller = logic;
-    this.renderer = new DOMRenderer();
+    this.renderer = DOMRenderer;
 
-    this.btnGPS = document.querySelector("#check-location");
+    const actions = {
+      toSearch: (coords, searchInput) => {
+        this.updateScreenData(coords, searchInput);
+      },
+      toUseGPS: () => {
+        this.handleLocationRequest();
+      },
+    };
 
-    this.bindEvents();
+    this.renderer.bindEvents(actions);
     this.initiateApp();
-  }
-
-  bindEvents() {
-    this.btnGPS.addEventListener("click", () => {
-      this.handleLocationRequest();
-    });
   }
 
   async initiateApp() {
@@ -42,17 +41,19 @@ export class ScreenController {
     }
   }
 
-  async updateScreenData(coords = null) {
+  async updateScreenData(coords = null, textSearch) {
     try {
       if (coords) {
         await this.controller.getDataFromAPI(
           `${coords.latitude}, ${coords.longitude}`,
         );
+      } else if (textSearch) {
+        await this.controller.getDataFromAPI(textSearch);
       } else {
         await this.controller.getDataFromAPI();
       }
 
-      // DOMRenderer -> renderAll();
+      // DOMRenderer;
 
       console.log("data fetched correctly", this.controller.currentCity);
     } catch (error) {
@@ -71,4 +72,10 @@ export class ScreenController {
       console.log(error);
     }
   }
+
+  updateCurrentConditions() {}
+
+  updateHourlyClimate() {}
+
+  updateDailyConditions() {}
 }
