@@ -314,11 +314,13 @@ body {
     font-size: var(--font-md);
     flex-shrink: 0;
     cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #check-location svg {
     height: 18px;
     width: 18px;
+    fill: var(--color-fg);
 }
 
 .header .right svg {
@@ -569,10 +571,26 @@ body {
     grid-template-columns: 1fr 45px 1fr;
     align-items: center;
     padding: var(--space-2xs) var(--space-md);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.daily-forecast .week-container .day:hover,
+#check-location:hover {
+    background-color: rgba(255, 255, 255, 0.363);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px -3px rgba(255, 255, 255, 0.363);
+}
+
+.daily-forecast .week-container .day:active,
+#check-location:active {
+    transform: translateY(0);
 }
 
 .day.active {
     background-color: rgba(255, 255, 255, 0.363);
+    border: 1px solid rgba(255, 255, 255, 0.363);
+    box-shadow: 0 0 4px 1px rgba(255, 255, 255, 0.363);
 }
 
 .daily-forecast .week-container .day h4 {
@@ -594,6 +612,26 @@ body {
 
 .daily-forecast .week-container .temp-container span {
     color: var(--color-gray-600);
+}
+
+.footer p {
+    text-align: center;
+    color: var(--color-gray-150);
+}
+
+.footer a {
+    display: inline-block;
+
+    color: var(--color-primary);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer a:hover {
+    transform: translateY(-2px);
+}
+
+.footer a:active {
+    transform: translateY(0);
 }
 
 /* UV INDEX BAR STYLING */
