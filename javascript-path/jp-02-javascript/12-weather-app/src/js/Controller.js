@@ -71,20 +71,4 @@ export class Controller {
     const result = dayToCheck.hours.splice(hourToCheck, 24);
     return result;
   }
-
-  getCurrentTime() {
-    const timeZone = this.currentCity.timezone;
-    const currentTime = new Date()
-      .toLocaleTimeString("es-AR", {
-        timeZone: timeZone,
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-      })
-      .split("")
-      .splice(0, 5)
-      .join("");
-
-    return currentTime;
-  }
 }

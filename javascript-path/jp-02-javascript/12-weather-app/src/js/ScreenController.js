@@ -54,8 +54,9 @@ export class ScreenController {
       }
 
       // DOMRenderer;
-      this.updateCurrentConditions();
-      this.updateHourlyForecast();
+      this.updateHeaderDisplay();
+      this.updateCurrentConditionsDisplay();
+      this.updateHourlyForecastDisplay();
 
       console.log("data fetched correctly", this.controller.currentCity);
     } catch (error) {
@@ -75,7 +76,14 @@ export class ScreenController {
     }
   }
 
-  updateCurrentConditions() {
+  updateHeaderDisplay() {
+    const resolvedAddress = this.controller.currentCity.resolvedAddress;
+    const dateFormatted = this.getCurrentDateFormatted();
+
+    this.renderer.displayHeader(resolvedAddress, dateFormatted);
+  }
+
+  updateCurrentConditionsDisplay() {
     const data = this.controller.currentCity.currentConditions;
 
     const temperature = data.temp;
@@ -86,7 +94,6 @@ export class ScreenController {
     const sunset = data.sunset.split("").splice(0, 5).join("");
     const UVIndex = data.uvindex;
     const UVColor = this.getUVColor(data.uvindex);
-    const resolvedAddress = this.controller.currentCity.resolvedAddress;
 
     const humidity = data.humidity;
     const windSpeed = data.windspeed;
@@ -102,7 +109,6 @@ export class ScreenController {
       sunset,
       UVIndex,
       UVColor,
-      resolvedAddress,
     );
 
     this.renderer.displayCurrentConditionsMoreInfo(
@@ -113,8 +119,8 @@ export class ScreenController {
     );
   }
 
-  updateHourlyForecast() {
-    const currenTime = this.controller.getCurrentTime();
+  updateHourlyForecastDisplay() {
+    const currenTime = this.getCurrentTime();
     const data = this.controller.getHourlyForecast({
       hour: currenTime,
     });
@@ -136,5 +142,32 @@ export class ScreenController {
     if (uvIndex <= 2) return "linear-gradient(90deg, #43e97b 0%, #38f9d7 100%)";
     if (uvIndex <= 7) return "linear-gradient(90deg, #f6d365 0%, #fda085 100%)";
     return "linear-gradient(90deg, #ff0844 0%, #ffb199 100%)";
+  }
+
+  getCurrentDateFormatted() {
+    const timeZone = this.controller.currentCity.timezone;
+    const date = new Date().toLocaleDateString("en-US", {
+      timeZone: timeZone,
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+    });
+    return date;
+  }
+
+  getCurrentTime() {
+    const timeZone = this.controller.currentCity.timezone;
+    const currentTime = new Date()
+      .toLocaleTimeString("es-AR", {
+        timeZone: timeZone,
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      })
+      .split("")
+      .splice(0, 5)
+      .join("");
+
+    return currentTime;
   }
 }

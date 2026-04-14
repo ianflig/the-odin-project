@@ -1,6 +1,7 @@
 export class DOMRenderer {
   constructor() {
     this.currentLocationH3 = document.querySelector("#current-location");
+    this.dateFormattedContainer = document.querySelector("#date-formatted");
     this.searchInput = document.querySelector("#search-input");
     this.btnGPS = document.querySelector("#check-location");
     this.currentConditionsGeneralContainer = document.querySelector(
@@ -21,6 +22,11 @@ export class DOMRenderer {
         actions.toSearch(null, inputValue);
       }
     });
+  }
+
+  displayHeader(resolvedAddress, dateFormatted) {
+    this.currentLocationH3.innerHTML = resolvedAddress;
+    this.dateFormattedContainer.innerHTML = dateFormatted;
   }
 
   displayCurrentConditionsMoreInfo(
@@ -72,7 +78,6 @@ export class DOMRenderer {
     sunset,
     UVIndex,
     UVColor,
-    resolvedAddress,
   ) {
     const container = this.currentConditionsGeneralContainer;
     const htmlString = `
@@ -114,7 +119,6 @@ export class DOMRenderer {
       </div>
     `;
 
-    this.currentLocationH3.innerHTML = resolvedAddress;
     container.innerHTML = htmlString;
   }
 
