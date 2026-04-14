@@ -470,6 +470,7 @@ body {
 
 .hourly-forecast-container .card {
     display: flex;
+    min-width: 4.2rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
