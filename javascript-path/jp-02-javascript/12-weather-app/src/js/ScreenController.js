@@ -13,6 +13,9 @@ export class ScreenController {
       toUpdateHourlyForecast: (day) => {
         this.updateHourlyForecastDisplay(day);
       },
+      toToggleDaySwapState: (day) => {
+        this.toggleDaySwapState(day);
+      },
     };
 
     this.renderer.bindEvents(actions);
@@ -163,6 +166,10 @@ export class ScreenController {
     const weekData = this.controller.getDailyForecast();
 
     this.renderer.displayDailyForecast(weekDaysFormatted, weekData);
+  }
+
+  toggleDaySwapState(day) {
+    this.renderer.displayDaySwapState(day);
   }
 
   getUVColor(uvIndex) {

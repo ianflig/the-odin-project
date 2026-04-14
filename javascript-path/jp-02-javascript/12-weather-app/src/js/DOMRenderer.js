@@ -27,8 +27,21 @@ export class DOMRenderer {
       const element = e.target.closest(".day");
       if (element) {
         actions.toUpdateHourlyForecast(element.dataset.day);
+        actions.toToggleDaySwapState(element.dataset.day);
       }
     });
+  }
+
+  displayDaySwapState(day) {
+    const previousDay = this.weekContainer.querySelector(".active");
+    if (previousDay) {
+      previousDay.classList.remove("active");
+    }
+
+    const newDay = this.weekContainer.querySelector(`[data-day="${day}"]`);
+    if (newDay) {
+      newDay.classList.add("active");
+    }
   }
 
   displayHeader(resolvedAddress, dateFormatted) {
