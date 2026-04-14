@@ -212,7 +212,7 @@ body {
     width: 100%;
     max-width: 73rem;
     margin: 0 auto;
-    padding: var(--space-lg);
+    padding: var(--space-md);
     gap: var(--space-xl);
     /* test */
     background: linear-gradient(-135deg, lab(65.8981% -33.0161 -35.083) 0%, lab(48.31% 10.13 -56.62) 100%);
@@ -233,7 +233,6 @@ body {
 .header .top {
     display: flex;
     gap: var(--space-xs);
-    padding: 0 var(--space-md);
     justify-content: start;
     align-items: center;
 }
@@ -249,13 +248,12 @@ body {
 .header .bottom {
     display: flex;
     align-items: center;
-    padding: var(--space-xs) var(--space-md);
+    padding: var(--space-xs) 0;
 }
 
 .header .left,
 .header .right {
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     gap: var(--space-xs);
 }
@@ -270,6 +268,7 @@ body {
 
 .header .search {
     display: flex;
+    min-width: 130px;
     align-items: center;
     justify-content: left;
     gap: var(--space-xs);
@@ -277,7 +276,7 @@ body {
 }
 
 .header .search svg {
-stroke: var(--color-fg);
+    stroke: var(--color-fg);
 }
 
 .header .search label {
@@ -356,7 +355,7 @@ stroke: var(--color-fg);
 }
 
 .current-conditions-general .left-side div h4 {
-    font-size: 6rem;
+    font-size: clamp(4rem, 20vw, 6rem);
     line-height: 1;
 }
 
@@ -381,6 +380,7 @@ stroke: var(--color-fg);
     padding: var(--space-md);
     align-items: center;
     justify-content: space-around;
+    gap: var(--space-md);
 }
 
 .current-conditions-general .right-side .top {
@@ -444,7 +444,7 @@ stroke: var(--color-fg);
     flex-direction: column;
     padding: var(--space-md);
     gap: var(--space-md);
-    overflow-x: auto;
+    overflow-x: scroll;
 }
 
 .hourly-forecast-container .top {
@@ -470,6 +470,7 @@ stroke: var(--color-fg);
 
 .hourly-forecast-container .card {
     display: flex;
+    min-width: 4.2rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -637,10 +638,33 @@ progress.uv-bar::-moz-progress-bar {
   animation: fadeSlideUp 0.2s ease-out forwards; 
 }
 
-@media (max-width: 900px) {
-
+@media (max-width: 770px) {
+    .current-conditions-general {
+        grid-template-columns: 1fr;
+    }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 568px) {
+    .header .bottom {
+        flex-direction: column;
+        align-items: start;
+        gap: var(--space-sm);
+    }
 
+    .header .bottom .left {
+        width: 100%;
+    }
+
+    .header .right {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 474px) {
+    .current-conditions-general .left-side {
+        flex-direction: column;
+        padding: 0;
+        padding-bottom: var(--space-lg);
+        gap: 0px;
+    }
 }
