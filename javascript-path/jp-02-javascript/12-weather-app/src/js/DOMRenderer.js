@@ -32,6 +32,90 @@ export class DOMRenderer {
     });
   }
 
+  displaySkeleton() {
+    const skeletonLocation = `<span class="skeleton-ghost">Random place</span>`;
+    const skeletonDate = `<span class="skeleton-ghost">Tuesday, April 14</span>`;
+
+    const skeletonCurrentConditions = `
+      <div class="left-side blur-container">
+        <div class="skeleton skeleton-icon weather-icon"></div>
+        <div>
+          <h4><span class="skeleton-ghost">88<span class="skeleton-ghost">°C</span></span></h4>
+          <span class="skeleton-ghost">Partially cloudy</span>
+          <span class="skeleton-ghost">Feels like 88°C</span>
+        </div>
+      </div>
+      <div class="right-side blur-container">
+        <div class="top">
+          <div class="sunrise blur-container">
+            <div class="left">
+              <svg><use href="#sunrise-icon"></use></svg>
+              <span>Sunrise</span>
+            </div>
+            <div class="skeleton-ghost">88:88</div>
+          </div>
+          <div class="sunset blur-container">
+            <div class="left">
+              <svg><use href="#sunset-icon"></use></svg>
+              <span>Sunset</span>
+            </div>
+            <div class="skeleton-ghost">88:88</div>
+          </div>
+        </div>
+        <div class="bottom">
+          <label class="skeleton-ghost">UV Index: 88</label>
+          <div class="skeleton" style="width: 100%; height: 12px; border-radius: 10px; margin-top: 5px;"></div>
+        </div>
+      </div>
+    `;
+
+    const skeletonHourlyCard = `
+      <div class="card blur-container">    
+        <span class="skeleton-ghost">88:88</span>
+        <div class="skeleton skeleton-icon hourly-forecast-icon"></div>
+        <h3><span class="skeleton-ghost">88.8°</span></h3>
+      </div>
+    `;
+
+    const skeletonMoreInfo = `
+      ${["Humidity", "Wind Speed", "Visibility", "Cloud Cover"]
+        .map(
+          (title) => `
+        <div class="card blur-container">
+          <div class="top">
+            <h4>${title}</h4>
+            <div class="skeleton skeleton-icon" style="width: 18px; height: 18px;"></div>
+          </div>
+          <h1><span class="skeleton-ghost">88.8<span class="skeleton-ghost">data</span></span></h1>
+        </div>
+      `,
+        )
+        .join("")}
+    `;
+
+    const skeletonDailyRow = `
+      <div class="day blur-container">
+        <h4><span class="skeleton-ghost">Wednesday</span></h4>
+        <div class="skeleton skeleton-icon" style="width: 45px; height: 45px;"></div>
+        <div class="temp-container">
+          <h3><span class="skeleton-ghost">88.8°</span></h3>
+          <span class="skeleton-ghost">88.8°</span>
+        </div>
+      </div>
+    `;
+
+    document.querySelector("#current-location").innerHTML = skeletonLocation;
+    document.querySelector("#date-formatted").innerHTML = skeletonDate;
+    document.querySelector(".current-conditions-general").innerHTML =
+      skeletonCurrentConditions;
+    document.querySelector("#cards-container").innerHTML =
+      skeletonHourlyCard.repeat(13);
+    document.querySelector(".current-conditions-more-info").innerHTML =
+      skeletonMoreInfo;
+    document.querySelector(".week-container").innerHTML =
+      skeletonDailyRow.repeat(7);
+  }
+
   displayDaySwapState(day) {
     const previousDay = this.weekContainer.querySelector(".active");
     if (previousDay) {
@@ -143,7 +227,7 @@ export class DOMRenderer {
   }
 
   displayDailyForecast(weekDaysFormatted, weekData) {
-    console.log(weekDaysFormatted, weekData);
+    // console.log(weekDaysFormatted, weekData);
     const container = this.weekContainer;
     let days = "";
     for (let i = 0; i < 7; i++) {

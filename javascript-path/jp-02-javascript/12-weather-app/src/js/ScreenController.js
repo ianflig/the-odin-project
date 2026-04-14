@@ -49,6 +49,8 @@ export class ScreenController {
 
   async updateScreenData(coords = null, textSearch) {
     try {
+      this.renderer.displaySkeleton();
+
       if (coords) {
         await this.controller.getDataFromAPI(
           `${coords.latitude}, ${coords.longitude}`,
@@ -65,7 +67,7 @@ export class ScreenController {
       this.updateHourlyForecastDisplay();
       this.updateDailyForecast();
 
-      console.log("data fetched correctly", this.controller.currentCity);
+      // console.log("data fetched correctly", this.controller.currentCity);
     } catch (error) {
       console.log(error);
     }
@@ -146,8 +148,8 @@ export class ScreenController {
       });
     }
 
-    console.log(targetDay);
-    console.log(data);
+    // console.log(targetDay);
+    // console.log(data);
     const arrayCleaned = data.map((ele, index) => {
       return {
         hour:
