@@ -12,6 +12,7 @@ export class DOMRenderer {
     this.currentConditionsMoreInfoContainer = document.querySelector(
       ".current-conditions-more-info",
     );
+    this.weekContainer = document.querySelector(".week-container");
   }
 
   bindEvents(actions) {
@@ -120,6 +121,11 @@ export class DOMRenderer {
     `;
 
     container.innerHTML = htmlString;
+  }
+
+  displayDailyForecast(weekDaysFormatted, weekData) {
+    console.log(weekDaysFormatted, weekData);
+    for (let i = 0; i < 7; i++) {}
   }
 
   displayHourlyForecast(array) {

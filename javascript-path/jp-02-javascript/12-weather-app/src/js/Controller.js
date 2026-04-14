@@ -53,8 +53,9 @@ export class Controller {
     }
   }
 
-  getDailyConditions({ day = 0 } = {}) {
-    return this.currentCity.days[day];
+  getDailyForecast() {
+    const newArray = this.currentCity.days.splice(0, 7);
+    return newArray;
   }
 
   getCurrentConditions() {

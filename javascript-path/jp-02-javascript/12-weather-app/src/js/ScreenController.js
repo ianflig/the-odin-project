@@ -136,7 +136,12 @@ export class ScreenController {
     this.renderer.displayHourlyForecast(arrayCleaned);
   }
 
-  updateDailyConditions() {}
+  updateDailyForecast() {
+    const weekDaysFormatted = this.getWeekDaysFormatted();
+    const weekData = this.controller.getDailyForecast();
+
+    this.renderer.displayDailyForecast(weekDaysFormatted, weekData);
+  }
 
   getUVColor(uvIndex) {
     if (uvIndex <= 2) return "linear-gradient(90deg, #43e97b 0%, #38f9d7 100%)";
@@ -153,6 +158,23 @@ export class ScreenController {
       day: "numeric",
     });
     return date;
+  }
+
+  getWeekDaysFormatted() {
+    const timeZone = this.controller.currentCity.timezone;
+    const weekDaysArrFormatted = [];
+    for (let i = 0; i < 7; i++) {
+      const epoch = this.controller.currentCity.days[i].datetimeEpoch * 1000;
+
+      const day = new Date(epoch).toLocaleDateString("en-US", {
+        timeZone: timeZone,
+        weekday: "long",
+      });
+
+      weekDaysArrFormatted.push(day);
+    }
+
+    return weekDaysArrFormatted;
   }
 
   getCurrentTime() {
