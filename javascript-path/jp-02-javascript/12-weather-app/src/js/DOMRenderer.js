@@ -23,7 +23,12 @@ export class DOMRenderer {
         actions.toSearch(null, inputValue);
       }
     });
-    // this.weekContainer.addEventListener("click");
+    this.weekContainer.addEventListener("click", (e) => {
+      const element = e.target.closest(".day");
+      if (element) {
+        actions.toUpdateHourlyForecast(element.dataset.day);
+      }
+    });
   }
 
   displayHeader(resolvedAddress, dateFormatted) {

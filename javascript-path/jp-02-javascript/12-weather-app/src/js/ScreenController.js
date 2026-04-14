@@ -10,6 +10,9 @@ export class ScreenController {
       toUseGPS: () => {
         this.handleLocationRequest();
       },
+      toUpdateHourlyForecast: (day) => {
+        this.updateHourlyForecastDisplay(day);
+      },
     };
 
     this.renderer.bindEvents(actions);
@@ -122,20 +125,32 @@ export class ScreenController {
 
   updateHourlyForecastDisplay(day) {
     const currentTime = this.getCurrentTime();
+    const targetDay = Number(day);
 
+    let data;
     const formattedCurrentTime =
       typeof currentTime === "number"
         ? currentTime
         : Number(currentTime.split("").splice(0, 2).join(""));
 
-    const data = this.controller.getHourlyForecast({
-      hour: formattedCurrentTime,
-    });
+    if (targetDay === 0 || day === undefined) {
+      data = this.controller.getHourlyForecast({
+        hour: formattedCurrentTime,
+      });
+    } else {
+      data = this.controller.getHourlyForecast({
+        day: targetDay,
+      });
+    }
+
+    console.log(targetDay);
     console.log(data);
     const arrayCleaned = data.map((ele, index) => {
       return {
         hour:
-          index === 0 ? "Now" : ele.datetime.split("").splice(0, 5).join(""),
+          (index === 0 && targetDay === 0) || (index === 0 && day === undefined)
+            ? "Now"
+            : ele.datetime.split("").splice(0, 5).join(""),
         icon: ele.icon,
         temp: ele.temp,
       };
