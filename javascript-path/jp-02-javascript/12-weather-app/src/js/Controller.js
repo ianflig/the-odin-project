@@ -53,6 +53,10 @@ export class Controller {
     }
   }
 
+  getDailyConditions({ day = 0 } = {}) {
+    return this.currentCity.days[day];
+  }
+
   getDailyForecast() {
     const newArray = this.currentCity.days.splice(0, 7);
     return newArray;
@@ -65,11 +69,7 @@ export class Controller {
   getHourlyForecast({ hour = 0, day = 0 } = {}) {
     const newArray = structuredClone(this.currentCity);
     const dayToCheck = newArray.days[day];
-    const hourToCheck =
-      typeof hour === "number"
-        ? hour
-        : Number(hour.split("").splice(0, 2).join(""));
-    const result = dayToCheck.hours.splice(hourToCheck, 24);
+    const result = dayToCheck.hours.splice(hour, 24);
     return result;
   }
 }

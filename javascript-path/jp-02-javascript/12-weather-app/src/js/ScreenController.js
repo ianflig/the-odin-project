@@ -120,10 +120,16 @@ export class ScreenController {
     );
   }
 
-  updateHourlyForecastDisplay() {
-    const currenTime = this.getCurrentTime();
+  updateHourlyForecastDisplay(day) {
+    const currentTime = this.getCurrentTime();
+
+    const formattedCurrentTime =
+      typeof currentTime === "number"
+        ? currentTime
+        : Number(currentTime.split("").splice(0, 2).join(""));
+
     const data = this.controller.getHourlyForecast({
-      hour: currenTime,
+      hour: formattedCurrentTime,
     });
     console.log(data);
     const arrayCleaned = data.map((ele, index) => {

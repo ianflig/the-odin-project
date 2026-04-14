@@ -23,6 +23,7 @@ export class DOMRenderer {
         actions.toSearch(null, inputValue);
       }
     });
+    // this.weekContainer.addEventListener("click");
   }
 
   displayHeader(resolvedAddress, dateFormatted) {
@@ -129,7 +130,7 @@ export class DOMRenderer {
     let days = "";
     for (let i = 0; i < 7; i++) {
       days += `
-        <div class="day blur-container">
+        <div class="day blur-container" data-day="${i}">
           <h4>${weekDaysFormatted[i]}</h4>
           <img
             src="./images/${weekData[i].icon}.svg"
