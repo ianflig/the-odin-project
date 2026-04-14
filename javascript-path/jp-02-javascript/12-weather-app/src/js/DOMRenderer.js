@@ -125,7 +125,25 @@ export class DOMRenderer {
 
   displayDailyForecast(weekDaysFormatted, weekData) {
     console.log(weekDaysFormatted, weekData);
-    for (let i = 0; i < 7; i++) {}
+    const container = this.weekContainer;
+    let days = "";
+    for (let i = 0; i < 7; i++) {
+      days += `
+        <div class="day blur-container">
+          <h4>${weekDaysFormatted[i]}</h4>
+          <img
+            src="./images/${weekData[i].icon}.svg"
+            alt="daily-forecast-icon"
+            class="daily-forecast-icon"
+          />
+          <div class="temp-container">
+            <h3>${weekData[i].tempmax}°</h3>
+            <span>${weekData[i].tempmin}°</span>
+          </div>
+        </div>`;
+    }
+
+    container.innerHTML = days;
   }
 
   displayHourlyForecast(array) {

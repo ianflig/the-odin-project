@@ -57,6 +57,7 @@ export class ScreenController {
       this.updateHeaderDisplay();
       this.updateCurrentConditionsDisplay();
       this.updateHourlyForecastDisplay();
+      this.updateDailyForecast();
 
       console.log("data fetched correctly", this.controller.currentCity);
     } catch (error) {
