@@ -564,21 +564,25 @@ stroke: var(--color-fg);
 }
 
 .daily-forecast .week-container .day {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 45px 1fr;
     align-items: center;
     padding: var(--space-2xs) var(--space-md);
 }
 
+.daily-forecast .week-container .day h4 {
+    text-align: left;
+}
+
 .daily-forecast-icon {
-    width: 30px;
-    height: 30px;
+    width: 45px;
+    height: 45px;
 }
 
 .daily-forecast .week-container .temp-container {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-self: end;
     gap: var(--space-xs);
     font-size: var(--font-sm);
 }
