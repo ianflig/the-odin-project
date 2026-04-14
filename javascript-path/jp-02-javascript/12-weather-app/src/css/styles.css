@@ -444,7 +444,6 @@ body {
     flex-direction: column;
     padding: var(--space-md);
     gap: var(--space-md);
-    overflow-x: scroll;
 }
 
 .hourly-forecast-container .top {
@@ -465,12 +464,12 @@ body {
     display: flex;
     align-items: center;
     gap: var(--space-md);
-    padding-top: var(--space-xs);
+    padding: var(--space-xs) 0;
+    overflow-x: auto;
 }
 
 .hourly-forecast-container .card {
     display: flex;
-    min-width: 4.2rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
