@@ -87,7 +87,8 @@ export class ScreenController {
 
   updateHeaderDisplay() {
     const resolvedAddress = this.controller.currentCity.resolvedAddress;
-    const dateFormatted = this.getCurrentDateFormatted();
+    const timeZone = this.controller.currentCity.timezone;
+    const dateFormatted = this.renderer.getCurrentDateFormatted(timeZone);
 
     this.renderer.displayHeader(resolvedAddress, dateFormatted);
   }
@@ -95,48 +96,18 @@ export class ScreenController {
   updateCurrentConditionsDisplay() {
     const data = this.controller.currentCity.currentConditions;
 
-    const temperature = data.temp;
-    const icon = data.icon;
-    const conditions = data.conditions;
-    const feelsLike = data.feelslike;
-    const sunrise = data.sunrise.split("").splice(0, 5).join("");
-    const sunset = data.sunset.split("").splice(0, 5).join("");
-    const UVIndex = data.uvindex;
-    const UVColor = this.getUVColor(data.uvindex);
+    this.renderer.displayCurrentConditions(data);
 
-    const humidity = data.humidity;
-    const windSpeed = data.windspeed;
-    const visibility = data.visibility;
-    const cloudCover = data.cloudcover;
-
-    this.renderer.displayCurrentConditions(
-      temperature,
-      icon,
-      conditions,
-      feelsLike,
-      sunrise,
-      sunset,
-      UVIndex,
-      UVColor,
-    );
-
-    this.renderer.displayCurrentConditionsMoreInfo(
-      humidity,
-      windSpeed,
-      visibility,
-      cloudCover,
-    );
+    this.renderer.displayCurrentConditionsMoreInfo(data);
   }
 
   updateHourlyForecastDisplay(day) {
-    const currentTime = this.getCurrentTime();
-    const targetDay = Number(day);
-
     let data;
+    const timeZone = this.controller.currentCity.timezone;
+    const targetDay = Number(day);
+    const currentTime = this.renderer.getCurrentTime(timeZone);
     const formattedCurrentTime =
-      typeof currentTime === "number"
-        ? currentTime
-        : Number(currentTime.split("").splice(0, 2).join(""));
+      this.renderer.getCurrentTimeFormatted(currentTime);
 
     if (targetDay === 0 || day === undefined) {
       data = this.controller.getHourlyForecast({
@@ -148,23 +119,23 @@ export class ScreenController {
       });
     }
 
-    // console.log(targetDay);
-    // console.log(data);
-    const arrayCleaned = data.map((ele, index) => {
-      return {
-        hour:
-          (index === 0 && targetDay === 0) || (index === 0 && day === undefined)
-            ? "Now"
-            : ele.datetime.split("").splice(0, 5).join(""),
-        icon: ele.icon,
-        temp: ele.temp,
-      };
-    });
+    const arrayCleaned = this.renderer.getHourlyForecastFormatted(
+      data,
+      targetDay,
+      day,
+    );
+
     this.renderer.displayHourlyForecast(arrayCleaned);
   }
 
   updateDailyForecast() {
-    const weekDaysFormatted = this.getWeekDaysFormatted();
+    const timeZone = this.controller.currentCity.timeZone;
+    const daysArray = this.controller.currentCity.days;
+
+    const weekDaysFormatted = this.renderer.getWeekDaysFormatted(
+      timeZone,
+      daysArray,
+    );
     const weekData = this.controller.getDailyForecast();
 
     this.renderer.displayDailyForecast(weekDaysFormatted, weekData);
@@ -172,55 +143,5 @@ export class ScreenController {
 
   toggleDaySwapState(day) {
     this.renderer.displayDaySwapState(day);
-  }
-
-  getUVColor(uvIndex) {
-    if (uvIndex <= 2) return "linear-gradient(90deg, #43e97b 0%, #38f9d7 100%)";
-    if (uvIndex <= 7) return "linear-gradient(90deg, #f6d365 0%, #fda085 100%)";
-    return "linear-gradient(90deg, #ff0844 0%, #ffb199 100%)";
-  }
-
-  getCurrentDateFormatted() {
-    const timeZone = this.controller.currentCity.timezone;
-    const date = new Date().toLocaleDateString("en-US", {
-      timeZone: timeZone,
-      weekday: "long",
-      month: "long",
-      day: "numeric",
-    });
-    return date;
-  }
-
-  getWeekDaysFormatted() {
-    const timeZone = this.controller.currentCity.timezone;
-    const weekDaysArrFormatted = [];
-    for (let i = 0; i < 7; i++) {
-      const epoch = this.controller.currentCity.days[i].datetimeEpoch * 1000;
-
-      const day = new Date(epoch).toLocaleDateString("en-US", {
-        timeZone: timeZone,
-        weekday: "long",
-      });
-
-      weekDaysArrFormatted.push(day);
-    }
-
-    return weekDaysArrFormatted;
-  }
-
-  getCurrentTime() {
-    const timeZone = this.controller.currentCity.timezone;
-    const currentTime = new Date()
-      .toLocaleTimeString("es-AR", {
-        timeZone: timeZone,
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-      })
-      .split("")
-      .splice(0, 5)
-      .join("");
-
-    return currentTime;
   }
 }

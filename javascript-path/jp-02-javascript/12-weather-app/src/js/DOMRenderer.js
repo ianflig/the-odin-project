@@ -133,12 +133,12 @@ export class DOMRenderer {
     this.dateFormattedContainer.innerHTML = dateFormatted;
   }
 
-  displayCurrentConditionsMoreInfo(
-    humidity,
-    windSpeed,
-    visibility,
-    cloudCover,
-  ) {
+  displayCurrentConditionsMoreInfo(data) {
+    const humidity = data.humidity;
+    const windSpeed = data.windspeed;
+    const visibility = data.visibility;
+    const cloudCover = data.cloudcover;
+
     const container = this.currentConditionsMoreInfoContainer;
     const htmlString = `
       <div class="card blur-container">
@@ -173,17 +173,18 @@ export class DOMRenderer {
     container.innerHTML = htmlString;
   }
 
-  displayCurrentConditions(
-    temperature,
-    icon,
-    conditions,
-    feelsLike,
-    sunrise,
-    sunset,
-    UVIndex,
-    UVColor,
-  ) {
+  displayCurrentConditions(data) {
     const container = this.currentConditionsGeneralContainer;
+
+    const temperature = data.temp;
+    const icon = data.icon;
+    const conditions = data.conditions;
+    const feelsLike = data.feelslike;
+    const sunrise = data.sunrise.split("").splice(0, 5).join("");
+    const sunset = data.sunset.split("").splice(0, 5).join("");
+    const UVIndex = data.uvindex;
+    const UVColor = this.getUVColor(data.uvindex);
+
     const htmlString = `
       <div class="left-side blur-container">
         <img src="./images/${icon}.svg" alt="weather-icon" class="weather-icon"/>
@@ -268,5 +269,79 @@ export class DOMRenderer {
     }
 
     container.innerHTML = card;
+  }
+
+  //
+  // HELPERS
+  //
+
+  getUVColor(uvIndex) {
+    if (uvIndex <= 2) return "linear-gradient(90deg, #43e97b 0%, #38f9d7 100%)";
+    if (uvIndex <= 7) return "linear-gradient(90deg, #f6d365 0%, #fda085 100%)";
+    return "linear-gradient(90deg, #ff0844 0%, #ffb199 100%)";
+  }
+
+  getCurrentTime(timeZone) {
+    const currentTime = new Date()
+      .toLocaleTimeString("es-AR", {
+        timeZone: timeZone,
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      })
+      .split("")
+      .splice(0, 5)
+      .join("");
+
+    return currentTime;
+  }
+
+  getCurrentTimeFormatted(currentTime) {
+    const formattedCurrentTime =
+      typeof currentTime === "number"
+        ? currentTime
+        : Number(currentTime.split("").splice(0, 2).join(""));
+
+    return formattedCurrentTime;
+  }
+
+  getWeekDaysFormatted(timeZone, daysArray) {
+    const weekDaysArrFormatted = [];
+    for (let i = 0; i < 7; i++) {
+      const epoch = daysArray[i].datetimeEpoch * 1000;
+
+      const day = new Date(epoch).toLocaleDateString("en-US", {
+        timeZone: timeZone,
+        weekday: "long",
+      });
+
+      weekDaysArrFormatted.push(day);
+    }
+
+    return weekDaysArrFormatted;
+  }
+
+  getCurrentDateFormatted(timeZone) {
+    const date = new Date().toLocaleDateString("en-US", {
+      timeZone: timeZone,
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+    });
+    return date;
+  }
+
+  getHourlyForecastFormatted(data, targetDay, day) {
+    const arrayCleaned = data.map((ele, index) => {
+      return {
+        hour:
+          (index === 0 && targetDay === 0) || (index === 0 && day === undefined)
+            ? "Now"
+            : ele.datetime.split("").splice(0, 5).join(""),
+        icon: ele.icon,
+        temp: ele.temp,
+      };
+    });
+    return arrayCleaned;
   }
 }
