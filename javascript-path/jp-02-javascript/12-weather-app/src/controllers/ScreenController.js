@@ -5,11 +5,13 @@ import {
   getCurrentDateFormatted,
   getHourlyForecastFormatted,
 } from "../utils/helpers.js";
+import { Background } from "../ui/Background.js";
 
 export class ScreenController {
   constructor(logic, DOMRenderer) {
     this.model = logic;
     this.renderer = DOMRenderer;
+    this.backgroundManager = new Background();
 
     const actions = {
       toSearch: (coords, searchInput) => {
@@ -74,6 +76,7 @@ export class ScreenController {
       this.updateCurrentConditionsDisplay();
       this.updateHourlyForecastDisplay();
       this.updateDailyForecast();
+      this.updateBackgroundDisplay();
 
       // console.log("data fetched correctly", this.model.currentCity);
     } catch (error) {
@@ -91,6 +94,12 @@ export class ScreenController {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  updateBackgroundDisplay() {
+    const currentConditions = this.model.getCurrentConditions();
+
+    this.backgroundManager.render(currentConditions.icon);
   }
 
   updateHeaderDisplay() {
