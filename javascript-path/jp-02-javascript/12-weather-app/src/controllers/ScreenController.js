@@ -1,3 +1,11 @@
+import {
+  getCurrentTime,
+  getCurrentTimeFormatted,
+  getWeekDaysFormatted,
+  getCurrentDateFormatted,
+  getHourlyForecastFormatted,
+} from "../utils/helpers.js";
+
 export class ScreenController {
   constructor(logic, DOMRenderer) {
     this.model = logic;
@@ -88,7 +96,7 @@ export class ScreenController {
   updateHeaderDisplay() {
     const resolvedAddress = this.model.getLocationInfo().address;
     const timeZone = this.model.getLocationInfo().timezone;
-    const dateFormatted = this.renderer.getCurrentDateFormatted(timeZone);
+    const dateFormatted = getCurrentDateFormatted(timeZone);
 
     this.renderer.displayHeader(resolvedAddress, dateFormatted);
   }
@@ -105,9 +113,8 @@ export class ScreenController {
     let data;
     const timeZone = this.model.getLocationInfo().timezone;
     const targetDay = Number(day);
-    const currentTime = this.renderer.getCurrentTime(timeZone);
-    const formattedCurrentTime =
-      this.renderer.getCurrentTimeFormatted(currentTime);
+    const currentTime = getCurrentTime(timeZone);
+    const formattedCurrentTime = getCurrentTimeFormatted(currentTime);
 
     if (targetDay === 0 || day === undefined) {
       data = this.model.getHourlyForecast({
@@ -119,11 +126,7 @@ export class ScreenController {
       });
     }
 
-    const arrayCleaned = this.renderer.getHourlyForecastFormatted(
-      data,
-      targetDay,
-      day,
-    );
+    const arrayCleaned = getHourlyForecastFormatted(data, targetDay, day);
 
     this.renderer.displayHourlyForecast(arrayCleaned);
   }
@@ -132,10 +135,7 @@ export class ScreenController {
     const timeZone = this.model.getLocationInfo().timezone;
     const weekData = this.model.getDailyForecast();
 
-    const weekDaysFormatted = this.renderer.getWeekDaysFormatted(
-      timeZone,
-      weekData,
-    );
+    const weekDaysFormatted = getWeekDaysFormatted(timeZone, weekData);
 
     this.renderer.displayDailyForecast(weekDaysFormatted, weekData);
   }
