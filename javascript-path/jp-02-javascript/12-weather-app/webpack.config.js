@@ -24,7 +24,7 @@ export default {
     new CopyPlugin({
       patterns: [
         {
-          from: "./src/images",
+          from: "./src/assets/images/",
           to: "images",
         },
       ],
