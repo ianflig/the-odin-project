@@ -1,4 +1,4 @@
-export class Controller {
+export class WeatherModel {
   currentCity;
   constructor() {}
 
@@ -7,9 +7,13 @@ export class Controller {
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&key=LAL2EGUP76W2VR54RY6ZHKY2J`,
     );
     const result = await response.json();
-    const cityName = await this.getCityName(result.latitude, result.longitude);
-    result.resolvedAddress = cityName;
     this.currentCity = result;
+
+    const cityName = await this.getCityName(
+      this.getLocationInfo().lat,
+      this.getLocationInfo().long,
+    );
+    result.resolvedAddress = cityName;
   }
 
   async getUserCurrentPosition() {
@@ -52,24 +56,64 @@ export class Controller {
       return "Local";
     }
   }
+  _mapLocationInfo(rawJson) {
+    return {
+      address: rawJson.resolvedAddress,
+      timezone: rawJson.timezone,
+      lat: rawJson.latitude,
+      long: rawJson.longitude,
+    };
+  }
 
-  getDailyConditions({ day = 0 } = {}) {
-    return this.currentCity.days[day];
+  _mapDailyForecast(rawJson) {
+    return rawJson.map((ele) => ({
+      datetimeEpoch: ele.datetimeEpoch,
+      icon: ele.icon,
+      tempmin: ele.tempmin,
+      tempmax: ele.tempmax,
+    }));
+  }
+
+  _mapCurrentConditions(rawJson) {
+    return {
+      temperature: rawJson.temp,
+      icon: rawJson.icon,
+      conditions: rawJson.conditions,
+      feelslike: rawJson.feelslike,
+      sunrise: rawJson.sunrise,
+      sunset: rawJson.sunset,
+      uvindex: rawJson.uvindex,
+      humidity: rawJson.humidity,
+      windspeed: rawJson.windspeed,
+      visibility: rawJson.visibility,
+      cloudcover: rawJson.cloudcover,
+    };
+  }
+
+  _mapHourlyForecast(rawJson) {
+    return rawJson.map((ele) => ({
+      datetime: ele.datetime,
+      icon: ele.icon,
+      temperature: ele.temp,
+    }));
+  }
+
+  getLocationInfo() {
+    return this._mapLocationInfo(this.currentCity);
   }
 
   getDailyForecast() {
-    const newArray = this.currentCity.days.splice(0, 7);
-    return newArray;
+    const days = this.currentCity.days.slice(0, 7);
+    return this._mapDailyForecast(days);
   }
 
   getCurrentConditions() {
-    return this.currentCity.currentConditions;
+    return this._mapCurrentConditions(this.currentCity.currentConditions);
   }
 
   getHourlyForecast({ hour = 0, day = 0 } = {}) {
-    const newArray = structuredClone(this.currentCity);
-    const dayToCheck = newArray.days[day];
-    const result = dayToCheck.hours.splice(hour, 24);
-    return result;
+    const dayToCheck = this.currentCity.days[day];
+    const rawHoursChunk = dayToCheck.hours.slice(hour);
+    return this._mapHourlyForecast(rawHoursChunk);
   }
 }

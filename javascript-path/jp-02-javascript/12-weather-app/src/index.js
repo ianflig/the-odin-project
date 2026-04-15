@@ -1,10 +1,10 @@
 import "./css/styles.css";
-import { Controller } from "./models/WeatherModel.js";
+import { WeatherModel } from "./models/WeatherModel.js";
 import { DOMRenderer } from "./ui/DOMRenderer.js";
 import { ScreenController } from "./controllers/ScreenController.js";
 
-const controller = new Controller();
+const model = new WeatherModel();
 const renderer = new DOMRenderer();
-const screen = new ScreenController(controller, renderer);
+const screen = new ScreenController(model, renderer);
 
 window.app = screen;

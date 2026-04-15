@@ -176,7 +176,7 @@ export class DOMRenderer {
   displayCurrentConditions(data) {
     const container = this.currentConditionsGeneralContainer;
 
-    const temperature = data.temp;
+    const temperature = data.temperature;
     const icon = data.icon;
     const conditions = data.conditions;
     const feelsLike = data.feelslike;
@@ -339,7 +339,7 @@ export class DOMRenderer {
             ? "Now"
             : ele.datetime.split("").splice(0, 5).join(""),
         icon: ele.icon,
-        temp: ele.temp,
+        temp: ele.temperature,
       };
     });
     return arrayCleaned;

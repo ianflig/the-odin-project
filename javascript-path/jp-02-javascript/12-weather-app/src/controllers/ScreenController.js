@@ -1,6 +1,6 @@
 export class ScreenController {
   constructor(logic, DOMRenderer) {
-    this.controller = logic;
+    this.model = logic;
     this.renderer = DOMRenderer;
 
     const actions = {
@@ -29,14 +29,14 @@ export class ScreenController {
       });
 
       if (permissions.state === "granted") {
-        const userLocation = await this.controller.getUserCurrentPosition();
+        const userLocation = await this.model.getUserCurrentPosition();
         await this.updateScreenData(userLocation);
       } else if (permissions.state === "denied") {
         await this.updateScreenData();
       } else if (permissions.state === "prompt") {
         this.updateScreenData();
         try {
-          const result = await this.controller.getUserCurrentPosition();
+          const result = await this.model.getUserCurrentPosition();
           await this.updateScreenData(result);
         } catch (rejectionError) {
           console.log(rejectionError);
@@ -52,13 +52,13 @@ export class ScreenController {
       this.renderer.displaySkeleton();
 
       if (coords) {
-        await this.controller.getDataFromAPI(
+        await this.model.getDataFromAPI(
           `${coords.latitude}, ${coords.longitude}`,
         );
       } else if (textSearch) {
-        await this.controller.getDataFromAPI(textSearch);
+        await this.model.getDataFromAPI(textSearch);
       } else {
-        await this.controller.getDataFromAPI();
+        await this.model.getDataFromAPI();
       }
 
       // DOMRenderer;
@@ -67,7 +67,7 @@ export class ScreenController {
       this.updateHourlyForecastDisplay();
       this.updateDailyForecast();
 
-      // console.log("data fetched correctly", this.controller.currentCity);
+      // console.log("data fetched correctly", this.model.currentCity);
     } catch (error) {
       console.log(error);
     }
@@ -75,7 +75,7 @@ export class ScreenController {
 
   async handleLocationRequest() {
     try {
-      const userLocation = await this.controller.getUserCurrentPosition();
+      const userLocation = await this.model.getUserCurrentPosition();
 
       if (userLocation) {
         this.updateScreenData(userLocation);
@@ -86,15 +86,15 @@ export class ScreenController {
   }
 
   updateHeaderDisplay() {
-    const resolvedAddress = this.controller.currentCity.resolvedAddress;
-    const timeZone = this.controller.currentCity.timezone;
+    const resolvedAddress = this.model.getLocationInfo().address;
+    const timeZone = this.model.getLocationInfo().timezone;
     const dateFormatted = this.renderer.getCurrentDateFormatted(timeZone);
 
     this.renderer.displayHeader(resolvedAddress, dateFormatted);
   }
 
   updateCurrentConditionsDisplay() {
-    const data = this.controller.currentCity.currentConditions;
+    const data = this.model.getCurrentConditions();
 
     this.renderer.displayCurrentConditions(data);
 
@@ -103,18 +103,18 @@ export class ScreenController {
 
   updateHourlyForecastDisplay(day) {
     let data;
-    const timeZone = this.controller.currentCity.timezone;
+    const timeZone = this.model.getLocationInfo().timezone;
     const targetDay = Number(day);
     const currentTime = this.renderer.getCurrentTime(timeZone);
     const formattedCurrentTime =
       this.renderer.getCurrentTimeFormatted(currentTime);
 
     if (targetDay === 0 || day === undefined) {
-      data = this.controller.getHourlyForecast({
+      data = this.model.getHourlyForecast({
         hour: formattedCurrentTime,
       });
     } else {
-      data = this.controller.getHourlyForecast({
+      data = this.model.getHourlyForecast({
         day: targetDay,
       });
     }
@@ -129,14 +129,13 @@ export class ScreenController {
   }
 
   updateDailyForecast() {
-    const timeZone = this.controller.currentCity.timeZone;
-    const daysArray = this.controller.currentCity.days;
+    const timeZone = this.model.getLocationInfo().timezone;
+    const weekData = this.model.getDailyForecast();
 
     const weekDaysFormatted = this.renderer.getWeekDaysFormatted(
       timeZone,
-      daysArray,
+      weekData,
     );
-    const weekData = this.controller.getDailyForecast();
 
     this.renderer.displayDailyForecast(weekDaysFormatted, weekData);
   }
