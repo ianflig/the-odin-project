@@ -14,12 +14,22 @@
 
 ## Live Preview
 
-The live site can be viewed [here](https://odin-10.vercel.app).
+#### The live site can be viewed [here](https://odin-10.vercel.app).
 
 **_DESCRIPTION_**:
-A fictional restaurant website inspired by *Shokugeki no Soma*. This was built to understand how SPAs work under the hood without relying on modern frameworks like React.
+A fictional restaurant website inspired by _Shokugeki no Soma_. This was built to understand how SPAs work under the hood without relying on modern frameworks like React.
 
 Instead of hardcoding the HTML, the entire UI and navigation are dynamically rendered and managed using Vanilla JavaScript, trying to keep the code modular and organized.
+
+[home]: ./src/images/home.png "Home section"
+[menu]: ./src/images/menu.png "Menu section"
+[about]: ./src/images/about.png "About section"
+[contact]: ./src/images/contact.png "Contact section"
+
+![Home section][home]
+![Menu section][menu]
+![About section][about]
+![Contact section][contact]
 
 ## Setup
 
@@ -32,4 +42,3 @@ npx serve dist
 ```
 
 After that, just head to [localhost:3000](http://localhost:3000) to see the app running
-
