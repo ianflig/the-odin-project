@@ -28,6 +28,10 @@ The ScreenController manages the overall flow of the application, coordinating b
 
 **Backgrounds & Animations:** The dynamic CSS weather backgrounds are not created by me, they were adapted from CSS & UI boilerplates. This is because this goes beyond the lesson of this project, but at the same time i wanted to keep a nice UI looking.
 
+[general-screenshot]: ./src/assets/images/general-screenshot.png "General screenshot"
+
+![General screenshot][general-screenshot]
+
 ## Setup
 
 This app uses webpack packages. To run this setup locally:
