@@ -1,5 +1,5 @@
 import { reverseString } from "./reverseString.js";
 
-test("reverse a string", () => {
+test("apple should be elppa", () => {
   expect(reverseString("apple")).toBe("elppa");
 });
