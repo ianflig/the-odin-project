@@ -20,3 +20,4 @@
 10. [Restaurant Page](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-02-javascript/10-restaurant-page)
 11. [To-do List](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-02-javascript/11-to-do-list)
 12. [Weather App](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-02-javascript/12-weather-app)
+13. [Testing Practice](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-02-javascript/13-testing-practice)
