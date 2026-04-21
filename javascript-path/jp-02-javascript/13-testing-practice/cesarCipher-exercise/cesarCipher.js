@@ -10,8 +10,15 @@ export function cesarCipher(string, shiftFactor) {
   let newString = "";
 
   for (let i = 0; i < string.length; i++) {
-    let index = alphabet.indexOf(string[i]);
-    let newChar = ciphertextAlphabet.split("")[index];
+    let newChar;
+    let index = alphabet.indexOf(string.toLowerCase()[i]);
+
+    if (string[i] === string[i].toUpperCase()) {
+      newChar = ciphertextAlphabet.split("")[index].toUpperCase();
+    } else {
+      newChar = ciphertextAlphabet.split("")[index];
+    }
+
     newString += newChar;
   }
 
