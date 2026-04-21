@@ -15,6 +15,9 @@ test("calculator divide (1)", () => {
 test("calculator divide (2)", () => {
   expect(calculator.divide(-50, 2)).toBe(-25);
 });
-test("calculator multiply", () => {
+test("calculator multiply (1)", () => {
   expect(calculator.multiply(2, 5)).toBe(10);
+});
+test("calculator multiply (2)", () => {
+  expect(calculator.multiply(-10, -5)).toBe(50);
 });
