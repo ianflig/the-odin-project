@@ -11,15 +11,18 @@ export function cesarCipher(string, shiftFactor) {
 
   for (let i = 0; i < string.length; i++) {
     let newChar;
-    let index = alphabet.indexOf(string.toLowerCase()[i]);
+    if (alphabet.includes(string.toLowerCase()[i])) {
+      let index = alphabet.indexOf(string.toLowerCase()[i]);
 
-    if (string[i] === string[i].toUpperCase()) {
-      newChar = ciphertextAlphabet.split("")[index].toUpperCase();
+      if (string[i] === string[i].toUpperCase()) {
+        newChar = ciphertextAlphabet.split("")[index].toUpperCase();
+      } else {
+        newChar = ciphertextAlphabet.split("")[index];
+      }
+      newString += newChar;
     } else {
-      newChar = ciphertextAlphabet.split("")[index];
+      newString += string[i];
     }
-
-    newString += newChar;
   }
 
   return newString;
