@@ -1,9 +1,10 @@
 // function that takes an array of numbers and returns an object with the following properties: average, min, max, and length
 
 export function analizeArray(array) {
-  return {
+  let object = {
     average: getAverage(array),
   };
+  return object;
 }
 
 function getAverage(array) {
