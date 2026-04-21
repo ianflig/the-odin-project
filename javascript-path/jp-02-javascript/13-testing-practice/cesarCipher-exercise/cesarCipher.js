@@ -3,18 +3,17 @@
 const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
 export function cesarCipher(string, shiftFactor) {
-  let slicedFactor = alphabet.split("").slice(0, shiftFactor).join("");
-  let ciphertextAlphabet =
-    alphabet.split("").splice(shiftFactor).join("") + slicedFactor;
+  let slicedAlphabet = sliceAlphabet(shiftFactor);
+  let ciphertextAlphabet = getCipherAlphabet(shiftFactor, slicedAlphabet);
 
   let newString = "";
 
   for (let i = 0; i < string.length; i++) {
     let newChar;
-    if (alphabet.includes(string.toLowerCase()[i])) {
-      let index = alphabet.indexOf(string.toLowerCase()[i]);
+    if (!isSymbol(string[i])) {
+      let index = getIndex(string[i]);
 
-      if (string[i] === string[i].toUpperCase()) {
+      if (isUpperCase(string[i])) {
         newChar = ciphertextAlphabet.split("")[index].toUpperCase();
       } else {
         newChar = ciphertextAlphabet.split("")[index];
@@ -27,3 +26,23 @@ export function cesarCipher(string, shiftFactor) {
 
   return newString;
 }
+
+const sliceAlphabet = (shiftFactor) => {
+  return alphabet.split("").slice(0, shiftFactor).join("");
+};
+
+const getCipherAlphabet = (shiftFactor, slicedAlphabet) => {
+  return alphabet.split("").splice(shiftFactor).join("") + slicedAlphabet;
+};
+
+const getIndex = (char) => {
+  return alphabet.indexOf(char.toLowerCase());
+};
+
+const isUpperCase = (char) => {
+  return char === char.toUpperCase();
+};
+
+const isSymbol = (char) => {
+  return !alphabet.includes(char.toLowerCase());
+};
