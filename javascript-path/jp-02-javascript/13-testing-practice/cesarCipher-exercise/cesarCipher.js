@@ -14,9 +14,9 @@ export function cesarCipher(string, shiftFactor) {
       let index = getIndex(string[i]);
 
       if (isUpperCase(string[i])) {
-        newChar = ciphertextAlphabet.split("")[index].toUpperCase();
+        newChar = ciphertextAlphabet[index].toUpperCase();
       } else {
-        newChar = ciphertextAlphabet.split("")[index];
+        newChar = ciphertextAlphabet[index];
       }
       newString += newChar;
     } else {
@@ -28,11 +28,11 @@ export function cesarCipher(string, shiftFactor) {
 }
 
 const sliceAlphabet = (shiftFactor) => {
-  return alphabet.split("").slice(0, shiftFactor).join("");
+  return alphabet.slice(0, shiftFactor);
 };
 
 const getCipherAlphabet = (shiftFactor, slicedAlphabet) => {
-  return alphabet.split("").splice(shiftFactor).join("") + slicedAlphabet;
+  return alphabet.slice(shiftFactor) + slicedAlphabet;
 };
 
 const getIndex = (char) => {
