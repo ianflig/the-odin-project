@@ -9,6 +9,8 @@
 
 </div>
 
+**_DESCRIPTION_**: nothing fancy to see here, just a basic testing practice (TDD) using JEST
+
 <!-- ## Live Preview
 
 The live site can be viewed [**here**](https://odin-11.vercel.app).
