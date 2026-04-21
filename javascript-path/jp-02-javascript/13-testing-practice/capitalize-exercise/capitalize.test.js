@@ -1,5 +1,5 @@
 import { capitalize } from "./capitalize.js";
 
-test("capitalize a string", () => {
+test("banana should be Banana", () => {
   expect(capitalize("banana")).toBe("Banana");
 });
