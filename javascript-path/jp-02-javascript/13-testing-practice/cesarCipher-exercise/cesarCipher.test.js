@@ -6,3 +6,6 @@ test("xzy, 3 should return abc", () => {
 test("HeLLo, 3 should return KhOOr", () => {
   expect(cesarCipher("HeLLo", 3)).toBe("KhOOr");
 });
+test("loPpdD, 4 should return KhOOr", () => {
+  expect(cesarCipher("loPpdD", 4)).toBe("psTthH");
+});
