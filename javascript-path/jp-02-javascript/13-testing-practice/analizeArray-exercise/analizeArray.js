@@ -3,10 +3,14 @@
 export function analizeArray(array) {
   let object = {
     average: getAverage(array),
+    min: getMin(array),
   };
   return object;
 }
 
 function getAverage(array) {
   return array.reduce((total, num) => total + num, 0) / array.length;
+}
+function getMin(array) {
+  return array.sort((a, b) => a - b)[0];
 }
