@@ -5,6 +5,7 @@ export function analizeArray(array) {
     average: getAverage(array),
     min: getMin(array),
     max: getMax(array),
+    length: getLength(array),
   };
   return object;
 }
@@ -17,4 +18,7 @@ function getMin(array) {
 }
 function getMax(array) {
   return array.sort((a, b) => b - a)[0];
+}
+function getLength(array) {
+  return array.length;
 }

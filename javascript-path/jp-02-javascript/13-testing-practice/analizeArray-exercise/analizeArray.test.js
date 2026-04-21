@@ -20,3 +20,7 @@ test("(5 - Max) [12,4,6,-1,0,2] should return 12", () => {
   const result = analizeArray([12, 4, 6, -1, 0, 2]);
   expect(result.max).toBe(12);
 });
+test("(6 - Length) [1,8,3,4,2,6] should return 6", () => {
+  const result = analizeArray([1, 8, 3, 4, 2, 6]);
+  expect(result.length).toBe(6);
+});
