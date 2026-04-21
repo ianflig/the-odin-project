@@ -19,5 +19,5 @@ test("multiply 2 * 5 is 10", () => {
   expect(calculator.multiply(2, 5)).toBe(10);
 });
 test("multiply -10 * -5 is 50", () => {
-  expect(calculator.multiply(-10, -5)).toBe(25);
+  expect(calculator.multiply(-10, -5)).toBe(50);
 });
