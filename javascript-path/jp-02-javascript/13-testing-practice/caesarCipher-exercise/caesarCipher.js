@@ -2,7 +2,7 @@
 
 const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
-export function cesarCipher(string, shiftFactor) {
+export function caesarCipher(string, shiftFactor) {
   let slicedAlphabet = sliceAlphabet(shiftFactor);
   let ciphertextAlphabet = getCipherAlphabet(shiftFactor, slicedAlphabet);
 
