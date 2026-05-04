@@ -7,7 +7,7 @@ function fibsRec(n) {
   }
   let result = fibsRec(n - 1);
 
-  result.push(result[n - 3] + result[n - 2]);
+  result.push(result.at(-2) + result.at(-1));
 
   return result;
 }
