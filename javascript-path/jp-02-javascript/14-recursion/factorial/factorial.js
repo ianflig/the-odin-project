@@ -11,6 +11,8 @@ const factorial = function (number) {
   return number * factorial(number - 1);
 };
 
+module.exports = factorial;
+
 console.log(factorial(5)); // 5 * 4 * 3 * 2 * 1, Output: 120
 console.log(factorial(0)); // Output: 1
 console.log(factorial(7.2)); // Output: undefined
