@@ -1,4 +1,4 @@
-const factorial = require("./factorial");
+import { factorial } from "./factorial.js";
 
 describe("factorial", () => {
   test("4th factorial number is 24", () => {
