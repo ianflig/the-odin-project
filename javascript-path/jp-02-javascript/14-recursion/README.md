@@ -1,5 +1,5 @@
 <h1 align="center">
-  Recursion
+  Recursion Practice
 </h1>
 
 <div align="center">
@@ -8,23 +8,16 @@
 
 </div>
 
-**_DESCRIPTION_**: work in progress
+**_DESCRIPTION_**: this repo is a collection of algorithm and recursion exercises. Although the main goal of the module was to implement the Fibonacci sequence and the Merge Sort algorithm recursively, I decided to integrate additional practice exercises into this same project to get a better grasp about "divide and conquer".
 
-<!-- ## Live Preview
+During the process my key takeaways about recursion are:
 
-The live site can be viewed [**here**](https://odin-11.vercel.app).
+1. **The Base Case:** it is always about finding the most minimal and indivisible expression of the data being manipulated.
+2. **Divide before acting:** the recursive call usually occurs prior to data manipulation, delegating the problem downwards until the base case is reached.
+3. **Small-scale testing:** the best way to tackle complex problems is not by trying to mentally visualize the entire execution tree at first, but by testing with minimal data sets (e.g. an array of 3 elements) and relying on the debugger.
 
-**_DESCRIPTION_**:
+## Structure
 
-
-## Setup
-
-This app uses webpack packages. To run this setup locally:
-
-```bash
-npm install
-npm run build
-npx serve dist
-```
-
-After that, just head to [localhost:3000](http://localhost:3000) to see the app running. -->
+- `fibonacci/` - Fibonacci sequence (Iterative and Recursive).
+- `mergeSort/` - Recursive Merge Sort algorithm.
+- `contains/`, `factorial/`, `pascal/`, `permutation/`, `totalIntegers/` - Complementary recursion exercises covering various data structures and mathematical problems.
