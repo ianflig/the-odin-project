@@ -9,4 +9,15 @@
 
 // Your task is to create a recursive function, pascal - that will take an input n and output the nth pascal's row as an array of numbers.
 
-// For example, pascal(3) should return [1, 2, 1].
+export const pascal = function (number) {
+  if (number === 1) return [1];
+
+  let result = [0].concat(pascal(number - 1));
+  for (let i = 0; i < result.length - 1; i++) {
+    result[i] = result[i] + result[i + 1];
+  }
+
+  return result;
+};
+
+console.log(pascal(3)); // should return [1, 2, 1].
