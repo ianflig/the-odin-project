@@ -6,5 +6,15 @@ class Node {
 }
 
 export class LinkedLists {
-  constructor() {}
+  constructor() {
+    this.head = null;
+  }
+  append(value) {
+    let newNode = new Node(value);
+
+    if (this.head === null) {
+      this.head = newNode;
+      return;
+    }
+  }
 }
