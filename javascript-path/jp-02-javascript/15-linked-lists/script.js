@@ -17,6 +17,14 @@ export class LinkedLists {
       this.head = newNode;
       return;
     }
+
+    let lastNode = this.head;
+
+    while (lastNode.nextNode !== null) {
+      lastNode = this.head.nextNode;
+    }
+
+    lastNode.nextNode = new Node(value);
   }
 
   toString() {
