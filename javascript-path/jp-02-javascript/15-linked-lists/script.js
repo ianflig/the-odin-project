@@ -127,6 +127,43 @@ export class LinkedLists {
     return indexFound;
   }
 
+  insertAt(index, ...values) {
+    let currentNode = this._head;
+    let previousNode;
+    let array = [...values];
+    let currentIndex = 0;
+
+    while (currentIndex !== index && currentNode) {
+      previousNode = currentNode;
+      currentNode = currentNode.nextNode;
+      currentIndex++;
+    }
+
+    if (index < 0 || index > currentIndex) {
+      return new Error("Range Error");
+    }
+
+    if (index === 0) {
+      array.reverse();
+      array.forEach((ele) => this.prepend(ele));
+    }
+
+    if (index !== 0) {
+      array.forEach((ele, ind) => {
+        let newNode = new Node(ele);
+        if (ind === array.length - 1) {
+          previousNode.nextNode = newNode;
+          newNode.nextNode = currentNode;
+        } else {
+          previousNode.nextNode = newNode;
+          previousNode = newNode;
+        }
+      });
+    }
+
+    return "Nodes Inserted";
+  }
+
   toString() {
     let string = "";
     let currentNode = this._head;
@@ -139,3 +176,6 @@ export class LinkedLists {
     return string + "null";
   }
 }
+
+let value1 = "hello";
+let value2 = 22;
