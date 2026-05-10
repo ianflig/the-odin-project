@@ -128,6 +128,9 @@ export class LinkedLists {
   }
 
   insertAt(index, ...values) {
+    let rangeError = new Error("Range Error");
+    if (index < 0) return rangeError;
+
     let currentNode = this._head;
     let previousNode;
     let array = [...values];
@@ -139,13 +142,14 @@ export class LinkedLists {
       currentIndex++;
     }
 
-    if (index < 0 || index > currentIndex) {
-      return new Error("Range Error");
+    if (index > currentIndex) {
+      return rangeError;
     }
 
     if (index === 0) {
       array.reverse();
       array.forEach((ele) => this.prepend(ele));
+      return "Nodes Inserted";
     }
 
     if (index !== 0) {

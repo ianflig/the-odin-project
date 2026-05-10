@@ -19,6 +19,6 @@ console.log("Contains Node 'A'?:", list.contains("A"));
 console.log("Find index from Node 'D':", list.findIndex("D"));
 console.log(
   "Insert nodes '15', 'Car' at index (1):",
-  list.insertAt(5, 15, "Car"),
+  list.insertAt(2, 15, "Car"),
 );
 console.log("Nodes:", list.toString());
