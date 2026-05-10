@@ -21,14 +21,20 @@ export class LinkedLists {
     let lastNode = this.head;
 
     while (lastNode.nextNode !== null) {
-      lastNode = this.head.nextNode;
+      lastNode = lastNode.nextNode;
     }
 
     lastNode.nextNode = new Node(value);
   }
 
   toString() {
-    let string = this.head;
-    return string;
+    let string = "";
+    let currentNode = this.head;
+    while (currentNode) {
+      string += `( ${currentNode.value} ) -> `;
+      currentNode = currentNode.nextNode;
+    }
+
+    return string + "null";
   }
 }
