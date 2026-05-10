@@ -8,4 +8,5 @@ list.append("C");
 list.append("D");
 list.prepend("Prepend");
 
-console.log(list.toString());
+console.log("Nodes:", list.toString());
+console.log("Size:", list.size());
