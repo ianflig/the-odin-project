@@ -50,6 +50,19 @@ export class LinkedLists {
     return value;
   }
 
+  tail() {
+    let currentNode = this._head;
+    let tail;
+
+    while (currentNode.nextNode) {
+      currentNode = currentNode.nextNode;
+    }
+
+    tail = !currentNode ? undefined : currentNode.value;
+
+    return tail;
+  }
+
   toString() {
     let string = "";
     let currentNode = this._head;
