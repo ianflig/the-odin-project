@@ -13,3 +13,5 @@ console.log("Size:", list.size());
 console.log("Head:", list.head());
 console.log("Tail:", list.tail());
 console.log("Node at given index:", list.at(1));
+list.pop();
+console.log("New Head:", list.head());

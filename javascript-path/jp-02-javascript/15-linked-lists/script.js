@@ -82,6 +82,21 @@ export class LinkedLists {
     return value;
   }
 
+  //remove the head node only
+  pop() {
+    let value;
+    let string;
+
+    value = !this._head ? undefined : this._head.value;
+    string = `Head Node removed: ${value}`;
+
+    if (this._head) {
+      this._head = this._head.nextNode;
+    }
+
+    return console.log(string);
+  }
+
   toString() {
     let string = "";
     let currentNode = this._head;
