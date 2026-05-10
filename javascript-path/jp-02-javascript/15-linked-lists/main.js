@@ -13,7 +13,6 @@ console.log("Size:", list.size());
 console.log("Head:", list.head());
 console.log("Tail:", list.tail());
 console.log("Node at index (1):", list.at(1));
-// list.pop();
 console.log("Pop current Head ->", list.pop(), "-> New Head:", list.head());
 console.log("Contains Node 'A'?:", list.contains("A"));
 console.log("Find index from Node 'D':", list.findIndex("D"));
