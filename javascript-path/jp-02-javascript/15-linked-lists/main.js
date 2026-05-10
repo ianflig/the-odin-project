@@ -6,7 +6,7 @@ list.append("A");
 list.append("B");
 list.append("C");
 list.append("D");
-list.prepend("Prepend");
+list.prepend("Head");
 
 console.log("Nodes:", list.toString());
 console.log("Size:", list.size());
@@ -16,3 +16,4 @@ console.log("Node at given index:", list.at(1));
 list.pop();
 console.log("New Head:", list.head());
 console.log("Contains Node 'A'?:", list.contains("A"));
+console.log("Find index from Node 'D':", list.findIndex("D"));

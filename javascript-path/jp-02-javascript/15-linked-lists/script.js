@@ -111,6 +111,22 @@ export class LinkedLists {
     return contains;
   }
 
+  findIndex(value) {
+    let currentNode = this._head;
+    let indexFound = -1;
+    let currentIndex = 0;
+
+    while (currentNode) {
+      if (currentNode.value === value) {
+        indexFound = currentIndex;
+      }
+      currentNode = currentNode.nextNode;
+      currentIndex++;
+    }
+
+    return indexFound;
+  }
+
   toString() {
     let string = "";
     let currentNode = this._head;
