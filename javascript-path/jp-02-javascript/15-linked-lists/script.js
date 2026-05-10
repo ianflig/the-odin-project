@@ -7,15 +7,15 @@ class Node {
 
 export class LinkedLists {
   constructor() {
-    this.nodeHead = null;
+    this._head = null;
   }
 
   append(value) {
     let newNode = new Node(value);
-    let lastNode = this.nodeHead;
+    let lastNode = this._head;
 
-    if (this.nodeHead === null) {
-      this.nodeHead = newNode;
+    if (this._head === null) {
+      this._head = newNode;
       return;
     }
 
@@ -28,12 +28,12 @@ export class LinkedLists {
 
   prepend(value) {
     let newNode = new Node(value);
-    newNode.nextNode = this.nodeHead;
-    this.nodeHead = newNode;
+    newNode.nextNode = this._head;
+    this._head = newNode;
   }
 
   size() {
-    let currentNode = this.nodeHead;
+    let currentNode = this._head;
     let counter = 0;
 
     while (currentNode) {
@@ -45,14 +45,14 @@ export class LinkedLists {
   }
 
   head() {
-    let value = !this.nodeHead ? undefined : this.nodeHead.value;
+    let value = !this._head ? undefined : this._head.value;
 
     return value;
   }
 
   toString() {
     let string = "";
-    let currentNode = this.nodeHead;
+    let currentNode = this._head;
 
     while (currentNode) {
       string += `( ${currentNode.value} ) -> `;
