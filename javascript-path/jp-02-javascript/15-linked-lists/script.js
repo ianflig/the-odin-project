@@ -97,6 +97,20 @@ export class LinkedLists {
     return console.log(string);
   }
 
+  contains(value) {
+    let currentNode = this._head;
+    let contains = false;
+
+    while (currentNode) {
+      if (value === currentNode.value) {
+        contains = true;
+      }
+      currentNode = currentNode.nextNode;
+    }
+
+    return contains;
+  }
+
   toString() {
     let string = "";
     let currentNode = this._head;
