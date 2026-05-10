@@ -6,5 +6,6 @@ list.append("A");
 list.append("B");
 list.append("C");
 list.append("D");
+list.prepend("Prepend");
 
 console.log(list.toString());
