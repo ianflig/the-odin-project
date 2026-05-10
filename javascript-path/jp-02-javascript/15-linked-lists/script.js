@@ -88,13 +88,13 @@ export class LinkedLists {
     let string;
 
     value = !this._head ? undefined : this._head.value;
-    string = `Head Node removed: ${value}`;
+    string = `Removed: ${value}`;
 
     if (this._head) {
       this._head = this._head.nextNode;
     }
 
-    return console.log(string);
+    return string;
   }
 
   contains(value) {
@@ -166,6 +166,34 @@ export class LinkedLists {
     }
 
     return "Nodes Inserted";
+  }
+
+  removeAt(index) {
+    let rangeError = new Error("Range Error");
+    if (index < 0) return rangeError;
+
+    let currentNode = this._head;
+    let previousNode;
+    let currentIndex = 0;
+
+    while (currentIndex !== index && currentNode) {
+      previousNode = currentNode;
+      currentNode = currentNode.nextNode;
+      currentIndex++;
+    }
+
+    if (index > currentIndex || !currentNode) {
+      return rangeError;
+    }
+
+    if (index === 0) {
+      this.pop();
+      return "Node removed";
+    }
+
+    previousNode.nextNode = currentNode.nextNode;
+
+    return "Node removed";
   }
 
   toString() {
