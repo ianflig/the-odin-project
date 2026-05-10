@@ -12,24 +12,24 @@ export class LinkedLists {
 
   append(value) {
     let newNode = new Node(value);
+    let lastNode = this.head;
 
     if (this.head === null) {
       this.head = newNode;
       return;
     }
 
-    let lastNode = this.head;
-
     while (lastNode.nextNode !== null) {
       lastNode = lastNode.nextNode;
     }
 
-    lastNode.nextNode = new Node(value);
+    lastNode.nextNode = newNode;
   }
 
   toString() {
     let string = "";
     let currentNode = this.head;
+
     while (currentNode) {
       string += `( ${currentNode.value} ) -> `;
       currentNode = currentNode.nextNode;
