@@ -9,7 +9,11 @@
 
 </div>
 
-**_DESCRIPTION_**: nothing fancy to see here, just a basic testing practice (TDD) using JEST
+[screenshot]: ./screenshot.png "preview"
+
+![preview][screenshot]
+
+**_DESCRIPTION_**: just a basic testing practice (TDD) using JEST
 
 <!-- ## Live Preview
 
