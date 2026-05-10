@@ -8,6 +8,10 @@
 
 </div>
 
+[screenshot]: ./screenshot.png "preview"
+
+![preview][screenshot]
+
 **_DESCRIPTION_**: this repo is a collection of algorithm and recursion exercises. Although the main goal of the module was to implement the Fibonacci sequence and the Merge Sort algorithm recursively, I decided to integrate additional practice exercises into this same project to get a better grasp about "divide and conquer".
 
 During the process my key takeaways about recursion are:
