@@ -180,6 +180,3 @@ export class LinkedLists {
     return string + "null";
   }
 }
-
-let value1 = "hello";
-let value2 = 22;
