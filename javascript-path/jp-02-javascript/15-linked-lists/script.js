@@ -19,7 +19,7 @@ export class LinkedLists {
       return;
     }
 
-    while (lastNode.nextNode !== null) {
+    while (lastNode.nextNode) {
       lastNode = lastNode.nextNode;
     }
 
@@ -34,20 +34,20 @@ export class LinkedLists {
 
   size() {
     let currentNode = this._head;
-    let counter = 0;
+    let size = 0;
 
     while (currentNode) {
-      counter++;
+      size++;
       currentNode = currentNode.nextNode;
     }
 
-    return counter;
+    return size;
   }
 
   head() {
-    let value = !this._head ? undefined : this._head.value;
+    let head = !this._head ? undefined : this._head.value;
 
-    return value;
+    return head;
   }
 
   tail() {
