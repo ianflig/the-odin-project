@@ -14,6 +14,7 @@ console.log("Head:", list.head());
 console.log("Tail:", list.tail());
 console.log("Node at index (1):", list.at(1));
 console.log("Pop current Head ->", list.pop(), "-> New Head:", list.head());
+console.log("New nodes:", list.toString());
 console.log("Contains Node 'A'?:", list.contains("A"));
 console.log("Find index from Node 'D':", list.findIndex("D"));
 console.log(
