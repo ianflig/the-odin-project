@@ -12,3 +12,4 @@ console.log("Nodes:", list.toString());
 console.log("Size:", list.size());
 console.log("Head:", list.head());
 console.log("Tail:", list.tail());
+console.log("Tail:", list.at(1));

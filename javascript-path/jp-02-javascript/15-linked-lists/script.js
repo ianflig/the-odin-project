@@ -54,13 +54,32 @@ export class LinkedLists {
     let currentNode = this._head;
     let tail;
 
+    if (!currentNode) return;
+
     while (currentNode.nextNode) {
       currentNode = currentNode.nextNode;
     }
 
-    tail = !currentNode ? undefined : currentNode.value;
+    tail = currentNode.value;
 
     return tail;
+  }
+
+  at(index) {
+    let currentNode = this._head;
+    let currentIndex = 0;
+    let value;
+
+    while (index !== currentIndex && currentNode) {
+      currentNode = currentNode.nextNode;
+      currentIndex++;
+    }
+
+    if (!currentNode) return;
+
+    value = currentNode.value;
+
+    return value;
   }
 
   toString() {
