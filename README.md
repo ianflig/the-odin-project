@@ -23,3 +23,4 @@
 13. [Testing Practice](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-02-javascript/13-testing-practice)
 14. [Recursion](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-02-javascript/14-recursion)
 15. [Linked Lists](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-02-javascript/15-linked-lists)
+16. [Hash Map](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-02-javascript/16-hash-map)
