@@ -31,6 +31,12 @@ export class HashMap {
       this.size++;
     }
   }
+
+  get(key) {
+    let hashKey = this.hash(key);
+
+    return this.buckets[hashKey] ? this.buckets[hashKey].findKey(key) : null;
+  }
 }
 
 class LinkedList {
@@ -58,6 +64,16 @@ class LinkedList {
 
     currentNode.nextNode = newNode;
     return 1;
+  }
+
+  findKey(key) {
+    let currentNode = this._head;
+
+    while (currentNode && currentNode.key !== key) {
+      currentNode = currentNode.nextNode;
+    }
+
+    return currentNode && currentNode.key === key ? currentNode.key : null;
   }
 }
 
