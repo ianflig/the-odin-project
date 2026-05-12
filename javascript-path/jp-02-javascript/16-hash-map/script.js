@@ -45,8 +45,13 @@ class LinkedList {
       return;
     }
 
-    while (currentNode.nextNode) {
+    while (currentNode.nextNode && currentNode.key !== key) {
       currentNode = currentNode.nextNode;
+    }
+
+    if (currentNode.key === key) {
+      currentNode.value = value;
+      return;
     }
 
     currentNode.nextNode = newNode;
