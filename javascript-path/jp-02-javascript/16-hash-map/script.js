@@ -93,6 +93,10 @@ export class HashMap {
     return this.size;
   }
 
+  clear() {
+    this.buckets = new Array(this.capacity).fill(null);
+  }
+
   values() {
     let arr = [];
 
