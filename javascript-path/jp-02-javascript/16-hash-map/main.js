@@ -22,3 +22,4 @@ console.log(test.length());
 console.log(test.buckets);
 
 console.log(test.values());
+console.log(test.entries());
