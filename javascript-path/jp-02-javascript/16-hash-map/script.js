@@ -37,6 +37,14 @@ export class HashMap {
 
     return this.buckets[hashKey] ? this.buckets[hashKey].findKey(key) : null;
   }
+
+  has(key) {
+    let hashKey = this.hash(key);
+
+    return this.buckets[hashKey] && this.buckets[hashKey].findKey(key)
+      ? true
+      : false;
+  }
 }
 
 class LinkedList {
