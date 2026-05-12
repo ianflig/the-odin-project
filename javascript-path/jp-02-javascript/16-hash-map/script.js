@@ -52,6 +52,10 @@ export class HashMap {
 
     return node ? true : false;
   }
+
+  length() {
+    return this.size;
+  }
 }
 
 class LinkedList {
