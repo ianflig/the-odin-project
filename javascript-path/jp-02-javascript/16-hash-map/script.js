@@ -27,23 +27,30 @@ export class HashMap {
       return this.size++;
     }
 
-    if (this.buckets[hashKey].append(key, value)) {
-      this.size++;
+    let node = this.buckets[hashKey].findKeyNode(key);
+
+    if (node) {
+      return (node.value = value);
     }
+
+    this.buckets[hashKey].append(key, value);
+    this.size++;
   }
 
   get(key) {
     let hashKey = this.hash(key);
+    let bucket = this.buckets[hashKey];
+    let node = bucket ? bucket.findKeyNode(key) : null;
 
-    return this.buckets[hashKey] ? this.buckets[hashKey].findKey(key) : null;
+    return node ? node.value : null;
   }
 
   has(key) {
     let hashKey = this.hash(key);
+    let bucket = this.buckets[hashKey];
+    let node = bucket ? bucket.findKeyNode(key) : null;
 
-    return this.buckets[hashKey] && this.buckets[hashKey].findKey(key)
-      ? true
-      : false;
+    return node ? true : false;
   }
 }
 
@@ -65,23 +72,17 @@ class LinkedList {
       currentNode = currentNode.nextNode;
     }
 
-    if (currentNode.key === key) {
-      currentNode.value = value;
-      return;
-    }
-
     currentNode.nextNode = newNode;
-    return 1;
   }
 
-  findKey(key) {
+  findKeyNode(key) {
     let currentNode = this._head;
 
     while (currentNode && currentNode.key !== key) {
       currentNode = currentNode.nextNode;
     }
 
-    return currentNode && currentNode.key === key ? currentNode.key : null;
+    return currentNode && currentNode.key === key ? currentNode : null;
   }
 }
 
