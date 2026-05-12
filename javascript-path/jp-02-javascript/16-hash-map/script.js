@@ -24,10 +24,12 @@ export class HashMap {
       let linkedList = new LinkedList();
       linkedList.append(key, value);
       this.buckets[hashKey] = linkedList;
-      return;
+      return this.size++;
     }
 
-    this.buckets[hashKey].append(key, value);
+    if (this.buckets[hashKey].append(key, value)) {
+      this.size++;
+    }
   }
 }
 
@@ -55,6 +57,7 @@ class LinkedList {
     }
 
     currentNode.nextNode = newNode;
+    return 1;
   }
 }
 
