@@ -20,6 +20,11 @@ export class HashMap {
   set(key, value) {
     let hashKey = this.hash(key);
 
+    // JS limitation
+    if (hashKey < 0 || hashKey >= this.buckets.length) {
+      throw new Error("Trying to access index out of bounds");
+    }
+
     if (this.buckets[hashKey] === null) {
       let linkedList = new LinkedList();
       linkedList.append(key, value);
@@ -39,6 +44,12 @@ export class HashMap {
 
   get(key) {
     let hashKey = this.hash(key);
+
+    // JS limitation
+    if (hashKey < 0 || hashKey >= this.buckets.length) {
+      throw new Error("Trying to access index out of bounds");
+    }
+
     let bucket = this.buckets[hashKey];
     let node = bucket ? bucket.findKeyNode(key) : null;
 
@@ -47,6 +58,12 @@ export class HashMap {
 
   has(key) {
     let hashKey = this.hash(key);
+
+    // JS limitation
+    if (hashKey < 0 || hashKey >= this.buckets.length) {
+      throw new Error("Trying to access index out of bounds");
+    }
+
     let bucket = this.buckets[hashKey];
     let node = bucket ? bucket.findKeyNode(key) : null;
 
