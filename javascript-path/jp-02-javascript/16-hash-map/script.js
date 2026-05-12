@@ -78,6 +78,11 @@ export class HashMap {
   remove(key) {
     let hashKey = this.hash(key);
 
+    // JS limitation
+    if (hashKey < 0 || hashKey >= this.buckets.length) {
+      throw new Error("Trying to access index out of bounds");
+    }
+
     let bucket = this.buckets[hashKey];
     let node = bucket ? bucket.remove(key) : undefined;
 
