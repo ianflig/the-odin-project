@@ -8,7 +8,7 @@ test.set("apple", "green");
 test.set("Rama", "test");
 
 test.set("Sita", "value");
-test.set("Sita", "test");
+test.set("Sita", "new");
 
 console.log(test.has("Rama"));
 
@@ -20,3 +20,5 @@ console.log(test.get("Sita"));
 console.log(test.length());
 
 console.log(test.buckets);
+
+console.log(test.values());

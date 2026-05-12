@@ -56,6 +56,18 @@ export class HashMap {
   length() {
     return this.size;
   }
+
+  values() {
+    let arr = [];
+
+    this.buckets.forEach((ele) => {
+      if (ele) {
+        ele.getAllValues(arr);
+      }
+    });
+
+    return arr;
+  }
 }
 
 class LinkedList {
@@ -72,7 +84,7 @@ class LinkedList {
       return;
     }
 
-    while (currentNode.nextNode && currentNode.key !== key) {
+    while (currentNode.nextNode) {
       currentNode = currentNode.nextNode;
     }
 
@@ -87,6 +99,15 @@ class LinkedList {
     }
 
     return currentNode && currentNode.key === key ? currentNode : null;
+  }
+
+  getAllValues(arr) {
+    let currentNode = this._head;
+
+    while (currentNode) {
+      arr.push(currentNode.value);
+      currentNode = currentNode.nextNode;
+    }
   }
 }
 
