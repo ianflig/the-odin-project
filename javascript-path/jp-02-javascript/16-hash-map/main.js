@@ -15,12 +15,42 @@ test.set("jacket", "blue");
 test.set("kite", "pink");
 test.set("lion", "golden");
 
-console.log(test.length(), test.capacity * test.loadFactor);
-
+console.log(
+  "Used buckets:",
+  test.length(),
+  "- Total Buckets:",
+  test.buckets.length,
+);
+console.log("Entries:");
+console.log(test.entries());
+console.log("");
+console.log("Adding entry ('moon', 'silver') to trigger growth");
 test.set("moon", "silver");
-
-console.log(test.length(), test.capacity * test.loadFactor);
-
-console.log(test.keys());
-
-// console.log(test.buckets);
+console.log("");
+console.log(
+  "Used buckets:",
+  test.length(),
+  "- Total Buckets:",
+  test.buckets.length,
+);
+console.log("New entries (resized):");
+console.log(test.entries());
+console.log("");
+console.log(
+  "remove('moon'):",
+  test.remove("moon"),
+  "- new used capacity:",
+  test.length(),
+);
+console.log(
+  "remove('lion'):",
+  test.remove("lion"),
+  "- new used capacity:",
+  test.length(),
+);
+console.log(
+  "Used buckets:",
+  test.length(),
+  "- Total Buckets:",
+  test.buckets.length,
+);
