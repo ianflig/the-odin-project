@@ -97,6 +97,18 @@ export class HashMap {
     this.buckets = new Array(this.capacity).fill(null);
   }
 
+  keys() {
+    let arr = [];
+
+    this.buckets.forEach((ele) => {
+      if (ele) {
+        ele.getAllKeys(arr);
+      }
+    });
+
+    return arr;
+  }
+
   values() {
     let arr = [];
 
@@ -201,6 +213,15 @@ class LinkedList {
     }
 
     return currentNode && currentNode.key === key ? currentNode : null;
+  }
+
+  getAllKeys(arr) {
+    let currentNode = this._head;
+
+    while (currentNode) {
+      arr.push(currentNode.key);
+      currentNode = currentNode.nextNode;
+    }
   }
 
   getAllValues(arr) {

@@ -21,6 +21,6 @@ test.set("moon", "silver");
 
 console.log(test.length(), test.capacity * test.loadFactor);
 
-// console.log(test.remove("lion"));
-test.clear();
-console.log(test.buckets);
+console.log(test.keys());
+
+// console.log(test.buckets);
