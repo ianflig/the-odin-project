@@ -75,6 +75,20 @@ export class HashMap {
     return node ? true : false;
   }
 
+  remove(key) {
+    let hashKey = this.hash(key);
+
+    let bucket = this.buckets[hashKey];
+    let node = bucket ? bucket.remove(key) : undefined;
+
+    if (node === "isOnlyOne") {
+      this.buckets[hashKey] = null;
+      return true;
+    }
+
+    return node ? true : false;
+  }
+
   length() {
     return this.size;
   }
@@ -146,6 +160,33 @@ class LinkedList {
     }
 
     currentNode.nextNode = newNode;
+  }
+
+  remove(key) {
+    let currentNode = this._head;
+    let previousNode;
+
+    while (currentNode && currentNode.key !== key) {
+      previousNode = currentNode;
+      currentNode = currentNode.nextNode;
+    }
+
+    if (!currentNode) return;
+
+    if (currentNode.key === this._head.key && currentNode.nextNode) {
+      this._head = currentNode.nextNode;
+      return true;
+    }
+
+    if (currentNode.key === this._head.key && !currentNode.nextNode) {
+      return "isOnlyOne";
+    }
+
+    if (currentNode.key === key) {
+      previousNode.nextNode = currentNode.nextNode;
+    }
+
+    return true;
   }
 
   findKeyNode(key) {
