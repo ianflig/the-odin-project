@@ -81,9 +81,13 @@ export class HashMap {
     let bucket = this.buckets[hashKey];
     let node = bucket ? bucket.remove(key) : undefined;
 
-    if (node === "isOnlyOne") {
+    if (node === "headOnly") {
       this.buckets[hashKey] = null;
-      return true;
+      this.size--;
+    }
+
+    if (node === "any") {
+      this.size--;
     }
 
     return node ? true : false;
@@ -191,18 +195,18 @@ class LinkedList {
 
     if (currentNode.key === this._head.key && currentNode.nextNode) {
       this._head = currentNode.nextNode;
-      return true;
+      return "any";
     }
 
     if (currentNode.key === this._head.key && !currentNode.nextNode) {
-      return "isOnlyOne";
+      return "headOnly";
     }
 
     if (currentNode.key === key) {
       previousNode.nextNode = currentNode.nextNode;
     }
 
-    return true;
+    return "any";
   }
 
   findKeyNode(key) {
