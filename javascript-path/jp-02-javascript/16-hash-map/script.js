@@ -41,6 +41,10 @@ export class HashMap {
 
     this.buckets[hashKey].append(key, value);
     this.size++;
+
+    if (this.size > this.buckets.length * this.loadFactor) {
+      return this.resize();
+    }
   }
 
   get(key) {
@@ -97,6 +101,29 @@ export class HashMap {
     });
 
     return arr;
+  }
+
+  resize() {
+    let oldBuckets = this.buckets;
+
+    this.capacity *= 2;
+    this.buckets = new Array(this.capacity).fill(null);
+    this.size = 0;
+
+    oldBuckets.forEach((ele) => {
+      if (ele) {
+        this.rehash(ele._head);
+      }
+    });
+  }
+
+  rehash(ele) {
+    let currentNode = ele;
+
+    while (currentNode) {
+      this.set(currentNode.key, currentNode.value);
+      currentNode = currentNode.nextNode;
+    }
   }
 }
 

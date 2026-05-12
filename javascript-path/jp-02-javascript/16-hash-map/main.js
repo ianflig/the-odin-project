@@ -1,6 +1,6 @@
 import { HashMap } from "./script.js";
 
-const test = new HashMap(16);
+const test = new HashMap();
 
 test.set("apple", "red");
 test.set("banana", "yellow");
@@ -16,6 +16,8 @@ test.set("kite", "pink");
 test.set("lion", "golden");
 
 console.log(test.length(), test.capacity * test.loadFactor);
+
 test.set("moon", "silver");
 
 console.log(test.length(), test.capacity * test.loadFactor);
+console.log(test.buckets);
