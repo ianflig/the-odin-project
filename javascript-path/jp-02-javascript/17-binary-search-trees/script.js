@@ -28,4 +28,15 @@ export class Tree {
     let cleanArr = [...new Set(sortedArr)];
     return cleanArr;
   }
+
+  // prettyPrint imported from odin
+  prettyPrint(node = this.root, prefix = "", isLeft = true) {
+    if (node === null || node === undefined) {
+      return;
+    }
+
+    this.prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
+    console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
+    this.prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
+  }
 }
