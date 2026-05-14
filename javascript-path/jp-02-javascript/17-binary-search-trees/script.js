@@ -39,4 +39,19 @@ export class Tree {
     console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
     this.prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
   }
+
+  includes(value, root = this.root) {
+    if (!root) return false;
+    if (value === root.data) return true;
+
+    let result;
+
+    if (value > root.data) {
+      result = this.includes(value, root.right);
+    } else {
+      result = this.includes(value, root.left);
+    }
+
+    return result;
+  }
 }
