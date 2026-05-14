@@ -40,18 +40,26 @@ export class Tree {
     this.prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
   }
 
-  includes(value, root = this.root) {
-    if (!root) return false;
-    if (value === root.data) return true;
+  includes(value, node = this.root) {
+    if (!node) return false;
+    if (value === node.data) return true;
 
-    let result;
+    return value > node.data
+      ? this.includes(value, node.right)
+      : this.includes(value, node.left);
+  }
 
-    if (value > root.data) {
-      result = this.includes(value, root.right);
-    } else {
-      result = this.includes(value, root.left);
+  insert(value, node = this.root) {
+    if (!this.root) {
+      return (this.root = new Node(value));
     }
+    if (node && value === node.data) return node;
+    if (!node) return new Node(value);
 
-    return result;
+    value > node.data
+      ? (node.right = this.insert(value, node.right))
+      : (node.left = this.insert(value, node.left));
+
+    return node;
   }
 }
