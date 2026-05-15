@@ -62,4 +62,6 @@ export class Tree {
 
     return node;
   }
+
+  deleteItem(value, node = this.root) {}
 }
