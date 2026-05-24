@@ -1,7 +1,7 @@
 import { Tree } from "./script.js";
 
 let test = new Tree([4, 2, 5, 6, 10, 2, 2, 48, 87, 12, 14]);
-// let test = new Tree([1, 2, 3, 4]);
+// let test = new Tree([1, 2, 3]);
 test.prettyPrint();
 console.log("========================================================");
 // test.insert(4);
@@ -10,5 +10,5 @@ console.log("========================================================");
 // test.insert(1.5);
 // test.insert(1.2);
 // test.insert(0.5);
-test.deleteItem(48);
+// test.deleteItem(4);
 test.prettyPrint();

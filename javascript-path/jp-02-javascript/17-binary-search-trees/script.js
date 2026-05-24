@@ -29,6 +29,16 @@ export class Tree {
     return cleanArr;
   }
 
+  // deleteItem() helper
+  #getSuccessor(curr) {
+    curr = curr.right;
+    while (curr !== null && curr.left !== null) {
+      curr = curr.left;
+    }
+
+    return curr;
+  }
+
   // prettyPrint imported from odin
   prettyPrint(node = this.root, prefix = "", isLeft = true) {
     if (node === null || node === undefined) {
@@ -77,6 +87,10 @@ export class Tree {
       if (node.right === null) {
         return node.left;
       }
+
+      let succ = this.#getSuccessor(node);
+      node.data = succ.data;
+      node.right = this.deleteItem(succ.data, node.right);
     }
     return node;
   }
