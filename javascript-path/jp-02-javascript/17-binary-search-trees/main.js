@@ -10,5 +10,5 @@ test.insert(2.5);
 test.insert(1.5);
 test.insert(1.2);
 test.insert(0.5);
+test.deleteItem(6);
 test.prettyPrint();
-console.log(test.includes(0));

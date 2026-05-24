@@ -63,5 +63,14 @@ export class Tree {
     return node;
   }
 
-  deleteItem(value, node = this.root) {}
+  deleteItem(value, node = this.root) {
+    if (!node) return;
+    if (node.data === value) return null;
+
+    value > node.data
+      ? (node.right = this.deleteItem(value, node.right))
+      : (node.left = this.deleteItem(value, node.left));
+
+    return node;
+  }
 }
