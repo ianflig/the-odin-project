@@ -23,6 +23,7 @@ export class Tree {
     return root;
   }
 
+  //# buildTree() helper
   #clearArr(arr) {
     let sortedArr = arr.sort((a, b) => a - b);
     let cleanArr = [...new Set(sortedArr)];
@@ -50,6 +51,7 @@ export class Tree {
     this.prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
   }
 
+  // check if tree contains a value
   includes(value, node = this.root) {
     if (!node) return false;
     if (value === node.data) return true;
@@ -59,6 +61,7 @@ export class Tree {
       : this.includes(value, node.left);
   }
 
+  // insert new node with a given value
   insert(value, node = this.root) {
     if (!this.root) {
       return (this.root = new Node(value));
@@ -74,6 +77,7 @@ export class Tree {
   }
 
   deleteItem(value, node = this.root) {
+    if (!value) return;
     if (node === null) return node;
 
     if (node.data > value) {
@@ -81,6 +85,7 @@ export class Tree {
     } else if (node.data < value) {
       node.right = this.deleteItem(value, node.right);
     } else {
+      // case 1 (node has no children) & case 2 (node has 1 children)
       if (node.left === null) {
         return node.right;
       }
@@ -88,6 +93,7 @@ export class Tree {
         return node.left;
       }
 
+      // case 3 (node has two children)
       let succ = this.#getSuccessor(node);
       node.data = succ.data;
       node.right = this.deleteItem(succ.data, node.right);
