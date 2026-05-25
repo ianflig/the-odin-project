@@ -23,4 +23,4 @@ const log = (value) => {
 // test.inOrderForEach(log);
 // test.preOrderForEach(log);
 // test.postOrderForEach(log);
-// console.log(test.height(4));
+console.log(test.height(4));

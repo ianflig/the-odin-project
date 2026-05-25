@@ -182,4 +182,21 @@ export class Tree {
       ? this.find(value, node.right)
       : this.find(value, node.left);
   }
+
+  //height of the node containing the given value
+  height(value) {
+    const targetNode = this.find(value);
+    if (!targetNode) return undefined;
+
+    const calculateHeight = (node) => {
+      if (!node) return -1;
+
+      let leftHeight = calculateHeight(node.left);
+      let rightHeight = calculateHeight(node.right);
+
+      return Math.max(leftHeight, rightHeight) + 1;
+    };
+
+    return calculateHeight(targetNode);
+  }
 }
