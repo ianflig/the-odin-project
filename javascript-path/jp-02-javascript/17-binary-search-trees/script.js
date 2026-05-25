@@ -134,5 +134,16 @@ export class Tree {
     this.levelOrderForEachRecursive(callback, queue);
   }
 
-  // inOrderForEach(callback) {}
+  // In order traversal -> <left> <root> <right>
+  inOrderForEach(callback, node = this.root) {
+    if (typeof callback !== "function")
+      throw new Error("No callback specified");
+    if (!node) return;
+
+    if (node.left) this.inOrderForEach(callback, node.left);
+
+    callback(node.data);
+
+    if (node.right) this.inOrderForEach(callback, node.right);
+  }
 }
