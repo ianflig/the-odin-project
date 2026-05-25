@@ -1,7 +1,7 @@
 import { Tree } from "./script.js";
 
 // let test = new Tree([4, 2, 5, 6, 10, 2, 2, 48, 87, 12, 14]);
-let test = new Tree([1, 2, 3, 4, 5, 6, 7]);
+let test = new Tree([1, 2, 3, 4, 5, 6, 7, 8]);
 // let test = new Tree([1, 2, 3]);
 test.prettyPrint();
 console.log("========================================================");
@@ -22,4 +22,5 @@ const log = (value) => {
 // test.levelOrderForEachRecursive(log);
 // test.inOrderForEach(log);
 // test.preOrderForEach(log);
-test.postOrderForEach(log);
+// test.postOrderForEach(log);
+// console.log(test.height(4));

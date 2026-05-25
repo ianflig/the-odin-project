@@ -172,4 +172,14 @@ export class Tree {
 
     callback(node.data);
   }
+
+  // heigth() helper, returns the node found
+  find(value, node = this.root) {
+    if (!node) return;
+    if (value === node.data) return node;
+
+    return value > node.data
+      ? this.find(value, node.right)
+      : this.find(value, node.left);
+  }
 }
