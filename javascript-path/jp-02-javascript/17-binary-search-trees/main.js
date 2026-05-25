@@ -21,4 +21,5 @@ const log = (value) => {
 // test.levelOrderForEachIterative(log);
 // test.levelOrderForEachRecursive(log);
 // test.inOrderForEach(log);
-test.preOrderForEach(log);
+// test.preOrderForEach(log);
+test.postOrderForEach(log);

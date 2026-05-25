@@ -159,4 +159,17 @@ export class Tree {
 
     if (node.right) this.preOrderForEach(callback, node.right);
   }
+
+  // Post order traversal -> <left> <right> <root>
+  postOrderForEach(callback, node = this.root) {
+    if (typeof callback !== "function")
+      throw new Error("No callback specified");
+    if (!node) return;
+
+    if (node.left) this.postOrderForEach(callback, node.left);
+
+    if (node.right) this.postOrderForEach(callback, node.right);
+
+    callback(node.data);
+  }
 }
