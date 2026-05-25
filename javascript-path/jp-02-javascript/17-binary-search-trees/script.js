@@ -140,11 +140,11 @@ export class Tree {
       throw new Error("No callback specified");
     if (!node) return;
 
-    if (node.left) this.inOrderForEach(callback, node.left);
+    this.inOrderForEach(callback, node.left);
 
     callback(node.data);
 
-    if (node.right) this.inOrderForEach(callback, node.right);
+    this.inOrderForEach(callback, node.right);
   }
 
   // Pre order traversal -> <root> <left> <right>
@@ -155,9 +155,9 @@ export class Tree {
 
     callback(node.data);
 
-    if (node.left) this.preOrderForEach(callback, node.left);
+    this.preOrderForEach(callback, node.left);
 
-    if (node.right) this.preOrderForEach(callback, node.right);
+    this.preOrderForEach(callback, node.right);
   }
 
   // Post order traversal -> <left> <right> <root>
@@ -166,9 +166,9 @@ export class Tree {
       throw new Error("No callback specified");
     if (!node) return;
 
-    if (node.left) this.postOrderForEach(callback, node.left);
+    this.postOrderForEach(callback, node.left);
 
-    if (node.right) this.postOrderForEach(callback, node.right);
+    this.postOrderForEach(callback, node.right);
 
     callback(node.data);
   }
