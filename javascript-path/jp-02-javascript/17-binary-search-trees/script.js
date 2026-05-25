@@ -120,5 +120,15 @@ export class Tree {
   }
 
   // traversal the Tree in breadth-first level order -- Recursive
-  levelOrderForEachRecursive(callback, node = this.root) {}
+  levelOrderForEachRecursive(callback, queue = [this.root]) {
+    if (queue.length === 0) return;
+
+    let node = queue[0];
+
+    queue.shift(callback(node.data));
+    if (node.left) queue.push(node.left);
+    if (node.right) queue.push(node.right);
+
+    this.levelOrderForEachRecursive(callback, queue);
+  }
 }
