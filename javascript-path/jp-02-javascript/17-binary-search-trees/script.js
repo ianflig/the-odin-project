@@ -121,6 +121,8 @@ export class Tree {
 
   // traversal the Tree in breadth-first level order -- Recursive
   levelOrderForEachRecursive(callback, queue = [this.root]) {
+    if (typeof callback !== "function")
+      throw new Error("No callback specified");
     if (queue.length === 0) return;
 
     let node = queue[0];
@@ -131,4 +133,6 @@ export class Tree {
 
     this.levelOrderForEachRecursive(callback, queue);
   }
+
+  // inOrderForEach(callback) {}
 }
