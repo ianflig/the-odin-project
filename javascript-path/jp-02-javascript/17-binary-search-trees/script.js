@@ -224,4 +224,24 @@ export class Tree {
 
     return undefined;
   }
+
+  isBalanced(node = this.root) {
+    const checkHeight = (currentNode) => {
+      if (!currentNode) return 0;
+
+      let leftHeight = checkHeight(currentNode.left);
+      if (leftHeight === -1) return -1;
+
+      let rightHeight = checkHeight(currentNode.right);
+      if (rightHeight === -1) return -1;
+
+      let difference = Math.abs(leftHeight - rightHeight);
+
+      if (difference > 1) return -1;
+
+      return Math.max(leftHeight, rightHeight) + 1;
+    };
+
+    return checkHeight(node) !== -1;
+  }
 }
