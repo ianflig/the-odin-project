@@ -1,33 +1,75 @@
 import { Tree } from "./script.js";
 
-let test = new Tree([4, 2, 5, 6, 10, 2, 2, 48, 87, 12, 14]);
-// let test = new Tree([1, 2, 3, 4, 5, 6, 7, 8]);
-// let test = new Tree([1, 2, 3]);
-test.prettyPrint();
-console.log("========================================================");
-// test.insert(4);
-// test.insert(6);
-// test.insert(2.5);
-// test.insert(1.5);
-// test.insert(1.2);
-// test.insert(0.5);
-test.deleteItem();
-// test.prettyPrint();
+let arr = [4, 2, 5, 6, 10, 2, 2, 48, 87, 12, 14, 80, 33, 24, 56];
+let tempArr = [];
 
-const log = (value) => {
-  return console.log(value);
-};
+let test = new Tree(arr);
 
-// test.levelOrderForEachIterative(log);
-// test.levelOrderForEachRecursive(log);
-// test.inOrderForEach(log);
-// test.preOrderForEach(log);
-// test.postOrderForEach(log);
-// console.log(test.height(4));
-// console.log(test.depth(7));
-test.insert(88);
-test.insert(89);
-test.prettyPrint();
-console.log(test.isBalanced());
+console.log("Created Tree from array -> ", arr);
+
+console.log("Tree is balanced?: ", test.isBalanced());
+
+test.levelOrderForEachIterative((value) => {
+  tempArr.push(value);
+});
+console.log("Printing all values in Level-order: ", tempArr.join(" - "));
+
+tempArr = [];
+test.preOrderForEach((value) => {
+  tempArr.push(value);
+});
+console.log("Printing all values in Pre-order: ", tempArr.join(" - "));
+
+tempArr = [];
+test.inOrderForEach((value) => {
+  tempArr.push(value);
+});
+console.log("Printing all values in In-order: ", tempArr.join(" - "));
+
+tempArr = [];
+test.postOrderForEach((value) => {
+  tempArr.push(value);
+});
+console.log("Printing all values in Post-order: ", tempArr.join(" - "));
+
+console.log("Inserting new values: 102, 250, 140, 432, 190, 233");
+test.insert(102);
+test.insert(250);
+test.insert(140);
+test.insert(432);
+test.insert(190);
+test.insert(233);
+
+console.log("Tree is balanced?: ", test.isBalanced());
+
+console.log("Rebalancing tree");
 test.rebalance();
+
+console.log("Tree is balanced?: ", test.isBalanced());
+
+tempArr = [];
+test.levelOrderForEachIterative((value) => {
+  tempArr.push(value);
+});
+console.log("Printing all values in Level-order: ", tempArr.join(" - "));
+
+tempArr = [];
+test.preOrderForEach((value) => {
+  tempArr.push(value);
+});
+console.log("Printing all values in Pre-order: ", tempArr.join(" - "));
+
+tempArr = [];
+test.inOrderForEach((value) => {
+  tempArr.push(value);
+});
+console.log("Printing all values in In-order: ", tempArr.join(" - "));
+
+tempArr = [];
+test.postOrderForEach((value) => {
+  tempArr.push(value);
+});
+console.log("Printing all values in Post-order: ", tempArr.join(" - "));
+
+console.log("Pretty print of final tree");
 test.prettyPrint();
