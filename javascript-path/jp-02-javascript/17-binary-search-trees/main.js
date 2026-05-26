@@ -29,3 +29,5 @@ test.insert(88);
 test.insert(89);
 test.prettyPrint();
 console.log(test.isBalanced());
+test.rebalance();
+test.prettyPrint();

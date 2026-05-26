@@ -101,7 +101,7 @@ export class Tree {
     return node;
   }
 
-  // traversal the Tree in breadth-first level order -- ITERATIVE
+  // breadth-first traversal - Level order -- ITERATIVE method
   levelOrderForEachIterative(callback) {
     if (typeof callback !== "function")
       throw new Error("No callback specified");
@@ -119,7 +119,7 @@ export class Tree {
     }
   }
 
-  // traversal the Tree in breadth-first level order -- Recursive
+  // breadth-first traversal - Level order -- RECURSIVE method
   levelOrderForEachRecursive(callback, queue = [this.root]) {
     if (typeof callback !== "function")
       throw new Error("No callback specified");
@@ -134,7 +134,7 @@ export class Tree {
     this.levelOrderForEachRecursive(callback, queue);
   }
 
-  // In order traversal -> <left> <root> <right>
+  // depth-first traversal - In order - <left> <root> <right>
   inOrderForEach(callback, node = this.root) {
     if (typeof callback !== "function")
       throw new Error("No callback specified");
@@ -147,7 +147,7 @@ export class Tree {
     this.inOrderForEach(callback, node.right);
   }
 
-  // Pre order traversal -> <root> <left> <right>
+  // depth-first traversal - In order - <root> <left> <right>
   preOrderForEach(callback, node = this.root) {
     if (typeof callback !== "function")
       throw new Error("No callback specified");
@@ -160,7 +160,7 @@ export class Tree {
     this.preOrderForEach(callback, node.right);
   }
 
-  // Post order traversal -> <left> <right> <root>
+  // depth-first traversal - In order - <left> <right> <root>
   postOrderForEach(callback, node = this.root) {
     if (typeof callback !== "function")
       throw new Error("No callback specified");
@@ -243,5 +243,22 @@ export class Tree {
     };
 
     return checkHeight(node) !== -1;
+  }
+
+  // rebalance tree
+  rebalance() {
+    if (!this.isBalanced()) {
+      let arr = [];
+
+      this.preOrderForEach((value) => {
+        arr.push(value);
+      });
+
+      this.root = this.#buildTree(this.#clearArr(arr));
+
+      return console.log("Tree balanced");
+    }
+
+    return console.log("Tree is already balanced");
   }
 }
