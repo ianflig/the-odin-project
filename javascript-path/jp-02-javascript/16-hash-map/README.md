@@ -12,7 +12,7 @@
 
 ![preview][screenshot]
 
-**_DESCRIPTION_**: in this repo, I built a custom Hash Map data structure from scratch. The main focus was to understand better memory allocation and fast data retrieval. To achieve this, the implementation includes a custom hashing algorithm, collision management (using Linked Lists), and an automatic resizing logic triggered by a specific load factor to maintain performance as the dataset grows.
+**_DESCRIPTION_**: this repo has a custom Hash Map data structure built from scratch. The main focus was to understand better memory allocation and fast data retrieval. To achieve this, the implementation includes a custom hashing algorithm, collision management (using Linked Lists), and an automatic resizing logic triggered by a specific load factor to maintain performance as the dataset grows.
 
 HashMap methods:
 
