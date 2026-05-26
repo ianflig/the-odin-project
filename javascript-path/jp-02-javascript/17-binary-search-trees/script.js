@@ -199,4 +199,29 @@ export class Tree {
 
     return calculateHeight(targetNode);
   }
+
+  // returns the depth of the node containing the given value.
+  depth(value, node = this.root) {
+    if (!node) return undefined;
+
+    if (value === node.data) {
+      return 0;
+    }
+
+    if (value > node.data) {
+      let result = this.depth(value, node.right);
+
+      if (result !== undefined) {
+        return result + 1;
+      }
+    } else if (value < node.data) {
+      let result = this.depth(value, node.left);
+
+      if (result !== undefined) {
+        return result + 1;
+      }
+    }
+
+    return undefined;
+  }
 }
