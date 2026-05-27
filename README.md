@@ -25,3 +25,4 @@
 15. [Linked Lists](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-02-javascript/15-linked-lists)
 16. [Hash Map](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-02-javascript/16-hash-map)
 17. [Binary Search Trees](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-02-javascript/17-binary-search-trees)
+18. [Knights Travails](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-02-javascript/18-knights-travails)
