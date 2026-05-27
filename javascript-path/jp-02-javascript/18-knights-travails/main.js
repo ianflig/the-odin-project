@@ -67,4 +67,11 @@ function knightMoves(from, to) {
   console.log(path.reverse());
 }
 
+console.log("1) Input: knightMoves([3, 3], [4, 3])");
 knightMoves([3, 3], [4, 3]);
+console.log("");
+console.log("2) Input: knightMoves([0,0],[3,3])");
+knightMoves([0, 0], [3, 3]);
+console.log("");
+console.log("3) Input: knightMoves([0,0],[7,7])");
+knightMoves([0, 0], [7, 7]);
