@@ -8,10 +8,8 @@
 
 </div>
 
-<!-- [screenshot]: ./screenshot.png "preview"
+[screenshot]: ./screenshot.png "preview"
 
-![preview][screenshot] -->
+![preview][screenshot]
 
-**_DESCRIPTION_**: WIP
-
-<!-- - `` - -->
+**_DESCRIPTION_**: this repo contains a script that calculates the shortest possible path for a knight moving from one square to another on a standard 8x8 chessboard. The main focus of this project was to apply Breadth-First Search (BFS) and graph traversal algorithms in an implicit way.
