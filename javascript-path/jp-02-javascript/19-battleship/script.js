@@ -17,3 +17,10 @@ class Ship {
     return this._isSunk;
   }
 }
+
+export class Gameboard {
+  constructor(size) {
+    this.Gameboard;
+  }
+}
+
