@@ -1,12 +1,13 @@
 import { Ship } from "./Ship.js";
 
 export class Gameboard {
-  constructor(size) {
+  constructor() {
+    this.size = 4;
     this.gameboard = [];
     this.missedShots = {};
     this.activeShips = 0;
 
-    this.loadGameboard(size);
+    this.loadGameboard();
   }
 
   allShipsSunk() {
@@ -36,13 +37,17 @@ export class Gameboard {
     this.activeShips++;
   }
 
-  loadGameboard(size) {
-    for (let i = 0; i < size; i++) {
+  loadGameboard() {
+    for (let i = 0; i < this.size; i++) {
       this.gameboard[i] = [];
-      for (let j = 0; j < size; j++) {
+      for (let j = 0; j < this.size; j++) {
         this.gameboard[i][j] = null;
       }
     }
+  }
+
+  resetGameboard() {
+    return this.loadGameboard();
   }
 
   getGameboard() {

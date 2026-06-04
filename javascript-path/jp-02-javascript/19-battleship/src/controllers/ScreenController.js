@@ -7,6 +7,9 @@ export class ScreenController {
       toStartGame: () => {
         this.startGame();
       },
+      toResetGame: () => {
+        this.resetGame();
+      },
     };
 
     this.renderer.bindEvents(actions);
@@ -20,5 +23,9 @@ export class ScreenController {
 
   startGame() {
     return this.game.startGame();
+  }
+
+  resetGame() {
+    return this.game.resetGame();
   }
 }

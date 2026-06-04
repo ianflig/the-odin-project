@@ -7,6 +7,10 @@ export class GameController {
   }
 
   startGame() {
+    if (this.gameStatus) {
+      return;
+    }
+
     this.gameStatus = true;
 
     this.playerOne.gameboard.placeShip(1, [0, 0]);
@@ -14,6 +18,14 @@ export class GameController {
 
     console.log("Game started");
     console.log("Now playing: Player " + this.playerTurn);
+  }
+
+  resetGame() {
+    console.log("Restarting game...");
+    this.playerOne.gameboard.resetGameboard();
+    this.playerTwo.gameboard.resetGameboard();
+    this.gameStatus = false;
+    this.playerTurn = 1;
   }
 
   switchPlayerTurn() {

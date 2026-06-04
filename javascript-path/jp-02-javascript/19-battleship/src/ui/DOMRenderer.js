@@ -1,10 +1,12 @@
 export class Renderer {
   constructor() {
     this.startGameBtn = document.querySelector("#start-game-button");
+    this.resetGameBtn = document.querySelector("#reset-game-button");
   }
 
   bindEvents(actions) {
     this.startGameBtn.addEventListener("click", actions.toStartGame);
+    this.resetGameBtn.addEventListener("click", actions.toResetGame);
   }
 
   renderGameboards(size) {
