@@ -1,4 +1,4 @@
-import { Player } from "./models/GameboardModel.js";
+import { Player } from "./models/BattleShipModel.js";
 
 const player = new Player();
 
