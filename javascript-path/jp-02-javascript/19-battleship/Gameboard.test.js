@@ -26,3 +26,14 @@ test("Attack to non existent [2, 3] ship. Gameboard coordinates should be null",
 test("Attack to non existent [2, 3] ship. Missed shots '2,3' record should be true", () => {
   expect(game.getMissedShots()["2,3"]).toBe(true);
 });
+
+test("allShipsSunk() should return false", () => {
+  expect(game.allShipsSunk()).toBe(false);
+});
+
+let allShipSunkTest = new Gameboard(1);
+allShipSunkTest.placeShip(1, [0, 0]);
+allShipSunkTest.receiveAttack([0, 0]);
+test("allShipsSunk() should return true", () => {
+  expect(allShipSunkTest.allShipsSunk()).toBe(true);
+});
