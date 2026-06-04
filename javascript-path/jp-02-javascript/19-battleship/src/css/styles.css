@@ -171,3 +171,10 @@ h4 {
 --- DOCUMENT ---
 */
 
+.player-one-gameboard{
+    display: flex;
+}
+
+.gameboard-cell {
+    background-color: red;
+}
