@@ -4,6 +4,10 @@ export class ScreenController {
     this.playerOne = playerOne;
     this.playerTwo = playerTwo;
 
+    // const actions = {
+    //     toAttack:
+    // }
+
     this.init();
   }
 

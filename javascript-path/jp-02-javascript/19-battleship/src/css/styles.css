@@ -178,8 +178,9 @@ body {
 
 .gameboards {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    gap: var(--space-2xl);
 }
 
 .player-one-gameboard,
@@ -194,4 +195,11 @@ body {
     border: 1px solid white;
     width: 50px;
     height: 50px;
+    cursor: pointer;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
