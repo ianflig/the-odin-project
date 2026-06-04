@@ -25,6 +25,11 @@ export class Gameboard {
     this.loadGameboard(size);
   }
 
+  receiveAttack(coordinates) {
+    let gameboardCoords = this.Gameboard[coordinates[0]][coordinates[1]];
+    gameboardCoords !== null ? gameboardCoords.hit() : undefined;
+  }
+
   placeShip(shipSize, ...args) {
     const ship = new Ship(shipSize);
 
