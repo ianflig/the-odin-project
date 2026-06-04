@@ -21,13 +21,16 @@ class Ship {
 export class Gameboard {
   constructor(size) {
     this.Gameboard = [];
+    this.missedShots = {};
 
     this.loadGameboard(size);
   }
 
   receiveAttack(coordinates) {
     let gameboardCoords = this.Gameboard[coordinates[0]][coordinates[1]];
-    gameboardCoords !== null ? gameboardCoords.hit() : undefined;
+    gameboardCoords !== null
+      ? gameboardCoords.hit()
+      : (this.missedShots[`${coordinates[0]},${coordinates[1]}`] = true);
   }
 
   placeShip(shipSize, ...args) {
@@ -49,5 +52,9 @@ export class Gameboard {
 
   getGameboard() {
     return this.Gameboard;
+  }
+
+  getMissedShots() {
+    return this.missedShots;
   }
 }
