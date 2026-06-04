@@ -1,10 +1,10 @@
 export class Renderer {
-  constructor() {}
+  constructor() {
+    this.startGameBtn = document.querySelector("#start-game-button");
+  }
 
   bindEvents(actions) {
-    document
-      .querySelector(".player.one-gameboard")
-      .addEventListener("click", actions.toAttack);
+    this.startGameBtn.addEventListener("click", actions.toStartGame);
   }
 
   renderGameboards(size) {

@@ -6,11 +6,8 @@ import { GameController } from "./controllers/GameController.js";
 
 const playerOne = new Player();
 const playerTwo = new Player();
-
-playerOne.gameboard.placeShip(1, [0, 0]);
-playerTwo.gameboard.placeShip(3, [0, 0], [0, 1], [0, 2]);
+const game = new GameController(playerOne, playerTwo);
 const renderer = new Renderer();
-const logic = new GameController(playerOne, playerTwo);
-const screen = new ScreenController(renderer, logic);
+const screen = new ScreenController(renderer, game);
 
 window.app = screen;
