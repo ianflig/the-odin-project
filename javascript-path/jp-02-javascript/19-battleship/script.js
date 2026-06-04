@@ -22,15 +22,26 @@ export class Gameboard {
   constructor(size) {
     this.Gameboard = [];
     this.missedShots = {};
+    this.activeShips = 0;
 
     this.loadGameboard(size);
   }
 
+  allShipsSunk() {
+    return this.activeShips === 0;
+  }
+
   receiveAttack(coordinates) {
     let gameboardCoords = this.Gameboard[coordinates[0]][coordinates[1]];
-    gameboardCoords !== null
-      ? gameboardCoords.hit()
-      : (this.missedShots[`${coordinates[0]},${coordinates[1]}`] = true);
+
+    if (gameboardCoords === null) {
+      return (this.missedShots[`${coordinates[0]},${coordinates[1]}`] = true);
+    }
+
+    gameboardCoords.hit();
+    if (gameboardCoords.isSunk()) {
+      this.activeShips--;
+    }
   }
 
   placeShip(shipSize, ...args) {
@@ -39,6 +50,8 @@ export class Gameboard {
     args.forEach((ele) => {
       this.Gameboard[ele[0]][ele[1]] = ship;
     });
+
+    this.activeShips++;
   }
 
   loadGameboard(size) {
