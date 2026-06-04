@@ -2,12 +2,19 @@ export class Renderer {
   constructor() {}
 
   renderGameboards(size) {
-    const playerOneGameboard = `<div class="gameboard-cell">test</div>`;
-    const playerTwoGameboard = `<div class="gameboard-cell">test</div>`;
+    let playerOneGameboard = "";
+    let playerTwoGameboard = "";
+
+    for (let i = 0; i < size; i++) {
+      for (let j = 0; j < size; j++) {
+        playerOneGameboard += `<div class="gameboard-cell" data-cell="${i},${j}">test</div>`;
+        playerTwoGameboard += `<div class="gameboard-cell" data-cell="${i},${j}">test</div>`;
+      }
+    }
 
     document.querySelector(".player-one-gameboard").innerHTML =
-      playerOneGameboard.repeat(size * size);
+      playerOneGameboard;
     document.querySelector(".player-two-gameboard").innerHTML =
-      playerTwoGameboard.repeat(size * size);
+      playerTwoGameboard;
   }
 }
