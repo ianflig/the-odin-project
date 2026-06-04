@@ -18,3 +18,11 @@ game.receiveAttack([0, 0]);
 test("Attack to [0, 0] ship. Ship hits should be 1", () => {
   expect(game.getGameboard()[0][0].hits).toBe(1);
 });
+
+game.receiveAttack([2, 3]);
+test("Attack to non existent [2, 3] ship. Gameboard coordinates should be null", () => {
+  expect(game.getGameboard()[2][3]).toBe(null);
+});
+test("Attack to non existent [2, 3] ship. Missed shots '2,3' record should be true", () => {
+  expect(game.getMissedShots()["2,3"]).toBe(true);
+});
