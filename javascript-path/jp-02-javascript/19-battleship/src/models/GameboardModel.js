@@ -20,7 +20,7 @@ class Ship {
 
 export class Gameboard {
   constructor(size) {
-    this.Gameboard = [];
+    this.gameboard = [];
     this.missedShots = {};
     this.activeShips = 0;
 
@@ -32,7 +32,7 @@ export class Gameboard {
   }
 
   receiveAttack(coordinates) {
-    let gameboardCoords = this.Gameboard[coordinates[0]][coordinates[1]];
+    let gameboardCoords = this.gameboard[coordinates[0]][coordinates[1]];
 
     if (gameboardCoords === null) {
       return (this.missedShots[`${coordinates[0]},${coordinates[1]}`] = true);
@@ -48,7 +48,7 @@ export class Gameboard {
     const ship = new Ship(shipSize);
 
     args.forEach((ele) => {
-      this.Gameboard[ele[0]][ele[1]] = ship;
+      this.gameboard[ele[0]][ele[1]] = ship;
     });
 
     this.activeShips++;
@@ -56,18 +56,24 @@ export class Gameboard {
 
   loadGameboard(size) {
     for (let i = 0; i < size; i++) {
-      this.Gameboard[i] = [];
+      this.gameboard[i] = [];
       for (let j = 0; j < size; j++) {
-        this.Gameboard[i][j] = null;
+        this.gameboard[i][j] = null;
       }
     }
   }
 
   getGameboard() {
-    return this.Gameboard;
+    return this.gameboard;
   }
 
   getMissedShots() {
     return this.missedShots;
+  }
+}
+
+export class Player {
+  constructor() {
+    this.gameboard = new Gameboard(4);
   }
 }

@@ -1,4 +1,4 @@
-import { Gameboard } from "./script.js";
+import { Gameboard } from "./GameboardModel.js";
 let game = new Gameboard(4);
 
 game.placeShip(1, [0, 0]);
