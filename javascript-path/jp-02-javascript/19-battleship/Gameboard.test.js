@@ -1,6 +1,15 @@
 import { Gameboard } from "./script.js";
-let game = new Gameboard(3);
+let game = new Gameboard(4);
 
-test("", () => {
-  expect(game);
+game.placeShip(1, [0, 0]);
+test("Place ship at 0,0. Ship length of [0, 0] should be 1", () => {
+  expect(game.getGameboard()[0][0].length).toBe(1);
+});
+
+game.placeShip(3, [1, 0], [1, 1], [1, 2]);
+test("Place ship of length 3 at 1,0 - 1,1 - 1,2. Ship length of [1, 0] should be 3", () => {
+  expect(game.getGameboard()[1][0].length).toBe(3);
+});
+test("Place ship of length 3 at 1,0 - 1,1 - 1,2. Ship length of [1, 1] should be 3", () => {
+  expect(game.getGameboard()[1][1].length).toBe(3);
 });
