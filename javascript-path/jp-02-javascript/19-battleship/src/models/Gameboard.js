@@ -1,22 +1,4 @@
-class Ship {
-  constructor(size) {
-    this.length = size;
-    this.hits = 0;
-    this._isSunk = false;
-  }
-
-  hit() {
-    this.hits++;
-  }
-
-  isSunk() {
-    if (this.hits === this.length) {
-      this._isSunk = true;
-    }
-
-    return this._isSunk;
-  }
-}
+import { Ship } from "./Ship.js";
 
 export class Gameboard {
   constructor(size) {
@@ -69,11 +51,5 @@ export class Gameboard {
 
   getMissedShots() {
     return this.missedShots;
-  }
-}
-
-export class Player {
-  constructor() {
-    this.gameboard = new Gameboard(4);
   }
 }

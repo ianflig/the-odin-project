@@ -1,8 +1,7 @@
 export class ScreenController {
-  constructor(playerOne, playerTwo, renderer) {
+  constructor(renderer, logic) {
     this.renderer = renderer;
-    this.playerOne = playerOne;
-    this.playerTwo = playerTwo;
+    this.game = logic;
 
     // const actions = {
     //     toAttack:
