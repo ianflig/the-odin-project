@@ -10,6 +10,9 @@ export class ScreenController {
       toResetGame: () => {
         this.resetGame();
       },
+      toAttackShip: (coords) => {
+        this.attackShip(coords);
+      },
     };
 
     this.renderer.bindEvents(actions);
@@ -18,7 +21,7 @@ export class ScreenController {
   }
 
   init() {
-    this.renderer.renderGameboards(4);
+    this.renderer.renderGameboards(8);
   }
 
   startGame() {
@@ -27,5 +30,13 @@ export class ScreenController {
 
   resetGame() {
     return this.game.resetGame();
+  }
+
+  attackShip(coords) {
+    let coordsFormatted = [];
+    coords.split(",").forEach((ele) => {
+      coordsFormatted.push(Number(ele));
+    });
+    this.game.attackShip(coordsFormatted);
   }
 }

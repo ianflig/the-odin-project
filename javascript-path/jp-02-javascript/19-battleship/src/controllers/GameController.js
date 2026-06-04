@@ -32,4 +32,14 @@ export class GameController {
     this.playerTurn === 1 ? (this.playerTurn = 2) : (this.playerTurn = 1);
     console.log("Now playing: Player " + this.playerTurn);
   }
+
+  attackShip(coords) {
+    if (!this.gameStatus) return;
+
+    if (this.playerTurn === 1) {
+      this.playerOne.gameboard.receiveAttack(coords);
+    } else {
+      this.playerTwo.gameboard.receiveAttack(coords);
+    }
+  }
 }

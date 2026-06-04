@@ -2,11 +2,19 @@ export class Renderer {
   constructor() {
     this.startGameBtn = document.querySelector("#start-game-button");
     this.resetGameBtn = document.querySelector("#reset-game-button");
+    this.playerOneGameboard = document.querySelector(".player-one-gameboard");
+    this.playerTwoGameboard = document.querySelector(".player-two-gameboard");
   }
 
   bindEvents(actions) {
     this.startGameBtn.addEventListener("click", actions.toStartGame);
     this.resetGameBtn.addEventListener("click", actions.toResetGame);
+    this.playerOneGameboard.addEventListener("click", (e) => {
+      let element = e.target.closest(".gameboard-cell");
+      if (element) {
+        actions.toAttackShip(e.dataset.cell);
+      }
+    });
   }
 
   renderGameboards(size) {
@@ -20,9 +28,7 @@ export class Renderer {
       }
     }
 
-    document.querySelector(".player-one-gameboard").innerHTML =
-      playerOneGameboard;
-    document.querySelector(".player-two-gameboard").innerHTML =
-      playerTwoGameboard;
+    this.playerOneGameboard.innerHTML = playerOneGameboard;
+    this.playerTwoGameboard.innerHTML = playerTwoGameboard;
   }
 }

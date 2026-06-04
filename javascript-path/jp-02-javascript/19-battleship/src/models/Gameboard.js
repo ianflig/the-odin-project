@@ -2,7 +2,7 @@ import { Ship } from "./Ship.js";
 
 export class Gameboard {
   constructor() {
-    this.size = 4;
+    this.size = 8;
     this.gameboard = [];
     this.missedShots = {};
     this.activeShips = 0;
