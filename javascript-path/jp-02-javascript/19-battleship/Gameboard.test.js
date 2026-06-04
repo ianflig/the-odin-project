@@ -13,3 +13,8 @@ test("Place ship of length 3 at 1,0 - 1,1 - 1,2. Ship length of [1, 0] should be
 test("Place ship of length 3 at 1,0 - 1,1 - 1,2. Ship length of [1, 1] should be 3", () => {
   expect(game.getGameboard()[1][1].length).toBe(3);
 });
+
+game.receiveAttack([0, 0]);
+test("Attack to [0, 0] ship. Ship hits should be 1", () => {
+  expect(game.getGameboard()[0][0].hits).toBe(1);
+});
