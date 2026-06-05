@@ -76,9 +76,9 @@ export class ScreenController {
         compResult.player,
         compResult.result,
       );
-      this.updateTurnDisplay();
 
       this.updateAllGameboardsLockDisplay(false);
+      this.updateTurnDisplay();
     }, 600);
   }
 

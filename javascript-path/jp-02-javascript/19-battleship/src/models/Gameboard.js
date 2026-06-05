@@ -5,6 +5,7 @@ export class Gameboard {
     this.size = 8;
     this.gameboard = [];
     this.missedShots = {};
+    this.allShots = {};
     this.activeShips = 0;
 
     this.loadGameboard();
@@ -19,15 +20,16 @@ export class Gameboard {
 
     if (gameboardCoords === null) {
       this.missedShots[`${coordinates[0]},${coordinates[1]}`] = true;
+      this.allShots[`${coordinates[0]},${coordinates[1]}`] = true;
       return "miss";
     }
-
-    console.log(coordinates);
 
     gameboardCoords.hit();
     if (gameboardCoords.isSunk()) {
       this.activeShips--;
     }
+
+    this.allShots[`${coordinates[0]},${coordinates[1]}`] = true;
 
     return "hit";
   }

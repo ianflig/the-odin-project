@@ -67,6 +67,34 @@ export class GameController {
   }
 
   playComputerTurn() {
-    return this.attackShip([0, 2]);
+    let randomCoords;
+    let isLegal = false;
+    let allShots = this.playerOne.gameboard.allShots;
+
+    while (!isLegal) {
+      let tempCoords = this.generateRandomCoords();
+      let coordKey = `${tempCoords[0]},${tempCoords[1]}`;
+      console.log(coordKey);
+
+      if (!allShots[coordKey]) {
+        isLegal = true;
+        randomCoords = tempCoords;
+        console.log(allShots[coordKey]);
+        console.log(randomCoords);
+      }
+    }
+
+    return this.attackShip(randomCoords);
+  }
+
+  generateRandomCoords() {
+    let result = [];
+    let min = Math.ceil(0);
+    let max = Math.floor(7);
+
+    result.push(Math.floor(Math.random() * (max - min + 1)) + min);
+    result.push(Math.floor(Math.random() * (max - min + 1)) + min);
+
+    return result;
   }
 }
