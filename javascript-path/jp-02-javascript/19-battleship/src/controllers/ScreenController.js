@@ -4,6 +4,7 @@ export class ScreenController {
   constructor(renderer, game) {
     this.renderer = renderer;
     this.game = game;
+    this.gameboardSize = 8;
 
     const actions = {
       toStartGame: () => {
@@ -23,7 +24,7 @@ export class ScreenController {
   }
 
   init() {
-    this.renderer.renderGameboards(8);
+    this.renderer.renderGameboards(this.gameboardSize);
   }
 
   startGame() {
@@ -32,7 +33,9 @@ export class ScreenController {
   }
 
   resetGame() {
-    return this.game.resetGame();
+    this.game.resetGame();
+    this.renderer.renderGameboards(this.gameboardSize);
+    this.updateTurnDisplay();
   }
 
   attackShip(coords) {
@@ -47,7 +50,12 @@ export class ScreenController {
 
   updateTurnDisplay() {
     let currentPlayer = this.game.playerTurn;
+    let gameStatus = this.game.gameStatus;
 
-    this.renderer.swapGameboardLock(currentPlayer);
+    if (gameStatus) {
+      this.renderer.swapGameboardLock(currentPlayer);
+    } else {
+      this.renderer.unlockGameboards();
+    }
   }
 }

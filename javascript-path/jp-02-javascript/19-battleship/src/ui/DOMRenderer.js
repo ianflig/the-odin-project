@@ -69,4 +69,9 @@ export class Renderer {
 
     targetBoard.classList.add("locked-gameboard");
   }
+
+  unlockGameboards() {
+    this.playerOneGameboard.classList.remove("locked-gameboard");
+    this.playerTwoGameboard.classList.remove("locked-gameboard");
+  }
 }
