@@ -58,4 +58,21 @@ export class Renderer {
     this.playerOneGameboard.innerHTML = playerOneGameboard;
     this.playerTwoGameboard.innerHTML = playerTwoGameboard;
   }
+
+  //player equals to player's gameboard to update
+  swapGameboardLock(player) {
+    let gameboardToLock;
+    let gameboardToUnlock;
+
+    if (player === 1) {
+      gameboardToLock = this.playerOneGameboard;
+      gameboardToUnlock = this.playerTwoGameboard;
+    } else {
+      gameboardToLock = this.playerTwoGameboard;
+      gameboardToUnlock = this.playerOneGameboard;
+    }
+
+    gameboardToLock.classList.add("locked-gameboard");
+    gameboardToUnlock.classList.remove("locked-gameboard");
+  }
 }

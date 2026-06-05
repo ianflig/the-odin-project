@@ -27,7 +27,8 @@ export class ScreenController {
   }
 
   startGame() {
-    return this.game.startGame();
+    this.game.startGame();
+    this.updateTurnDisplay();
   }
 
   resetGame() {
@@ -41,5 +42,12 @@ export class ScreenController {
     if (!result) return;
 
     this.renderer.renderCell(coords, result.player, result.result);
+    this.updateTurnDisplay();
+  }
+
+  updateTurnDisplay() {
+    let currentPlayer = this.game.playerTurn;
+
+    this.renderer.swapGameboardLock(currentPlayer);
   }
 }

@@ -210,3 +210,8 @@ body {
 .hit-shot {
     background-color: red;
 }
+
+.locked-gameboard{
+    pointer-events: none;
+    opacity: 0.5;
+}
