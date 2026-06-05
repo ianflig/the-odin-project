@@ -61,18 +61,12 @@ export class Renderer {
 
   //player equals to player's gameboard to update
   swapGameboardLock(player) {
-    let gameboardToLock;
-    let gameboardToUnlock;
+    this.playerOneGameboard.classList.remove("locked-gameboard");
+    this.playerTwoGameboard.classList.remove("locked-gameboard");
 
-    if (player === 1) {
-      gameboardToLock = this.playerOneGameboard;
-      gameboardToUnlock = this.playerTwoGameboard;
-    } else {
-      gameboardToLock = this.playerTwoGameboard;
-      gameboardToUnlock = this.playerOneGameboard;
-    }
+    const targetBoard =
+      player === 1 ? this.playerOneGameboard : this.playerTwoGameboard;
 
-    gameboardToLock.classList.add("locked-gameboard");
-    gameboardToUnlock.classList.remove("locked-gameboard");
+    targetBoard.classList.add("locked-gameboard");
   }
 }
