@@ -12,7 +12,7 @@ export class Renderer {
     this.playerOneGameboard.addEventListener("click", (e) => {
       let element = e.target.closest(".gameboard-cell");
       if (element) {
-        actions.toAttackShip(e.dataset.cell);
+        actions.toAttackShip(element.dataset.cell);
       }
     });
   }

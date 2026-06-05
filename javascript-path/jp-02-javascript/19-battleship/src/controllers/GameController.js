@@ -37,9 +37,9 @@ export class GameController {
     if (!this.gameStatus) return;
 
     if (this.playerTurn === 1) {
-      this.playerOne.gameboard.receiveAttack(coords);
-    } else {
       this.playerTwo.gameboard.receiveAttack(coords);
+    } else {
+      this.playerOne.gameboard.receiveAttack(coords);
     }
   }
 }
