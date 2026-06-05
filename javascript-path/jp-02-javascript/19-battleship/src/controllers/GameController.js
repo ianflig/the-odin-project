@@ -1,7 +1,8 @@
+import { Player } from "../models/Player.js";
 export class GameController {
-  constructor(playerOne, playerTwo) {
-    this.playerOne = playerOne;
-    this.playerTwo = playerTwo;
+  constructor() {
+    this.playerOne = new Player();
+    this.playerTwo = new Player();
     this.gameStatus = false;
     this.playerTurn = 1;
     this.isComputerPlaying = false;
@@ -19,14 +20,6 @@ export class GameController {
 
     console.log("Game started");
     console.log("Now playing: Player " + this.playerTurn);
-  }
-
-  resetGame() {
-    console.log("Restarting game...");
-    this.playerOne.gameboard.resetGameboard();
-    this.playerTwo.gameboard.resetGameboard();
-    this.gameStatus = false;
-    this.playerTurn = 1;
   }
 
   switchPlayerTurn() {

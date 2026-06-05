@@ -1,4 +1,5 @@
 import { formatCoords } from "../utils/helpers.js";
+import { GameController } from "./GameController.js";
 
 export class ScreenController {
   constructor(renderer, game) {
@@ -37,14 +38,14 @@ export class ScreenController {
   startGame() {
     this.game.startGame();
     this.updateTurnDisplay();
-    this.updateLockComputerButtonDisplay();
+    this.updateComputerButtonDisplay();
   }
 
   resetGame() {
-    this.game.resetGame();
+    this.game = new GameController();
     this.renderer.renderGameboards(this.gameboardSize);
     this.updateTurnDisplay();
-    this.updateLockComputerButtonDisplay();
+    this.updateComputerButtonDisplay();
   }
 
   attackShip(coords) {
@@ -97,7 +98,7 @@ export class ScreenController {
     }
   }
 
-  updateLockComputerButtonDisplay() {
+  updateComputerButtonDisplay() {
     let gameStatus = this.game.gameStatus;
     if (gameStatus) {
       this.renderer.swapLockComputerButton(true);

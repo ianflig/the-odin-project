@@ -116,10 +116,12 @@ export class Renderer {
         "button-opacity",
       );
     } else {
+      //if game not started and this method is called = reset span textcontent
       this.isComputerPlayingBtn.classList.remove(
         "locked-button",
         "button-opacity",
       );
+      this.isComputerPlayingSpan.textContent = "No";
     }
   }
 }
