@@ -213,5 +213,8 @@ body {
 
 .locked-button{
     pointer-events: none;
+}
+
+.button-opacity {
     opacity: 0.5;
 }

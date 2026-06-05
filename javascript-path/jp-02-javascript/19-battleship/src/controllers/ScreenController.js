@@ -53,7 +53,7 @@ export class ScreenController {
 
     if (!humanResult) return;
 
-    this.renderer.renderCell(
+    this.renderer.renderAndLockCell(
       humanResult.coords,
       humanResult.player,
       humanResult.result,
@@ -71,7 +71,7 @@ export class ScreenController {
     setTimeout(() => {
       let compResult = this.game.playComputerTurn();
 
-      this.renderer.renderCell(
+      this.renderer.renderAndLockCell(
         compResult.coords,
         compResult.player,
         compResult.result,

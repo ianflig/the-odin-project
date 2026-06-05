@@ -40,7 +40,7 @@ export class Renderer {
   }
 
   //player equals to player's gameboard to update
-  renderCell(coords, player, result) {
+  renderAndLockCell(coords, player, result) {
     let gameboard;
 
     if (player === 1) {
@@ -53,11 +53,13 @@ export class Renderer {
     if (!cell) return;
 
     if (result === "miss") {
-      return cell.classList.add("miss-shot");
+      cell.classList.add("miss-shot");
     }
     if (result === "hit") {
-      return cell.classList.add("hit-shot");
+      cell.classList.add("hit-shot");
     }
+
+    return cell.classList.add("locked-button");
   }
 
   renderGameboards(size) {
@@ -77,35 +79,47 @@ export class Renderer {
 
   //player equals to player's gameboard to update
   swapGameboardLock(player) {
-    this.playerOneGameboard.classList.remove("locked-button");
-    this.playerTwoGameboard.classList.remove("locked-button");
+    this.playerOneGameboard.classList.remove("locked-button", "button-opacity");
+    this.playerTwoGameboard.classList.remove("locked-button", "button-opacity");
 
     const targetBoard =
       player === 1 ? this.playerOneGameboard : this.playerTwoGameboard;
 
-    targetBoard.classList.add("locked-button");
+    targetBoard.classList.add("locked-button", "button-opacity");
   }
 
   swapAllGameboardsLock(value) {
     if (value) {
-      this.playerOneGameboard.classList.add("locked-button");
-      this.playerTwoGameboard.classList.add("locked-button");
+      this.playerOneGameboard.classList.add("locked-button", "button-opacity");
+      this.playerTwoGameboard.classList.add("locked-button", "button-opacity");
     } else {
-      this.playerOneGameboard.classList.remove("locked-button");
-      this.playerTwoGameboard.classList.remove("locked-button");
+      this.playerOneGameboard.classList.remove(
+        "locked-button",
+        "button-opacity",
+      );
+      this.playerTwoGameboard.classList.remove(
+        "locked-button",
+        "button-opacity",
+      );
     }
   }
 
   unlockGameboards() {
-    this.playerOneGameboard.classList.remove("locked-button");
-    this.playerTwoGameboard.classList.remove("locked-button");
+    this.playerOneGameboard.classList.remove("locked-button", "button-opacity");
+    this.playerTwoGameboard.classList.remove("locked-button", "button-opacity");
   }
 
   swapLockComputerButton(value) {
     if (value) {
-      this.isComputerPlayingBtn.classList.add("locked-button");
+      this.isComputerPlayingBtn.classList.add(
+        "locked-button",
+        "button-opacity",
+      );
     } else {
-      this.isComputerPlayingBtn.classList.remove("locked-button");
+      this.isComputerPlayingBtn.classList.remove(
+        "locked-button",
+        "button-opacity",
+      );
     }
   }
 }
