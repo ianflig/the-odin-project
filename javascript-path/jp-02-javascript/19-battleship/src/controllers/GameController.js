@@ -45,18 +45,30 @@ export class GameController {
         player: 2,
         result: this.playerTwo.gameboard.receiveAttack(coords),
         coords: coords,
+        winner: this.checkWinner(),
       };
     } else {
       result = {
         player: 1,
         result: this.playerOne.gameboard.receiveAttack(coords),
         coords: coords,
+        winner: this.checkWinner(),
       };
     }
 
     this.switchPlayerTurn();
 
     return result;
+  }
+
+  checkWinner() {
+    if (this.playerOne.gameboard.allShipsSunk()) {
+      return 2;
+    } else if (this.playerTwo.gameboard.allShipsSunk()) {
+      return 1;
+    }
+
+    return;
   }
 
   playComputerTurn() {

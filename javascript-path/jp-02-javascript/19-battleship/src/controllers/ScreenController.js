@@ -36,6 +36,9 @@ export class ScreenController {
   }
 
   startGame() {
+    let gameStatus = this.game.gameStatus;
+
+    if (gameStatus) return;
     this.game.startGame();
     this.updateTurnDisplay();
     this.updateComputerButtonDisplay();
@@ -61,6 +64,12 @@ export class ScreenController {
     );
     this.updateTurnDisplay();
 
+    if (humanResult.winner) {
+      this.updateAllGameboardsLockDisplay(true);
+      console.log("Player " + humanResult.winner + " wins");
+      return;
+    }
+
     if (this.game.isComputerPlaying && this.game.playerTurn === "computer") {
       this.triggerComputerAttack();
     }
@@ -80,6 +89,12 @@ export class ScreenController {
 
       this.updateAllGameboardsLockDisplay(false);
       this.updateTurnDisplay();
+
+      if (compResult.winner) {
+        this.updateAllGameboardsLockDisplay(true);
+        console.log("computer wins");
+        return;
+      }
     }, 600);
   }
 
