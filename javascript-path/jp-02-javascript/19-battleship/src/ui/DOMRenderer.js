@@ -15,6 +15,33 @@ export class Renderer {
         actions.toAttackShip(element.dataset.cell);
       }
     });
+    this.playerTwoGameboard.addEventListener("click", (e) => {
+      let element = e.target.closest(".gameboard-cell");
+      if (element) {
+        actions.toAttackShip(element.dataset.cell);
+      }
+    });
+  }
+
+  //player equals to player's gameboard to update
+  renderCell(coords, player, result) {
+    let gameboard;
+
+    if (player === 1) {
+      gameboard = this.playerOneGameboard;
+    } else {
+      gameboard = this.playerTwoGameboard;
+    }
+
+    let cell = gameboard.querySelector(`[data-cell="${coords}"]`);
+    if (!cell) return;
+
+    if (result === "miss") {
+      return cell.classList.add("miss-shot");
+    }
+    if (result === "hit") {
+      return cell.classList.add("hit-shot");
+    }
   }
 
   renderGameboards(size) {

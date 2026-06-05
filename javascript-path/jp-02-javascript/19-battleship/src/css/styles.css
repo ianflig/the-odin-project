@@ -203,6 +203,10 @@ body {
     align-items: center;
 }
 
-.attacked {
+.miss-shot {
+    background-color: orange;
+}
+
+.hit-shot {
     background-color: red;
 }

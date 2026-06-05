@@ -36,6 +36,10 @@ export class ScreenController {
 
   attackShip(coords) {
     let coordsFormatted = formatCoords(coords);
-    this.game.attackShip(coordsFormatted);
+    let result = this.game.attackShip(coordsFormatted);
+
+    if (!result) return;
+
+    this.renderer.renderCell(coords, result.player, result.result);
   }
 }

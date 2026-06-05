@@ -18,13 +18,16 @@ export class Gameboard {
     let gameboardCoords = this.gameboard[coordinates[0]][coordinates[1]];
 
     if (gameboardCoords === null) {
-      return (this.missedShots[`${coordinates[0]},${coordinates[1]}`] = true);
+      this.missedShots[`${coordinates[0]},${coordinates[1]}`] = true;
+      return "miss";
     }
 
     gameboardCoords.hit();
     if (gameboardCoords.isSunk()) {
       this.activeShips--;
     }
+
+    return "hit";
   }
 
   placeShip(shipSize, ...args) {

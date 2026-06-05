@@ -36,10 +36,20 @@ export class GameController {
   attackShip(coords) {
     if (!this.gameStatus) return;
 
+    let result;
+
     if (this.playerTurn === 1) {
-      this.playerTwo.gameboard.receiveAttack(coords);
+      result = {
+        player: 2,
+        result: this.playerTwo.gameboard.receiveAttack(coords),
+      };
     } else {
-      this.playerOne.gameboard.receiveAttack(coords);
+      result = {
+        player: 1,
+        result: this.playerOne.gameboard.receiveAttack(coords),
+      };
     }
+
+    return result;
   }
 }
