@@ -4,6 +4,7 @@ export class GameController {
     this.playerTwo = playerTwo;
     this.gameStatus = false;
     this.playerTurn = 1;
+    this.isComputerPlaying = false;
   }
 
   startGame() {
@@ -29,6 +30,14 @@ export class GameController {
   }
 
   switchPlayerTurn() {
+    if (this.isComputerPlaying) {
+      this.playerTurn === 1
+        ? (this.playerTurn = "computer")
+        : (this.playerTurn = 1);
+      console.log("Now playing: Player " + this.playerTurn);
+      return;
+    }
+
     this.playerTurn === 1 ? (this.playerTurn = 2) : (this.playerTurn = 1);
     console.log("Now playing: Player " + this.playerTurn);
   }
@@ -42,16 +51,22 @@ export class GameController {
       result = {
         player: 2,
         result: this.playerTwo.gameboard.receiveAttack(coords),
+        coords: coords,
       };
     } else {
       result = {
         player: 1,
         result: this.playerOne.gameboard.receiveAttack(coords),
+        coords: coords,
       };
     }
 
     this.switchPlayerTurn();
 
     return result;
+  }
+
+  playComputerTurn() {
+    return this.attackShip([0, 2]);
   }
 }

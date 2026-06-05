@@ -4,6 +4,12 @@ export class Renderer {
     this.resetGameBtn = document.querySelector("#reset-game-button");
     this.playerOneGameboard = document.querySelector(".player-one-gameboard");
     this.playerTwoGameboard = document.querySelector(".player-two-gameboard");
+    this.isComputerPlayingBtn = document.querySelector(
+      "#is-computer-playing-button",
+    );
+    this.isComputerPlayingSpan = document.querySelector(
+      "#is-computer-playing-span",
+    );
   }
 
   bindEvents(actions) {
@@ -19,6 +25,16 @@ export class Renderer {
       let element = e.target.closest(".gameboard-cell");
       if (element) {
         actions.toAttackShip(element.dataset.cell);
+      }
+    });
+    this.isComputerPlayingBtn.addEventListener("click", () => {
+      let ele = this.isComputerPlayingSpan;
+      if (ele.textContent === "No") {
+        ele.textContent = "Yes";
+        actions.toSetComputerPlayer(true);
+      } else {
+        ele.textContent = "No";
+        actions.toSetComputerPlayer(false);
       }
     });
   }
@@ -61,17 +77,35 @@ export class Renderer {
 
   //player equals to player's gameboard to update
   swapGameboardLock(player) {
-    this.playerOneGameboard.classList.remove("locked-gameboard");
-    this.playerTwoGameboard.classList.remove("locked-gameboard");
+    this.playerOneGameboard.classList.remove("locked-button");
+    this.playerTwoGameboard.classList.remove("locked-button");
 
     const targetBoard =
       player === 1 ? this.playerOneGameboard : this.playerTwoGameboard;
 
-    targetBoard.classList.add("locked-gameboard");
+    targetBoard.classList.add("locked-button");
+  }
+
+  swapAllGameboardsLock(value) {
+    if (value) {
+      this.playerOneGameboard.classList.add("locked-button");
+      this.playerTwoGameboard.classList.add("locked-button");
+    } else {
+      this.playerOneGameboard.classList.remove("locked-button");
+      this.playerTwoGameboard.classList.remove("locked-button");
+    }
   }
 
   unlockGameboards() {
-    this.playerOneGameboard.classList.remove("locked-gameboard");
-    this.playerTwoGameboard.classList.remove("locked-gameboard");
+    this.playerOneGameboard.classList.remove("locked-button");
+    this.playerTwoGameboard.classList.remove("locked-button");
+  }
+
+  swapLockComputerButton(value) {
+    if (value) {
+      this.isComputerPlayingBtn.classList.add("locked-button");
+    } else {
+      this.isComputerPlayingBtn.classList.remove("locked-button");
+    }
   }
 }

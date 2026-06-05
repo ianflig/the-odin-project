@@ -22,6 +22,8 @@ export class Gameboard {
       return "miss";
     }
 
+    console.log(coordinates);
+
     gameboardCoords.hit();
     if (gameboardCoords.isSunk()) {
       this.activeShips--;

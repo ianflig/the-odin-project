@@ -211,7 +211,7 @@ body {
     background-color: red;
 }
 
-.locked-gameboard{
+.locked-button{
     pointer-events: none;
     opacity: 0.5;
 }

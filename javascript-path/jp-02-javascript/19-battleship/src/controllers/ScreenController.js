@@ -16,6 +16,9 @@ export class ScreenController {
       toAttackShip: (coords) => {
         this.attackShip(coords);
       },
+      toSetComputerPlayer: (value) => {
+        this.setComputerPlayer(value);
+      },
     };
 
     this.renderer.bindEvents(actions);
@@ -27,25 +30,60 @@ export class ScreenController {
     this.renderer.renderGameboards(this.gameboardSize);
   }
 
+  setComputerPlayer(value) {
+    this.game.isComputerPlaying = value;
+  }
+
   startGame() {
     this.game.startGame();
     this.updateTurnDisplay();
+    this.updateLockComputerButtonDisplay();
   }
 
   resetGame() {
     this.game.resetGame();
     this.renderer.renderGameboards(this.gameboardSize);
     this.updateTurnDisplay();
+    this.updateLockComputerButtonDisplay();
   }
 
   attackShip(coords) {
     let coordsFormatted = formatCoords(coords);
-    let result = this.game.attackShip(coordsFormatted);
+    let humanResult = this.game.attackShip(coordsFormatted);
 
-    if (!result) return;
+    if (!humanResult) return;
 
-    this.renderer.renderCell(coords, result.player, result.result);
+    this.renderer.renderCell(
+      humanResult.coords,
+      humanResult.player,
+      humanResult.result,
+    );
     this.updateTurnDisplay();
+
+    if (this.game.isComputerPlaying && this.game.playerTurn === "computer") {
+      this.triggerComputerAttack();
+    }
+  }
+
+  triggerComputerAttack() {
+    this.updateAllGameboardsLockDisplay(true);
+
+    setTimeout(() => {
+      let compResult = this.game.playComputerTurn();
+
+      this.renderer.renderCell(
+        compResult.coords,
+        compResult.player,
+        compResult.result,
+      );
+      this.updateTurnDisplay();
+
+      this.updateAllGameboardsLockDisplay(false);
+    }, 600);
+  }
+
+  updateAllGameboardsLockDisplay(value) {
+    return this.renderer.swapAllGameboardsLock(value);
   }
 
   updateTurnDisplay() {
@@ -56,6 +94,15 @@ export class ScreenController {
       this.renderer.swapGameboardLock(currentPlayer);
     } else {
       this.renderer.unlockGameboards();
+    }
+  }
+
+  updateLockComputerButtonDisplay() {
+    let gameStatus = this.game.gameStatus;
+    if (gameStatus) {
+      this.renderer.swapLockComputerButton(true);
+    } else {
+      this.renderer.swapLockComputerButton(false);
     }
   }
 }
