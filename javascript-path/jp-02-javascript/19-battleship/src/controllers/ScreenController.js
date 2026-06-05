@@ -1,3 +1,5 @@
+import { formatCoords } from "../utils/helpers.js";
+
 export class ScreenController {
   constructor(renderer, game) {
     this.renderer = renderer;
@@ -33,10 +35,7 @@ export class ScreenController {
   }
 
   attackShip(coords) {
-    let coordsFormatted = [];
-    coords.split(",").forEach((ele) => {
-      coordsFormatted.push(Number(ele));
-    });
+    let coordsFormatted = formatCoords(coords);
     this.game.attackShip(coordsFormatted);
   }
 }
