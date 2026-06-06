@@ -22,9 +22,13 @@ export class GameController {
   }
 
   generateRandomShips(player) {
-    player === 1
-      ? this.playerOne.gameboard.autoPlaceShips(this.allowedShipSizes)
-      : this.playerTwo.gameboard.autoPlaceShips(this.allowedShipSizes);
+    if (player === 1) {
+      this.playerOne.gameboard.resetGameboard();
+      this.playerOne.gameboard.autoPlaceShips(this.allowedShipSizes);
+    } else {
+      this.playerTwo.gameboard.resetGameboard();
+      this.playerTwo.gameboard.autoPlaceShips(this.allowedShipSizes);
+    }
   }
 
   switchPlayerTurn() {

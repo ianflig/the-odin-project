@@ -101,16 +101,9 @@ export class ScreenController {
   }
 
   generateRandomShips(player) {
-    const playerOneGameboard = this.game.playerOne.gameboard;
-    const playerTwoGameboard = this.game.playerTwo.gameboard;
-
-    if (player === 1) {
-      playerOneGameboard.resetGameboard();
-      this.game.generateRandomShips(player);
-    } else {
-      playerTwoGameboard.resetGameboard();
-      this.game.generateRandomShips(player);
-    }
+    player === 1
+      ? this.game.generateRandomShips(player)
+      : this.game.generateRandomShips(player);
   }
 
   renderRandomShips(player) {

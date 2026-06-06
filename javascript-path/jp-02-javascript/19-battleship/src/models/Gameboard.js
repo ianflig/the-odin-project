@@ -99,7 +99,8 @@ export class Gameboard {
   }
 
   resetGameboard() {
-    return this.loadGameboard();
+    this.loadGameboard();
+    this.activeShips = 0;
   }
 
   getGameboard() {
