@@ -1,4 +1,5 @@
 import { Player } from "../models/Player.js";
+
 export class GameController {
   constructor() {
     this.playerOne = new Player();
@@ -6,6 +7,7 @@ export class GameController {
     this.gameStatus = false;
     this.playerTurn = 1;
     this.isComputerPlaying = false;
+    this.allowedShipSizes = [3];
   }
 
   startGame() {
@@ -15,11 +17,17 @@ export class GameController {
 
     this.gameStatus = true;
 
-    this.playerOne.gameboard.autoPlaceShips([2, 3]);
-    this.playerTwo.gameboard.autoPlaceShips([2, 3]);
+    // this.playerOne.gameboard.autoPlaceShips([2, 3]);
+    // this.playerTwo.gameboard.autoPlaceShips([2, 3]);
 
     console.log("Game started");
     console.log("Now playing: Player " + this.playerTurn);
+  }
+
+  generateRandomShips(player) {
+    player === 1
+      ? this.playerOne.gameboard.autoPlaceShips(this.allowedShipSizes)
+      : this.playerTwo.gameboard.autoPlaceShips(this.allowedShipSizes);
   }
 
   switchPlayerTurn() {
@@ -79,13 +87,9 @@ export class GameController {
     while (!isLegal) {
       let tempCoords = this.generateRandomCoords();
       let coordKey = `${tempCoords[0]},${tempCoords[1]}`;
-      // console.log(coordKey);
 
       if (!allShots[coordKey]) {
         isLegal = true;
-        randomCoords = tempCoords;
-        // console.log(allShots[coordKey]);
-        // console.log(randomCoords);
       }
     }
 

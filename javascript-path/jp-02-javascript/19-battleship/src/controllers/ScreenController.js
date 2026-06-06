@@ -20,6 +20,9 @@ export class ScreenController {
       toSetComputerPlayer: (value) => {
         this.setComputerPlayer(value);
       },
+      toGenRandomShips: (player) => {
+        this.displayRandomShips(player);
+      },
     };
 
     this.renderer.bindEvents(actions);
@@ -28,7 +31,9 @@ export class ScreenController {
   }
 
   init() {
-    this.renderer.renderGameboards(this.gameboardSize);
+    this.displayRandomShips(1);
+    this.displayRandomShips(2);
+    // this.renderer.renderGameboard(this.gameboardSize); // to modify
   }
 
   setComputerPlayer(value) {
@@ -46,7 +51,9 @@ export class ScreenController {
 
   resetGame() {
     this.game = new GameController();
-    this.renderer.renderGameboards(this.gameboardSize);
+    this.displayRandomShips(1);
+    this.displayRandomShips(2);
+    // this.renderer.renderGameboard(this.gameboardSize); // to modify
     this.updateTurnDisplay();
     this.updateComputerButtonDisplay();
   }
@@ -73,6 +80,17 @@ export class ScreenController {
     if (this.game.isComputerPlaying && this.game.playerTurn === "computer") {
       this.triggerComputerAttack();
     }
+  }
+
+  displayRandomShips(player) {
+    const playerOneGameboard = this.game.playerOne.gameboard.getGameboard();
+    const playerTwoGameboard = this.game.playerTwo.gameboard.getGameboard();
+
+    this.game.generateRandomShips(player);
+
+    player === 1
+      ? this.renderer.renderGameboard(1, playerOneGameboard)
+      : this.renderer.renderGameboard(2, playerTwoGameboard);
   }
 
   triggerComputerAttack() {

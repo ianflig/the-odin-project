@@ -197,6 +197,10 @@ body {
     cursor: pointer;
 }
 
+.ship {
+    background-color: cyan;
+}
+
 .controls {
     display: flex;
     justify-content: center;

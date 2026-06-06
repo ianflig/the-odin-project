@@ -43,6 +43,14 @@ export class Renderer {
         actions.toSetComputerPlayer(false);
       }
     });
+    this.generateRandomShipsPlayerOneBtn.addEventListener(
+      "click",
+      actions.toGenRandomShips(1),
+    );
+    this.generateRandomShipsPlayerOneBtn.addEventListener(
+      "click",
+      actions.toGenRandomShips(2),
+    );
   }
 
   //player equals to player's gameboard to update
@@ -68,19 +76,32 @@ export class Renderer {
     return cell.classList.add("locked-button");
   }
 
-  renderGameboards(size) {
-    let playerOneGameboard = "";
-    let playerTwoGameboard = "";
+  renderGameboard(player, gameboard) {
+    let playerGameboard = "";
+    // let playerOneGameboard = "";
+    // let playerTwoGameboard = "";
 
-    for (let i = 0; i < size; i++) {
-      for (let j = 0; j < size; j++) {
-        playerOneGameboard += `<div class="gameboard-cell" data-cell="${i},${j}"></div>`;
-        playerTwoGameboard += `<div class="gameboard-cell" data-cell="${i},${j}"></div>`;
+    let rows = gameboard.length;
+    let columns = gameboard[0].length;
+
+    for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < columns; j++) {
+        if (gameboard[i][j] !== null) {
+          playerGameboard += `<div class="gameboard-cell ship" data-cell="${i},${j}"></div>`;
+        } else {
+          playerGameboard += `<div class="gameboard-cell" data-cell="${i},${j}"></div>`;
+          // playerOneGameboard += `<div class="gameboard-cell" data-cell="${i},${j}"></div>`;
+          // playerTwoGameboard += `<div class="gameboard-cell" data-cell="${i},${j}"></div>`;
+        }
       }
     }
 
-    this.playerOneGameboard.innerHTML = playerOneGameboard;
-    this.playerTwoGameboard.innerHTML = playerTwoGameboard;
+    player === 1
+      ? (this.playerOneGameboard.innerHTML = playerGameboard)
+      : (this.playerTwoGameboard.innerHTML = playerGameboard);
+
+    // this.playerOneGameboard.innerHTML = playerOneGameboard;
+    // this.playerTwoGameboard.innerHTML = playerTwoGameboard;
   }
 
   //player equals to player's gameboard to update
