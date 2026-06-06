@@ -47,6 +47,7 @@ export class ScreenController {
     this.game.startGame();
     this.updateTurnDisplay();
     this.updateComputerButtonDisplay();
+    this.updateGenerateRandomShipsDisplay();
   }
 
   resetGame() {
@@ -56,6 +57,7 @@ export class ScreenController {
     // this.renderer.renderGameboard(this.gameboardSize); // to modify
     this.updateTurnDisplay();
     this.updateComputerButtonDisplay();
+    this.updateGenerateRandomShipsDisplay();
   }
 
   attackShip(coords) {
@@ -118,6 +120,15 @@ export class ScreenController {
         return;
       }
     }, 600);
+  }
+
+  updateGenerateRandomShipsDisplay() {
+    let gameStatus = this.game.gameStatus;
+    if (gameStatus) {
+      this.renderer.swapLockGenerateRandomShips(true);
+    } else {
+      this.renderer.swapLockGenerateRandomShips(false);
+    }
   }
 
   updateAllGameboardsLockDisplay(value) {

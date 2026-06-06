@@ -7,7 +7,7 @@ export class GameController {
     this.gameStatus = false;
     this.playerTurn = 1;
     this.isComputerPlaying = false;
-    this.allowedShipSizes = [3];
+    this.allowedShipSizes = [3, 3, 2, 2, 1];
   }
 
   startGame() {

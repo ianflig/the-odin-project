@@ -106,6 +106,28 @@ export class Renderer {
     targetBoard.classList.add("locked-button", "button-opacity");
   }
 
+  swapLockGenerateRandomShips(value) {
+    if (value) {
+      this.generateRandomShipsPlayerOneBtn.classList.add(
+        "locked-button",
+        "button-opacity",
+      );
+      this.generateRandomShipsPlayerTwoBtn.classList.add(
+        "locked-button",
+        "button-opacity",
+      );
+    } else {
+      this.generateRandomShipsPlayerOneBtn.classList.remove(
+        "locked-button",
+        "button-opacity",
+      );
+      this.generateRandomShipsPlayerTwoBtn.classList.remove(
+        "locked-button",
+        "button-opacity",
+      );
+    }
+  }
+
   swapAllGameboardsLock(value) {
     if (value) {
       this.playerOneGameboard.classList.add("locked-button", "button-opacity");
