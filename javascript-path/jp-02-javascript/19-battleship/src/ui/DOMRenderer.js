@@ -76,8 +76,6 @@ export class Renderer {
 
   renderGameboard(player, gameboard) {
     let playerGameboard = "";
-    // let playerOneGameboard = "";
-    // let playerTwoGameboard = "";
 
     let rows = gameboard.length;
     let columns = gameboard[0].length;
@@ -88,8 +86,6 @@ export class Renderer {
           playerGameboard += `<div class="gameboard-cell ship" data-cell="${i},${j}"></div>`;
         } else {
           playerGameboard += `<div class="gameboard-cell" data-cell="${i},${j}"></div>`;
-          // playerOneGameboard += `<div class="gameboard-cell" data-cell="${i},${j}"></div>`;
-          // playerTwoGameboard += `<div class="gameboard-cell" data-cell="${i},${j}"></div>`;
         }
       }
     }
@@ -97,9 +93,6 @@ export class Renderer {
     player === 1
       ? (this.playerOneGameboard.innerHTML = playerGameboard)
       : (this.playerTwoGameboard.innerHTML = playerGameboard);
-
-    // this.playerOneGameboard.innerHTML = playerOneGameboard;
-    // this.playerTwoGameboard.innerHTML = playerTwoGameboard;
   }
 
   //player equals to player's gameboard to update

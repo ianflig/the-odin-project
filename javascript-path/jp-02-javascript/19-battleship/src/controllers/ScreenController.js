@@ -83,14 +83,18 @@ export class ScreenController {
   }
 
   displayRandomShips(player) {
-    const playerOneGameboard = this.game.playerOne.gameboard.getGameboard();
-    const playerTwoGameboard = this.game.playerTwo.gameboard.getGameboard();
+    const playerOneGameboard = this.game.playerOne.gameboard;
+    const playerTwoGameboard = this.game.playerTwo.gameboard;
 
-    this.game.generateRandomShips(player);
-
-    player === 1
-      ? this.renderer.renderGameboard(1, playerOneGameboard)
-      : this.renderer.renderGameboard(2, playerTwoGameboard);
+    if (player === 1) {
+      playerOneGameboard.resetGameboard();
+      this.game.generateRandomShips(player);
+      this.renderer.renderGameboard(1, playerOneGameboard.getGameboard());
+    } else {
+      playerTwoGameboard.resetGameboard();
+      this.game.generateRandomShips(player);
+      this.renderer.renderGameboard(2, playerTwoGameboard.getGameboard());
+    }
   }
 
   triggerComputerAttack() {
