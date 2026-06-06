@@ -10,6 +10,12 @@ export class Renderer {
     this.isComputerPlayingSpan = document.querySelector(
       "#is-computer-playing-span",
     );
+    this.generateRandomShipsPlayerOneBtn = document.querySelector(
+      "#generate-random-ships-player-one-button",
+    );
+    this.generateRandomShipsPlayerTwoBtn = document.querySelector(
+      "#generate-random-ships-player-two-button",
+    );
   }
 
   bindEvents(actions) {
