@@ -21,7 +21,10 @@ export class ScreenController {
         this.setComputerPlayer(value);
       },
       toGenRandomShips: (player) => {
-        this.displayRandomShips(player);
+        this.generateRandomShips(player);
+      },
+      toRenderRandomShips: (player) => {
+        this.renderRandomShips(player);
       },
     };
 
@@ -31,9 +34,11 @@ export class ScreenController {
   }
 
   init() {
-    this.displayRandomShips(1);
-    this.displayRandomShips(2);
-    // this.renderer.renderGameboard(this.gameboardSize); // to modify
+    this.generateRandomShips(1);
+    this.renderRandomShips(1);
+
+    this.generateRandomShips(2);
+    this.renderRandomShips(2);
   }
 
   setComputerPlayer(value) {
@@ -49,15 +54,23 @@ export class ScreenController {
     this.updateComputerButtonDisplay();
     this.updateGenerateRandomShipsDisplay();
 
-    // todo -> send player value & check if computer is playing to remove only that gameboard render
-    this.updateShipsFromGameboard(); // remove RENDER of random ships generated
+    if (this.game.isComputerPlaying) {
+      this.updateShipsFromGameboard(2);
+      this.generateRandomShips(2);
+    } else {
+      this.updateShipsFromGameboard(1);
+      this.updateShipsFromGameboard(2);
+    }
   }
 
   resetGame() {
     this.game = new GameController();
-    this.displayRandomShips(1);
-    this.displayRandomShips(2);
-    // this.renderer.renderGameboard(this.gameboardSize); // to modify
+    this.generateRandomShips(1);
+    this.renderRandomShips(1);
+
+    this.generateRandomShips(2);
+    this.renderRandomShips(2);
+
     this.updateTurnDisplay();
     this.updateComputerButtonDisplay();
     this.updateGenerateRandomShipsDisplay();
@@ -87,13 +100,24 @@ export class ScreenController {
     }
   }
 
-  displayRandomShips(player) {
+  generateRandomShips(player) {
     const playerOneGameboard = this.game.playerOne.gameboard;
     const playerTwoGameboard = this.game.playerTwo.gameboard;
 
     if (player === 1) {
       playerOneGameboard.resetGameboard();
       this.game.generateRandomShips(player);
+    } else {
+      playerTwoGameboard.resetGameboard();
+      this.game.generateRandomShips(player);
+    }
+  }
+
+  renderRandomShips(player) {
+    const playerOneGameboard = this.game.playerOne.gameboard;
+    const playerTwoGameboard = this.game.playerTwo.gameboard;
+
+    if (player === 1) {
       this.renderer.renderGameboard(
         1,
         playerOneGameboard.getGameboard(),
@@ -101,8 +125,6 @@ export class ScreenController {
         this.gameboardSize,
       );
     } else {
-      playerTwoGameboard.resetGameboard();
-      this.game.generateRandomShips(player);
       this.renderer.renderGameboard(
         2,
         playerTwoGameboard.getGameboard(),
@@ -135,6 +157,7 @@ export class ScreenController {
     }, 600);
   }
 
+  // remove RENDER of random ships generated
   updateShipsFromGameboard(player) {
     let gameStatus = this.game.gameStatus;
 
@@ -144,7 +167,7 @@ export class ScreenController {
         undefined,
         true,
         this.gameboardSize,
-      ); // to modify
+      );
     }
   }
 

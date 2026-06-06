@@ -38,17 +38,20 @@ export class Renderer {
       if (ele.textContent === "No") {
         ele.textContent = "Yes";
         actions.toSetComputerPlayer(true);
+        actions.toGenRandomShips(2); // todo
       } else {
         ele.textContent = "No";
         actions.toSetComputerPlayer(false);
       }
     });
-    this.generateRandomShipsPlayerOneBtn.addEventListener("click", () =>
-      actions.toGenRandomShips(1),
-    );
-    this.generateRandomShipsPlayerTwoBtn.addEventListener("click", () =>
-      actions.toGenRandomShips(2),
-    );
+    this.generateRandomShipsPlayerOneBtn.addEventListener("click", () => {
+      actions.toGenRandomShips(1);
+      actions.toRenderRandomShips(1); // todo
+    });
+    this.generateRandomShipsPlayerTwoBtn.addEventListener("click", () => {
+      actions.toGenRandomShips(2);
+      actions.toRenderRandomShips(2); // todo
+    });
   }
 
   //player equals to player's gameboard to update
