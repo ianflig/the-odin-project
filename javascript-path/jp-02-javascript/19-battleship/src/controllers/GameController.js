@@ -17,9 +17,6 @@ export class GameController {
 
     this.gameStatus = true;
 
-    // this.playerOne.gameboard.autoPlaceShips([2, 3]);
-    // this.playerTwo.gameboard.autoPlaceShips([2, 3]);
-
     console.log("Game started");
     console.log("Now playing: Player " + this.playerTurn);
   }
@@ -90,6 +87,7 @@ export class GameController {
 
       if (!allShots[coordKey]) {
         isLegal = true;
+        randomCoords = tempCoords;
       }
     }
 
