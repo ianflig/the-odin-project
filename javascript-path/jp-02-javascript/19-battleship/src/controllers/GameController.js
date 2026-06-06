@@ -15,8 +15,8 @@ export class GameController {
 
     this.gameStatus = true;
 
-    this.playerOne.gameboard.placeShip(1, [0, 0]);
-    this.playerTwo.gameboard.placeShip(3, [0, 0], [0, 1], [0, 2]);
+    this.playerOne.gameboard.autoPlaceShips([2, 3]);
+    this.playerTwo.gameboard.autoPlaceShips([2, 3]);
 
     console.log("Game started");
     console.log("Now playing: Player " + this.playerTurn);
@@ -79,13 +79,13 @@ export class GameController {
     while (!isLegal) {
       let tempCoords = this.generateRandomCoords();
       let coordKey = `${tempCoords[0]},${tempCoords[1]}`;
-      console.log(coordKey);
+      // console.log(coordKey);
 
       if (!allShots[coordKey]) {
         isLegal = true;
         randomCoords = tempCoords;
-        console.log(allShots[coordKey]);
-        console.log(randomCoords);
+        // console.log(allShots[coordKey]);
+        // console.log(randomCoords);
       }
     }
 
