@@ -48,6 +48,9 @@ export class ScreenController {
     this.updateTurnDisplay();
     this.updateComputerButtonDisplay();
     this.updateGenerateRandomShipsDisplay();
+
+    // todo -> send player value & check if computer is playing to remove only that gameboard render
+    this.updateShipsFromGameboard(); // remove RENDER of random ships generated
   }
 
   resetGame() {
@@ -91,11 +94,21 @@ export class ScreenController {
     if (player === 1) {
       playerOneGameboard.resetGameboard();
       this.game.generateRandomShips(player);
-      this.renderer.renderGameboard(1, playerOneGameboard.getGameboard());
+      this.renderer.renderGameboard(
+        1,
+        playerOneGameboard.getGameboard(),
+        false,
+        this.gameboardSize,
+      );
     } else {
       playerTwoGameboard.resetGameboard();
       this.game.generateRandomShips(player);
-      this.renderer.renderGameboard(2, playerTwoGameboard.getGameboard());
+      this.renderer.renderGameboard(
+        2,
+        playerTwoGameboard.getGameboard(),
+        false,
+        this.gameboardSize,
+      );
     }
   }
 
@@ -120,6 +133,19 @@ export class ScreenController {
         return;
       }
     }, 600);
+  }
+
+  updateShipsFromGameboard(player) {
+    let gameStatus = this.game.gameStatus;
+
+    if (gameStatus) {
+      this.renderer.renderGameboard(
+        player,
+        undefined,
+        true,
+        this.gameboardSize,
+      ); // to modify
+    }
   }
 
   updateGenerateRandomShipsDisplay() {
