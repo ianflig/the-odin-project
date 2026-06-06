@@ -43,12 +43,10 @@ export class Renderer {
         actions.toSetComputerPlayer(false);
       }
     });
-    this.generateRandomShipsPlayerOneBtn.addEventListener(
-      "click",
+    this.generateRandomShipsPlayerOneBtn.addEventListener("click", () =>
       actions.toGenRandomShips(1),
     );
-    this.generateRandomShipsPlayerOneBtn.addEventListener(
-      "click",
+    this.generateRandomShipsPlayerTwoBtn.addEventListener("click", () =>
       actions.toGenRandomShips(2),
     );
   }
