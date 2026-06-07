@@ -44,9 +44,6 @@ export class GameController {
     console.log("Now playing: Player " + this.playerTurn);
   }
 
-  // todo -> keep attacking after a hit
-  // todo -> better computer movements
-
   attackShip(coords) {
     if (!this.gameStatus) return;
 
@@ -75,15 +72,7 @@ export class GameController {
     return result;
   }
 
-  checkWinner() {
-    if (this.playerOne.gameboard.allShipsSunk()) {
-      return 2;
-    } else if (this.playerTwo.gameboard.allShipsSunk()) {
-      return 1;
-    }
-
-    return;
-  }
+  // todo -> better computer movements
 
   playComputerTurn() {
     let randomCoords;
@@ -112,5 +101,15 @@ export class GameController {
     result.push(Math.floor(Math.random() * (max - min + 1)) + min);
 
     return result;
+  }
+
+  checkWinner() {
+    if (this.playerOne.gameboard.allShipsSunk()) {
+      return 2;
+    } else if (this.playerTwo.gameboard.allShipsSunk()) {
+      return 1;
+    }
+
+    return;
   }
 }
