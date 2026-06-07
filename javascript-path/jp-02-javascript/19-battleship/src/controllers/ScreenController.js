@@ -95,12 +95,9 @@ export class ScreenController {
       return;
     }
 
-    while (this.game.isComputerPlaying && this.game.playerTurn === "computer") {
+    if (this.game.isComputerPlaying && this.game.playerTurn === "computer") {
       this.triggerComputerAttack();
     }
-    // if (this.game.isComputerPlaying && this.game.playerTurn === "computer") {
-    //   this.triggerComputerAttack();
-    // }
   }
 
   generateRandomShips(player) {
@@ -133,24 +130,28 @@ export class ScreenController {
   triggerComputerAttack() {
     this.updateAllGameboardsLockDisplay(true);
 
-    // setTimeout(() => {
-    let compResult = this.game.playComputerTurn();
+    setTimeout(() => {
+      let compResult = this.game.playComputerTurn();
 
-    this.renderer.renderAndLockCell(
-      compResult.coords,
-      compResult.player,
-      compResult.result,
-    );
+      this.renderer.renderAndLockCell(
+        compResult.coords,
+        compResult.player,
+        compResult.result,
+      );
 
-    this.updateAllGameboardsLockDisplay(false);
-    this.updateTurnDisplay();
+      this.updateAllGameboardsLockDisplay(false);
+      this.updateTurnDisplay();
 
-    if (compResult.winner) {
-      this.updateAllGameboardsLockDisplay(true);
-      console.log("computer wins");
-      return;
-    }
-    // }, 600);
+      if (compResult.winner) {
+        this.updateAllGameboardsLockDisplay(true);
+        console.log("computer wins");
+        return;
+      }
+
+      if (this.game.playerTurn === "computer") {
+        this.triggerComputerAttack();
+      }
+    }, 600);
   }
 
   // remove RENDER of random ships generated
