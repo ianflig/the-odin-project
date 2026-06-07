@@ -68,7 +68,6 @@ export class Gameboard {
 
   placeRandomShip(shipSize) {
     let placed = false;
-    let shipCoords = [];
 
     while (!placed) {
       let randomX = Math.floor(Math.random() * 8);
@@ -87,27 +86,34 @@ export class Gameboard {
         }
 
         this.placeShip(shipSize, ...shipCoordinates);
-        shipCoords.push(...shipCoordinates);
+        this.markBufferZone(shipCoordinates);
 
         placed = true;
       }
     }
+  }
 
-    shipCoords.forEach((ele) => {
-      let positions = [];
+  markBufferZone(shipCoordinates) {
+    const directions = [
+      [-1, -1],
+      [-1, 0],
+      [-1, 1],
+      [0, -1],
+      [0, 1],
+      [1, -1],
+      [1, 0],
+      [1, 1],
+    ];
 
-      positions.push(`${ele[0] + 1},${ele[1]}`);
-      positions.push(`${ele[0] - 1},${ele[1]}`);
-      positions.push(`${ele[0]},${ele[1] + 1}`);
-      positions.push(`${ele[0]},${ele[1] - 1}`);
-      positions.push(`${ele[0] - 1},${ele[1] - 1}`);
-      positions.push(`${ele[0] - 1},${ele[1] + 1}`);
-      positions.push(`${ele[0] + 1},${ele[1] - 1}`);
-      positions.push(`${ele[0] + 1},${ele[1] + 1}`);
+    shipCoordinates.forEach(([x, y]) => {
+      directions.forEach(([dx, dy]) => {
+        let haloX = x + dx;
+        let haloY = y + dy;
 
-      for (let i = 0; i < 8; i++) {
-        this.toOverrideCoords[positions[i]] = true;
-      }
+        if (haloX >= 0 && haloX <= 7 && haloY >= 0 && haloY <= 7) {
+          this.toOverrideCoords[`${haloX},${haloY}`] = true;
+        }
+      });
     });
   }
 
