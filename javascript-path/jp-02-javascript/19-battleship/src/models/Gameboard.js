@@ -7,6 +7,9 @@ export class Gameboard {
     this.missedShots = {};
     this.allShots = {};
     this.activeShips = 0;
+    //test - remove after
+    this.toOverrideCoords = {};
+    //
 
     this.loadGameboard();
   }
@@ -52,6 +55,16 @@ export class Gameboard {
       if (currentX > 7 || currentY > 7) return false;
 
       if (this.gameboard[currentX][currentY] !== null) return false;
+
+      //test
+      // toOverrideCoords obj condition.
+      // to achieve 1 space between ships in each direction
+      let key = `${currentX},${currentY}`;
+      if (this.toOverrideCoords[key]) {
+        return false;
+      }
+
+      //
     }
 
     return true;
@@ -59,6 +72,10 @@ export class Gameboard {
 
   placeRandomShip(shipSize) {
     let placed = false;
+
+    // test
+    let tempCoords = [];
+    //
 
     while (!placed) {
       let randomX = Math.floor(Math.random() * 8);
@@ -77,10 +94,36 @@ export class Gameboard {
         }
 
         this.placeShip(shipSize, ...shipCoordinates);
+        //test
+        tempCoords.push(...shipCoordinates);
+        //
 
         placed = true;
       }
     }
+
+    //test
+    tempCoords.forEach((ele) => {
+      let x1 = `${ele[0] + 1},${ele[1]}`;
+      let x2 = `${ele[0] - 1},${ele[1]}`;
+      let y1 = `${ele[0]},${ele[1] + 1}`;
+      let y2 = `${ele[0]},${ele[1] - 1}`;
+      let leftTopCorner = `${ele[0] - 1},${ele[1] - 1}`;
+      let leftDownCorner = `${ele[0] - 1},${ele[1] + 1}`;
+      let rightTopCorner = `${ele[0] + 1},${ele[1] - 1}`;
+      let rightDownCorner = `${ele[0] + 1},${ele[1] + 1}`;
+
+      this.toOverrideCoords[x1] = true;
+      this.toOverrideCoords[x2] = true;
+      this.toOverrideCoords[y1] = true;
+      this.toOverrideCoords[y2] = true;
+      this.toOverrideCoords[leftTopCorner] = true;
+      this.toOverrideCoords[leftDownCorner] = true;
+      this.toOverrideCoords[rightTopCorner] = true;
+      this.toOverrideCoords[rightDownCorner] = true;
+      // ele[0] & ele[1] save into toOverrideCoords obj.
+      //
+    });
   }
 
   autoPlaceShips(sizesArr) {
