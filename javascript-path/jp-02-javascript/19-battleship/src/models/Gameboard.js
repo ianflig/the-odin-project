@@ -144,6 +144,7 @@ export class Gameboard {
   resetGameboard() {
     this.loadGameboard();
     this.activeShips = 0;
+    this.toOverrideCoords = {};
   }
 
   getGameboard() {
