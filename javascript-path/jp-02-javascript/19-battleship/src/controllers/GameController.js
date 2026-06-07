@@ -44,6 +44,9 @@ export class GameController {
     console.log("Now playing: Player " + this.playerTurn);
   }
 
+  // todo -> keep attacking after a hit
+  // todo -> better computer movements
+
   attackShip(coords) {
     if (!this.gameStatus) return;
 
@@ -65,7 +68,9 @@ export class GameController {
       };
     }
 
-    this.switchPlayerTurn();
+    if (result.result === "miss") {
+      this.switchPlayerTurn();
+    }
 
     return result;
   }
