@@ -1,4 +1,5 @@
 import { Player } from "../models/Player.js";
+import { formatCoords } from "../utils/helpers.js";
 
 export class GameController {
   constructor() {
@@ -8,6 +9,9 @@ export class GameController {
     this.playerTurn = 1;
     this.isComputerPlaying = false;
     this.allowedShipSizes = [3, 3, 2, 2, 1];
+    this.checkForAdjacency = false;
+    this.shipToCheckForAdjacents;
+    this.adjacencyToCheck = [];
   }
 
   startGame() {
@@ -78,6 +82,20 @@ export class GameController {
     let randomCoords;
     let isLegal = false;
     let allShots = this.playerOne.gameboard.allShots;
+    let result;
+
+    // --------- //
+    if (this.adjacencyToCheck.length !== 0) {
+      let attackCoords = this.adjacencyToCheck.shift();
+      result = this.attackShip(attackCoords);
+
+      if (result.result === "hit") {
+        this.adjacencyToCheck = [];
+        this.generateAdjacency(result.coords);
+      }
+
+      return result;
+    }
 
     while (!isLegal) {
       let tempCoords = this.generateRandomCoords();
@@ -89,7 +107,40 @@ export class GameController {
       }
     }
 
-    return this.attackShip(randomCoords);
+    result = this.attackShip(randomCoords);
+
+    // before generating random coords should check for adjacents
+    if (result.result === "hit") {
+      this.generateAdjacency(result.coords);
+    }
+
+    return result;
+  }
+
+  // todo -> reset adjacency arr and add better conditions
+  generateAdjacency(coords) {
+    const directions = [
+      [0, 1],
+      [0, -1],
+      [-1, 0],
+      [1, 0],
+    ];
+    this.shipToCheckForAdjacents =
+      this.playerOne.gameboard.getGameboard()[coords[0]][coords[1]];
+    this.checkForAdjacency = true;
+    // to fix
+    directions.forEach(([x, y]) => {
+      let adjacencyX = coords[0] + x;
+      let adjacencyY = coords[1] + y;
+      if (
+        adjacencyX >= 0 &&
+        adjacencyX <= 7 &&
+        adjacencyY >= 0 &&
+        adjacencyY <= 7
+      ) {
+        this.adjacencyToCheck.push([adjacencyX, adjacencyY]);
+      }
+    });
   }
 
   generateRandomCoords() {
