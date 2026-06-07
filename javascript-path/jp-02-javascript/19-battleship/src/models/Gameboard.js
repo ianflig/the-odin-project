@@ -7,9 +7,7 @@ export class Gameboard {
     this.missedShots = {};
     this.allShots = {};
     this.activeShips = 0;
-    //test - remove after
     this.toOverrideCoords = {};
-    //
 
     this.loadGameboard();
   }
@@ -51,20 +49,18 @@ export class Gameboard {
     for (let i = 0; i < shipSize; i++) {
       let currentX = isHorizontal ? startX + i : startX;
       let currentY = isHorizontal ? startY : startY + i;
+      let key = `${currentX},${currentY}`;
 
+      // out of board
       if (currentX > 7 || currentY > 7) return false;
 
+      // already a ship in it
       if (this.gameboard[currentX][currentY] !== null) return false;
 
-      //test
-      // toOverrideCoords obj condition.
-      // to achieve 1 space between ships in each direction
-      let key = `${currentX},${currentY}`;
+      // 1 div of space between ships
       if (this.toOverrideCoords[key]) {
         return false;
       }
-
-      //
     }
 
     return true;
@@ -72,10 +68,7 @@ export class Gameboard {
 
   placeRandomShip(shipSize) {
     let placed = false;
-
-    // test
-    let tempCoords = [];
-    //
+    let shipCoords = [];
 
     while (!placed) {
       let randomX = Math.floor(Math.random() * 8);
@@ -94,35 +87,27 @@ export class Gameboard {
         }
 
         this.placeShip(shipSize, ...shipCoordinates);
-        //test
-        tempCoords.push(...shipCoordinates);
-        //
+        shipCoords.push(...shipCoordinates);
 
         placed = true;
       }
     }
 
-    //test
-    tempCoords.forEach((ele) => {
-      let x1 = `${ele[0] + 1},${ele[1]}`;
-      let x2 = `${ele[0] - 1},${ele[1]}`;
-      let y1 = `${ele[0]},${ele[1] + 1}`;
-      let y2 = `${ele[0]},${ele[1] - 1}`;
-      let leftTopCorner = `${ele[0] - 1},${ele[1] - 1}`;
-      let leftDownCorner = `${ele[0] - 1},${ele[1] + 1}`;
-      let rightTopCorner = `${ele[0] + 1},${ele[1] - 1}`;
-      let rightDownCorner = `${ele[0] + 1},${ele[1] + 1}`;
+    shipCoords.forEach((ele) => {
+      let positions = [];
 
-      this.toOverrideCoords[x1] = true;
-      this.toOverrideCoords[x2] = true;
-      this.toOverrideCoords[y1] = true;
-      this.toOverrideCoords[y2] = true;
-      this.toOverrideCoords[leftTopCorner] = true;
-      this.toOverrideCoords[leftDownCorner] = true;
-      this.toOverrideCoords[rightTopCorner] = true;
-      this.toOverrideCoords[rightDownCorner] = true;
-      // ele[0] & ele[1] save into toOverrideCoords obj.
-      //
+      positions.push(`${ele[0] + 1},${ele[1]}`);
+      positions.push(`${ele[0] - 1},${ele[1]}`);
+      positions.push(`${ele[0]},${ele[1] + 1}`);
+      positions.push(`${ele[0]},${ele[1] - 1}`);
+      positions.push(`${ele[0] - 1},${ele[1] - 1}`);
+      positions.push(`${ele[0] - 1},${ele[1] + 1}`);
+      positions.push(`${ele[0] + 1},${ele[1] - 1}`);
+      positions.push(`${ele[0] + 1},${ele[1] + 1}`);
+
+      for (let i = 0; i < 8; i++) {
+        this.toOverrideCoords[positions[i]] = true;
+      }
     });
   }
 
