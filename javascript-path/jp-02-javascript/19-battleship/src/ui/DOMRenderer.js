@@ -22,7 +22,12 @@ export class Renderer {
   }
 
   bindEvents(actions) {
-    this.startGameBtn.addEventListener("click", actions.toStartGame);
+    this.startGameBtn.addEventListener("click", () =>
+      actions.toStartGame(
+        this.player1NicknameInput.value,
+        this.player2NicknameInput.value,
+      ),
+    );
     this.resetGameBtn.addEventListener("click", actions.toResetGame);
     this.playerOneGameboard.addEventListener("click", (e) => {
       let element = e.target.closest(".gameboard-cell");
@@ -55,8 +60,8 @@ export class Renderer {
     //   actions.toGenRandomShips(2);
     //   actions.toRenderRandomShips(2);
     // });
-    this.player1NicknameInput.addEventListener("click", () => {
-      actions.toChangeNickname(1, this.player1NicknameInput.value);
+    this.player1NicknameInput.addEventListener("input", () => {
+      actions.toSetNickname(1, this.player1NicknameInput.value);
     });
   }
 

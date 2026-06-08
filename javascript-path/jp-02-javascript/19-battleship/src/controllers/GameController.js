@@ -14,17 +14,17 @@ export class GameController {
     this.firstHit = null;
   }
 
-  startGame() {
+  startGame(player1Nickname = "Player 1", player2Nickname = "Player 2") {
     if (this.gameStatus) {
       return;
     }
 
     this.gameStatus = true;
-    this.playerOne.setNickname("Player 1");
+    this.playerOne.setNickname(player1Nickname);
 
     this.isComputerPlaying
       ? this.playerTwo.setNickname("Computer")
-      : this.playerTwo.setNickname("Player 2");
+      : this.playerTwo.setNickname(player2Nickname);
 
     console.log("Game started");
 

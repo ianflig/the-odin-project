@@ -10,8 +10,8 @@ export class ScreenController {
     this.gameboardSize = 10;
 
     const actions = {
-      toStartGame: () => {
-        this.startGame();
+      toStartGame: (player1Nickname, player2Nickname) => {
+        this.startGame(player1Nickname, player2Nickname);
       },
       toResetGame: () => {
         this.resetGame();
@@ -50,12 +50,12 @@ export class ScreenController {
     this.game.isComputerPlaying = value;
   }
 
-  startGame() {
+  startGame(player1Nickname, player2Nickname) {
     let gameStatus = this.game.gameStatus;
 
     if (gameStatus) return;
     this.setComputerPlayer(true);
-    this.game.startGame();
+    this.game.startGame(player1Nickname, player2Nickname);
     this.updateTurnDisplay();
     // this.updateComputerButtonDisplay();
     this.updateGenerateRandomShipsDisplay();
