@@ -345,6 +345,10 @@ body {
   color: var(--color-gray-600);
 }
 
+.player2 {
+    pointer-events: none;
+}
+
 .gameboard-section {
   width: 100%;
   height: 100%;

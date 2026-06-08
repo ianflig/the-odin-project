@@ -20,9 +20,21 @@ export class GameController {
     }
 
     this.gameStatus = true;
+    this.playerOne.setNickname("Player 1");
+
+    this.isComputerPlaying
+      ? this.playerTwo.setNickname("Computer")
+      : this.playerTwo.setNickname("Player 2");
 
     console.log("Game started");
-    console.log("Now playing: Player " + this.playerTurn);
+
+    console.log("Now playing: " + this.getPlayerNickname());
+  }
+
+  getPlayerNickname() {
+    return this.playerTurn === 1
+      ? this.playerOne.getNickname()
+      : this.playerTwo.getNickname();
   }
 
   generateRandomShips(player) {
@@ -40,12 +52,12 @@ export class GameController {
       this.playerTurn === 1
         ? (this.playerTurn = "computer")
         : (this.playerTurn = 1);
-      console.log("Now playing: Player " + this.playerTurn);
+      console.log("Now playing: " + this.getPlayerNickname());
       return;
     }
 
     this.playerTurn === 1 ? (this.playerTurn = 2) : (this.playerTurn = 1);
-    console.log("Now playing: Player " + this.playerTurn);
+    console.log("Now playing: " + this.getPlayerNickname());
   }
 
   attackShip(coords) {

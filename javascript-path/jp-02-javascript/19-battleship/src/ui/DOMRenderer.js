@@ -16,6 +16,9 @@ export class Renderer {
     // this.generateRandomShipsPlayerTwoBtn = document.querySelector(
     //   "#generate-random-ships-player-two-button",
     // );
+    this.player1NicknameInput = document.querySelector("#player1-input");
+    this.player2NicknameInput = document.querySelector("#player2-input");
+    this.playerNextTurn = document.querySelector("#current-player");
   }
 
   bindEvents(actions) {
@@ -52,6 +55,9 @@ export class Renderer {
     //   actions.toGenRandomShips(2);
     //   actions.toRenderRandomShips(2);
     // });
+    this.player1NicknameInput.addEventListener("click", () => {
+      actions.toChangeNickname(1, this.player1NicknameInput.value);
+    });
   }
 
   //player equals to player's gameboard to update

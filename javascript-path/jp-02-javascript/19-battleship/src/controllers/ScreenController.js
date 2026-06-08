@@ -28,6 +28,9 @@ export class ScreenController {
       toRenderRandomShips: (player) => {
         this.renderRandomShips(player);
       },
+      toSetNickname: (player, nickname) => {
+        this.setNickname(player, nickname);
+      },
     };
 
     this.renderer.bindEvents(actions);
@@ -203,6 +206,12 @@ export class ScreenController {
   //     this.renderer.swapLockComputerButton(false);
   //   }
   // }
+
+  setNickname(player, nickname) {
+    player === 1
+      ? this.game.playerOne.setNickname(nickname)
+      : this.game.playerTwo.setNickname(nickname);
+  }
 
   themeSwitch() {
     this.darkMode.themeSwitcher();
