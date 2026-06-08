@@ -97,6 +97,7 @@ export class ScreenController {
 
     if (humanResult.winner) {
       this.updateAllGameboardsLockDisplay(true);
+      this.renderer.displayWinner(this.game.getPlayerNickname());
       console.log("Player " + humanResult.winner + " wins");
       return;
     }
@@ -150,6 +151,7 @@ export class ScreenController {
 
       if (compResult.winner) {
         this.updateAllGameboardsLockDisplay(true);
+        this.renderer.displayWinner(this.game.getPlayerNickname());
         console.log("computer wins");
         return;
       }
@@ -189,12 +191,15 @@ export class ScreenController {
 
   updateTurnDisplay() {
     let currentPlayer = this.game.playerTurn;
+    let currentPlayerNickname = this.game.getPlayerNickname();
     let gameStatus = this.game.gameStatus;
 
     if (gameStatus) {
       this.renderer.swapGameboardLock(currentPlayer);
+      this.renderer.displayPlayerNextTurn(currentPlayerNickname);
     } else {
       this.renderer.unlockGameboards();
+      this.renderer.displayPlayerNextTurn("");
     }
   }
 

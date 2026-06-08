@@ -65,6 +65,14 @@ export class Renderer {
     });
   }
 
+  displayPlayerNextTurn(nickname) {
+    this.playerNextTurn.textContent = nickname + "'s turn";
+  }
+
+  displayWinner(nickname) {
+    this.playerNextTurn.textContent = nickname + " wins!";
+  }
+
   //player equals to player's gameboard to update
   renderAndLockCell(coords, player, result) {
     let gameboard;
