@@ -1,5 +1,4 @@
 import { Player } from "../models/Player.js";
-import { formatCoords } from "../utils/helpers.js";
 
 export class GameController {
   constructor() {
@@ -76,21 +75,17 @@ export class GameController {
     return result;
   }
 
-  // todo -> better computer movements
-
   playComputerTurn() {
     let randomCoords;
     let isLegal = false;
     let allShots = this.playerOne.gameboard.allShots;
     let result;
 
-    // --------- //
     if (this.adjacencyToCheck.length !== 0) {
       let attackCoords = this.adjacencyToCheck.shift();
       result = this.attackShip(attackCoords);
 
       if (result.result === "hit") {
-        this.adjacencyToCheck = [];
         this.generateAdjacency(result.coords);
       }
 
@@ -109,7 +104,6 @@ export class GameController {
 
     result = this.attackShip(randomCoords);
 
-    // before generating random coords should check for adjacents
     if (result.result === "hit") {
       this.generateAdjacency(result.coords);
     }
@@ -117,7 +111,7 @@ export class GameController {
     return result;
   }
 
-  // todo -> reset adjacency arr (after ship is sunk)
+  // todo -> add a vertical & horizontal check to harder difficulty
   generateAdjacency(coords) {
     let instance = this.playerOne.gameboard;
     const directions = [
@@ -129,18 +123,27 @@ export class GameController {
     this.shipToCheckForAdjacents =
       instance.getGameboard()[coords[0]][coords[1]];
     this.checkForAdjacency = true;
-    // to fix
+    // to refactor some day...
     directions.forEach(([x, y]) => {
       let adjacencyX = coords[0] + x;
       let adjacencyY = coords[1] + y;
+      // out of board
       if (
         adjacencyX >= 0 &&
         adjacencyX <= 7 &&
         adjacencyY >= 0 &&
         adjacencyY <= 7
       ) {
+        // already a shot in that div
         if (!instance.allShots[`${adjacencyX},${adjacencyY}`]) {
-          this.adjacencyToCheck.push([adjacencyX, adjacencyY]);
+          let isAlreadyPending = this.adjacencyToCheck.some(
+            (pendingCoord) =>
+              pendingCoord[0] === adjacencyX && pendingCoord[1] === adjacencyY,
+          );
+          // lifo queue check
+          if (!isAlreadyPending) {
+            this.adjacencyToCheck.push([adjacencyX, adjacencyY]);
+          }
         }
       }
     });
