@@ -73,9 +73,11 @@ export class Gameboard {
   }
 
   placeRandomShip(shipSize) {
+    let maxAttempts = 500;
+    let attempts = 0;
     let placed = false;
 
-    while (!placed) {
+    while (!placed && attempts < maxAttempts) {
       let randomX = Math.floor(Math.random() * this.gameboardSize);
       let randomY = Math.floor(Math.random() * this.gameboardSize);
 
@@ -96,7 +98,9 @@ export class Gameboard {
 
         placed = true;
       }
+      attempts++;
     }
+    return placed;
   }
 
   markBufferZone(shipCoordinates) {
@@ -129,9 +133,21 @@ export class Gameboard {
   }
 
   autoPlaceShips(sizesArr) {
-    sizesArr.forEach((size) => {
-      this.placeRandomShip(size);
-    });
+    let success = false;
+
+    while (!success) {
+      this.resetGameboard();
+      success = true;
+
+      for (let i = 0; i < sizesArr.length; i++) {
+        let placedShip = this.placeRandomShip(sizesArr[i]);
+
+        if (!placedShip) {
+          success = false;
+          break;
+        }
+      }
+    }
   }
 
   loadGameboard() {
