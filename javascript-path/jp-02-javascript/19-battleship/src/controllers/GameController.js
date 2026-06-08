@@ -7,7 +7,7 @@ export class GameController {
     this.gameStatus = false;
     this.playerTurn = 1;
     this.isComputerPlaying = false;
-    this.allowedShipSizes = [5, 5, 5, 5];
+    this.allowedShipSizes = [5, 4, 3, 3, 2, 1, 1];
     this.shipToCheckForAdjacents;
     this.adjacencyToCheck = [];
     this.firstHit = null;
