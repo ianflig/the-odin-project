@@ -117,8 +117,9 @@ export class GameController {
     return result;
   }
 
-  // todo -> reset adjacency arr and add better conditions
+  // todo -> reset adjacency arr (after hit and after ship is sunk)
   generateAdjacency(coords) {
+    let instance = this.playerOne.gameboard;
     const directions = [
       [0, 1],
       [0, -1],
@@ -126,7 +127,7 @@ export class GameController {
       [1, 0],
     ];
     this.shipToCheckForAdjacents =
-      this.playerOne.gameboard.getGameboard()[coords[0]][coords[1]];
+      instance.getGameboard()[coords[0]][coords[1]];
     this.checkForAdjacency = true;
     // to fix
     directions.forEach(([x, y]) => {
@@ -138,7 +139,9 @@ export class GameController {
         adjacencyY >= 0 &&
         adjacencyY <= 7
       ) {
-        this.adjacencyToCheck.push([adjacencyX, adjacencyY]);
+        if (!instance.allShots[`${adjacencyX[0]},${adjacencyY[1]}`]) {
+          this.adjacencyToCheck.push([adjacencyX, adjacencyY]);
+        }
       }
     });
   }
