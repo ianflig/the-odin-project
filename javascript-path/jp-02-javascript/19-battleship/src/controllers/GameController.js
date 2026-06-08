@@ -2,12 +2,13 @@ import { Player } from "../models/Player.js";
 
 export class GameController {
   constructor() {
+    this.gameboardSize = 10;
     this.playerOne = new Player();
     this.playerTwo = new Player();
     this.gameStatus = false;
     this.playerTurn = 1;
     this.isComputerPlaying = false;
-    this.allowedShipSizes = [5, 4, 3, 3, 2, 1, 1];
+    this.allowedShipSizes = [5, 4, 3, 3, 2, 1];
     this.shipToCheckForAdjacents;
     this.adjacencyToCheck = [];
     this.firstHit = null;
@@ -155,9 +156,9 @@ export class GameController {
       // out of board
       if (
         adjacencyX >= 0 &&
-        adjacencyX <= 7 &&
+        adjacencyX <= this.gameboardSize - 1 &&
         adjacencyY >= 0 &&
-        adjacencyY <= 7
+        adjacencyY <= this.gameboardSize - 1
       ) {
         // already a shot in that div
         if (!instance.allShots[`${adjacencyX},${adjacencyY}`]) {
@@ -177,7 +178,7 @@ export class GameController {
   generateRandomCoords() {
     let result = [];
     let min = Math.ceil(0);
-    let max = Math.floor(7);
+    let max = Math.floor(this.gameboardSize - 1);
 
     result.push(Math.floor(Math.random() * (max - min + 1)) + min);
     result.push(Math.floor(Math.random() * (max - min + 1)) + min);

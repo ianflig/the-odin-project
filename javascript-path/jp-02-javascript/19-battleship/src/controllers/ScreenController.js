@@ -1,13 +1,13 @@
 import { formatCoords } from "../utils/helpers.js";
 import { GameController } from "./GameController.js";
 
-// todo -> fix spamming reset button freeze
+// todo -> fix freeze when spamming generate random ship btn
 
 export class ScreenController {
   constructor(renderer, game) {
     this.renderer = renderer;
     this.game = game;
-    this.gameboardSize = 8;
+    this.gameboardSize = 10;
 
     const actions = {
       toStartGame: () => {

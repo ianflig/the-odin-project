@@ -2,7 +2,7 @@ import { Ship } from "./Ship.js";
 
 export class Gameboard {
   constructor() {
-    this.size = 8;
+    this.gameboardSize = 10;
     this.gameboard = [];
     this.missedShots = {};
     this.allShots = {};
@@ -54,7 +54,11 @@ export class Gameboard {
       let key = `${currentX},${currentY}`;
 
       // out of board
-      if (currentX > 7 || currentY > 7) return false;
+      if (
+        currentX > this.gameboardSize - 1 ||
+        currentY > this.gameboardSize - 1
+      )
+        return false;
 
       // already a ship in it
       if (this.gameboard[currentX][currentY] !== null) return false;
@@ -72,8 +76,8 @@ export class Gameboard {
     let placed = false;
 
     while (!placed) {
-      let randomX = Math.floor(Math.random() * 8);
-      let randomY = Math.floor(Math.random() * 8);
+      let randomX = Math.floor(Math.random() * this.gameboardSize);
+      let randomY = Math.floor(Math.random() * this.gameboardSize);
 
       let isHorizontal = Math.random() > 0.5;
 
@@ -112,7 +116,12 @@ export class Gameboard {
         let haloX = x + dx;
         let haloY = y + dy;
 
-        if (haloX >= 0 && haloX <= 7 && haloY >= 0 && haloY <= 7) {
+        if (
+          haloX >= 0 &&
+          haloX <= this.gameboardSize - 1 &&
+          haloY >= 0 &&
+          haloY <= this.gameboardSize - 1
+        ) {
           this.toOverrideCoords[`${haloX},${haloY}`] = true;
         }
       });
@@ -126,9 +135,9 @@ export class Gameboard {
   }
 
   loadGameboard() {
-    for (let i = 0; i < this.size; i++) {
+    for (let i = 0; i < this.gameboardSize; i++) {
       this.gameboard[i] = [];
-      for (let j = 0; j < this.size; j++) {
+      for (let j = 0; j < this.gameboardSize; j++) {
         this.gameboard[i][j] = null;
       }
     }

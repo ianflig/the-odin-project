@@ -376,7 +376,7 @@ body {
 .player-one-gameboard,
 .player-two-gameboard{
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(10, 1fr);
 }
 
 .gameboard-cell {
