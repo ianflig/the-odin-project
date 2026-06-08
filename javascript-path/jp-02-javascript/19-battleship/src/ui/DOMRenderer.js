@@ -4,18 +4,18 @@ export class Renderer {
     this.resetGameBtn = document.querySelector("#reset-game-button");
     this.playerOneGameboard = document.querySelector(".player-one-gameboard");
     this.playerTwoGameboard = document.querySelector(".player-two-gameboard");
-    this.isComputerPlayingBtn = document.querySelector(
-      "#is-computer-playing-button",
-    );
-    this.isComputerPlayingSpan = document.querySelector(
-      "#is-computer-playing-span",
-    );
+    // this.isComputerPlayingBtn = document.querySelector(
+    //   "#is-computer-playing-button",
+    // );
+    // this.isComputerPlayingSpan = document.querySelector(
+    //   "#is-computer-playing-span",
+    // );
     this.generateRandomShipsPlayerOneBtn = document.querySelector(
       "#generate-random-ships-player-one-button",
     );
-    this.generateRandomShipsPlayerTwoBtn = document.querySelector(
-      "#generate-random-ships-player-two-button",
-    );
+    // this.generateRandomShipsPlayerTwoBtn = document.querySelector(
+    //   "#generate-random-ships-player-two-button",
+    // );
   }
 
   bindEvents(actions) {
@@ -33,25 +33,25 @@ export class Renderer {
         actions.toAttackShip(element.dataset.cell);
       }
     });
-    this.isComputerPlayingBtn.addEventListener("click", () => {
-      let ele = this.isComputerPlayingSpan;
-      if (ele.textContent === "No") {
-        ele.textContent = "Yes";
-        actions.toSetComputerPlayer(true);
-        actions.toGenRandomShips(2); // todo
-      } else {
-        ele.textContent = "No";
-        actions.toSetComputerPlayer(false);
-      }
-    });
+    // this.isComputerPlayingBtn.addEventListener("click", () => {
+    //   let ele = this.isComputerPlayingSpan;
+    //   if (ele.textContent === "No") {
+    //     ele.textContent = "Yes";
+    //     actions.toSetComputerPlayer(true);
+    //     actions.toGenRandomShips(2);
+    //   } else {
+    //     ele.textContent = "No";
+    //     actions.toSetComputerPlayer(false);
+    //   }
+    // });
     this.generateRandomShipsPlayerOneBtn.addEventListener("click", () => {
       actions.toGenRandomShips(1);
-      actions.toRenderRandomShips(1); // todo
+      actions.toRenderRandomShips(1);
     });
-    this.generateRandomShipsPlayerTwoBtn.addEventListener("click", () => {
-      actions.toGenRandomShips(2);
-      actions.toRenderRandomShips(2); // todo
-    });
+    // this.generateRandomShipsPlayerTwoBtn.addEventListener("click", () => {
+    //   actions.toGenRandomShips(2);
+    //   actions.toRenderRandomShips(2);
+    // });
   }
 
   //player equals to player's gameboard to update
@@ -113,19 +113,19 @@ export class Renderer {
         "locked-button",
         "button-opacity",
       );
-      this.generateRandomShipsPlayerTwoBtn.classList.add(
-        "locked-button",
-        "button-opacity",
-      );
+      // this.generateRandomShipsPlayerTwoBtn.classList.add(
+      //   "locked-button",
+      //   "button-opacity",
+      // );
     } else {
       this.generateRandomShipsPlayerOneBtn.classList.remove(
         "locked-button",
         "button-opacity",
       );
-      this.generateRandomShipsPlayerTwoBtn.classList.remove(
-        "locked-button",
-        "button-opacity",
-      );
+      // this.generateRandomShipsPlayerTwoBtn.classList.remove(
+      //   "locked-button",
+      //   "button-opacity",
+      // );
     }
   }
 
@@ -150,19 +150,19 @@ export class Renderer {
     this.playerTwoGameboard.classList.remove("locked-button", "button-opacity");
   }
 
-  swapLockComputerButton(value) {
-    if (value) {
-      this.isComputerPlayingBtn.classList.add(
-        "locked-button",
-        "button-opacity",
-      );
-    } else {
-      //if game not started and this method is called = reset span textcontent
-      this.isComputerPlayingBtn.classList.remove(
-        "locked-button",
-        "button-opacity",
-      );
-      this.isComputerPlayingSpan.textContent = "No";
-    }
-  }
+  // swapLockComputerButton(value) {
+  //   if (value) {
+  //     this.isComputerPlayingBtn.classList.add(
+  //       "locked-button",
+  //       "button-opacity",
+  //     );
+  //   } else {
+  //     //if game not started and this method is called = reset span textcontent
+  //     this.isComputerPlayingBtn.classList.remove(
+  //       "locked-button",
+  //       "button-opacity",
+  //     );
+  //     this.isComputerPlayingSpan.textContent = "No";
+  //   }
+  // }
 }

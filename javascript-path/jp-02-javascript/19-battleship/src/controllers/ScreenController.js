@@ -1,6 +1,8 @@
 import { formatCoords } from "../utils/helpers.js";
 import { GameController } from "./GameController.js";
 
+// todo -> fix spamming reset button freeze
+
 export class ScreenController {
   constructor(renderer, game) {
     this.renderer = renderer;
@@ -37,7 +39,7 @@ export class ScreenController {
     this.generateRandomShips(1);
     this.renderRandomShips(1);
 
-    this.generateRandomShips(2);
+    // this.generateRandomShips(2);
     this.renderRandomShips(2);
   }
 
@@ -49,9 +51,10 @@ export class ScreenController {
     let gameStatus = this.game.gameStatus;
 
     if (gameStatus) return;
+    this.setComputerPlayer(true);
     this.game.startGame();
     this.updateTurnDisplay();
-    this.updateComputerButtonDisplay();
+    // this.updateComputerButtonDisplay();
     this.updateGenerateRandomShipsDisplay();
 
     if (this.game.isComputerPlaying) {
@@ -68,11 +71,11 @@ export class ScreenController {
     this.generateRandomShips(1);
     this.renderRandomShips(1);
 
-    this.generateRandomShips(2);
+    // this.generateRandomShips(2);
     this.renderRandomShips(2);
 
     this.updateTurnDisplay();
-    this.updateComputerButtonDisplay();
+    // this.updateComputerButtonDisplay();
     this.updateGenerateRandomShipsDisplay();
   }
 
@@ -192,12 +195,12 @@ export class ScreenController {
     }
   }
 
-  updateComputerButtonDisplay() {
-    let gameStatus = this.game.gameStatus;
-    if (gameStatus) {
-      this.renderer.swapLockComputerButton(true);
-    } else {
-      this.renderer.swapLockComputerButton(false);
-    }
-  }
+  // updateComputerButtonDisplay() {
+  //   let gameStatus = this.game.gameStatus;
+  //   if (gameStatus) {
+  //     this.renderer.swapLockComputerButton(true);
+  //   } else {
+  //     this.renderer.swapLockComputerButton(false);
+  //   }
+  // }
 }
