@@ -50,23 +50,53 @@
       </symbol>
     </svg>
 
-    <div class="gameboards">
-      <div class="player-one-gameboard" data-player="player-one"></div>
-      <div class="player-two-gameboard" data-player="player-two"></div>
+    <div class="header">
+      <div class="left">
+        <!-- <img src="./images/header-image.jpg" alt="header-image" /> -->
+        <h2>Battleship</h2>
+      </div>
+      <div class="right">
+        <button id="theme-switch">
+          <svg><use href="#moon-icon"></use></svg>
+          <svg><use href="#sun-icon"></use></svg>
+        </button>
+        <!-- <img src="./images/icon.png" alt="avatar" /> -->
+      </div>
     </div>
-    <div class="controls">
-      <button id="generate-random-ships-player-one-button">
-        Generate random ships
-      </button>
-      <button id="start-game-button">Start</button>
-      <button id="reset-game-button">Reset</button>
-      <button id="is-computer-playing-button">
-        Is computer playing? <span id="is-computer-playing-span">No</span>
-      </button>
-      <button id="generate-random-ships-player-two-button">
-        Generate random ships
-      </button>
+
+    <div class="main-content">
+      <div class="players-section">
+        <div class="player1">
+          <label for="player1-input">Player 1 (X)</label>
+          <input
+            type="text"
+            id="player1-input"
+            placeholder="Nickname"
+            data-mark="x"
+          />
+        </div>
+      </div>
+      <div class="gameboard-section">
+        <div class="gameboards">
+          <div class="player-one-gameboard" data-player="player-one"></div>
+          <div class="player-two-gameboard" data-player="player-two"></div>
+        </div>
+        <div class="controls">
+          <button id="generate-random-ships-player-one-button">
+            Generate random ships
+          </button>
+          <button id="start-game-button">Start</button>
+          <button id="reset-game-button">Reset</button>
+          <button id="is-computer-playing-button">
+            Is computer playing? <span id="is-computer-playing-span">No</span>
+          </button>
+          <button id="generate-random-ships-player-two-button">
+            Generate random ships
+          </button>
+        </div>
+      </div>
     </div>
+
     <div class="footer">
       <p>
         Made by
