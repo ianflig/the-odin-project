@@ -1,10 +1,12 @@
 import { formatCoords } from "../utils/helpers.js";
 import { GameController } from "./GameController.js";
+import { darkMode } from "../ui/darkMode.js";
 
 export class ScreenController {
   constructor(renderer, game) {
     this.renderer = renderer;
     this.game = game;
+    this.darkMode = new darkMode();
     this.gameboardSize = 10;
 
     const actions = {
@@ -25,6 +27,9 @@ export class ScreenController {
       },
       toRenderRandomShips: (player) => {
         this.renderRandomShips(player);
+      },
+      toThemeSwitch: () => {
+        this.themeSwitch();
       },
     };
 
@@ -201,4 +206,8 @@ export class ScreenController {
   //     this.renderer.swapLockComputerButton(false);
   //   }
   // }
+
+  themeSwitch() {
+    this.darkMode.themeSwitcher();
+  }
 }
