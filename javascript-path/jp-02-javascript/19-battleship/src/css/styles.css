@@ -352,6 +352,20 @@ body {
   color: var(--color-gray-600);
 }
 
+.gameboard-section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.gameboard-section h3 {
+  color: var(--color-gray-700);
+}
+
 .gameboards {
     display: flex;
     justify-content: center;
@@ -398,4 +412,99 @@ body {
 
 .button-opacity {
     opacity: 0.5;
+}
+
+.reset-game-button-container {
+  padding-top: var(--space-md);
+}
+
+.reset-game-btn {
+    padding: var(--space-xs) var(--space-md);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--color-fg);
+    background-color: var(--color-gray-100);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--space-sm);
+    font-size: var(--font-md);
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.2s ease;
+}
+
+.reset-game-btn h4,
+.reset-game-btn svg {
+  color: var(--color-gray-700);
+  fill: var(--color-gray-700);
+}
+
+.footer {
+    grid-area: footer;
+    text-align: center;
+    color: var(--color-gray-700);
+    border-top: 1px solid var(--color-gray-200);
+    padding: var(--space-md);
+}
+
+.footer a {
+    color: var(--color-primary);
+}
+
+/* TEXT INPUTS */
+
+input {
+    flex-shrink: 0;
+}
+
+input {
+    width: 100%;
+    height: 2.5rem;
+    padding: var(--space-xs) var(--space-sm);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-md);
+    background-color: var(--color-gray-100);
+    color: var(--color-fg);
+}
+
+input::placeholder {
+    color: var(--color-gray-350);
+}
+
+@media (max-width: 900px) {
+    body {
+        width: 100%;
+    }
+
+    .players-section {
+      width: 80%;
+    }
+
+    .main-content{
+      overflow-y: auto;
+    }
+
+    .gameboard-section {
+      gap: var(--space-lg);
+      padding: var(--space-xl) var(--space-xl);
+    }
+
+}
+
+@media (max-width: 450px) {
+
+    .players-section {
+    width: 100%;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    }
+    .header .left {
+      gap: var(--space-xs);
+    }
+    .header .left,
+    .header .right {
+      padding: var(--space-xs);
+    }
 }
