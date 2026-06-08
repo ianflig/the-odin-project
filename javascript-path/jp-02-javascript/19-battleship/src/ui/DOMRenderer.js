@@ -70,6 +70,7 @@ export class Renderer {
     if (result === "miss") {
       cell.classList.add("miss-shot");
     }
+    // todo -> show user if that ship is sunk
     if (result === "hit" || result === "sunk") {
       cell.classList.add("hit-shot");
     }

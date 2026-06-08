@@ -81,10 +81,12 @@ export class GameController {
     let allShots = this.playerOne.gameboard.allShots;
     let result;
 
+    //adjacency mechanism
     if (this.adjacencyToCheck.length !== 0) {
       let attackCoords = this.adjacencyToCheck.shift();
       result = this.attackShip(attackCoords);
 
+      //check horizontal || vertical after second hit
       if (result.result === "hit") {
         this.generateAdjacency(result.coords);
 
@@ -121,11 +123,13 @@ export class GameController {
 
     result = this.attackShip(randomCoords);
 
+    // first hit
     if (result.result === "hit") {
       this.firstHit = result.coords;
       this.generateAdjacency(result.coords);
     }
 
+    // just in case it hits a 1 length ship
     if (result.result === "sunk") {
       this.firstHit = null;
       this.adjacencyToCheck = [];
