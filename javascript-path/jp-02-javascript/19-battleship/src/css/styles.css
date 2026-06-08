@@ -162,6 +162,46 @@ html {
     color-scheme: dark;
 }
 
+#theme-switch {
+    width: 35px;
+    height: 35px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-gray-200);
+    border: 1px solid var(--color-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-appearance: none;
+    appearance: none;
+    flex-shrink: 0;
+}
+
+#theme-switch svg{
+    fill: var(--color-gray-700);
+    flex-shrink: 0;
+}
+
+#theme-switch svg:last-child{
+    display: none;
+}
+
+.darkmode #theme-switch svg:first-child{
+    display: none;
+}
+
+.darkmode #theme-switch svg:last-child{
+    display: block;
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-fg);
+}
+.darkmode ::selection {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+}
+
 /* GLOBAL TYPOGRAPHY & ELEMENTS */
 * {
     font-family: "Atkinson Hyperlegible Next", sans-serif;
