@@ -28,9 +28,6 @@ export class ScreenController {
       toRenderRandomShips: (player) => {
         this.renderRandomShips(player);
       },
-      toThemeSwitch: () => {
-        this.themeSwitch();
-      },
     };
 
     this.renderer.bindEvents(actions);
