@@ -28,6 +28,8 @@ export class Gameboard {
     gameboardCoords.hit();
     if (gameboardCoords.isSunk()) {
       this.activeShips--;
+      this.allShots[`${coordinates[0]},${coordinates[1]}`] = true;
+      return "sunk";
     }
 
     this.allShots[`${coordinates[0]},${coordinates[1]}`] = true;

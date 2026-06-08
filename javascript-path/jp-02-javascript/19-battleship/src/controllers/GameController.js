@@ -7,10 +7,10 @@ export class GameController {
     this.gameStatus = false;
     this.playerTurn = 1;
     this.isComputerPlaying = false;
-    this.allowedShipSizes = [3, 3, 2, 2, 1];
-    this.checkForAdjacency = false;
+    this.allowedShipSizes = [5, 5, 5, 5];
     this.shipToCheckForAdjacents;
     this.adjacencyToCheck = [];
+    this.firstHit = null;
   }
 
   startGame() {
@@ -87,6 +87,23 @@ export class GameController {
 
       if (result.result === "hit") {
         this.generateAdjacency(result.coords);
+
+        let isHorizontal = this.firstHit[1] === result.coords[1];
+        let isVertical = this.firstHit[0] === result.coords[0];
+
+        this.adjacencyToCheck = this.adjacencyToCheck.filter((pendingCoord) => {
+          if (isHorizontal) {
+            return pendingCoord[1] === this.firstHit[1];
+          }
+          if (isVertical) {
+            return pendingCoord[0] === this.firstHit[0];
+          }
+        });
+      }
+
+      if (result.result === "sunk") {
+        this.firstHit = null;
+        this.adjacencyToCheck = [];
       }
 
       return result;
@@ -105,13 +122,18 @@ export class GameController {
     result = this.attackShip(randomCoords);
 
     if (result.result === "hit") {
+      this.firstHit = result.coords;
       this.generateAdjacency(result.coords);
+    }
+
+    if (result.result === "sunk") {
+      this.firstHit = null;
+      this.adjacencyToCheck = [];
     }
 
     return result;
   }
 
-  // todo -> add a vertical & horizontal check to harder difficulty
   generateAdjacency(coords) {
     let instance = this.playerOne.gameboard;
     const directions = [
@@ -122,7 +144,6 @@ export class GameController {
     ];
     this.shipToCheckForAdjacents =
       instance.getGameboard()[coords[0]][coords[1]];
-    this.checkForAdjacency = true;
     // to refactor some day...
     directions.forEach(([x, y]) => {
       let adjacencyX = coords[0] + x;
@@ -142,7 +163,7 @@ export class GameController {
           );
           // lifo queue check
           if (!isAlreadyPending) {
-            this.adjacencyToCheck.push([adjacencyX, adjacencyY]);
+            this.adjacencyToCheck.unshift([adjacencyX, adjacencyY]);
           }
         }
       }

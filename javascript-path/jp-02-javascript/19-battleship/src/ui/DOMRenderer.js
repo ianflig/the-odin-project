@@ -70,7 +70,7 @@ export class Renderer {
     if (result === "miss") {
       cell.classList.add("miss-shot");
     }
-    if (result === "hit") {
+    if (result === "hit" || result === "sunk") {
       cell.classList.add("hit-shot");
     }
 
