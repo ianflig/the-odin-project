@@ -1,6 +1,6 @@
 export class Renderer {
   constructor() {
-    this.startGameBtn = document.querySelector("#start-game-button");
+    this.startGameBtn = document.querySelector("#play-game-button");
     this.resetGameBtn = document.querySelector("#reset-game-button");
     this.playerOneGameboard = document.querySelector(".player-one-gameboard");
     this.playerTwoGameboard = document.querySelector(".player-two-gameboard");
