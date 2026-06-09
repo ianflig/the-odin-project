@@ -181,6 +181,9 @@ export class ScreenController {
     this.updateAllGameboardsLockDisplay(true);
 
     setTimeout(() => {
+      if (!this.game.gameStatus) {
+        return;
+      }
       let compResult = this.game.playComputerTurn();
 
       this.renderer.renderAndLockCell(
