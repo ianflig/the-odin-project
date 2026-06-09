@@ -108,6 +108,10 @@ export class ScreenController {
     );
     this.updateTurnDisplay();
 
+    if (humanResult.result === "sunk") {
+      this.updatePreviewShip(2);
+    }
+
     if (humanResult.winner) {
       this.updateAllGameboardsLockDisplay(true);
       this.renderer.displayWinner(this.game.getPlayerNickname());
@@ -160,6 +164,19 @@ export class ScreenController {
     this.renderer.renderGameboardShipsPreview(player, shipsArr);
   }
 
+  // when a ship is sunk, updates preview ship
+  updatePreviewShip(player) {
+    player === 1
+      ? this.renderer.renderSunkShipPreview(
+          player,
+          this.game.playerOne.gameboard.shipsGenerated,
+        )
+      : this.renderer.renderSunkShipPreview(
+          player,
+          this.game.playerTwo.gameboard.shipsGenerated,
+        );
+  }
+
   triggerComputerAttack() {
     this.updateAllGameboardsLockDisplay(true);
 
@@ -171,6 +188,10 @@ export class ScreenController {
         compResult.player,
         compResult.result,
       );
+
+      if (compResult.result === "sunk") {
+        this.updatePreviewShip(1);
+      }
 
       this.updateAllGameboardsLockDisplay(false);
       this.updateTurnDisplay();

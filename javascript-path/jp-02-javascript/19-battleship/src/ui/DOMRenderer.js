@@ -100,7 +100,7 @@ export class Renderer {
     if (result === "miss") {
       cell.classList.add("miss-shot");
     }
-    // todo -> show user if that ship is sunk
+
     if (result === "hit" || result === "sunk") {
       cell.classList.add("hit-shot");
     }
@@ -138,13 +138,27 @@ export class Renderer {
       let divContainer = document.createElement("div");
       let shipContainer = "";
       for (let i = 0; i < element.length; i++) {
-        shipContainer += `<div class="gameboard-cell ship-preview-cell" data-id="${element.id}"></div>`;
+        shipContainer += `<div class="gameboard-cell ship-preview-cell"></div>`;
       }
       divContainer.classList.add("ship-preview-container");
+      divContainer.dataset.id = element.id;
       divContainer.innerHTML = shipContainer;
       player === 1
         ? this.shipsPreviewPlayerOne.append(divContainer)
         : this.shipsPreviewPlayerTwo.append(divContainer);
+    });
+  }
+
+  renderSunkShipPreview(player, shipsArr) {
+    shipsArr.forEach((ele) => {
+      if (ele.isSunk()) {
+        let playerContainer =
+          player === 1
+            ? this.shipsPreviewPlayerOne
+            : this.shipsPreviewPlayerTwo;
+        let target = playerContainer.querySelector(`[data-id="${ele.id}"]`);
+        target.classList.add("ship-sunk");
+      }
     });
   }
 
