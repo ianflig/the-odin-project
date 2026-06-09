@@ -31,6 +31,9 @@ export class ScreenController {
       toSetNickname: (player, nickname) => {
         this.setNickname(player, nickname);
       },
+      toRenderPreviewShips: (player) => {
+        this.renderPreviewShips(player);
+      },
     };
 
     this.renderer.bindEvents(actions);
@@ -45,8 +48,12 @@ export class ScreenController {
     // this.generateRandomShips(2);
     this.renderRandomShips(2);
     this.renderer.displayPlayerNextTurn("");
-    this.renderer.renderGameboardShipsPreview(1, this.game.allowedShipSizes);
-    this.renderer.renderGameboardShipsPreview(2, this.game.allowedShipSizes);
+    this.renderPreviewShips(1);
+    // this render is only to show mock divs, it is updated automatically once game starts
+    // this.renderer.renderGameboardShipsPreview(
+    //   2,
+    //   this.game.playerOne.gameboard.shipsGenerated,
+    // );
   }
 
   setComputerPlayer(value) {
@@ -66,6 +73,7 @@ export class ScreenController {
     if (this.game.isComputerPlaying) {
       this.updateShipsFromGameboard(2);
       this.generateRandomShips(2);
+      this.renderPreviewShips(2);
     } else {
       this.updateShipsFromGameboard(1);
       this.updateShipsFromGameboard(2);
@@ -76,6 +84,7 @@ export class ScreenController {
     this.game = new GameController();
     this.generateRandomShips(1);
     this.renderRandomShips(1);
+    this.renderPreviewShips(1);
 
     // this.generateRandomShips(2);
     this.renderRandomShips(2);
@@ -136,6 +145,15 @@ export class ScreenController {
         this.gameboardSize,
       );
     }
+  }
+
+  renderPreviewShips(player) {
+    let shipsArr =
+      player === 1
+        ? this.game.playerOne.gameboard.shipsGenerated
+        : this.game.playerTwo.gameboard.shipsGenerated;
+
+    this.renderer.renderGameboardShipsPreview(player, shipsArr);
   }
 
   triggerComputerAttack() {

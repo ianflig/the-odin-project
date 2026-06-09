@@ -61,6 +61,7 @@ export class Renderer {
     this.generateRandomShipsPlayerOneBtn.addEventListener("click", () => {
       actions.toGenRandomShips(1);
       actions.toRenderRandomShips(1);
+      actions.toRenderPreviewShips(1);
     });
     // this.generateRandomShipsPlayerTwoBtn.addEventListener("click", () => {
     //   actions.toGenRandomShips(2);
@@ -125,12 +126,16 @@ export class Renderer {
       : (this.playerTwoGameboard.innerHTML = playerGameboard);
   }
 
-  renderGameboardShipsPreview(player, sizesArr) {
-    sizesArr.forEach((element) => {
+  // todo-> fix randomize not generating correct id in render
+  renderGameboardShipsPreview(player, shipsArr) {
+    player === 1
+      ? (this.shipsPreviewPlayerOne.innerHTML = "")
+      : (this.shipsPreviewPlayerTwo.innerHTML = "");
+    shipsArr.forEach((element) => {
       let divContainer = document.createElement("div");
       let shipContainer = "";
-      for (let i = 0; i < element; i++) {
-        shipContainer += `<div class="gameboard-cell ship-preview-cell" data-id=""></div>`;
+      for (let i = 0; i < element.length; i++) {
+        shipContainer += `<div class="gameboard-cell ship-preview-cell" data-id="${element.id}"></div>`;
       }
       divContainer.classList.add("ship-preview-container");
       divContainer.innerHTML = shipContainer;

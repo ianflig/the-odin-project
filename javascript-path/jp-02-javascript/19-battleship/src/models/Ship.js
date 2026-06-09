@@ -3,6 +3,7 @@ export class Ship {
     this.length = size;
     this.hits = 0;
     this._isSunk = false;
+    this.id;
   }
 
   hit() {
@@ -15,5 +16,9 @@ export class Ship {
     }
 
     return this._isSunk;
+  }
+
+  setId(value) {
+    this.id = value;
   }
 }

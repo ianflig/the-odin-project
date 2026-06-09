@@ -8,6 +8,7 @@ export class Gameboard {
     this.allShots = {};
     this.activeShips = 0;
     this.toOverrideCoords = {};
+    this.shipsGenerated = [];
 
     this.loadGameboard();
   }
@@ -44,6 +45,8 @@ export class Gameboard {
       this.gameboard[ele[0]][ele[1]] = ship;
     });
 
+    ship.setId(crypto.randomUUID());
+    this.shipsGenerated.push(ship);
     this.activeShips++;
   }
 
@@ -137,6 +140,7 @@ export class Gameboard {
 
     while (!success) {
       this.resetGameboard();
+      this.shipsGenerated = [];
       success = true;
 
       for (let i = 0; i < sizesArr.length; i++) {
