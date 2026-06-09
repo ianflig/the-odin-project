@@ -20,9 +20,10 @@ export class GameController {
     }
 
     this.gameStatus = true;
-    if (!player1Nickname) {
-      this.playerOne.setNickname("Player 1");
-    }
+
+    player1Nickname
+      ? this.playerOne.setNickname(player1Nickname)
+      : this.playerOne.setNickname("Player 1");
 
     this.isComputerPlaying
       ? this.playerTwo.setNickname("Computer")

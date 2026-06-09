@@ -51,7 +51,7 @@ export class ScreenController {
     this.renderGameboardOnly(2);
     this.renderPreviewShips(2);
 
-    this.renderer.displayPlayerNextTurn("");
+    this.updateTurnDisplay();
   }
 
   setComputerPlayer(value) {
@@ -92,7 +92,6 @@ export class ScreenController {
     this.updateTurnDisplay();
     // this.updateComputerButtonDisplay();
     this.updateGenerateRandomShipsDisplay();
-    this.renderer.displayPlayerNextTurn("");
   }
 
   attackShip(coords) {

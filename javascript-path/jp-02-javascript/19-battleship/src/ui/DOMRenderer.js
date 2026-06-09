@@ -72,6 +72,7 @@ export class Renderer {
     });
   }
 
+  // todo ->  add live name changing
   displayPlayerNextTurn(nickname) {
     if (nickname) {
       this.playerNextTurn.textContent = nickname + "'s turn";
