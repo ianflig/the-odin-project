@@ -404,15 +404,29 @@ body {
     gap: var(--space-md);
 }
 
+.player-one-gameboard-wrapper,
+.player-two-gameboard-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    text-align: center;
+}
+
+.player-one-grid-text,
+.player-two-grid-text {
+    color: var(--color-gray-600);
+}
+
 .gameboard-ships-preview-player-one {
-    height: 220px;
+    height: 12rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
     justify-items: start;
     pointer-events: none;
 }
+
 .gameboard-ships-preview-player-two {
-    height: 220px;
+    height: 12rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
     justify-items: end;
@@ -578,11 +592,19 @@ input::placeholder {
         "playertwo";
     }
 
-    .player-one-gameboard {
+    .gameboard-ships-preview-player-one{
+        order: 1;
+    }
+
+    .player-one-gameboard-wrapper {
         order: 2;
     }
 
-    .player-two-gameboard {
+    .gameboard-ships-preview-player-two{
+        order: 1;
+    }
+
+    .player-two-gameboard-wrapper {
         order: 2;
     }
 
@@ -609,6 +631,11 @@ input::placeholder {
     .ship-preview-container .ship-preview-cell{
         width: 8px; 
         height: 8px;
+    }
+
+    .gameboard-ships-preview-player-one,
+    .gameboard-ships-preview-player-two {
+        height: 8rem;
     }
 
     .gameboard-cell{
