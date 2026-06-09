@@ -325,7 +325,7 @@ body {
 }
 
 .players-section {
-    width: 60%;
+    width: 62%;
     display: flex;
     gap: var(--space-2xl);
     justify-content: space-around;
@@ -366,10 +366,21 @@ body {
 }
 
 .gameboards {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: 
+    "playerone playertwo";
     justify-content: center;
     align-items: center;
     gap: var(--space-2xl);
+}
+
+.player-one-gameboard{
+    grid-area: playerone;
+}
+
+.player-two-gameboard{
+    grid-area: playertwo;
 }
 
 .player-one-gameboard,
@@ -426,6 +437,7 @@ body {
 
 .controls {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
@@ -502,6 +514,7 @@ body {
 .renew-ships-btn svg {
     width: 22px;
     height: 22px;
+    flex-shrink: 0;
 }
 
 .footer {
@@ -537,7 +550,7 @@ input::placeholder {
     color: var(--color-gray-350);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1182px) {
     body {
         width: 100%;
     }
@@ -557,7 +570,28 @@ input::placeholder {
 
 }
 
-@media (max-width: 450px) {
+@media (max-width: 958px){
+    .gameboards{
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "playerone"
+        "playertwo";
+    }
+
+    .player-one-gameboard {
+        order: 2;
+    }
+
+    .player-two-gameboard {
+        order: 2;
+    }
+
+    .gameboard-ships-preview-player-two{
+        justify-items: start;
+    }
+}
+
+@media (max-width: 526px) {
 
     .players-section {
     width: 100%;
@@ -565,9 +599,27 @@ input::placeholder {
     gap: var(--space-sm);
     padding: var(--space-sm) var(--space-md);
     }
+
+    .reset-game-button-container,
+    .play-game-button-container,
+    .renew-ships-button-container {
+    padding-top: 0;
+    }
+
+    .ship-preview-container .ship-preview-cell{
+        width: 8px; 
+        height: 8px;
+    }
+
+    .gameboard-cell{
+        width: clamp(15px, 6vw, 33px);
+        height: clamp(15px, 6vw, 33px);
+    }
+
     .header .left {
       gap: var(--space-xs);
     }
+
     .header .left,
     .header .right {
       padding: var(--space-xs);
