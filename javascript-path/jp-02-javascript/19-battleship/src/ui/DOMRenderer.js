@@ -66,7 +66,11 @@ export class Renderer {
   }
 
   displayPlayerNextTurn(nickname) {
-    this.playerNextTurn.textContent = nickname + "'s turn";
+    if (nickname) {
+      this.playerNextTurn.textContent = nickname + "'s turn";
+    } else {
+      this.playerNextTurn.textContent = "Press start button to play";
+    }
   }
 
   displayWinner(nickname) {

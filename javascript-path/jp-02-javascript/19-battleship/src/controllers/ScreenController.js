@@ -44,6 +44,7 @@ export class ScreenController {
 
     // this.generateRandomShips(2);
     this.renderRandomShips(2);
+    this.renderer.displayPlayerNextTurn("");
   }
 
   setComputerPlayer(value) {
@@ -80,6 +81,7 @@ export class ScreenController {
     this.updateTurnDisplay();
     // this.updateComputerButtonDisplay();
     this.updateGenerateRandomShipsDisplay();
+    this.renderer.displayPlayerNextTurn("");
   }
 
   attackShip(coords) {
