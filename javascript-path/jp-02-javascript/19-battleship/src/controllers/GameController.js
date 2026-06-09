@@ -29,9 +29,9 @@ export class GameController {
       ? this.playerTwo.setNickname("Computer")
       : this.playerTwo.setNickname(player2Nickname);
 
-    console.log("Game started");
+    // console.log("Game started");
 
-    console.log("Now playing: " + this.getPlayerNickname());
+    // console.log("Now playing: " + this.getPlayerNickname());
   }
 
   getPlayerNickname() {
@@ -91,6 +91,7 @@ export class GameController {
     return result;
   }
 
+  // workflow: attack at a random coord -> hit?: yes -> is there an adjacency list? no: generate adjacency list for next shot. yes: check adjacency list and hit that coord -> repeat until adjacency list length === 0
   playComputerTurn() {
     let randomCoords;
     let isLegal = false;

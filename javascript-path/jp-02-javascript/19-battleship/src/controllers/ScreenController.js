@@ -47,7 +47,7 @@ export class ScreenController {
     this.renderPreviewShips(1);
 
     this.generateRandomShips(2);
-    // this.renderRandomShips(2);
+    // this.renderRandomShips(2); // to future compatibility 2 local players passing the device
     this.renderGameboardOnly(2);
     this.renderPreviewShips(2);
 
@@ -65,7 +65,7 @@ export class ScreenController {
     this.setComputerPlayer(true);
     this.game.startGame(player1Nickname, player2Nickname);
     this.updateTurnDisplay();
-    // this.updateComputerButtonDisplay();
+    // this.updateComputerButtonDisplay(); // to future compatibility 2 local players passing the device
     this.updateGenerateRandomShipsDisplay();
 
     if (this.game.isComputerPlaying) {
@@ -85,12 +85,12 @@ export class ScreenController {
     this.renderPreviewShips(1);
 
     this.generateRandomShips(2);
-    // this.generateRandomShips(2);
+    // this.generateRandomShips(2); // to future compatibility 2 local players passing the device
     this.renderGameboardOnly(2);
     this.renderPreviewShips(2);
 
     this.updateTurnDisplay();
-    // this.updateComputerButtonDisplay();
+    // this.updateComputerButtonDisplay(); // to future compatibility 2 local players passing the device
     this.updateGenerateRandomShipsDisplay();
   }
 
@@ -252,6 +252,7 @@ export class ScreenController {
     }
   }
 
+  // to future compatibility 2 local players passing the device
   // updateComputerButtonDisplay() {
   //   let gameStatus = this.game.gameStatus;
   //   if (gameStatus) {

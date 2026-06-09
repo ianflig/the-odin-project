@@ -38,41 +38,24 @@ export class Gameboard {
     return "hit";
   }
 
-  placeShip(shipSize, ...args) {
-    const ship = new Ship(shipSize);
+  // workflow: autoPlaceShips -> placeRandomShip -> canPlaceShip? -> placeShip -> markBufferZone of that ship
+  autoPlaceShips(sizesArr) {
+    let success = false;
 
-    args.forEach((ele) => {
-      this.gameboard[ele[0]][ele[1]] = ship;
-    });
+    while (!success) {
+      this.resetGameboard();
+      this.shipsGenerated = [];
+      success = true;
 
-    ship.setId(crypto.randomUUID());
-    this.shipsGenerated.push(ship);
-    this.activeShips++;
-  }
+      for (let i = 0; i < sizesArr.length; i++) {
+        let placedShip = this.placeRandomShip(sizesArr[i]);
 
-  canPlaceShip(startX, startY, shipSize, isHorizontal) {
-    for (let i = 0; i < shipSize; i++) {
-      let currentX = isHorizontal ? startX + i : startX;
-      let currentY = isHorizontal ? startY : startY + i;
-      let key = `${currentX},${currentY}`;
-
-      // out of board
-      if (
-        currentX > this.gameboardSize - 1 ||
-        currentY > this.gameboardSize - 1
-      )
-        return false;
-
-      // already a ship in it
-      if (this.gameboard[currentX][currentY] !== null) return false;
-
-      // 1 div of space between ships
-      if (this.toOverrideCoords[key]) {
-        return false;
+        if (!placedShip) {
+          success = false;
+          break;
+        }
       }
     }
-
-    return true;
   }
 
   placeRandomShip(shipSize) {
@@ -106,6 +89,31 @@ export class Gameboard {
     return placed;
   }
 
+  canPlaceShip(startX, startY, shipSize, isHorizontal) {
+    for (let i = 0; i < shipSize; i++) {
+      let currentX = isHorizontal ? startX + i : startX;
+      let currentY = isHorizontal ? startY : startY + i;
+      let key = `${currentX},${currentY}`;
+
+      // out of board
+      if (
+        currentX > this.gameboardSize - 1 ||
+        currentY > this.gameboardSize - 1
+      )
+        return false;
+
+      // already a ship in it
+      if (this.gameboard[currentX][currentY] !== null) return false;
+
+      // 1 div of space between ships
+      if (this.toOverrideCoords[key]) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   markBufferZone(shipCoordinates) {
     const directions = [
       [-1, -1],
@@ -135,23 +143,16 @@ export class Gameboard {
     });
   }
 
-  autoPlaceShips(sizesArr) {
-    let success = false;
+  placeShip(shipSize, ...args) {
+    const ship = new Ship(shipSize);
 
-    while (!success) {
-      this.resetGameboard();
-      this.shipsGenerated = [];
-      success = true;
+    args.forEach((ele) => {
+      this.gameboard[ele[0]][ele[1]] = ship;
+    });
 
-      for (let i = 0; i < sizesArr.length; i++) {
-        let placedShip = this.placeRandomShip(sizesArr[i]);
-
-        if (!placedShip) {
-          success = false;
-          break;
-        }
-      }
-    }
+    ship.setId(crypto.randomUUID());
+    this.shipsGenerated.push(ship);
+    this.activeShips++;
   }
 
   loadGameboard() {

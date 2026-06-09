@@ -4,6 +4,7 @@ export class Renderer {
     this.resetGameBtn = document.querySelector("#reset-game-button");
     this.playerOneGameboard = document.querySelector(".player-one-gameboard");
     this.playerTwoGameboard = document.querySelector(".player-two-gameboard");
+    // to future compatibility 2 local players passing the device
     // this.isComputerPlayingBtn = document.querySelector(
     //   "#is-computer-playing-button",
     // );
@@ -13,6 +14,7 @@ export class Renderer {
     this.generateRandomShipsPlayerOneBtn = document.querySelector(
       "#generate-random-ships-player-one-button",
     );
+    // to future compatibility 2 local players passing the device
     // this.generateRandomShipsPlayerTwoBtn = document.querySelector(
     //   "#generate-random-ships-player-two-button",
     // );
@@ -47,6 +49,7 @@ export class Renderer {
         actions.toAttackShip(element.dataset.cell);
       }
     });
+    // to future compatibility 2 local players passing the device
     // this.isComputerPlayingBtn.addEventListener("click", () => {
     //   let ele = this.isComputerPlayingSpan;
     //   if (ele.textContent === "No") {
@@ -63,6 +66,7 @@ export class Renderer {
       actions.toRenderRandomShips(1);
       actions.toRenderPreviewShips(1);
     });
+    // to future compatibility 2 local players passing the device
     // this.generateRandomShipsPlayerTwoBtn.addEventListener("click", () => {
     //   actions.toGenRandomShips(2);
     //   actions.toRenderRandomShips(2);
@@ -72,7 +76,6 @@ export class Renderer {
     });
   }
 
-  // todo ->  add live name changing
   displayPlayerNextTurn(nickname) {
     if (nickname) {
       this.playerNextTurn.textContent = nickname + "'s turn";
@@ -180,6 +183,7 @@ export class Renderer {
         "locked-button",
         "button-opacity",
       );
+      // to future compatibility 2 local players passing the device
       // this.generateRandomShipsPlayerTwoBtn.classList.add(
       //   "locked-button",
       //   "button-opacity",
@@ -189,6 +193,7 @@ export class Renderer {
         "locked-button",
         "button-opacity",
       );
+      // to future compatibility 2 local players passing the device
       // this.generateRandomShipsPlayerTwoBtn.classList.remove(
       //   "locked-button",
       //   "button-opacity",
@@ -217,6 +222,7 @@ export class Renderer {
     this.playerTwoGameboard.classList.remove("locked-button", "button-opacity");
   }
 
+  // to future compatibility 2 local players passing the device
   // swapLockComputerButton(value) {
   //   if (value) {
   //     this.isComputerPlayingBtn.classList.add(
