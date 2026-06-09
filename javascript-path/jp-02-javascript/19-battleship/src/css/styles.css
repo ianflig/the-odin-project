@@ -322,6 +322,7 @@ body {
     justify-items: center;
     align-items: center;
     min-width: 0;
+    overflow-y: auto;
 }
 
 .players-section {
@@ -571,10 +572,6 @@ input::placeholder {
 
     .players-section {
       width: 80%;
-    }
-
-    .main-content{
-      overflow-y: auto;
     }
 
     .gameboard-section {
