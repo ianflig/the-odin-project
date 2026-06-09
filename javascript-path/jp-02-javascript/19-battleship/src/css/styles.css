@@ -411,11 +411,20 @@ body {
     opacity: 0.5;
 }
 
-.reset-game-button-container {
+.controls {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.reset-game-button-container,
+.play-game-button-container,
+.renew-ships-button-container {
   padding-top: var(--space-md);
 }
 
-.reset-game-btn {
+.reset-game-btn,
+.play-game-btn,
+.renew-ships-btn {
     padding: var(--space-xs) var(--space-md);
     display: flex;
     justify-content: center;
@@ -431,9 +440,21 @@ body {
 }
 
 .reset-game-btn h4,
-.reset-game-btn svg {
+.play-game-btn h4,
+.renew-ships-btn h4,
+.reset-game-btn svg,
+.play-game-btn svg,
+.renew-ships-btn svg
+{
   color: var(--color-gray-700);
   fill: var(--color-gray-700);
+}
+
+.reset-game-btn svg,
+.play-game-btn svg,
+.renew-ships-btn svg {
+    width: 22px;
+    height: 22px;
 }
 
 .footer {
