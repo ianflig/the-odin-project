@@ -113,8 +113,12 @@ export class Renderer {
 
     for (let i = 0; i < size; i++) {
       for (let j = 0; j < size; j++) {
-        if (!removeShips && gameboard[i][j] !== null) {
-          playerGameboard += `<div class="gameboard-cell ship" data-cell="${i},${j}"></div>`;
+        if (gameboard) {
+          if (!removeShips && gameboard[i][j] !== null) {
+            playerGameboard += `<div class="gameboard-cell ship" data-cell="${i},${j}"></div>`;
+          } else {
+            playerGameboard += `<div class="gameboard-cell" data-cell="${i},${j}"></div>`;
+          }
         } else {
           playerGameboard += `<div class="gameboard-cell" data-cell="${i},${j}"></div>`;
         }

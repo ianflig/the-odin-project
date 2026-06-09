@@ -44,16 +44,14 @@ export class ScreenController {
   init() {
     this.generateRandomShips(1);
     this.renderRandomShips(1);
-
-    // this.generateRandomShips(2);
-    this.renderRandomShips(2);
-    this.renderer.displayPlayerNextTurn("");
     this.renderPreviewShips(1);
-    // this render is only to show mock divs, it is updated automatically once game starts
-    // this.renderer.renderGameboardShipsPreview(
-    //   2,
-    //   this.game.playerOne.gameboard.shipsGenerated,
-    // );
+
+    this.generateRandomShips(2);
+    // this.renderRandomShips(2);
+    this.renderGameboardOnly(2);
+    this.renderPreviewShips(2);
+
+    this.renderer.displayPlayerNextTurn("");
   }
 
   setComputerPlayer(value) {
@@ -145,6 +143,10 @@ export class ScreenController {
         this.gameboardSize,
       );
     }
+  }
+
+  renderGameboardOnly(player) {
+    this.renderer.renderGameboard(player, undefined, false, this.gameboardSize);
   }
 
   renderPreviewShips(player) {
