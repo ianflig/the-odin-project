@@ -84,8 +84,10 @@ export class ScreenController {
     this.renderRandomShips(1);
     this.renderPreviewShips(1);
 
+    this.generateRandomShips(2);
     // this.generateRandomShips(2);
-    this.renderRandomShips(2);
+    this.renderGameboardOnly(2);
+    this.renderPreviewShips(2);
 
     this.updateTurnDisplay();
     // this.updateComputerButtonDisplay();

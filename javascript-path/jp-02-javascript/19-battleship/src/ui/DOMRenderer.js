@@ -130,7 +130,6 @@ export class Renderer {
       : (this.playerTwoGameboard.innerHTML = playerGameboard);
   }
 
-  // todo-> fix randomize not generating correct id in render
   renderGameboardShipsPreview(player, shipsArr) {
     player === 1
       ? (this.shipsPreviewPlayerOne.innerHTML = "")
