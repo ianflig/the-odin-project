@@ -82,7 +82,7 @@
 
     <div class="header">
       <div class="left">
-        <!-- <img src="./images/header-image.jpg" alt="header-image" /> -->
+        <img src="./assets/images/battleship.png" alt="header-image" />
         <h2>Battleship</h2>
       </div>
       <div class="right">
@@ -90,7 +90,6 @@
           <svg><use href="#moon-icon"></use></svg>
           <svg><use href="#sun-icon"></use></svg>
         </button>
-        <!-- <img src="./images/icon.png" alt="avatar" /> -->
       </div>
     </div>
 
@@ -118,8 +117,21 @@
       <div class="gameboard-section">
         <h3 class="current-player-turn"><span id="current-player"></span></h3>
         <div class="gameboards">
-          <div class="player-one-gameboard" data-player="player-one"></div>
-          <div class="player-two-gameboard" data-player="player-two"></div>
+          <div class="gameboard-container" id="gameboard-container-player-one">
+            <!-- [5, 4, 4, 3, 3, 3, 2, 2, 1] -->
+            <div
+              class="gameboard-ships-preview-player-one"
+              id="ships-preview-player-one"
+            ></div>
+            <div class="player-one-gameboard" data-player="player-one"></div>
+          </div>
+          <div class="gameboard-container" id="gameboard-container-player-two">
+            <div class="player-two-gameboard" data-player="player-two"></div>
+            <div
+              class="gameboard-ships-preview-player-two"
+              id="ships-preview-player-two"
+            ></div>
+          </div>
         </div>
         <!--  -->
         <div class="controls">

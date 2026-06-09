@@ -19,6 +19,12 @@ export class Renderer {
     this.player1NicknameInput = document.querySelector("#player1-input");
     this.player2NicknameInput = document.querySelector("#player2-input");
     this.playerNextTurn = document.querySelector("#current-player");
+    this.shipsPreviewPlayerOne = document.querySelector(
+      "#ships-preview-player-one",
+    );
+    this.shipsPreviewPlayerTwo = document.querySelector(
+      "#ships-preview-player-two",
+    );
   }
 
   bindEvents(actions) {
@@ -117,6 +123,21 @@ export class Renderer {
     player === 1
       ? (this.playerOneGameboard.innerHTML = playerGameboard)
       : (this.playerTwoGameboard.innerHTML = playerGameboard);
+  }
+
+  renderGameboardShipsPreview(player, sizesArr) {
+    sizesArr.forEach((element) => {
+      let divContainer = document.createElement("div");
+      let shipContainer = "";
+      for (let i = 0; i < element; i++) {
+        shipContainer += `<div class="gameboard-cell ship-preview-cell" data-id=""></div>`;
+      }
+      divContainer.classList.add("ship-preview-container");
+      divContainer.innerHTML = shipContainer;
+      player === 1
+        ? this.shipsPreviewPlayerOne.append(divContainer)
+        : this.shipsPreviewPlayerTwo.append(divContainer);
+    });
   }
 
   //player equals to player's gameboard to update

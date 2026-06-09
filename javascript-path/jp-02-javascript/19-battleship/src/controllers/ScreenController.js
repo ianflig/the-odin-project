@@ -45,6 +45,8 @@ export class ScreenController {
     // this.generateRandomShips(2);
     this.renderRandomShips(2);
     this.renderer.displayPlayerNextTurn("");
+    this.renderer.renderGameboardShipsPreview(1, this.game.allowedShipSizes);
+    this.renderer.renderGameboardShipsPreview(2, this.game.allowedShipSizes);
   }
 
   setComputerPlayer(value) {
