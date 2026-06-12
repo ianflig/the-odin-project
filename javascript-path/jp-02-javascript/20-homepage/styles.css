@@ -169,14 +169,20 @@ body {
     height: 100dvh;
 }
 
+header{
+display: flex;
+}
+
 .logo-container{
     position: relative;
     max-width: 300px;
+    align-items: center;
+    /* flex: 1; */
 }
 
 .logo-container img{
     width: 100%;
-    max-width: 300px;
+    height: 100%;
 }
 
 .logo-container h3{
@@ -186,4 +192,22 @@ body {
     left: 0;
     color: white;
     text-align: center;
+}
+
+.sheet-of-paper-container {
+    display: flex;
+    flex-direction: column;
+    background-image: url(./images/sheet-of-paper.png);
+    background-size: 100% 100%; 
+    background-repeat: no-repeat;
+    background-position: center;
+    max-width: 600px;
+    padding: var(--space-3xl);
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5));
+    /* flex: 2; */
+}
+
+svg {
+    width: 15px;
+    height: 15px;
 }
