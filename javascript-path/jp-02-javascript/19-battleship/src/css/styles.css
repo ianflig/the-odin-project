@@ -352,6 +352,10 @@ body {
     pointer-events: none;
 }
 
+.current-player-turn {
+    padding-top: var(--space-md);
+}
+
 .gameboard-section {
   width: 100%;
   height: 100%;
@@ -455,6 +459,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    padding-bottom: var(--space-md);
 }
 
 .miss-shot {
