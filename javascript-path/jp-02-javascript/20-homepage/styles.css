@@ -164,3 +164,26 @@ h4 {
 /* 
 -------------- DOCUMENT --------------
 */
+
+body {
+    height: 100dvh;
+}
+
+.logo-container{
+    position: relative;
+    max-width: 300px;
+}
+
+.logo-container img{
+    width: 100%;
+    max-width: 300px;
+}
+
+.logo-container h3{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: white;
+    text-align: center;
+}
