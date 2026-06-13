@@ -128,7 +128,7 @@ html {
   --radius-xs: 0.5rem;
   --radius-2xs: 0.25rem;
 
-  scrollbar-color: var(--color-gray-300) var(--color-bg);
+  scrollbar-color: #301713 black;
 }
 
 /* GLOBAL TYPOGRAPHY & ELEMENTS */
@@ -252,9 +252,17 @@ header::before {
     filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5));
 }
 
-svg {
-    width: 15px;
-    height: 15px;
+header svg {
+    width: 30px;
+    height: 30px;
+    fill: #301713;
+    cursor: pointer;
+}
+
+header .icons-container {
+    display: flex;
+    justify-content: end;
+    gap: var(--space-md);
 }
 
 .main-background{
