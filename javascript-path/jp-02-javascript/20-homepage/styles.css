@@ -133,7 +133,7 @@ html {
 
 /* GLOBAL TYPOGRAPHY & ELEMENTS */
 * {
-    font-family: "Atkinson Hyperlegible Next", sans-serif;
+    font-family: "Crimson Text", sans-serif;
 }
 
 ::selection {
@@ -171,6 +171,21 @@ body {
     height: 100dvh;
 }
 
+.header-content h1 {
+    font-weight: var(--weight-medium);
+}
+
+.header-content h3 {
+    font-weight: var(--weight-regular);
+    font-size: var(--font-lg);
+}
+
+.header-content p {
+    font-weight: var(--weight-medium);
+    color: var(--color-fg);
+    font-size: var(--font-xl);
+}
+
 .header-shadow-wrapper {
     filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.7)); 
 }
@@ -181,6 +196,7 @@ header{
     display: flex;
     padding-bottom: var(--space-3xl);
     padding-top: var(--space-3xl);
+    padding: 0 var(--space-xl) 0 var(--space-xl) ;
 }
 
 header::before {
@@ -201,7 +217,6 @@ header::before {
     display: flex;
     justify-content: center; 
     align-items: center; 
-    gap: var(--space-md);
     padding-top: var(--space-3xl);
     padding-bottom: var(--space-3xl);
 }
@@ -257,6 +272,7 @@ main {
     flex-direction: column;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 var(--space-xl) 0 var(--space-xl) ;
 }
 
 .cards-container {
