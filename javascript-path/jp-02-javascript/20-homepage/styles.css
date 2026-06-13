@@ -248,7 +248,7 @@ header {
 .sheet-of-paper-container {
     display: flex;
     flex-direction: column; 
-    background-image: url(./images/sheet-of-paper.png);
+    background-image: url(./images/sheet-of-paper.webp);
     background-size: 100% 100%; 
     background-repeat: no-repeat;
     background-position: center;
@@ -276,7 +276,7 @@ header .icons-container {
 
 .main-background{
     width: 100%;
-    background-image: url(images/sheet-of-paper-2.png);
+    background-image: url(images/sheet-of-paper-2.webp);
     background-size: cover;
     background-repeat: repeat-y;
     margin-top: -270px;
@@ -322,7 +322,7 @@ main {
 
 .card .text-background{
     width: 100%;
-    background-image: url(images/sheet-of-paper-2.png);
+    background-image: url(images/sheet-of-paper-2.webp);
     background-size: cover;
     background-repeat: repeat-y;
     padding: var(--space-md);
@@ -472,7 +472,7 @@ footer {
 
 @media (max-width: 654px) {
     .sheet-of-paper-container {
-        background-image: url(./images/sheet-of-paper-2.png);
+        background-image: url(./images/sheet-of-paper-2.webp);
         display: flex;
         flex-direction: column;
         align-items: center;
