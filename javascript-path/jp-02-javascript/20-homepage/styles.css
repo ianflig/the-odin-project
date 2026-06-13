@@ -165,6 +165,10 @@ h4 {
 -------------- DOCUMENT --------------
 */
 
+h1, h2, h3, h4, p, span {
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -187,19 +191,12 @@ body {
 }
 
 .header-shadow-wrapper {
+    width: 100%;
+    position: relative;
     filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.7)); 
 }
 
-header{
-    width: 100%;
-    position: relative;
-    display: flex;
-    padding-bottom: var(--space-3xl);
-    padding-top: var(--space-3xl);
-    padding: 0 var(--space-xl) 0 var(--space-xl) ;
-}
-
-header::before {
+.header-shadow-wrapper::before {
     content: "";
     position: absolute;
     top: 0;
@@ -211,14 +208,17 @@ header::before {
     z-index: -1;
 }
 
-.header-content {
+header {
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.header-content {
+    width: 100%;
     display: flex;
     justify-content: center; 
     align-items: center; 
-    padding-top: var(--space-3xl);
-    padding-bottom: var(--space-3xl);
+    padding: var(--space-3xl) var(--space-xl); 
 }
 
 .logo-container{
@@ -230,6 +230,7 @@ header::before {
 .logo-container img{
     width: 100%;
     height: 100%;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
 }
 
 .logo-container h3{
@@ -250,6 +251,7 @@ header::before {
     background-position: center;
     padding: var(--space-3xl);
     filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5));
+    gap: var(--space-md);
 }
 
 header svg {
@@ -267,22 +269,58 @@ header .icons-container {
 
 .main-background{
     width: 100%;
-    display: flex;
     background-image: url(images/sheet-of-paper-2.png);
     background-size: cover;
     background-repeat: repeat-y;
-    margin-top: -250px;
-    padding-top: 270px; 
+    margin-top: -270px;
+    padding-top: 320px; 
 }
 
 main {
-    display: flex;
-    flex-direction: column;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--space-xl) 0 var(--space-xl) ;
+}
+
+.main-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 var(--space-xl) 0 var(--space-xl);
+    gap: var(--space-md);
+}
+
+.main-content h2 {
+    font-weight: var(--weight-medium);
+    font-size: var(--font-2xl);
 }
 
 .cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: var(--space-lg);
+}
+
+.cards-container svg {
+    width: 15px;
+    height: 15px;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+    min-height: 198px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
+}
+
+.card .title-container {
+    display: flex;
+}
+
+.card .icons-container {
     display: flex;
 }
