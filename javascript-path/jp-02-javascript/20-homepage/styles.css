@@ -471,6 +471,33 @@ footer {
 }
 
 @media (max-width: 654px) {
+    .sheet-of-paper-container {
+        background-image: url(./images/sheet-of-paper-2.png);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: var(--space-lg); 
+        margin-left: 0;
+    }
+
+    .logo-container {
+        float: none; 
+        margin: 0 ;
+        max-width: 180px; 
+    }
+
+    .sheet-of-paper-container h1 {
+        margin-bottom: var(--space-sm);
+        font-size: 1.8rem; 
+    }
+
+    header .icons-container {
+        justify-content: center;
+        width: 100%;
+        margin-top: var(--space-sm);
+    }
+
     .footer-content {
         flex-direction: column;
         justify-content: center;
