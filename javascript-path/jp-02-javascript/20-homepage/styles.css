@@ -362,10 +362,6 @@ main {
 .footer-background {
     width: 100%;
     background-color: #301713;
-    /* background-image: url(./images/footer-background.png);
-    background-size: 100% 100%; 
-    background-repeat: no-repeat;
-    background-position: center; */
 }
 
 footer {
@@ -442,20 +438,26 @@ footer {
 @media (max-width: 966px) {
     .sheet-of-paper-container {
         display: block; 
+        margin-left: 100px; 
     }
 
     .logo-container {
         float: left; 
         position: relative;
-        margin-left: -50px; 
-        margin-top: -50px; 
+        left: auto;       
+        top: auto;        
+        transform: none;  
+        margin-left: -120px; 
+        margin-top: -60px; 
         margin-right: var(--space-lg); 
         margin-bottom: var(--space-sm);
+        max-width: 300px; 
     }
 
     .sheet-of-paper-container h1 {
         margin-bottom: var(--space-xs);
     }
+    
     .sheet-of-paper-container p {
         margin-bottom: var(--space-md);
     }
