@@ -10,24 +10,24 @@
 
 </div>
 
-<!-- [screenshot]: ./src/assets/images/screenshot.png "preview"
+[screenshot]: ./images/screenshot.jpg "preview"
 
-![preview][screenshot] -->
+![preview][screenshot]
 
-**_DESCRIPTION_**: WIP
+**_DESCRIPTION_**: This is a simple, responsive homepage built, related to Guild Wars 2 theme
 
-<!-- ## Live Preview
+The main goal of the assignment was to practice responsive design. I had to make sure the layout adapts and looks good on [**desktop monitors**](./images/reference-1.png), [**tablets**](./images/reference-2.png), and [**mobile phones**](./images/reference-3.png).
 
-The live site can be viewed [**here**](https://odin-19.vercel.app).
+## Live Preview
+
+The live site can be viewed [**here**](https://odin-20.vercel.app).
 
 ## Setup
 
-This app uses webpack packages. To run this setup locally:
+This app doesn't use any packages. To run this setup locally:
 
 ```bash
-npm install
-npm run build
-npx serve dist
+npx serve .
 ```
 
-After that, just head to [localhost:3000](http://localhost:3000) to see the app running. -->
+After that, just head to [localhost:3000](http://localhost:3000) to see the app running.
