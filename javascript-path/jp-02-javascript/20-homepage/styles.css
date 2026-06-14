@@ -177,6 +177,7 @@ body {
 
 .header-content h1 {
     font-weight: var(--weight-medium);
+    font-size: clamp(1.3rem, 3vw, 2rem);
 }
 
 .header-content h3 {
@@ -187,7 +188,7 @@ body {
 .header-content p {
     font-weight: var(--weight-medium);
     color: var(--color-fg);
-    font-size: var(--font-xl);
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
 }
 
 .header-shadow-wrapper {
