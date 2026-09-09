@@ -5,6 +5,7 @@ export function CVPaper({
   phone,
   location,
   website,
+  professionalSummary,
 }) {
   return (
     <>
@@ -15,6 +16,7 @@ export function CVPaper({
         <span>Phone: {phone}</span>
         <span>Location: {location}</span>
         <span>Website: {website}</span>
+        <span>Profile: {professionalSummary}</span>
       </div>
     </>
   );
