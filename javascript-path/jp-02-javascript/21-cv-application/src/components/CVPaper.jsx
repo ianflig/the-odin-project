@@ -6,7 +6,10 @@ export function CVPaper({
   location,
   website,
   professionalSummary,
+  skills,
 }) {
+  let skillsArr = skills?.split(",");
+
   return (
     <>
       <div className="flex max-w-3/4 flex-col content-center justify-center">
@@ -17,6 +20,8 @@ export function CVPaper({
         <span>Location: {location}</span>
         <span>Website: {website}</span>
         <span>Profile: {professionalSummary}</span>
+        <span>Skills:</span>
+        <span>{skillsArr.map((e) => e)}</span>
       </div>
     </>
   );

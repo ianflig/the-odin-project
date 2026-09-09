@@ -6,6 +6,7 @@ export function ProfessionalSummary({ defaultData, fn }) {
       <h3>Professional summary</h3>
       <InputBox label="Summary">
         <textarea
+          className="border border-black"
           name="professionalSummary"
           value={defaultData.professionalSummary}
           onChange={(e) => {

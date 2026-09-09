@@ -1,5 +1,6 @@
 import { PersonalDetails } from "./components/PersonalDetails";
 import { ProfessionalSummary } from "./components/ProfessionalSummary";
+import { Skills } from "./components/Skills";
 import { CVPaper } from "./components/CVPaper";
 import { useState } from "react";
 
@@ -13,6 +14,8 @@ export function App() {
     website: "lorem.dev",
     professionalSummary:
       "Software developer with 5 year of experience creating intuitive digital experiences for SaaS and consumer products. Skilled in design systems, UX strategy, and cross-functional collaboration.",
+    skills:
+      "JavaScript, React, Node.js, Express, MongoDB, SQL, Git, Docker, AWS",
   });
   return (
     <>
@@ -25,6 +28,7 @@ export function App() {
             defaultData={data}
             fn={setData}
           ></ProfessionalSummary>
+          <Skills defaultData={data} fn={setData}></Skills>
         </aside>
         <aside className="flex flex-col items-center">
           <CVPaper
@@ -39,6 +43,7 @@ export function App() {
             professionalSummary={
               data.professionalSummary || "Your professional summary"
             }
+            skills={data.skills || "Your skills"}
           ></CVPaper>
         </aside>
       </section>
