@@ -1,23 +1,16 @@
-import { useState } from 'react'
+import { PersonalDetails } from "./components/PersonalDetails";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export function App() {
   return (
     <>
-      <section id="center">
-        <div className="hero">
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
+      <section className="grid min-h-screen grid-cols-[1fr_2fr]">
+        <aside className="flex flex-col">
+          <h1>CV MAKER</h1>
+          <h2>BUILD YOUR PROFILE</h2>
+          <PersonalDetails></PersonalDetails>
+        </aside>
+        <aside className="flex flex-col"></aside>
       </section>
     </>
-  )
+  );
 }
-
-export default App
