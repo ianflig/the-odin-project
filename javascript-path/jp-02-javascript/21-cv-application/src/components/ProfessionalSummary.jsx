@@ -14,7 +14,6 @@ export function ProfessionalSummary({ defaultData, fn }) {
           }}
         ></textarea>
       </InputBox>
-      ;
     </>
   );
 }
