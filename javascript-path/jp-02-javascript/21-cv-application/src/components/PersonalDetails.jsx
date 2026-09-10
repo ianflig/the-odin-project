@@ -1,22 +1,21 @@
 import { InputBox } from "./InputBox.jsx";
 
 export function PersonalDetails({ fn, defaultData }) {
-  let inputClassName = "border border-black";
-
   function handleChange(e) {
     const { name, value } = e.target;
     fn((prev) => ({ ...prev, [name]: value }));
   }
 
   return (
-    <>
-      <h3>PERSONAL DETAILS</h3>
-      <div className="grid grid-cols-[1fr_1fr] gap-2">
+    <section className="flex flex-col gap-3">
+      <h3 className="text-ink text-xs font-semibold tracking-[0.18em] uppercase">
+        Personal details
+      </h3>
+      <div className="grid grid-cols-[1fr_1fr] gap-3">
         <InputBox label="Full name">
           <input
             type="text"
             value={defaultData.fullName}
-            className={inputClassName}
             name="fullName"
             onChange={handleChange}
           />
@@ -26,7 +25,6 @@ export function PersonalDetails({ fn, defaultData }) {
             type="text"
             value={defaultData.professionalTitle}
             name="professionalTitle"
-            className={inputClassName}
             onChange={handleChange}
           />
         </InputBox>
@@ -35,7 +33,6 @@ export function PersonalDetails({ fn, defaultData }) {
             type="text"
             value={defaultData.email}
             name="email"
-            className={inputClassName}
             onChange={handleChange}
           />
         </InputBox>
@@ -44,7 +41,6 @@ export function PersonalDetails({ fn, defaultData }) {
             type="text"
             value={defaultData.phone}
             name="phone"
-            className={inputClassName}
             onChange={handleChange}
           />
         </InputBox>
@@ -53,7 +49,6 @@ export function PersonalDetails({ fn, defaultData }) {
             type="text"
             value={defaultData.location}
             name="location"
-            className={inputClassName}
             onChange={handleChange}
           />
         </InputBox>
@@ -62,11 +57,10 @@ export function PersonalDetails({ fn, defaultData }) {
             type="text"
             value={defaultData.website}
             name="website"
-            className={inputClassName}
             onChange={handleChange}
           />
         </InputBox>
       </div>
-    </>
+    </section>
   );
 }

@@ -13,10 +13,13 @@ export function EducationBox({ data, id, fn }) {
   }
 
   return (
-    <>
-      <div className="flex justify-between">
-        <h1>Education</h1>
-        <button className="cursor-pointer" id={id}>
+    <div className="border-line flex flex-col gap-3 rounded-xl border bg-white p-4">
+      <div className="flex items-center justify-between">
+        <h4 className="text-ink text-sm font-semibold">Education</h4>
+        <button
+          className="cursor-pointer rounded-full bg-red-50 px-3 py-1 text-xs font-medium text-red-600 transition hover:bg-red-100"
+          id={id}
+        >
           Remove
         </button>
       </div>
@@ -46,14 +49,28 @@ export function EducationBox({ data, id, fn }) {
       </InputBox>
       <InputBox label="Information / Details">
         <textarea
-          type="text"
           value={data?.details}
           name="details"
           onChange={handleChange}
         />
       </InputBox>
-    </>
+    </div>
   );
 }
 
-export function Education() {}
+export function Education({ edu }) {
+  return (
+    <div>
+      <div className="flex items-baseline justify-between gap-4">
+        <h3 className="text-ink font-semibold">{edu.level || "Your level"}</h3>
+        <span className="text-muted shrink-0 text-sm">
+          {edu.period || "Your period"}
+        </span>
+      </div>
+      <p className="text-sm">{edu.school || "Your school"}</p>
+      {edu.details && (
+        <p className="text-muted mt-1 text-sm leading-relaxed">{edu.details}</p>
+      )}
+    </div>
+  );
+}
