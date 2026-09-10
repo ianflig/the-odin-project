@@ -1,6 +1,7 @@
 import { PersonalDetails } from "./components/PersonalDetails";
 import { ProfessionalSummary } from "./components/ProfessionalSummary";
 import { ExperienceBox } from "./components/Experience";
+import { EducationBox } from "./components/Education";
 import { Skills } from "./components/Skills";
 import { CVPaper } from "./components/CVPaper";
 import { useState } from "react";
@@ -31,31 +32,31 @@ export function App() {
         ],
       },
     ],
+    education: [
+      {
+        id: crypto.randomUUID(),
+        level: "O' Level",
+        school: "Mtshabezi High School",
+        period: "2018 — 2021",
+        details:
+          "Passed 8 subjects including Mathematics, English Language, and Physical Science.",
+      },
+    ],
   });
 
-  // (e, name)
-  function createBox() {
+  function createBox(section, newItem) {
     setData((prev) => ({
       ...prev,
-      experience: [
-        ...prev.experience,
-        {
-          id: crypto.randomUUID(),
-          company: "",
-          role: "",
-          period: "",
-          location: "",
-          accomplishments: [],
-        },
-      ],
+      [section]: [...prev[section], { id: crypto.randomUUID(), ...newItem }],
     }));
   }
 
   function handleRemove(e) {
     const id = e.target.closest("[id]").id;
+    const section = e.currentTarget.dataset.section;
     setData((prev) => ({
       ...prev,
-      experience: prev.experience.filter((e) => e.id != id),
+      [section]: prev[section].filter((e) => e.id != id),
     }));
   }
 
@@ -73,23 +74,60 @@ export function App() {
           <Skills defaultData={data} fn={setData}></Skills>
           <div className="flex justify-between">
             <h1>Experience</h1>
-            <button className="cursor-pointer" onClick={createBox}>
+            <button
+              className="cursor-pointer"
+              onClick={() => {
+                createBox("experience", {
+                  company: "",
+                  role: "",
+                  period: "",
+                  location: "",
+                  accomplishments: [],
+                });
+              }}
+            >
               Add
             </button>
           </div>
-          <div onClick={handleRemove}>
-            {data.experience
-              ? data.experience.map((ele) => {
-                  return (
-                    <ExperienceBox
-                      data={ele}
-                      key={ele.id}
-                      id={ele.id}
-                      fn={setData}
-                    ></ExperienceBox>
-                  );
-                })
-              : undefined}
+          <div data-section="experience" onClick={handleRemove}>
+            {data?.experience?.map((ele) => {
+              return (
+                <ExperienceBox
+                  data={ele}
+                  key={ele.id}
+                  id={ele.id}
+                  fn={setData}
+                ></ExperienceBox>
+              );
+            })}
+          </div>
+          <div className="flex justify-between">
+            <h1>Education</h1>
+            <button
+              className="cursor-pointer"
+              onClick={() => {
+                createBox("education", {
+                  level: "",
+                  school: "",
+                  period: "",
+                  details: "",
+                });
+              }}
+            >
+              Add
+            </button>
+          </div>
+          <div data-section="education" onClick={handleRemove}>
+            {data?.education?.map((ele) => {
+              return (
+                <EducationBox
+                  key={ele.id}
+                  id={ele.id}
+                  data={ele}
+                  fn={setData}
+                ></EducationBox>
+              );
+            })}
           </div>
         </aside>
         <aside className="flex flex-col items-center">
