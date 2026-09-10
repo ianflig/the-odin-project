@@ -45,8 +45,8 @@ export function ExperienceCV({ exp }) {
         <span>{exp.location}</span>
       </div>
       <ul>
-        {exp.accomplishments.map((e) => {
-          return <li key={exp.id}>{e}</li>;
+        {exp.accomplishments.map((e, index) => {
+          return <li key={index}>{e}</li>;
         })}
       </ul>
     </>

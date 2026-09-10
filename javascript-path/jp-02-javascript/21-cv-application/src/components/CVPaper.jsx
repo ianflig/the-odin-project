@@ -26,7 +26,7 @@ export function CVPaper({
         <span>Experience</span>
         <div>
           {experience.map((e) => (
-            <ExperienceCV exp={e}></ExperienceCV>
+            <ExperienceCV exp={e} key={e.id}></ExperienceCV>
           ))}
         </div>
         <span>Skills:</span>
