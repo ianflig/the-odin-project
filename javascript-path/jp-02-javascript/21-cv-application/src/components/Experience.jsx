@@ -32,3 +32,23 @@ export function Experience({ data, fn, id }) {
     </>
   );
 }
+
+export function ExperienceCV({ exp }) {
+  return (
+    <>
+      <div className="flex justify-between">
+        <h2>{exp.role}</h2>
+        <span>{exp.period}</span>
+      </div>
+      <div className="flex justify-between">
+        <h4>{exp.company}</h4>
+        <span>{exp.location}</span>
+      </div>
+      <ul>
+        {exp.accomplishments.map((e) => {
+          return <li key={exp.id}>{e}</li>;
+        })}
+      </ul>
+    </>
+  );
+}
