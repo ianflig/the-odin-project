@@ -1,6 +1,6 @@
 import { PersonalDetails } from "./components/PersonalDetails";
 import { ProfessionalSummary } from "./components/ProfessionalSummary";
-import { Experience } from "./components/Experience";
+import { ExperienceBox } from "./components/Experience";
 import { Skills } from "./components/Skills";
 import { CVPaper } from "./components/CVPaper";
 import { useState } from "react";
@@ -33,6 +33,7 @@ export function App() {
     ],
   });
 
+  // (e, name)
   function createBox() {
     setData((prev) => ({
       ...prev,
@@ -40,10 +41,10 @@ export function App() {
         ...prev.experience,
         {
           id: crypto.randomUUID(),
-          company: "Your company",
-          role: "Your role",
-          period: "Your period",
-          location: "Your location",
+          company: "",
+          role: "",
+          period: "",
+          location: "",
           accomplishments: [],
         },
       ],
@@ -80,12 +81,12 @@ export function App() {
             {data.experience
               ? data.experience.map((ele) => {
                   return (
-                    <Experience
+                    <ExperienceBox
                       data={ele}
                       key={ele.id}
                       id={ele.id}
                       fn={setData}
-                    ></Experience>
+                    ></ExperienceBox>
                   );
                 })
               : undefined}

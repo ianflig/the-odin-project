@@ -1,4 +1,4 @@
-import { ExperienceCV } from "./Experience";
+import { Experience } from "./Experience";
 
 export function CVPaper({
   fullName,
@@ -26,7 +26,7 @@ export function CVPaper({
         <span>Experience</span>
         <div>
           {experience.map((e) => (
-            <ExperienceCV exp={e} key={e.id}></ExperienceCV>
+            <Experience exp={e} key={e.id}></Experience>
           ))}
         </div>
         <span>Skills:</span>
