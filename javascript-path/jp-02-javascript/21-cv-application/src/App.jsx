@@ -105,6 +105,7 @@ export function App() {
               data.professionalSummary || "Your professional summary"
             }
             skills={data.skills || "Your skills"}
+            experience={data.experience || "Your experience"}
           ></CVPaper>
         </aside>
       </section>

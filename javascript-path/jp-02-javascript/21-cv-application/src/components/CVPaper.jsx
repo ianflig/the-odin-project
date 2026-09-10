@@ -7,8 +7,9 @@ export function CVPaper({
   website,
   professionalSummary,
   skills,
+  experience,
 }) {
-  let skillsArr = skills?.split(",");
+  const skillsArr = skills?.split(",");
 
   return (
     <>
@@ -20,6 +21,7 @@ export function CVPaper({
         <span>Location: {location}</span>
         <span>Website: {website}</span>
         <span>Profile: {professionalSummary}</span>
+        <span>Experience: {experience.map((e) => e.company)}</span>
         <span>Skills:</span>
         <span>{skillsArr.map((e) => e)}</span>
       </div>
