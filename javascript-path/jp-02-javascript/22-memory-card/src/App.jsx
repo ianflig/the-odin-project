@@ -1,21 +1,29 @@
 import { useState, useEffect } from "react";
+import { Card } from "./Card";
 
 export function App() {
-  const [cards, setCards] = useState("");
+  const [cards, setCards] = useState();
+  const [score, setScore] = useState({ score: 0, bestScore: 0 });
 
   useEffect(() => {
     const urls = [];
     //math random in the future
     for (let i = 1; i < 13; i++) {
-      urls.push(`https://pokeapi.co/api/v2/pokemon/${i}`);
+      urls.push(`https://pokeapi.co/api/v2/pokemon/${i * 9}`);
     }
 
     const promises = urls.map((url) => fetch(url));
 
     async function fetchPokemons() {
       const responses = await Promise.all(promises);
-      const data = await Promise.all(responses.map((e) => e.json()));
-      return console.log(data);
+      const dataToJson = await Promise.all(responses.map((e) => e.json()));
+      const data = dataToJson?.map((e) => ({
+        id: e.id,
+        name: e.name,
+        imgURL: `../public/images/${e.name}.webp`,
+      }));
+      data ? setCards(data) : undefined;
+      console.log(data);
     }
 
     fetchPokemons();
@@ -23,9 +31,22 @@ export function App() {
 
   return (
     <>
-      <section className="min-h-screen bg-black">
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4">
-          {/* {cards map} */}
+      <section className="flex h-dvh flex-col bg-black">
+        <div className="flex justify-between">
+          <h1>Pokemon Memory Game</h1>
+          <div className="flex flex-col">
+            <span>Score: {score.score}</span>
+            <span>Best Score: {score.bestScore}</span>
+          </div>
+        </div>
+        <h4>
+          Get points by clicking on an image but don't click on any more than
+          once!
+        </h4>
+        <div className="grid min-h-0 flex-1 auto-rows-fr grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4 overflow-y-auto">
+          {cards?.map((e) => {
+            return <Card key={e.id} id={e.id} imgURL={e.imgURL}></Card>;
+          })}
         </div>
       </section>
     </>
