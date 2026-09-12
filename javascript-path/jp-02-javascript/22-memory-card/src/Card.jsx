@@ -6,7 +6,7 @@ export function Card({ id, imgURL }) {
           id={id}
           src={imgURL}
           alt="pokemon-image"
-          className="h-full w-full object-contain"
+          className="h-full object-contain"
         />
       </div>
     </>

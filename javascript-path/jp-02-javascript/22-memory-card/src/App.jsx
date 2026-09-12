@@ -7,7 +7,6 @@ export function App() {
 
   useEffect(() => {
     const urls = [];
-    //math random in the future
     for (let i = 1; i < 13; i++) {
       urls.push(`https://pokeapi.co/api/v2/pokemon/${i * 9}`);
     }
@@ -18,16 +17,32 @@ export function App() {
       const responses = await Promise.all(promises);
       const dataToJson = await Promise.all(responses.map((e) => e.json()));
       const data = dataToJson?.map((e) => ({
-        id: e.id,
+        id: String(e.id),
         name: e.name,
         imgURL: `../public/images/${e.name}.webp`,
+        clicked: false,
       }));
       data ? setCards(data) : undefined;
-      console.log(data);
     }
 
     fetchPokemons();
   }, []);
+
+  function handleClick(e) {
+    const eleId =
+      e.target.tagName === "IMG" ? e.target.closest("[id]").id : undefined;
+
+    eleId
+      ? setCards((prev) => {
+          const newCards = prev.map((e) =>
+            e.id === eleId ? { ...e, clicked: true } : e,
+          );
+          console.log(newCards);
+
+          return newCards;
+        })
+      : undefined;
+  }
 
   return (
     <>
@@ -35,15 +50,18 @@ export function App() {
         <div className="flex justify-between">
           <h1>Pokemon Memory Game</h1>
           <div className="flex flex-col">
-            <span>Score: {score.score}</span>
-            <span>Best Score: {score.bestScore}</span>
+            <span>Score: {score?.score}</span>
+            <span>Best Score: {score?.bestScore}</span>
           </div>
         </div>
         <h4>
           Get points by clicking on an image but don't click on any more than
           once!
         </h4>
-        <div className="grid min-h-0 flex-1 auto-rows-fr grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4 overflow-y-auto">
+        <div
+          className="grid min-h-0 flex-1 auto-rows-fr grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4 overflow-y-auto"
+          onClick={handleClick}
+        >
           {cards?.map((e) => {
             return <Card key={e.id} id={e.id} imgURL={e.imgURL}></Card>;
           })}
