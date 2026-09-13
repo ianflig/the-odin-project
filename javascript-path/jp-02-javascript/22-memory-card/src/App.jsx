@@ -28,20 +28,36 @@ export function App() {
     fetchPokemons();
   }, []);
 
+  function resetGame() {
+    //stuff
+    setScore((prev) => ({
+      score: 0,
+      bestScore: prev.score > prev.bestScore ? prev.score : prev.bestScore,
+    }));
+
+    setCards((prev) => prev.map((e) => ({ ...e, clicked: false })));
+    console.log("game reset");
+  }
+
   function handleClick(e) {
-    const eleId =
+    const cardId =
       e.target.tagName === "IMG" ? e.target.closest("[id]").id : undefined;
 
-    eleId
-      ? setCards((prev) => {
-          const newCards = prev.map((e) =>
-            e.id === eleId ? { ...e, clicked: true } : e,
-          );
-          console.log(newCards);
+    if (!cardId) return;
 
-          return newCards;
-        })
-      : undefined;
+    const isClicked = cards.find((e) => (e.id === cardId ? e.clicked : null));
+
+    if (isClicked) return resetGame();
+
+    setScore((prev) => ({ ...prev, score: prev.score + 1 }));
+
+    setCards((prev) => {
+      const newCards = prev.map((e) =>
+        e.id === cardId ? { ...e, clicked: true } : e,
+      );
+
+      return newCards;
+    });
   }
 
   return (
