@@ -19,7 +19,7 @@ export function App() {
       const data = dataToJson?.map((e) => ({
         id: String(e.id),
         name: e.name,
-        imgURL: `../public/images/${e.name}.webp`,
+        imgURL: `/images/${e.name}.webp`,
         clicked: false,
       }));
       data ? setCards(data) : undefined;
