@@ -43,8 +43,10 @@ export function App() {
       score: 0,
       bestScore: prev.score > prev.bestScore ? prev.score : prev.bestScore,
     }));
-    setCards((prev) => prev.map((e) => ({ ...e, clicked: false })));
-    setCards((prev) => shuffleArray(prev));
+    setCards((prev) => {
+      const setted = prev.map((e) => ({ ...e, clicked: false }));
+      return shuffleArray([...setted]);
+    });
 
     console.log("game reset");
   }
@@ -66,10 +68,7 @@ export function App() {
       const newCards = prev.map((e) =>
         e.id === cardId ? { ...e, clicked: true } : e,
       );
-
-      setCards((prev) => shuffleArray(prev));
-
-      return newCards;
+      return shuffleArray([...newCards]);
     });
   }
 
