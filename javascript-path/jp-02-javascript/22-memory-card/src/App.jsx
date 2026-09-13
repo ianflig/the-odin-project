@@ -28,14 +28,24 @@ export function App() {
     fetchPokemons();
   }, []);
 
+  function shuffleArray(arr) {
+    const shuffledArr = arr;
+    for (let i = shuffledArr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+
+      [shuffledArr[i], shuffledArr[j]] = [shuffledArr[j], shuffledArr[i]];
+    }
+    return shuffledArr;
+  }
+
   function resetGame() {
-    //stuff
     setScore((prev) => ({
       score: 0,
       bestScore: prev.score > prev.bestScore ? prev.score : prev.bestScore,
     }));
-
     setCards((prev) => prev.map((e) => ({ ...e, clicked: false })));
+    setCards((prev) => shuffleArray(prev));
+
     console.log("game reset");
   }
 
@@ -45,6 +55,7 @@ export function App() {
 
     if (!cardId) return;
 
+    // .some() is better
     const isClicked = cards.find((e) => (e.id === cardId ? e.clicked : null));
 
     if (isClicked) return resetGame();
@@ -55,6 +66,8 @@ export function App() {
       const newCards = prev.map((e) =>
         e.id === cardId ? { ...e, clicked: true } : e,
       );
+
+      setCards((prev) => shuffleArray(prev));
 
       return newCards;
     });
