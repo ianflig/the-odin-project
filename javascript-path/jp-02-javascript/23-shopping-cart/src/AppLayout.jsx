@@ -4,9 +4,9 @@ import { SECTIONS } from "./constants.js";
 
 export function AppLayout() {
   return (
-    <>
+    <section className="flex flex-col">
       <Header sections={SECTIONS} />
       <Outlet />
-    </>
+    </section>
   );
 }
