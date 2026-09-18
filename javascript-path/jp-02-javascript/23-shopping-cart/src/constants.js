@@ -1,5 +1,5 @@
 export const SECTIONS = [
-  { name: "Home", linkTo: "home", id: crypto.randomUUID() },
-  { name: "Shop", linkTo: "shop", id: crypto.randomUUID() },
-  { name: "Cart", linkTo: "cart", id: crypto.randomUUID() },
+  { name: "Home", linkTo: "home" },
+  { name: "Shop", linkTo: "shop" },
+  { name: "Cart", linkTo: "cart" },
 ];

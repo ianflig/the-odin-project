@@ -5,7 +5,7 @@ export function Header({ sections }) {
     <>
       {sections
         ? sections.map((e) => (
-            <Link key={e.id} to={e.linkTo}>
+            <Link key={e.linkTo} to={e.linkTo}>
               {e.name}
             </Link>
           ))
