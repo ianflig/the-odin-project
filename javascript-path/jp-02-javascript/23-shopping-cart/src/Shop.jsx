@@ -72,7 +72,6 @@ export function Shop() {
                     +
                   </button>
                 </div>
-                {/* onClick={addToCart} -> useOutletContext() */}
                 <button
                   className="cursor-pointer"
                   onClick={() =>

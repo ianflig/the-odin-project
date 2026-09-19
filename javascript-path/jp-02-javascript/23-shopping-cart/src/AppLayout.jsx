@@ -11,9 +11,24 @@ export function AppLayout() {
     setCart((prev) =>
       prev.some((e) => e.id === id)
         ? prev.map((e) =>
-            e.id === id ? { ...e, amount: e.amount + amount } : e,
+            e.id === id
+              ? {
+                  ...e,
+                  amount: e.amount + amount,
+                  total: (e.amount + amount) * e.price,
+                }
+              : e,
           )
-        : [...prev, { id: id, title: title, price: price, amount: amount }],
+        : [
+            ...prev,
+            {
+              id: id,
+              title: title,
+              price: price,
+              amount: amount,
+              total: price,
+            },
+          ],
     );
   }
 
