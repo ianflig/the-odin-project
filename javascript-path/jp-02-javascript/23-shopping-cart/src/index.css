@@ -22,6 +22,12 @@
     color-scheme: light;
   }
 
+  /* Reserva siempre el ancho de la barra de scroll, haya o no contenido
+     desbordado. Sin esto el contenido salta al cambiar de sección. */
+  html {
+    scrollbar-gutter: stable;
+  }
+
   body {
     background-color: var(--color-paper);
     color: var(--color-body);
