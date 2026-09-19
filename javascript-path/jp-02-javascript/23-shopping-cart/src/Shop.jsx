@@ -12,7 +12,6 @@ export function Shop() {
       const res = await fetch(fetchURL).then((res) => res.json());
       if (res) {
         setProducts(res.products);
-        // setAmount(Object.fromEntries(res.products.map((e) => [e.id, 1])));
       }
     }
 
@@ -21,20 +20,25 @@ export function Shop() {
 
   function handleChange(e) {
     const { value, id } = e.target;
-    setAmount((prev) => ({ ...prev, [id]: Number(value) }));
+
+    const num = Number(value);
+
+    if (num < 1) return;
+
+    setAmount((prev) => ({ ...prev, [id]: num }));
   }
 
   function handleClick(type, id) {
     type === "minus"
       ? setAmount((prev) => ({
           ...prev,
-          [id]: prev[id] > 1 ? getAmount(id) - 1 : 1,
+          [id]: getAmount(prev, id) > 1 ? getAmount(prev, id) - 1 : 1,
         }))
-      : setAmount((prev) => ({ ...prev, [id]: getAmount(id) + 1 }));
+      : setAmount((prev) => ({ ...prev, [id]: getAmount(prev, id) + 1 }));
   }
 
-  function getAmount(id) {
-    return amount[id] ?? 1;
+  function getAmount(obj, id) {
+    return obj[id] ?? 1;
   }
 
   return (
@@ -65,7 +69,7 @@ export function Shop() {
                     type="number"
                     name="quantity"
                     min="1"
-                    value={getAmount(e.id)}
+                    value={getAmount(amount, e.id)}
                     onChange={handleChange}
                     id={e.id}
                     className="w-16"
@@ -80,7 +84,7 @@ export function Shop() {
                 <button
                   className="cursor-pointer"
                   onClick={() =>
-                    addToCart(getAmount(e.id), e.title, e.price, e.id)
+                    addToCart(getAmount(amount, e.id), e.title, e.price, e.id)
                   }
                 >
                   Add to Cart
