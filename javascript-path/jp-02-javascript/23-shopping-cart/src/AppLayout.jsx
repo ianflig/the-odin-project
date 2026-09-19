@@ -34,14 +34,14 @@ export function AppLayout() {
     setCart((prev) => prev.filter((e) => e.id !== id));
   }
 
-  function handleItemQuantity(quantity, id) {
+  function handleItemQuantity(delta, id) {
     setCart((prev) =>
       prev
         .map((e) =>
           e.id === id
             ? {
                 ...e,
-                amount: e.amount + quantity,
+                amount: e.amount + delta,
               }
             : e,
         )
