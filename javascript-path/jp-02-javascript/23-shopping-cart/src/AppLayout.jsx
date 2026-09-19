@@ -15,6 +15,7 @@ export function AppLayout() {
               ? {
                   ...e,
                   amount: e.amount + amount,
+                  // total to refactor, derivated value in cart.jsx
                   total: (e.amount + amount) * e.price,
                 }
               : e,
@@ -32,10 +33,16 @@ export function AppLayout() {
     );
   }
 
+  function handleRemove(id) {
+    setCart((prev) => prev.filter((e) => e.id !== id));
+  }
+
   return (
     <section className="flex flex-col">
       <Header sections={SECTIONS} />
-      <Outlet context={{ products, setProducts, cart, addToCart }} />
+      <Outlet
+        context={{ products, setProducts, cart, addToCart, handleRemove }}
+      />
     </section>
   );
 }
