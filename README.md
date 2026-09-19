@@ -30,3 +30,4 @@
 20. [Homepage](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-02-javascript/20-homepage)
 21. [CV-Application](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-02-javascript/21-cv-application)
 22. [Memory-Card](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-02-javascript/22-memory-card)
+23. [Shopping-Cart](https://github.com/ianflig/the-odin-project/tree/main/javascript-path/jp-02-javascript/23-shopping-cart)

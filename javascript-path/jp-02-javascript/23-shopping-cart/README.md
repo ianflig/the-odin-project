@@ -1,16 +1,37 @@
-# React + Vite
+<h1 align="center">
+  Shopping Cart
+</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div align="center">
 
-Currently, two official plugins are available:
+![HTML](https://img.shields.io/badge/HTML5-%23E34F26.svg?style=flat&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS-639?logo=css&logoColor=fff)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000)
+![React](https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-%2338B2AC.svg?logo=tailwind-css&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-%23646CFF.svg?logo=vite&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-%23000000.svg?logo=vercel&logoColor=white)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+</div>
 
-## React Compiler
+[screenshot]: ./public/images/screenshot.png "preview"
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+![preview][screenshot]
 
-## Expanding the ESLint configuration
+**_DESCRIPTION_**: This repo contains a fake online store built with React and React Router as a practice project for client-side routing, shared state and data fetching. The shop page pulls its products from an external API and lets you pick a quantity before adding an item to the cart, while the cart page keeps the running total and lets you adjust quantities or remove items entirely.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Live Preview
+
+The live site can be viewed [**here**](https://odin-23.vercel.app).
+
+## Setup
+
+This app uses Vite. To run this setup locally:
+
+```bash
+npm install
+npm run build
+npx serve dist
+```
+
+After that, just head to [localhost:3000](http://localhost:3000) to see the app running.
