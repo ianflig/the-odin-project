@@ -1,7 +1,7 @@
 import { useOutletContext } from "react-router";
 
 export function Cart() {
-  const { cart, handleRemove } = useOutletContext();
+  const { cart, removeFromCart, handleItemQuantity } = useOutletContext();
 
   return (
     <div className="flex flex-col">
@@ -16,24 +16,29 @@ export function Cart() {
             <div className="flex">
               <button
                 className="cursor-pointer"
-                //   onClick={() => handleClick("minus", e.id)}
+                onClick={() => handleItemQuantity(-1, e.id)}
               >
                 -
               </button>
               <span>{e.amount}</span>
               <button
                 className="cursor-pointer"
-                //   onClick={() => handleClick("plus", e.id)}
+                onClick={() => handleItemQuantity(1, e.id)}
               >
                 +
               </button>
             </div>
-            <span>{e.total}</span>
-            <button onClick={() => handleRemove(e.id)}>Remove</button>
+            <span>{(e.price * e.amount).toFixed(2)}</span>
+            <button onClick={() => removeFromCart(e.id)}>Remove</button>
           </div>
         ))}
       </div>
-      <span>Total: </span>
+      <span>
+        Total:{" "}
+        {cart
+          .reduce((acc, curr) => acc + curr.amount * curr.price, 0)
+          .toFixed(2)}
+      </span>
     </div>
   );
 }
