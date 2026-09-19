@@ -20,10 +20,16 @@ export function Shop() {
   function handleChange(e) {
     const { value, id } = e.target;
     // todo: setAmount with indexed key {...prev, [id]: value,} and parse to Number on set
+    setAmount((prev) => ({ ...prev, [id]: Number(value) }));
   }
 
-  function handleClick(e) {
-    const { name } = e.target;
+  function handleClick(type, id) {
+    type === "minus"
+      ? setAmount((prev) => ({
+          ...prev,
+          [id]: prev[id] > 1 ? prev[id] - 1 : 1,
+        }))
+      : setAmount((prev) => ({ ...prev, [id]: prev[id] + 1 }));
   }
 
   return (
@@ -46,8 +52,7 @@ export function Shop() {
                 <div className="flex">
                   <button
                     className="cursor-pointer"
-                    onClick={handleClick}
-                    name="less"
+                    onClick={() => handleClick("minus", e.id)}
                   >
                     -
                   </button>
@@ -55,14 +60,13 @@ export function Shop() {
                     type="number"
                     name="quantity"
                     min="1"
-                    // value={amount?.[e.id] || 1}
+                    value={amount?.[e.id] || 1}
                     onChange={handleChange}
                     id={e.id}
                   />
                   <button
                     className="cursor-pointer"
-                    onClick={handleClick}
-                    name="more"
+                    onClick={() => handleClick("plus", e.id)}
                   >
                     +
                   </button>
