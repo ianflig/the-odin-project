@@ -51,7 +51,7 @@ export function AppLayout() {
 
   return (
     <div className="bg-paper min-h-screen">
-      <Header sections={SECTIONS} />
+      <Header sections={SECTIONS} cart={cart} />
       <main className="mx-auto w-full max-w-6xl px-6 pt-18">
         <Outlet
           context={{
