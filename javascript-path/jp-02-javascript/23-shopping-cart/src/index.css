@@ -1,14 +1,60 @@
 @import "tailwindcss";
 
-:root {
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: white;
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@theme {
+  /* Paleta: índigo profundo + latón sobre porcelana */
+  --color-paper: #f6f5f9;
+  --color-surface: #ffffff;
+  --color-ink: #1f1d3a;
+  --color-body: #56527a;
+  --color-muted: #8b88a5;
+  --color-brand: #3a3382;
+  --color-brand-dark: #2b2566;
+  --color-brand-soft: #e8e6f7;
+  --color-accent: #a06b16;
+  --color-line: #e4e2ee;
+
+  --font-display: "Newsreader", Georgia, serif;
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
 }
 
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-body);
+    font-family: var(--font-sans);
+    letter-spacing: 0.1px;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+  }
+
+  /* Oculta los spinners nativos del input numérico: los reemplazan
+     los botones - / + del stepper. */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    appearance: textfield;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-soft);
+    color: var(--color-brand);
+  }
+}

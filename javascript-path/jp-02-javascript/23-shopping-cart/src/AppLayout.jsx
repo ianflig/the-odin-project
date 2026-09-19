@@ -50,18 +50,20 @@ export function AppLayout() {
   }
 
   return (
-    <section className="flex flex-col">
+    <div className="bg-paper min-h-screen">
       <Header sections={SECTIONS} />
-      <Outlet
-        context={{
-          products,
-          setProducts,
-          cart,
-          addToCart,
-          removeFromCart,
-          handleItemQuantity,
-        }}
-      />
-    </section>
+      <main className="mx-auto w-full max-w-6xl px-6 pt-18">
+        <Outlet
+          context={{
+            products,
+            setProducts,
+            cart,
+            addToCart,
+            removeFromCart,
+            handleItemQuantity,
+          }}
+        />
+      </main>
+    </div>
   );
 }
