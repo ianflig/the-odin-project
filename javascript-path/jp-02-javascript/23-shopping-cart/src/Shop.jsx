@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router";
 
 export function Shop() {
-  const [products, setProducts] = useOutletContext();
+  const { products, setProducts, addToCart } = useOutletContext();
   const [amount, setAmount] = useState();
 
   useEffect(() => {
@@ -10,8 +10,10 @@ export function Shop() {
     const fetchURL = "https://dummyjson.com/products";
     async function fetchProducts() {
       const res = await fetch(fetchURL).then((res) => res.json());
-      res ? setProducts(res.products) : undefined;
-      console.log(res.products);
+      if (res) {
+        setProducts(res.products);
+        setAmount(Object.fromEntries(res.products.map((e) => [e.id, 1])));
+      }
     }
 
     fetchProducts();
@@ -19,7 +21,6 @@ export function Shop() {
 
   function handleChange(e) {
     const { value, id } = e.target;
-    // todo: setAmount with indexed key {...prev, [id]: value,} and parse to Number on set
     setAmount((prev) => ({ ...prev, [id]: Number(value) }));
   }
 
@@ -60,7 +61,7 @@ export function Shop() {
                     type="number"
                     name="quantity"
                     min="1"
-                    value={amount?.[e.id] || 1}
+                    value={amount?.[e.id]}
                     onChange={handleChange}
                     id={e.id}
                   />
@@ -72,7 +73,14 @@ export function Shop() {
                   </button>
                 </div>
                 {/* onClick={addToCart} -> useOutletContext() */}
-                <button className="cursor-pointer">Add to Cart</button>
+                <button
+                  className="cursor-pointer"
+                  onClick={() =>
+                    addToCart(amount?.[e.id], e.title, e.price, e.id)
+                  }
+                >
+                  Add to Cart
+                </button>
               </div>
             ))
           : "Loading..."}
